@@ -1,0 +1,39 @@
+#!/bin/sh
+
+##
+#	upport package
+#	1.2.2
+#	20141211
+##
+
+CLEAN="FALSE"
+MODE="VERBOSE"
+
+while getopts cs o
+	do case $o in
+		c) CLEAN="TRUE";;
+		s) MODE="SILENT";;
+	esac
+done
+shift `echo $OPTIND-1 | bc`
+
+if [ $1 == 'git' ] || [ $1 == 'sqlite3' ]; then
+	echo "manually build $1"
+	exit
+fi
+
+if [ $CLEAN == "TRUE" ]; then
+	sudo port clean $1
+fi
+
+if [ $MODE == "SILENT" ]; then
+	sudo port fetch $1
+	mpuph $1 > /dev/null
+	sudo port upgrade $1
+	mpdiff $1 > /dev/null
+else
+	sudo port -v fetch $1
+	mpuph $1
+	sudo port -v upgrade $1
+	mpdiff $1
+fi

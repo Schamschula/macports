@@ -1,0 +1,87 @@
+#!/bin/sh
+
+##
+#	mpcheck [-m]
+#	1.6.1
+#	20141206
+##
+
+MODE="D"
+
+while getopts fmosy o
+	do case $o in
+		f) MODE="F";;
+		m) MODE="M";;
+		o) MODE="O";;
+		s) MODE="S";;
+		y) MODE="Y";;
+	esac
+done
+shift `echo $OPTIND-1 | bc`
+
+case $MODE in
+	F)
+		#	all to file
+		cd /Users/marius/Development/MacPorts/var
+		pkgs=$(port installed | gawk '{print $1}' | uniq)
+		for pkg in $pkgs
+		do
+			port livecheck $pkg >> mpcheck.$(date "+%Y%m%d") 2>&1
+		done
+		livediff > mpdiff.$(date "+%Y%m%d")
+		;;
+	M)
+		#	my ports
+		pkgs="duff ffe freefont-ttf gawk gifsicle GiNaC gnutls grep grsync gsed hatools \
+		iftop LaTeXiT lftp libgcrypt libgpg-error libpcap libtasn1 littleutils mksh \
+		pyxplot retail rr stunnel surblhost ts wcd"
+		for pkg in $pkgs
+		do
+			echo "port livecheck $pkg"
+			port livecheck $pkg
+		done
+		;;
+	O)
+		#	octave
+		pkgs="octave octave-bim octave-control octave-divand octave-fits octave-fl-core \
+		octave-fem-fenics octave-fpl octave-fuzzy-logic-toolkit octave-general \
+		octave-geometry octave-image octave-io octave-linear-algebra octave-mechanics \
+		octave-miscellaneous octave-msh octave-mvn octave-nan octave-netcdf octave-octcdf \
+		octave-optics octave-optim octave-quaternion octave-parallel octave-quaternion \
+		octave-queueing octave-signal octave-specfun octave-splines octave-struct \
+		octave-stk octave-tsa py27-fiat"
+		for pkg in $pkgs
+		do
+			echo "port livecheck $pkg"
+			port livecheck $pkg
+		done
+		;;
+	S)
+		#	server
+		pkgs="apache24-devel apr apr-util bind9 clamav gitlist mailman mysql56 \
+		openssh openssl php56 squirrelmail sqlite3"
+		for pkg in $pkgs
+		do
+			echo "port livecheck $pkg"
+			port livecheck $pkg
+		done
+		;;
+	Y)
+		#	security
+		pkgs="daq nmap ntop snort wireshark"
+		for pkg in $pkgs
+		do
+			echo "port livecheck $pkg"
+			port livecheck $pkg
+		done
+		;;
+	*)
+		#	all
+		pkgs=$(port installed | gawk '{print $1}' | uniq)
+		for pkg in $pkgs
+		do
+			echo "port livecheck $pkg"
+			port livecheck $pkg
+		done
+		;;		
+esac

@@ -1,0 +1,24 @@
+#!/bin/sh
+
+##
+#	msdiff package path
+#
+#	Generate MacPorts patch for source files
+#
+#	1.0.1
+#	20141208
+##
+
+#	Variables
+LPATH=/Users/marius/Development/MacPorts/ports/
+GPATH=/opt/local/var/macports/sources/rsync.macports.org/release/tarballs/ports/
+PATHSTR=$(echo $2 | sed 's|/|-|g')
+PKG=$(port file $1|sed "s|$LPATH||"|sed "s|$GPATH||"|sed 's/Portfile//')
+VERS=$(port info --version $1 | awk '{print $2}')
+
+#	Go to directory
+cd $LPATH/$PKG/work/$1-$VERS
+
+#	Diff
+echo "diff -u $2.orig $2 > $LPATH/$PKG/files/patch-$PATHSTR.diff"
+diff -u $2.orig $2 > $LPATH/$PKG/files/patch-$PATHSTR.diff
