@@ -2,8 +2,8 @@
 
 ##
 #	mpcheck [-m]
-#	1.6.1
-#	20141206
+#	1.6.2
+#	20141214
 ##
 
 MODE="D"
@@ -43,11 +43,12 @@ case $MODE in
 		;;
 	O)
 		#	octave
-		pkgs="octave octave-bim octave-control octave-divand octave-fits octave-fl-core \
-		octave-fem-fenics octave-fpl octave-fuzzy-logic-toolkit octave-general \
-		octave-geometry octave-image octave-io octave-linear-algebra octave-mechanics \
-		octave-miscellaneous octave-msh octave-mvn octave-nan octave-netcdf octave-octcdf \
-		octave-optics octave-optim octave-quaternion octave-parallel octave-quaternion \
+		pkgs="octave octave-bim octave-communications octave-control octave-divand \
+		octave-fem-fenics octave-fits octave-fl-core octave-fpl \
+		octave-fuzzy-logic-toolkit octave-general octave-geometry octave-image octave-io \
+		octave-linear-algebra octave-mechanics octave-miscellaneous octave-msh octave-mvn \
+		octave-nan octave-ncarray octave-netcdf octave-octcdf octave-octproj octave-optics \
+		octave-optim octave-quaternion octave-parallel octave-quaternion \
 		octave-queueing octave-signal octave-specfun octave-splines octave-struct \
 		octave-stk octave-tsa py27-fiat"
 		for pkg in $pkgs
