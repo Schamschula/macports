@@ -1,0 +1,15 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:et:sw=4:ts=4:sts=4
+# $Id: Portfile 114034 2013-11-27 16:20:17Z michaelld@macports.org $
+
+PortSystem          1.0
+PortGroup           octave 1.0
+
+octave.setup        splines 1.2.7
+platforms           darwin
+license             GPL-3+ public-domain
+maintainers         nomaintainer
+description         Additional Cubic spline functions.
+long_description    ${description}
+
+checksums           rmd160 974fcd43fb27b603f3b690094accae1256e76d07 \
+		            sha256 e0729b258bf13c2646d0ece299a72a8fa05e24381c38e61411a0806e5d735a2f

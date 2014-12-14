@@ -1,0 +1,11 @@
+--- src/Makefile.in.orig	2014-09-13 05:11:39.000000000 -0500
++++ src/Makefile.in	2014-11-27 10:43:27.000000000 -0600
+@@ -24,7 +24,7 @@
+ LIBS=$(patsubst %, "%", $(LIBS_RAW))
+ ifeq (1.4.0, $(findstring 1.4.0, $(DOLFIN_CPPFLAGS)))
+   CPPFLAGS+=-DLATEST_DOLFIN
+-  LIBS+=-lboost_mpi -lboost_serialization
++  LIBS+=-lboost_mpi-mt -lboost_serialization-mt -L/opt/local/lib/octave/@version@
+ endif
+ CPPFLAGS+=$(DOLFIN_CPPFLAGS)
+ CPPFLAGS:='$(CPPFLAGS)'

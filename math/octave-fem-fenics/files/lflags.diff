@@ -1,0 +1,234 @@
+diff -rupN fem-fenics/inst/private/generate_makefile.m fem-fenics-new/inst/private/generate_makefile.m
+--- inst/private/generate_makefile.m	2014-09-13 12:11:39.000000000 +0200
++++ inst/private/generate_makefile.m	2014-11-27 13:46:19.144205843 +0100
+@@ -36,16 +36,16 @@ lhs : @@UFL_NAME@@_LinearForm.oct\n\
+ fun : @@UFL_NAME@@_Functional.oct\n\
+ \n\
+ @@UFL_NAME@@_FunctionSpace.oct: @@UFL_NAME@@.h @@UFL_NAME@@_FunctionSpace.cc\n\
+-	CPPFLAGS='$(CPPFLAGS)' $(MKOCTFILE) @@UFL_NAME@@_FunctionSpace.cc -I$(DIR) -I. $(LDFLAGS) $(LIBS)\n\
++	CPPFLAGS='$(CPPFLAGS)' LFLAGS='$(LIBS)' $(MKOCTFILE) @@UFL_NAME@@_FunctionSpace.cc -I$(DIR) -I.\n\
+ \n\
+ @@UFL_NAME@@_BilinearForm.oct: @@UFL_NAME@@.h @@UFL_NAME@@_BilinearForm.cc\n\
+-	CPPFLAGS='$(CPPFLAGS)' $(MKOCTFILE) @@UFL_NAME@@_BilinearForm.cc -I$(DIR) -I. $(LDFLAGS) $(LIBS)\n\
++	CPPFLAGS='$(CPPFLAGS)' LFLAGS='$(LIBS)' $(MKOCTFILE) @@UFL_NAME@@_BilinearForm.cc -I$(DIR) -I.\n\
+ \n\
+ @@UFL_NAME@@_LinearForm.oct: @@UFL_NAME@@.h @@UFL_NAME@@_LinearForm.cc\n\
+-	CPPFLAGS='$(CPPFLAGS)' $(MKOCTFILE) @@UFL_NAME@@_LinearForm.cc -I$(DIR) -I. $(LDFLAGS) $(LIBS)\n\
++	CPPFLAGS='$(CPPFLAGS)' LFLAGS='$(LIBS)' $(MKOCTFILE) @@UFL_NAME@@_LinearForm.cc -I$(DIR) -I.\n\
+ \n\
+ @@UFL_NAME@@_Functional.oct: @@UFL_NAME@@.h @@UFL_NAME@@_Functional.cc\n\
+-	CPPFLAGS='$(CPPFLAGS)' $(MKOCTFILE) @@UFL_NAME@@_Functional.cc -I$(DIR) -I. $(LDFLAGS) $(LIBS)\n\
++	CPPFLAGS='$(CPPFLAGS)' LFLAGS='$(LIBS)' $(MKOCTFILE) @@UFL_NAME@@_Functional.cc -I$(DIR) -I.\n\
+ \n\
+ @@UFL_NAME@@.h: @@UFL_NAME@@.ufl\n\
+ 	$(FFC) -l dolfin @@UFL_NAME@@.ufl\n\
+diff -rupN fem-fenics/inst/private/generate_mf_makefile.m fem-fenics-new/inst/private/generate_mf_makefile.m
+--- inst/private/generate_mf_makefile.m	2014-09-13 12:11:39.000000000 +0200
++++ inst/private/generate_mf_makefile.m	2014-11-27 13:46:19.144205843 +0100
+@@ -33,11 +33,11 @@ all : $(OCTFILES)\n\
+ \n\
+ MeshFunction_@@LABEL@@.oct: MeshFunction_@@LABEL@@.cc \
+                             meshfunction_@@LABEL@@.h\n\
+-	CPPFLAGS='$(CPPFLAGS)' $(MKOCTFILE) $< -o $@ -I$(DIR) -I. $(LDFLAGS) $(LIBS)\n\
++	CPPFLAGS='$(CPPFLAGS)' LFLAGS='$(LIBS)' $(MKOCTFILE) $< -o $@ -I$(DIR) -I.\n\
+ \n\
+ save_@@LABEL@@.oct: save_@@LABEL@@.cc meshfunction_@@LABEL@@.h mkmfdir\n\
+-	CPPFLAGS='$(CPPFLAGS)' $(MKOCTFILE) $< -o @meshfunction_@@LABEL@@/save.oct\
+- -I$(DIR) -I. $(LDFLAGS) $(LIBS)\n\
++	CPPFLAGS='$(CPPFLAGS)' LFLAGS='$(LIBS)' $(MKOCTFILE) $< -o @meshfunction_@@LABEL@@/save.oct\
++ -I$(DIR) -I.\n\
+ \n\
+ mkmfdir:\n\
+ 	mkdir -p @meshfunction_@@LABEL@@\n\
+diff -rupN fem-fenics/inst/private/get_vars.m.in fem-fenics-new/inst/private/get_vars.m.in
+--- inst/private/get_vars.m.in	2014-09-13 12:11:39.000000000 +0200
++++ inst/private/get_vars.m.in	2014-11-27 13:46:19.148205843 +0100
+@@ -29,9 +29,7 @@ function var = get_vars (name)
+         var = [var, " -DLATEST_DOLFIN"];
+       endif
+     case "LIBS"
+-      tokens = strsplit (strtrim ("@EIGEN_LIBS@ @DOLFIN_LIBS@"));
+-      var = strjoin (tokens, '" "');
+-      var = ['"', var, '"'];
++      var = "@EIGEN_LIBS@ @DOLFIN_LIBS@";
+     otherwise
+       error ("get_vars: the requested variable is not available.");
+   endswitch
+diff -rupN fem-fenics/src/Makefile.in fem-fenics-new/src/Makefile.in
+--- src/Makefile.in	2014-09-13 12:11:39.000000000 +0200
++++ fsrc/Makefile.in	2014-11-27 13:46:19.152205843 +0100
+@@ -20,14 +20,14 @@ FFC ?= ffc
+ ARFLAGS=-r -s
+ DOLFIN_CPPFLAGS=@DOLFIN_CPPFLAGS@
+ CPPFLAGS=@DENSE_CPPFLAGS@ @EIGEN_CPPFLAGS@ -I.
+-LIBS_RAW=@EIGEN_LIBS@ @DOLFIN_LIBS@
+-LIBS=$(patsubst %, "%", $(LIBS_RAW))
++LIBS=@EIGEN_LIBS@ @DOLFIN_LIBS@
+ ifeq (1.4.0, $(findstring 1.4.0, $(DOLFIN_CPPFLAGS)))
+   CPPFLAGS+=-DLATEST_DOLFIN
+   LIBS+=-lboost_mpi -lboost_serialization
+ endif
+ CPPFLAGS+=$(DOLFIN_CPPFLAGS)
+ CPPFLAGS:='$(CPPFLAGS)'
++LIBS:='$(LIBS)'
+ 
+ OCTFILES= Mesh.oct \
+              DirichletBC.oct \
+@@ -53,75 +53,73 @@ OCTFILES= Mesh.oct \
+ all: $(OCTFILES)
+ 
+ fem_init_env.oct: fem_init_env.o
+-	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) fem_init_env.o -o $@ $(LIBS)
++	LFLAGS=$(LIBS) $(MKOCTFILE) fem_init_env.o -o $@
+ 
+ fem_init_env.o:  fem_init_env.cc mesh.h functionspace.h boundarycondition.h function.h coefficient.h form.h
+ 	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) -c fem_init_env.cc -o $@
+ 
+ Mesh.oct: Mesh.o
+-	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) Mesh.o -o $@ $(LIBS)
++	LFLAGS=$(LIBS) $(MKOCTFILE) Mesh.o -o $@
+ 
+ Mesh.o: Mesh.cc mesh.h dolfin_compat.h meshfunction.h
+ 	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) -c Mesh.cc -o $@
+ 
+ MeshFunction.oct: MeshFunction.o
+-	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) $< -o $@ $(LIBS)
++	LFLAGS=$(LIBS) $(MKOCTFILE) $< -o $@
+ 
+ MeshFunction.o: MeshFunction.cc mesh.h dolfin_compat.h meshfunction.h
+ 	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) -c $< -o $@
+ 
+ fem_get_mesh.oct: fem_get_mesh.o
+-	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) fem_get_mesh.o -o $@ $(LIBS)
++	LFLAGS=$(LIBS) $(MKOCTFILE) fem_get_mesh.o -o $@
+ 
+ fem_get_mesh.o: fem_get_mesh.cc
+ 	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) -c fem_get_mesh.cc -o $@
+ 
+ DirichletBC.oct: DirichletBC.o
+-	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) DirichletBC.o -o $@ $(LIBS)
++	LFLAGS=$(LIBS) $(MKOCTFILE) DirichletBC.o -o $@
+ 
+ DirichletBC.o: DirichletBC.cc functionspace.h boundarycondition.h expression.h dolfin_compat.h meshfunction.h
+ 	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) -c DirichletBC.cc -o $@
+ 
+ Expression.oct: Expression.o
+-	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) Expression.o -o $@ $(LIBS)
++	LFLAGS=$(LIBS) $(MKOCTFILE) Expression.o -o $@
+ 
+ Expression.o: Expression.cc expression.h coefficient.h
+ 	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) -c Expression.cc -o $@
+ 
+ Function.oct: Function.o
+-	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) Function.o -o $@ $(LIBS)
++	LFLAGS=$(LIBS) $(MKOCTFILE) Function.o -o $@
+ 
+ Function.o: Function.cc function.h dolfin_compat.h
+ 	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) -c Function.cc -o $@
+ 
+ assemble.oct: assemble.o libfemfenics_factories.a
+-	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) assemble.o -o $@ \
+-    libfemfenics_factories.a $(LIBS)
++	LFLAGS=$(LIBS) $(MKOCTFILE) assemble.o -o $@ libfemfenics_factories.a
+ 
+ assemble.o: assemble.cc form.h boundarycondition.h femfenics_factory.h dolfin_compat.h
+ 	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) -c assemble.cc -o $@
+ 
+ assemble_system.oct: assemble_system.o libfemfenics_factories.a
+-	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) assemble_system.o -o $@ \
+-    libfemfenics_factories.a $(LIBS)
++	LFLAGS=$(LIBS) $(MKOCTFILE) assemble_system.o -o $@ libfemfenics_factories.a
+ 
+ assemble_system.o: assemble_system.cc form.h boundarycondition.h femfenics_factory.h dolfin_compat.h
+ 	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) -c assemble_system.cc -o $@
+ 
+ save_func.oct: save_func.o mkfunction
+-	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) $< -o ./@function/save.oct $(LIBS)
++	LFLAGS=$(LIBS) $(MKOCTFILE) $< -o ./@function/save.oct
+ 
+ save_func.o: save_func.cc function.h dolfin_compat.h
+ 	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) -c $< -o $@
+ 
+ save_mf.oct: save_mf.o mkmeshfunction
+-	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) $< -o ./@meshfunction/save.oct $(LIBS)
++	LFLAGS=$(LIBS) $(MKOCTFILE) $< -o ./@meshfunction/save.oct
+ 
+ save_mf.o: save_mf.cc meshfunction.h
+ 	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) -c $< -o $@
+ 
+ save_mesh.oct: save_mesh.o mkmesh
+-	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) $< -o ./@mesh/save.oct $(LIBS)
++	LFLAGS=$(LIBS) $(MKOCTFILE) $< -o ./@mesh/save.oct
+ 
+ save_mesh.o: save_mesh.cc mesh.h
+ 	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) -c $< -o $@
+@@ -136,7 +134,7 @@ mkmesh:
+ 	 mkdir -p @mesh
+ 
+ plot_mesh.oct: plot_mesh.o mkmesh
+-	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) plot_mesh.o -o ./@mesh/plot.oct $(LIBS)
++	LFLAGS=$(LIBS) $(MKOCTFILE) plot_mesh.o -o ./@mesh/plot.oct
+ 
+ plot_mesh.o: plot_mesh.cc Plot_2d.h mesh.h Plot_3d.h dolfin_compat.h
+ 	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) -c plot_mesh.cc -o $@
+@@ -148,22 +146,25 @@ Plot_3d.h: Plot_3d.ufl
+ 	$(FFC) -l dolfin Plot_3d.ufl
+ 
+ plot_func.oct: plot_func.o mkfunction
+-	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) plot_func.o -o ./@function/plot.oct $(LIBS)
++	LFLAGS=$(LIBS) $(MKOCTFILE) plot_func.o -o ./@function/plot.oct
+ 
+ plot_func.o: plot_func.cc Plot_2d.h mesh.h Plot_3d.h dolfin_compat.h
+ 	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) -c plot_func.cc -o $@
+ 
+-SubSpace.oct: SubSpace.cc functionspace.h dolfin_compat.h
+-	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) -I. SubSpace.cc $(LIBS)
++SubSpace.o: SubSpace.cc functionspace.h dolfin_compat.h
++	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) -I. -c SubSpace.cc
++
++SubSpace.oct: SubSpace.o
++	LFLAGS=$(LIBS) $(MKOCTFILE) -o $@ $<
+ 
+ feval.oct: feval.o mkfunction
+-	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) feval.o -o ./@function/feval.oct $(LIBS)
++	LFLAGS=$(LIBS) $(MKOCTFILE) feval.o -o ./@function/feval.oct
+ 
+ feval.o: feval.cc function.h dolfin_compat.h
+ 	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) -c feval.cc -o $@
+ 
+ interpolate.oct: interpolate.o
+-	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) interpolate.o -o $@ $(LIBS)
++	LFLAGS=$(LIBS) $(MKOCTFILE) interpolate.o -o $@
+ 
+ interpolate.o: interpolate.cc function.h dolfin_compat.h
+ 	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) -c interpolate.cc -o $@
+@@ -182,25 +183,25 @@ libfemfenics_factories.a: femfenics_fact
+ 	$(AR) $(ARFLAGS) $@ $^
+ 
+ is_master_node.oct: is_master_node.o
+-	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) -o $@ $< $(LIBS)
++	LFLAGS=$(LIBS) $(MKOCTFILE) -o $@ $<
+ 
+ is_master_node.o: is_master_node.cc dolfin_compat.h
+ 	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) -o $@ -c $<
+ 
+ barrier.oct: barrier.o
+-	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) -o $@ $< $(LIBS)
++	LFLAGS=$(LIBS) $(MKOCTFILE) -o $@ $<
+ 
+ barrier.o: barrier.cc dolfin_compat.h
+ 	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) -o $@ -c $<
+ 
+ SubDomain.oct: SubDomain.o
+-	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) $< -o $@ $(LIBS)
++	LFLAGS=$(LIBS) $(MKOCTFILE) $< -o $@
+ 
+ SubDomain.o: SubDomain.cc subdomain.h
+ 	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) -c $< -o $@
+ 
+ mark.oct: mark.o
+-	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) $< -o $@ $(LIBS)
++	LFLAGS=$(LIBS) $(MKOCTFILE) $< -o $@
+ 
+ mark.o: mark.cc subdomain.h meshfunction.h dolfin_compat.h
+ 	CPPFLAGS=$(CPPFLAGS) $(MKOCTFILE) -c $< -o $@

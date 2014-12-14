@@ -1,0 +1,43 @@
+--- src/Makefile.orig	2012-10-01 05:11:33.000000000 -0500
++++ src/Makefile	2014-11-28 14:12:38.000000000 -0600
+@@ -1,6 +1,6 @@
+ # -*- coding: utf-8 -*-
+ #Compiler
+-CC=mkoctfile
++#CC=mkoctfile
+ #Common warning flags for C and C++
+ FLAGSCOMW=-Wall -Wextra -Wshadow -Wcast-qual -Wcast-align -Wwrite-strings
+ #Common optimization flags for C and C++
+@@ -10,22 +10,24 @@
+ CFLAGS+=-Wstrict-prototypes -Wnested-externs $(FLAGSCOMO)
+ #Flags for C++
+ CXXFLAGS=$(FLAGSCOMW) $(FLAGSCOMO)
++#Flags for preporcessor
++INCFLAGS=${shell $(MKOCTFILE) -p INCFLAGS}
+ #Flags for the linker
+-LDFLAGS=-lproj
++LDFLAGS=${shell $(MKOCTFILE) -p FLIBS} -lproj /opt/local/lib/octave/3.8.2 -loctave
+ #Export flags for compilers and linker
+-export CFLAGS CXXFLAGS
++export CFLAGS CXXFLAGS INCFLAGS
+ 
+ .PHONY: all
+ all: compile clean
+ 
+ .PHONY: compile
+ compile:
+-	$(CC) -c -v projwrap.c -o projwrap.o
+-	$(CC) -s -v _op_transform.cc projwrap.o $(LDFLAGS)
+-	$(CC) -s _op_fwd.cc projwrap.o $(LDFLAGS)
+-	$(CC) -s _op_inv.cc projwrap.o $(LDFLAGS)
+-	$(CC) -s _op_geod2geoc.cc $(LDFLAGS)
+-	$(CC) -s _op_geoc2geod.cc $(LDFLAGS)
++	$(CC) -c -v projwrap.c -o projwrap.o $(LDFLAGS) $(INCFLAGS)
++	$(CC) -s -v _op_transform.cc projwrap.o $(LDFLAGS) $(INCFLAGS)
++	$(CC) -s _op_fwd.cc projwrap.o $(LDFLAGS) $(INCFLAGS)
++	$(CC) -s _op_inv.cc projwrap.o $(LDFLAGS) $(INCFLAGS)
++	$(CC) -s _op_geod2geoc.cc $(LDFLAGS) $(INCFLAGS)
++	$(CC) -s _op_geoc2geod.cc $(LDFLAGS) $(INCFLAGS)
+ 
+ .PHONY: clean
+ clean:

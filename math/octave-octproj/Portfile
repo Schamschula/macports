@@ -1,0 +1,20 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:et:sw=4:ts=4:sts=4
+# $Id: Portfile 114034 2013-11-27 16:20:17Z michaelld@macports.org $
+
+PortSystem          1.0
+PortGroup           octave 1.0
+
+octave.setup        octproj 1.1.2
+platforms           darwin
+license             GPL-2+
+maintainers         gmail.com:mschamschula openmaintainer
+description         This package allows to call functions of PROJ.4 library for \
+                    cartographic projections transformations.
+long_description    ${description}
+
+checksums           rmd160 b0c8c3a2c942a3c217e4f8b9c9e3102b1521f40f \
+                    sha256 b1f1e7470606053da21bb7c66d5c82380299f8ed9a4d6de3e07647ac0e2d6cd9
+
+depends_lib-append  port:proj
+
+patchfiles          patch-src-Makefile.diff

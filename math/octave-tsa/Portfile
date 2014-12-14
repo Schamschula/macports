@@ -1,0 +1,18 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:et:sw=4:ts=4:sts=4
+# $Id: Portfile 114034 2013-11-27 16:20:17Z michaelld@macports.org $
+
+PortSystem          1.0
+PortGroup           octave 1.0
+
+octave.setup        tsa 4.2.7
+platforms           darwin
+license             GPL-3+
+maintainers         gmail.com:mschamschula openmaintainer
+description         Stochastic concepts and maximum entropy \
+                    methods for time series analysis.
+long_description    ${description}
+
+checksums           rmd160 f19d0439adadb9121e7deab9f01532d692a64d65 \
+                    sha256 48c22265ed0962c09ef7c1777628afc5d9a206089c674b7b9727a0c5a545b229
+
+patchfiles          patch-src_Makefile.diff

@@ -1,0 +1,38 @@
+--- src/Makefile.orig	2014-01-12 14:29:06.000000000 -0600
++++ src/Makefile	2014-11-28 13:18:52.000000000 -0600
+@@ -41,14 +41,19 @@
+ 
+ 
+ 
+-CC  	= gcc
+-CXX 	= g++
++#CC  	= gcc
++#CXX 	= g++
+ CFLAGS 	= -fopenmp -Wall -Wextra -Wconversion -O2 -fPIC 
+ OCTMEX	= mkoctfile$(OCTAVE_VERSION) --mex
+ RM      = rm
+ 
+ MEX_OPTION  += -lgomp CC\#$(CXX) CXX\#$(CXX) CFLAGS\#"$(CFLAGS)" CXXFLAGS\#"$(CFLAGS)"
+-MATMEX      = $(MATLABDIR)/bin/mex $(MEX_OPTION)
++MKOCTFILE = mkoctfile$(OCTAVE_VERSION)
++OCTMEX	= $(MKOCTFILE) --mex
++
++FLIBS = ${shell $(MKOCTFILE) -p FLIBS}
++INCFLAGS = ${shell $(MKOCTFILE) -p INCFLAGS}
++INC_CSTDLIB = -include cstdlib
+ 
+ PROGS = covm_mex.mex sumskipnan_mex.mex #
+ 
+@@ -88,10 +93,10 @@
+ #	Octave, MATLAB on Linux 
+ #########################################################
+ %.oct: %.cc
+-	mkoctfile$(OCTAVE_VERSION) "$<"
++	$(MKOCTFILE) $<
+ 
+ %.mex: %.cpp
+-	$(OCTMEX) "$<"  -lgomp -llapack -lblas     ## Octave
++	INCFLAGS="$(INCFLAGS) $(INC_CSTDLIB)" $(OCTMEX) $< $(FLIBS) -lgomp     ## Octave
+ %.$(MEX_EXT): %.cpp
+ 	$(MATMEX) "$<"  -lgomp -llapack -lblas     ## Matlab
+ 

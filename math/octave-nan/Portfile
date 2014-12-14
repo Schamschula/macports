@@ -1,0 +1,18 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:et:sw=4:ts=4:sts=4
+# $Id: Portfile 128837 2014-11-28 02:27:13Z larryv@macports.org $
+
+PortSystem          1.0
+PortGroup           octave 1.0
+
+octave.setup        nan 2.5.9
+platforms           darwin
+license             GPL-3+
+maintainers         gmail.com:mschamschula openmaintainer
+description         A statistics and machine learning toolbox for \
+                    data with and without missing values.
+long_description    ${description}
+
+checksums           rmd160 cbc3722cf37d967a9496a936cf20117bcd42af36 \
+                    sha256 3259c594117c7b9761c070b7f0438271076e83e9b8623e518ea145a11481196d
+
+patchfiles          patch-src_Makefile.diff

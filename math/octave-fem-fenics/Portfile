@@ -1,0 +1,33 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:et:sw=4:ts=4:sts=4
+# $Id: Portfile 114034 2013-11-27 16:20:17Z michaelld@macports.org $
+
+PortSystem          1.0
+PortGroup           octave 1.0
+
+octave.setup        fem-fenics 0.0.3
+platforms           darwin
+license             GPL-2+
+maintainers         gmail.com:mschamschula openmaintainer
+description         pkg for the resolution of partial differential equation based on \
+                    fenics
+long_description    ${description}
+
+checksums           rmd160 cf2812244ab35130571d1c4bce12f977a1d5e5a8 \
+                    sha256 390f2a9f16b7cc9bd0d7e2d13fb035b5b617a13e01265061b84da50a03ffa7a2
+
+depends_lib-append  port:dolfin
+
+pre-patch {
+     file copy ${filespath}/lflags.diff ${worksrcpath}/
+     system -W "${worksrcpath}" "patch -p0 < lflags.diff"
+
+    if {![catch {set installed [lindex [registry_active octave] 0]}]} {
+        set octave-version [lindex $installed 1]
+     } else {
+        ui_error "Octave is not active, could not determine octave's version number"
+    }
+
+     file copy ${filespath}/patch-src-Makefile.in.diff ${worksrcpath}/
+     reinplace "s|@version@|${octave-version}|g" ${worksrcpath}/patch-src-Makefile.in.diff
+     system -W "${worksrcpath}" "patch -p0 < patch-src-Makefile.in.diff"
+}
