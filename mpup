@@ -15,7 +15,7 @@ cd ~/Development/MacPorts/ports
 # get latest from git (if there is a local tree)
 ISGIT=$(git rev-parse --is-inside-work-tree)
 if [ "$ISGIT" == "true" ]; then
-    /opt/local/bin/git pull origin master
+    su marius -c "/opt/local/bin/git pull origin master"
 fi
 
 # get latest fro MacPorts
