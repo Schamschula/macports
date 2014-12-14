@@ -1,0 +1,125 @@
+--- LaTeXiT.xcodeproj/project.pbxproj.orig	2014-09-14 04:23:11.000000000 -0500
++++ LaTeXiT.xcodeproj/project.pbxproj	2014-10-21 11:29:22.000000000 -0500
+@@ -2829,8 +2829,7 @@
+ 				9396B9D7194ED684003CD205 /* Japanese */,
+ 			);
+ 			name = "additional-files-help.rtfd";
+-			path = "/Volumes/Tardis/Users/chacha/Programmation/Cocoa/Projets/Applications/LaTeXiT-mainline";
+-			sourceTree = "<absolute>";
++			sourceTree = "<group>";
+ 		};
+ 		9396BA30194EE345003CD205 /* synchronization-scripts-help.rtfd */ = {
+ 			isa = PBXVariantGroup;
+@@ -2937,6 +2936,7 @@
+ 				OTHER_LDFLAGS = (
+ 					"-lz",
+ 					"-licucore",
++					"-lcrypto",
+ 				);
+ 				PREBINDING = YES;
+ 				PRODUCT_NAME = LaTeXiT;
+@@ -2948,10 +2948,7 @@
+ 		932388580854FD210017F3BB /* Deployment */ = {
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
+-				ARCHS = (
+-					"$(ARCHS_STANDARD_32_64_BIT)",
+-					ppc,
+-				);
++				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+ 				COPY_PHASE_STRIP = YES;
+ 				DEAD_CODE_STRIPPING = YES;
+ 				FRAMEWORK_SEARCH_PATHS = (
+@@ -3015,11 +3012,7 @@
+ 		9323885B0854FD210017F3BB /* Development */ = {
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
+-				ARCHS = (
+-					"$(ARCHS_STANDARD_32_64_BIT)",
+-					ppc,
+-					ppc64,
+-				);
++				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+ 				GCC_AUTO_VECTORIZATION = NO;
+ 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
+ 				GCC_ENABLE_CPP_RTTI = YES;
+@@ -3033,17 +3026,14 @@
+ 				"MACOSX_DEPLOYMENT_TARGET[arch=x86_64]" = 10.5;
+ 				ONLY_ACTIVE_ARCH = YES;
+ 				PREBINDING = NO;
+-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
++				SDKROOT = macosx;
+ 			};
+ 			name = Development;
+ 		};
+ 		9323885C0854FD210017F3BB /* Deployment */ = {
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
+-				ARCHS = (
+-					"$(ARCHS_STANDARD_32_BIT)",
+-					ppc,
+-				);
++				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+ 				GCC_AUTO_VECTORIZATION = NO;
+ 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
+ 				GCC_ENABLE_CPP_RTTI = NO;
+@@ -3073,7 +3063,7 @@
+ 				"MACOSX_DEPLOYMENT_TARGET[arch=ppc64]" = 10.5;
+ 				"MACOSX_DEPLOYMENT_TARGET[arch=x86_64]" = 10.5;
+ 				PREBINDING = NO;
+-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
++				SDKROOT = macosx;
+ 				VALID_ARCHS = "i386 ppc ppc7400 ppc970";
+ 			};
+ 			name = Deployment;
+@@ -3082,10 +3072,7 @@
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
+ 				ALWAYS_SEARCH_USER_PATHS = YES;
+-				ARCHS = (
+-					"$(ARCHS_STANDARD_32_64_BIT)",
+-					ppc,
+-				);
++				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+ 				COPY_PHASE_STRIP = NO;
+ 				FRAMEWORK_SEARCH_PATHS = (
+ 					Frameworks,
+@@ -3096,7 +3083,7 @@
+ 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+ 				GCC_ENABLE_CPP_RTTI = YES;
+ 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+-				GCC_ENABLE_OBJC_GC = supported;
++				GCC_ENABLE_OBJC_GC = disabled;
+ 				GCC_FAST_OBJC_DISPATCH = YES;
+ 				GCC_MODEL_TUNING = G5;
+ 				GCC_OPTIMIZATION_LEVEL = 0;
+@@ -3131,6 +3118,7 @@
+ 				OTHER_LDFLAGS = (
+ 					"-lz",
+ 					"-licucore",
++					"-lcrypto",
+ 				);
+ 				OTHER_OSAFLAGS = "-x -t 0 -c 0";
+ 				PREBINDING = NO;
+@@ -3143,11 +3131,7 @@
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
+ 				ALWAYS_SEARCH_USER_PATHS = YES;
+-				ARCHS = (
+-					"$(ARCHS_STANDARD_32_64_BIT)",
+-					ppc,
+-					ppc7400,
+-				);
++				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+ 				COPY_PHASE_STRIP = YES;
+ 				DEAD_CODE_STRIPPING = YES;
+ 				FRAMEWORK_SEARCH_PATHS = (
+@@ -3160,7 +3144,7 @@
+ 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
+ 				GCC_ENABLE_CPP_RTTI = NO;
+ 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+-				GCC_ENABLE_OBJC_GC = supported;
++				GCC_ENABLE_OBJC_GC = disabled;
+ 				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+ 				GCC_FAST_OBJC_DISPATCH = YES;
+ 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;

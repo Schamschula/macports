@@ -1,0 +1,18 @@
+--- NSDataExtended.m.orig	2014-01-18 04:36:35.000000000 -0600
++++ NSDataExtended.m	2014-09-27 06:22:02.000000000 -0500
+@@ -10,9 +10,15 @@
+ 
+ #import "Utils.h"
+ 
++/*
+ #import </Developer/SDKs/MacOSX10.5.sdk/usr/include/openssl/bio.h>//specific to avoid compatibility problem prior MacOS 10.5
+ #import </Developer/SDKs/MacOSX10.5.sdk/usr/include/openssl/ssl.h>//specific to avoid compatibility problem prior MacOS 10.5
+ #import </Developer/SDKs/MacOSX10.5.sdk/usr/include/openssl/sha.h>//specific to avoid compatibility problem prior MacOS 10.5
++*/
++
++#import <openssl/bio.h>
++#import <openssl/ssl.h>
++#import <openssl/sha.h>
+ 
+ @implementation NSData (Extended)
+ 
