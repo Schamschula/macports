@@ -1,0 +1,15 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id: Portfile 125303 2014-09-12 22:20:55Z mf2k@macports.org $
+
+PortSystem          1.0
+
+name                gitlist
+version             0.5.0
+categories          devel
+maintainers         gmail.com:mschamschula openmaintainer
+
+homepage            http://gitlist.org/
+
+livecheck.type      regex
+livecheck.url       https://github.com/klaussilveira/gitlist/releases
+livecheck.regex     (\[0-9.\]+)\\${extract.suffix}
