@@ -15,7 +15,7 @@ long_description	NTP is an implementation of RFC-5905. It is widely \
 			used to synchronize a computer to Internet time \
 			servers or other sources.
 homepage        http://www.ntp.org/
-master_sites    http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-4.2/
+master_sites    http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-[join [lrange [split ${version} .] 0 1] .]/
 
 distname	${name}-${version}
 
