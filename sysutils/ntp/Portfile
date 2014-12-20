@@ -17,8 +17,6 @@ long_description	NTP is an implementation of RFC-5905. It is widely \
 homepage        http://www.ntp.org/
 master_sites    http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-[join [lrange [split ${version} .] 0 1] .]/
 
-distname	${name}-${version}
-
 checksums	md5	6972a626be6150db8cfbd0b63d8719e7 \
 		sha1	6d1c017a8a0e97d5cf8bf4e5e38333973ffd22d5 \
 		rmd160	d68edfca4dd65ccca8ccc40a90b0ec1110982dc3
