@@ -2,8 +2,8 @@
 
 ##
 #	mpcheck [-f|-m|-o|-s|-y]
-#	1.6.4
-#	20141221
+#	1.6.5
+#	20141224
 ##
 
 MODE="D"
@@ -32,9 +32,9 @@ case $MODE in
 		;;
 	M)
 		#	my ports
-		pkgs="duff ffe freefont-ttf gawk gifsicle GiNaC gnutls grep grsync gsed hatools \
-		iftop LaTeXiT lftp libgcrypt libgpg-error libpcap libtasn1 littleutils mksh \
-		pyxplot retail rr stunnel surblhost ts wcd"
+		pkgs="dnscrypt-proxy duff ffe freefont-ttf gawk gifsicle GiNaC gnutls grep grsync \
+		gsed hatools iftop LaTeXiT lftp libgcrypt libgpg-error libpcap libtasn1 \
+		littleutils mksh pyxplot retail rr stunnel surblhost ts wcd"
 		for pkg in $pkgs
 		do
 			echo "port livecheck $pkg"
