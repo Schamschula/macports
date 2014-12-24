@@ -24,5 +24,12 @@ startupitem.create      yes
 startupitem.netchange   yes
 startupitem.executable  ${prefix}/sbin/dnscrypt-proxy --daemonize --resolver-name=opendns
 
+notes "
+*******
+******* You need to update your DNS server to point to 127.0.0.1
+******* (in the Network Preference Pane -> Advanced... -> DNS tab)
+*******
+"
+
 livecheck.type      regex
 livecheck.regex     ${name}-(\\d+\.\\d+.\\d)
