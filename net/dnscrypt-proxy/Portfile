@@ -6,7 +6,7 @@ PortSystem          1.0
 name                dnscrypt-proxy
 version             1.4.2
 categories          net
-license             GPL
+license             ISC
 maintainers         gmail.com:mschamschula openmaintainer
 description         A protocol for securing communications between a client and a DNS \
                     resolver.
