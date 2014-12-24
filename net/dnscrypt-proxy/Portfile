@@ -21,5 +21,4 @@ checksums           rmd160  4b73dc9e81b9776510b869fab8f331cdd3280649 \
                     sha256  1d519068c30868bb60a151908f0e300a1754b234f7bc2ad1d749ad9d0d977076
 
 livecheck.type      regex
-#livecheck.url       ${homepage}downloads
 livecheck.regex     ${name}-(\\d+\.\\d+.\\d)
