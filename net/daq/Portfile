@@ -1,25 +1,25 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 125778 2014-09-26 00:54:50Z ryandesign@macports.org $
+# $Id: Portfile 129500 2014-12-14 17:09:18Z ryandesign@macports.org $
 
 PortSystem          1.0
 
-name                dnscrypt-proxy
-version             1.4.2
+name                daq
+version             2.0.4
 categories          net
-license             GPL
-maintainers         gmail.com:mschamschula openmaintainer
-description         A protocol for securing communications between a client and a DNS \
-                    resolver.
-long_description    ${description}
-homepage            http://dnscrypt.org/
-master_sites        http://download.dnscrypt.org/dnscrypt-proxy/
+license             GPL-2
+maintainers         jann openmaintainer
+description         A Data Acquisition library, for packet I/O
+long_description    DAQ is an abstraction layer for PCAP. It is part of snort.
+homepage            https://www.snort.org/
+master_sites        ${homepage}downloads/snort/
 
-platforms           darwin
-depends_lib         port:libsodium
+platforms           macosx
+depends_lib         port:pcre \
+                    port:libdnet
 
-checksums           rmd160  4b73dc9e81b9776510b869fab8f331cdd3280649 \
-                    sha256  1d519068c30868bb60a151908f0e300a1754b234f7bc2ad1d749ad9d0d977076
+checksums           rmd160  6b44534cf0f29bda9fe088527a4672b5d0b5c2f5 \
+                    sha256  a294aa3d01cd8902bf842d320e7f2c043af9ead95d0e7198c3b71a0dbc9d253c
 
 livecheck.type      regex
-#livecheck.url       ${homepage}downloads
-livecheck.regex     ${name}-(\\d+\.\\d+.\\d)
+livecheck.url       ${homepage}downloads
+livecheck.regex     >${name}-(\[0-9.\]+)${extract.suffix}<
