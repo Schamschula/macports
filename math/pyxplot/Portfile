@@ -33,6 +33,7 @@ depends_lib         port:cfitsio \
                     port:gv \
                     port:ImageMagick \
                     port:libpng \
+                    port:python27 \
                     port:readline \
                     port:texlive-bin \
                     port:texlive-latex \
