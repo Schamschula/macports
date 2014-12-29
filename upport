@@ -2,8 +2,8 @@
 
 ##
 #	upport package
-#	1.2.2
-#	20141211
+#	1.2.3
+#	20141229
 ##
 
 CLEAN="FALSE"
@@ -32,8 +32,8 @@ if [ $MODE == "SILENT" ]; then
 	sudo port upgrade $1
 	mpdiff $1 > /dev/null
 else
-	sudo port -v fetch $1
+	sudo port -t -v fetch $1
 	mpuph $1
-	sudo port -v upgrade $1
+	sudo port -t -v upgrade $1
 	mpdiff $1
 fi
