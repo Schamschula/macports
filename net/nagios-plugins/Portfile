@@ -1,0 +1,69 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:filetype=tcl:et:sw=4:ts=4:sts=4
+# $Id: Portfile 125738 2014-09-25 14:43:03Z mf2k@macports.org $
+
+PortSystem          1.0
+PortGroup           perl5 1.0
+
+name                nagios-plugins
+version             2.0.3
+categories          net
+license             GPL-3+
+maintainers         nomaintainer
+platforms           darwin
+
+description         Nagios plugins for the Nagios host and service monitor
+
+long_description    Nagios plugins are standalone programs that report the \
+                    status of hosts and services to the Nagios monitoring \
+                    framework.
+
+homepage            http://nagios.org
+master_sites        http://nagios-plugins.org/download/
+
+checksums           rmd160  b682b126c78df51f64d9cb8599d2f9dfd411d5f4 \
+                    sha256  8f0021442dce0138f0285ca22960b870662e28ae8973d49d439463588aada04a
+
+set perl_version    5.16
+perl5.branches      ${perl_version}
+
+destroot.destdir    prefix=${prefix} DESTDIR=${destroot}
+
+depends_lib         port:fping \
+                    port:p${perl_version}-net-snmp \
+                    port:p${perl_version}-digest-sha1 \
+                    port:p${perl_version}-digest-hmac \
+                    port:p${perl_version}-crypt-des \
+                    port:openssl \
+                    port:python27
+
+configure.args      --sbindir=${prefix}/share/nagios/cgi-bin \
+                    --libexecdir=${prefix}/libexec/nagios \
+                    --datadir=${prefix}/share/nagios \
+                    --sysconfdir=${prefix}/etc/nagios \
+                    --with-trusted-path=${prefix}/bin:${prefix}/sbin:/bin:/sbin:/usr/bin:/usr/sbin \
+                    --with-openssl=${prefix}/bin \
+                    --without-mysql \
+                    --without-pgsql \
+                    --without-radius \
+                    --with-ps-command="/bin/ps -axwo 'stat uid pid ppid vsz rss pcpu ucomm command'" \
+                    --with-ps-format="%s %d %d %d %d %d %f %s %n" \
+                    --with-ps-cols=9 \
+                    --with-ps-varlist="procstat,&procuid,&procpid,&procppid,&procvsz,&procrss,&procpcpu,procprog,&pos"
+
+variant mysql5 {
+    depends_lib-append path:bin/mysql_config5:mysql5
+    configure.args-delete --without-mysql
+    configure.args-append --with-mysql=${prefix}/lib/mysql5
+}
+
+post-extract {
+# Replace check_nt with the enhanced one from www.shatterit.com/nc_net/files that supports NC_Net Win client
+    file copy -force ${filespath}/check_nt.c ${worksrcpath}/plugins
+}
+
+post-destroot {
+# Put a copy of utils.pm in perl's path for certain Nagios perl plugins
+    xinstall -m 755 -d ${destroot}${perl5.archlib}
+    xinstall -m 755 ${destroot}${prefix}/libexec/nagios/utils.pm \
+        ${destroot}${perl5.archlib}
+}
