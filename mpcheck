@@ -2,8 +2,8 @@
 
 ##
 #	mpcheck [-f|-m|-o|-s|-y]
-#	1.6.5
-#	20141224
+#	1.6.6
+#	20141231
 ##
 
 MODE="D"
@@ -69,7 +69,7 @@ case $MODE in
 		;;
 	Y)
 		#	security
-		pkgs="daq nmap ntop snort wireshark"
+		pkgs="daq nagios nmap ntop snort wireshark"
 		for pkg in $pkgs
 		do
 			echo "port livecheck $pkg"
