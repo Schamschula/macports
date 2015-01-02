@@ -2,8 +2,8 @@
 
 ##
 #	mpcheck [-a|-e|-f|-m|-o|-s|-y]
-#	2.0.0
-#	20150101
+#	2.1.0
+#	20150102
 ##
 
 EVERYTHING=FALSE
@@ -16,7 +16,6 @@ SECURITY=FALSE
 while getopts afmosy o
 	do case $o in
 		a)	MY="TRUE"
-			OCTAVE="TRUE"
 			SERVER="TRUE"
 			SECURITY="TRUE";;
 		e)	EVERYTHING="TRUE";;
@@ -32,11 +31,6 @@ shift `echo $OPTIND-1 | bc`
 if [ $EVERYTHING == "TRUE" ]; then
 	echo "All installed"
 	pkgs=$(port installed | gawk '{print $1}' | uniq)
-	for pkg in $pkgs
-	do
-		echo "port livecheck $pkg"
-		port livecheck $pkg
-	done
 fi
 if [ $FILE == "TRUE" ]; then
 	echo "Saving all installed to file"
@@ -53,15 +47,10 @@ if [ $MY == "TRUE" ]; then
 	pkgs="dnscrypt-proxy duff ffe freefont-ttf gawk gifsicle GiNaC gnutls grep grsync \
 	gsed hatools iftop LaTeXiT lftp libgcrypt libgpg-error libpcap libtasn1 \
 	littleutils mksh pyxplot retail rr stunnel surblhost ts wcd"
-	for pkg in $pkgs
-	do
-		echo "port livecheck $pkg"
-		port livecheck $pkg
-	done
 fi
 if [ $OCTAVE == "TRUE" ]; then
 	echo "octave etc."
-	pkgs="octave octave-bim octave-communications octave-control octave-divand \
+	pkgs="$pkgs octave octave-bim octave-communications octave-control octave-divand \
 	octave-fem-fenics octave-fits octave-fl-core octave-fpl \
 	octave-fuzzy-logic-toolkit octave-general octave-geometry octave-image octave-io \
 	octave-linear-algebra octave-mechanics octave-miscellaneous octave-msh octave-mvn \
@@ -69,25 +58,18 @@ if [ $OCTAVE == "TRUE" ]; then
 	octave-optim octave-quaternion octave-parallel octave-quaternion \
 	octave-queueing octave-signal octave-specfun octave-splines octave-struct \
 	octave-stk octave-tsa py27-fiat"
-	for pkg in $pkgs
-	do
-		echo "port livecheck $pkg"
-		port livecheck $pkg
-	done
 fi
 if [ $SERVER == "TRUE" ]; then
 	echo "Server packages"
-	pkgs="apache24-devel apr apr-util bind9 clamav gitlist mailman mysql56 \
+	pkgs="$pkgs apache24-devel apr apr-util bind9 clamav gitlist mailman mysql56 \
 	ntp openssh openssl php56 squirrelmail sqlite3"
-	for pkg in $pkgs
-	do
-		echo "port livecheck $pkg"
-		port livecheck $pkg
-	done
 fi
 if [ $SECURITY == "TRUE" ]; then
 	echo "Security packages"
-	pkgs="daq nagios nmap ntop snort wireshark"
+	pkgs="$pkgs daq nagios nmap ntop snort wireshark"
+fi
+
+if [ $FILE == "FALSE" ]; then
 	for pkg in $pkgs
 	do
 		echo "port livecheck $pkg"
