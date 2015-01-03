@@ -2,45 +2,37 @@
 
 ##
 #	mpcheck [-a|-e|-f|-m|-o|-s|-y]
-#	2.1.0
-#	20150102
+#	2.2.0
+#	20150103
 ##
 
-EVERYTHING=FALSE
-FILE=FALSE
-MY=FALSE
-OCTAVE=FALSE
-SERVER=FALSE
-SECURITY=FALSE
+EVERYTHING="FALSE"
+FILE="FALSE"
+MY="FALSE"
+OCTAVE="FALSE"
+SERVER="FALSE"
+SECURITY="FALSE"
 
-while getopts afmosy o
+while getopts adefmosy o
 	do case $o in
 		a)	MY="TRUE"
 			SERVER="TRUE"
 			SECURITY="TRUE";;
 		e)	EVERYTHING="TRUE";;
-		f) FILE="TRUE";;
-		m) MY="TRUE";;
-		o) OCTAVE="TRUE";;
-		s) SERVER="TRUE";;
-		y) SECURITY="TRUE";;
+		f)	EVERYTHING="TRUE"
+			FILE="TRUE";;
+		m)	MY="TRUE";;
+		o)	OCTAVE="TRUE";;
+		s)	SERVER="TRUE";;
+		y)	SECURITY="TRUE";;
 	esac
 done
 shift `echo $OPTIND-1 | bc`
 
+#	Get package list
 if [ $EVERYTHING == "TRUE" ]; then
 	echo "All installed"
 	pkgs=$(port installed | gawk '{print $1}' | uniq)
-fi
-if [ $FILE == "TRUE" ]; then
-	echo "Saving all installed to file"
-	cd /Users/marius/Development/MacPorts/var
-	pkgs=$(port installed | gawk '{print $1}' | uniq)
-	for pkg in $pkgs
-	do
-		port livecheck $pkg >> mpcheck.$(date "+%Y%m%d") 2>&1
-	done
-	livediff > mpdiff.$(date "+%Y%m%d")
 fi
 if [ $MY == "TRUE" ]; then
 	echo "Maintained ports"
@@ -49,7 +41,7 @@ if [ $MY == "TRUE" ]; then
 	littleutils mksh pyxplot retail rr stunnel surblhost ts wcd"
 fi
 if [ $OCTAVE == "TRUE" ]; then
-	echo "octave etc."
+	echo "Octave, et al."
 	pkgs="$pkgs octave octave-bim octave-communications octave-control octave-divand \
 	octave-fem-fenics octave-fits octave-fl-core octave-fpl \
 	octave-fuzzy-logic-toolkit octave-general octave-geometry octave-image octave-io \
@@ -69,8 +61,18 @@ if [ $SECURITY == "TRUE" ]; then
 	pkgs="$pkgs daq nagios nmap ntop snort wireshark"
 fi
 
-if [ $FILE == "FALSE" ]; then
+#	Output
+if [ $FILE == "TRUE" ]; then
+	echo "Saving to file"
+	cd /Users/marius/Development/MacPorts/var
 	for pkg in $pkgs
+	do
+		port livecheck $pkg >> mpcheck.$(date "+%Y%m%d") 2>&1
+	done
+	livediff > mpdiff.$(date "+%Y%m%d")
+else
+	spkgs=$(echo $pkgs | tr " " "\n" | sort)
+	for pkg in $spkgs
 	do
 		echo "port livecheck $pkg"
 		port livecheck $pkg
