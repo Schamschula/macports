@@ -2,8 +2,8 @@
 
 ##
 #	upport package
-#	1.2.3
-#	20141229
+#	1.3.0
+#	20150103
 ##
 
 CLEAN="FALSE"
@@ -22,6 +22,8 @@ if [ $1 == 'git' ] || [ $1 == 'sqlite3' ]; then
 	exit
 fi
 
+ISINST=$(port installed $1 | awk '{print $1}')
+
 if [ $CLEAN == "TRUE" ]; then
 	sudo port clean $1
 fi
@@ -34,6 +36,10 @@ if [ $MODE == "SILENT" ]; then
 else
 	sudo port -t -v fetch $1
 	mpuph $1
-	sudo port -t -v upgrade $1
+	if [ "$ISINST" == "None" ]; then
+		sudo port -t -v install $1
+	else
+		sudo port -t -v upgrade $1
+	fi
 	mpdiff $1
 fi
