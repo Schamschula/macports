@@ -2,11 +2,21 @@
 #!/bin/sh
 
 ##
-#	mpup
+#	mpup [-u]
 #
-#	1.2.0
-#	2014210
+#	1.3.0
+#	20150108
 ##
+
+# get options
+OPT=""
+while getopts u o
+	do case $o in
+		u)	OPT="-u";;
+	esac
+done
+shift `echo $OPTIND-1 | bc`
+
 
 # timestamp
 echo Start $(date)
@@ -18,11 +28,11 @@ if [ "$ISGIT" == "true" ]; then
     su marius -c "/opt/local/bin/git pull origin master"
 fi
 
-# get latest fro MacPorts
+# get latest from MacPorts
 sudo /opt/local/bin/port sync
 
 # update
-sudo /opt/local/bin/port upgrade outdated
+sudo /opt/local/bin/port $OPT upgrade outdated
 
 # timestamp
 echo Finish $(date)
