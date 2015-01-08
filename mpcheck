@@ -2,10 +2,11 @@
 
 ##
 #	mpcheck [-a|-e|-f|-m|-o|-s|-y]
-#	2.2.0
-#	20150103
+#	2.3.0
+#	20150108
 ##
 
+DEVELOPMENT="FALSE"
 EVERYTHING="FALSE"
 FILE="FALSE"
 MY="FALSE"
@@ -18,6 +19,7 @@ while getopts adefmosy o
 		a)	MY="TRUE"
 			SERVER="TRUE"
 			SECURITY="TRUE";;
+		d)	DEVELOPMENT="TRUE";;
 		e)	EVERYTHING="TRUE";;
 		f)	EVERYTHING="TRUE"
 			FILE="TRUE";;
@@ -30,13 +32,17 @@ done
 shift `echo $OPTIND-1 | bc`
 
 #	Get package list
+if [ $DEVELOPMENT == "TRUE" ]; then
+	echo "Development packages"
+	pkgs="autoconf automake cmake"
+fi
 if [ $EVERYTHING == "TRUE" ]; then
 	echo "All installed"
 	pkgs=$(port installed | gawk '{print $1}' | uniq)
 fi
 if [ $MY == "TRUE" ]; then
 	echo "Maintained ports"
-	pkgs="dnscrypt-proxy duff ffe freefont-ttf gawk gifsicle GiNaC gnutls grep grsync \
+	pkgs="$pkgs dnscrypt-proxy duff ffe freefont-ttf gawk gifsicle GiNaC gnutls grep grsync \
 	gsed hatools iftop LaTeXiT lftp libgcrypt libgpg-error libpcap libtasn1 \
 	littleutils mksh pyxplot retail rr stunnel surblhost ts wcd"
 fi
