@@ -4,18 +4,14 @@
 #	mptidy package
 #
 #	Version
-#	1.0.0
-#	20141209
+#	1.1.0
+#	20150109
 ##
 
 PKX=$(port installed $1|awk '{l[NR] = $2} END {for (i=2; i<=NR-2; i++) print l[i]}')
 
 for PKG in $PKX
 do
-	echo "Uninstall $1 $PKG? [y/N]"
-	read yn
-	if [ $yn == 'y' ]; then
-		echo "sudo port uninstall $1 $PKG"
-		sudo port uninstall $1 $PKG
-	fi
+	echo "sudo port uninstall $1 $PKG"
+	sudo port uninstall $1 $PKG
 done
