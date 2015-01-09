@@ -1,0 +1,35 @@
+# $Id: Portfile 125599 2014-09-22 17:31:21Z larryv@macports.org $
+
+PortSystem 1.0
+
+name		nip2
+version		7.42.1
+set branch	[join [lrange [split ${version} .] 0 1] .]
+description	nip2 is a user-interface to the VIPS image processing library.
+long_description	nip2 is an image processing spreadsheet. It's good for \
+			large images and for colour.
+maintainers	gmail.com:jcupitt
+categories	graphics
+platforms	darwin
+license		GPL-2+
+homepage	http://www.vips.ecs.soton.ac.uk
+master_sites	${homepage}/supported/${branch}/
+
+checksums	rmd160  64bb5104804afbe92eb55a6fc17a679ce5f64c6f \
+		sha256  541e95a4a8bb3f8ee850035c6beb8a67fe7e174df6c58032fa99ebaf80f58e92
+
+configure.args	--disable-update-desktop
+
+depends_build	port:flex \
+		port:pkgconfig
+
+depends_lib	port:fftw-3 \
+		path:bin/dot:graphviz \
+		port:vips \
+		port:gtk2 \
+		port:goffice08 \
+		port:gsl
+
+livecheck.type	regex
+livecheck.url	${homepage}/supported/current/
+livecheck.regex	>${name}-(\\d+(?:\\.\\d+)*)${extract.suffix}<

@@ -1,0 +1,59 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id: Portfile 126741 2014-10-14 21:59:48Z ryandesign@macports.org $
+
+PortSystem          1.0
+
+name                vips
+version             7.42.1
+set branch	[join [lrange [split ${version} .] 0 1] .]
+description         VIPS is an image processing library.
+long_description    VIPS is an image processing library. It is good for \
+                    large images and for colour.
+maintainers         gmail.com:jcupitt
+categories          graphics
+platforms           darwin
+license             LGPL-2.1+
+homepage            http://www.vips.ecs.soton.ac.uk
+master_sites        ${homepage}/supported/${branch}/
+
+checksums           rmd160  c51561a2c08abcbaf4f959ade8f514aa3ad29dd4 \
+                    sha256  5ee272b11e4ca61c148d7392cbc01ad35f577b503727f479e38923e5bcfe6abf
+
+depends_build       port:gtk-doc \
+                    port:pkgconfig
+
+depends_lib         path:lib/pkgconfig/glib-2.0.pc:glib2 \
+                    path:lib/pkgconfig/pango.pc:pango \
+                    port:cfitsio \
+                    port:fftw-3 \
+                    port:gobject-introspection \
+                    port:ImageMagick \
+                    port:jpeg \
+                    port:lcms2 \
+                    port:libexif \
+                    port:libgsf \
+                    port:libpng \
+                    port:libtool \
+                    port:libxml2 \
+                    port:matio \
+                    port:openexr \
+                    port:openslide \
+                    port:orc \
+                    port:tiff \
+                    port:zlib
+
+configure.args      --enable-gtk-doc \
+                    --enable-introspection
+
+# gobject-introspection uses g-ir-scanner, which uses $CC from env
+build.args-append   CC="${configure.cc} ${configure.cc_archflags}"
+
+# The rules enabled by gobject-introspection require GNU make 3.81+
+platform darwin 8 {
+    depends_build-append    port:gmake
+    build.cmd               ${prefix}/bin/gmake
+}
+
+livecheck.type      regex
+livecheck.url       ${homepage}/supported/current/
+livecheck.regex     >${name}-(\\d+(?:\\.\\d+)*)${extract.suffix}<
