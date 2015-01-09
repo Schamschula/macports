@@ -32,8 +32,7 @@ checksums \
 
 conflicts           eigen3-devel
 
-depends_build       port:cmake \
-                    port:pkgconfig
+depends_build-append    port:pkgconfig
 
 livecheck.type      regex
 livecheck.url       ${homepage}index.php?title=Main_Page
