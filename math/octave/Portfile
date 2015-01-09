@@ -1,5 +1,5 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:et:sw=4:ts=4:sts=4
-# $Id: Portfile 128817 2014-11-27 20:50:37Z larryv@macports.org $
+# $Id: Portfile 131063 2015-01-05 17:37:19Z mmoll@macports.org $
 
 PortSystem          1.0
 PortGroup           active_variants 1.1
@@ -9,7 +9,7 @@ PortGroup           compilers 1.0
 name                octave
 
 version             3.8.2
-revision            3
+revision            4
 #conflicts           octave-devel
 categories          math science
 maintainers         michaelld openmaintainer
@@ -137,10 +137,6 @@ platform darwin {
     }
 }
 
-if {![fortran_variant_isset]} {
-    default_variants-append +gcc48
-}
-
 # atlas does not work with g95, so always conflict with it
 
 variant atlas description {use BLAS from MacPorts' atlas port} \
@@ -262,6 +258,11 @@ if {[variant_isset accelerate]} {
 post-destroot {
     system "echo 'graphics_toolkit(\"gnuplot\");' >> ${destroot}${prefix}/share/octave/site/m/startup/octaverc"
 
+    if {${os.major} >= 13} {
+        xinstall -m 640 ${worksrcpath}/liboctave/operators/libcxx-fix.h \
+            ${destroot}${prefix}/include/${name}-${version}/${name}/libcxx-fix.h
+    }
+
     if {[variant_isset gui]} {
         set appdir ${destroot}${applications_dir}/Octave.app
         xinstall -d ${appdir}/Contents/MacOS
@@ -273,11 +274,6 @@ post-destroot {
 
         reinplace -W ${appdir}/Contents "s,@@VERSION@@,${version},g" Info.plist
         reinplace -W ${appdir}/Contents/MacOS "s,@@PREFIX@@,${prefix},g" Octave
-
-        if {${os.major} >= 13} {
-            xinstall -m 640 ${worksrcpath}/liboctave/operators/libcxx-fix.h \
-                ${destroot}${prefix}/include/${name}-${version}/${name}/libcxx-fix.h
-        }
     }
 }
 
