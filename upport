@@ -2,10 +2,11 @@
 
 ##
 #	upport package
-#	1.3.0
-#	20150103
+#	1.4.3
+#	20150109
 ##
 
+# get options
 CLEAN="FALSE"
 MODE="VERBOSE"
 
@@ -17,17 +18,26 @@ while getopts cs o
 done
 shift `echo $OPTIND-1 | bc`
 
-if [ $1 == 'git' ] || [ $1 == 'sqlite3' ]; then
-	echo "manually build $1"
-	exit
-fi
+# catch ports that can't be cleanly built with upport
+EXCPORTS="bash curl eigen3 git gnuplot sqlite3"
 
+for PORT in $EXCPORTS
+do
+	if [ "$1" == "$PORT" ]; then
+		echo "manually build $1"
+		exit
+	fi
+done
+
+# check if installing or upgrading
 ISINST=$(port installed $1 | awk '{print $1}')
 
+# clean
 if [ $CLEAN == "TRUE" ]; then
 	sudo port clean $1
 fi
 
+# build and generate diff file
 if [ $MODE == "SILENT" ]; then
 	sudo port fetch $1
 	mpuph $1 > /dev/null
