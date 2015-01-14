@@ -1,0 +1,22 @@
+--- Makefile.orig	2015-01-14 11:43:02.000000000 -0600
++++ Makefile	2015-01-14 11:43:48.000000000 -0600
+@@ -157,8 +157,8 @@
+ argparse/libargparse.a: argparse/argparse.h
+ 	@$(MAKE) -C argparse libargparse.a
+ 
+-argparse/argparse.h:
+-	git submodule update --init argparse
++# argparse/argparse.h:
++#	git submodule update --init argparse
+ 
+ $(LIB_OBJS): $(LIB_H)
+ 
+@@ -192,7 +192,7 @@
+ 	@./gen-version.sh
+ 
+ install: all
+-	install -D -p -m 755 dnscrypt-wrapper $(bindir)
++	install -p -m 755 dnscrypt-wrapper $(DESTDIR)$(bindir)
+ 
+ uninstall:
+ 	$(RM) $(bindir)/dnscrypt-wrapper
