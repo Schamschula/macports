@@ -1,10 +1,11 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:et:sw=4:ts=4:sts=4
-# $Id: Portfile 114034 2013-11-27 16:20:17Z michaelld@macports.org $
+# $Id: Portfile 131387 2015-01-10 18:12:01Z ryandesign@macports.org $
 
 PortSystem          1.0
-PortGroup           octave 1.0
+PortGroup           active_variants 1.1
+PortGroup           octave 1.1
 
-octave.setup        tsa 4.2.7
+octave.setup        tsa 4.2.8
 platforms           darwin
 license             GPL-3+
 maintainers         gmail.com:mschamschula openmaintainer
@@ -12,7 +13,39 @@ description         Stochastic concepts and maximum entropy \
                     methods for time series analysis.
 long_description    ${description}
 
-checksums           rmd160 f19d0439adadb9121e7deab9f01532d692a64d65 \
-                    sha256 48c22265ed0962c09ef7c1777628afc5d9a206089c674b7b9727a0c5a545b229
+checksums           rmd160  a24c46e1d6118565c5f1d356eed72b27136a7a56 \
+                    sha256  1eb37276ba26658caa1d91d36331981ed1d146384a1bdaca0df9077c7ded57ed
 
-patchfiles          patch-src_Makefile.diff
+patchfiles          patch-src-Makefile.diff
+
+post-patch {
+	if {![catch {set result [active_variants octave gcc44]}]} {
+	  if {$result} {
+		reinplace "s|%LIBGOMPPATH%|-L${prefix}/lib/gcc44|g" ${worksrcpath}/src/Makefile
+	  }
+
+	if {![catch {set result [active_variants octave gcc45]}]} {
+	  if {$result} {
+		reinplace "s|%LIBGOMPPATH%|-L${prefix}/lib/gcc45|g" ${worksrcpath}/src/Makefile
+	  }
+
+	if {![catch {set result [active_variants octave gcc46]}]} {
+	  if {$result} {
+		reinplace "s|%LIBGOMPPATH%|-L${prefix}/lib/gcc46|g" ${worksrcpath}/src/Makefile
+	  }
+
+	if {![catch {set result [active_variants octave gcc47]}]} {
+	  if {$result} {
+		reinplace "s|%LIBGOMPPATH%|-L${prefix}/lib/gcc47|g" ${worksrcpath}/src/Makefile
+	  }
+	  
+ 	if {![catch {set result [active_variants octave gcc48]}]} {
+	  if {$result} {
+		reinplace "s|%LIBGOMPPATH%|-L${prefix}/lib/gcc48|g" ${worksrcpath}/src/Makefile
+	  }
+
+	if {![catch {set result [active_variants octave gcc49]}]} {
+	  if {$result} {
+		reinplace "s|%LIBGOMPPATH%|-L${prefix}/lib/gcc49|g" ${worksrcpath}/src/Makefile
+	  }
+}
