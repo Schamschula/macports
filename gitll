@@ -1,0 +1,19 @@
+#!/bin/sh
+
+##
+#	gitll
+#
+#	1.0.0
+#	20150121
+##
+
+#	Variables
+LPATH=/Users/marius/Development/MacPorts/ports/
+
+#	git pull
+git pull origin master
+
+#	portindex if in port root
+if [ "$(pwd)" == "$LPATH" ]; then
+	portindex
+fi
