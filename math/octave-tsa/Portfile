@@ -23,29 +23,35 @@ post-patch {
 	  if {$result} {
 		reinplace "s|%LIBGOMPPATH%|-L${prefix}/lib/gcc44|g" ${worksrcpath}/src/Makefile
 	  }
+	}
 
 	if {![catch {set result [active_variants octave gcc45]}]} {
 	  if {$result} {
 		reinplace "s|%LIBGOMPPATH%|-L${prefix}/lib/gcc45|g" ${worksrcpath}/src/Makefile
 	  }
+	}
 
 	if {![catch {set result [active_variants octave gcc46]}]} {
 	  if {$result} {
 		reinplace "s|%LIBGOMPPATH%|-L${prefix}/lib/gcc46|g" ${worksrcpath}/src/Makefile
 	  }
+	}
 
 	if {![catch {set result [active_variants octave gcc47]}]} {
 	  if {$result} {
 		reinplace "s|%LIBGOMPPATH%|-L${prefix}/lib/gcc47|g" ${worksrcpath}/src/Makefile
 	  }
+	}
 	  
  	if {![catch {set result [active_variants octave gcc48]}]} {
 	  if {$result} {
 		reinplace "s|%LIBGOMPPATH%|-L${prefix}/lib/gcc48|g" ${worksrcpath}/src/Makefile
 	  }
+	}
 
 	if {![catch {set result [active_variants octave gcc49]}]} {
 	  if {$result} {
 		reinplace "s|%LIBGOMPPATH%|-L${prefix}/lib/gcc49|g" ${worksrcpath}/src/Makefile
 	  }
+	}
 }
