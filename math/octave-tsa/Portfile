@@ -3,7 +3,7 @@
 
 PortSystem          1.0
 PortGroup           active_variants 1.1
-PortGroup           octave 1.1
+PortGroup           octave 1.0
 
 octave.setup        tsa 4.2.8
 platforms           darwin
@@ -16,9 +16,9 @@ long_description    ${description}
 checksums           rmd160  a24c46e1d6118565c5f1d356eed72b27136a7a56 \
                     sha256  1eb37276ba26658caa1d91d36331981ed1d146384a1bdaca0df9077c7ded57ed
 
-patchfiles          patch-src-Makefile.diff
-
-post-patch {
+patch {
+    system "cd ${worksrcpath} && patch -p0 < ${filespath}/patch-src-Makefile.diff"
+    
 	if {![catch {set result [active_variants octave gcc44]}]} {
 	  if {$result} {
 		reinplace "s|%LIBGOMPPATH%|-L${prefix}/lib/gcc44|g" ${worksrcpath}/src/Makefile
