@@ -2,7 +2,6 @@
 # $Id: Portfile 131387 2015-01-10 18:12:01Z ryandesign@macports.org $
 
 PortSystem          1.0
-PortGroup           active_variants 1.1
 PortGroup           octave 1.0
 
 octave.setup        tsa 4.2.8
