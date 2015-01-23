@@ -16,42 +16,4 @@ long_description    ${description}
 checksums           rmd160  a24c46e1d6118565c5f1d356eed72b27136a7a56 \
                     sha256  1eb37276ba26658caa1d91d36331981ed1d146384a1bdaca0df9077c7ded57ed
 
-patch {
-    system "cd ${worksrcpath} && patch -p0 < ${filespath}/patch-src-Makefile.diff"
-    
-	if {![catch {set result [active_variants octave gcc44]}]} {
-	  if {$result} {
-		reinplace "s|%LIBGOMPPATH%|-L${prefix}/lib/gcc44|g" ${worksrcpath}/src/Makefile
-	  }
-	}
-
-	if {![catch {set result [active_variants octave gcc45]}]} {
-	  if {$result} {
-		reinplace "s|%LIBGOMPPATH%|-L${prefix}/lib/gcc45|g" ${worksrcpath}/src/Makefile
-	  }
-	}
-
-	if {![catch {set result [active_variants octave gcc46]}]} {
-	  if {$result} {
-		reinplace "s|%LIBGOMPPATH%|-L${prefix}/lib/gcc46|g" ${worksrcpath}/src/Makefile
-	  }
-	}
-
-	if {![catch {set result [active_variants octave gcc47]}]} {
-	  if {$result} {
-		reinplace "s|%LIBGOMPPATH%|-L${prefix}/lib/gcc47|g" ${worksrcpath}/src/Makefile
-	  }
-	}
-	  
- 	if {![catch {set result [active_variants octave gcc48]}]} {
-	  if {$result} {
-		reinplace "s|%LIBGOMPPATH%|-L${prefix}/lib/gcc48|g" ${worksrcpath}/src/Makefile
-	  }
-	}
-
-	if {![catch {set result [active_variants octave gcc49]}]} {
-	  if {$result} {
-		reinplace "s|%LIBGOMPPATH%|-L${prefix}/lib/gcc49|g" ${worksrcpath}/src/Makefile
-	  }
-	}
-}
+patchfiles          patch-src-Makefile.diff

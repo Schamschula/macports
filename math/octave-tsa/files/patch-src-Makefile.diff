@@ -109,7 +109,7 @@
  
  %.mex: %.cpp
 -	$(OCTMEX) "$<"  -lgomp -llapack -lblas
-+	$(OCTMEX) "$<"  %LIBGOMPPATH% -lgomp -llapack -lblas
++	$(OCTMEX) "$<"  $(LAPACK_LIBS) -lgomp -llapack -lblas
  %.$(MEX_EXT): %.cpp
  	$(MATMEX) "$<"  -lgomp -llapack -lblas
  
