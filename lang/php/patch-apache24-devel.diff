@@ -1,0 +1,21 @@
+--- Portfile.orig	2014-08-31 07:50:33.000000000 -0500
++++ Portfile	2014-08-31 10:46:57.000000000 -0500
+@@ -333,13 +331,13 @@
+     
+     homepage                http://www.php.net/install.unix.apache2
+     
+-    depends_lib-append      port:apache2
++    depends_lib-append      port:apache24-devel
+     
+-    require_active_variants apache2 preforkmpm
++    require_active_variants apache24-devel preforkmpm
+     
+-    set apxs ${prefix}/apache2/bin/apxs
+-    set confdir ${prefix}/apache2/conf
+-    set moduledir ${prefix}/apache2/modules
++    set apxs ${prefix}/bin/apxs
++    set confdir ${prefix}/conf
++    set moduledir ${prefix}/lib/apache2/modules
+     
+     configure.args-append   --with-apxs2=${apxs}
+     
