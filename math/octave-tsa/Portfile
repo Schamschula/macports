@@ -4,7 +4,7 @@
 PortSystem          1.0
 PortGroup           octave 1.0
 
-octave.setup        tsa 4.2.8
+octave.setup        tsa 4.2.9
 platforms           darwin
 license             GPL-3+
 maintainers         gmail.com:mschamschula openmaintainer
@@ -12,7 +12,14 @@ description         Stochastic concepts and maximum entropy \
                     methods for time series analysis.
 long_description    ${description}
 
-checksums           rmd160  a24c46e1d6118565c5f1d356eed72b27136a7a56 \
-                    sha256  1eb37276ba26658caa1d91d36331981ed1d146384a1bdaca0df9077c7ded57ed
+checksums           rmd160  b9293345970b866887a406113ff2e9b8708e3588 \
+                    sha256  922f99ad49dc60a0888f5707f10aff1f43e52b47b6b444c90a3eb936cb1c4409
 
 patchfiles          patch-src-Makefile.diff
+
+# TSA uses libgomp, which is provided by libgcc and/or GCC4X ports.
+# allow for libgcc or libgcc-devel
+
+depends_lib-append  path:lib/libgcc/libgcc_s.1.dylib:libgcc
+
+configure.env-append "LOCAL_FLAGS=-L${prefix}/lib -L${prefix}/lib/libgcc -lgomp.1"
