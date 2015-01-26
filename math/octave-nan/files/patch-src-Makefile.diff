@@ -32,8 +32,7 @@
 +OCTMEX	= mkoctfile --mex
  RM      = rm
  
--ifeq (Linux,$(shell uname))
-+ifeq (darwin,$(shell uname))
+ ifeq (Linux,$(shell uname))
  CFLAGS      += -fopenmp 
  MEX_OPTION  += -lgomp 
  endif
