@@ -1,5 +1,5 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:et:sw=4:ts=4:sts=4
-# $Id: Portfile 122006 2014-07-13 03:12:27Z sean@macports.org $
+# $Id: Portfile 132223 2015-01-26 21:32:09Z michaelld@macports.org $
 
 PortSystem          1.0
 PortGroup           octave 1.0
@@ -11,8 +11,8 @@ maintainers         nomaintainer
 description         Unconstrained Non-linear Optimization toolkit.
 long_description    ${description}
 
-checksums           rmd160  8569d7ea4904a0414de2517c0c1981c78077cb1e \
-                    sha256  ad275e01e851979167a7fd1c5b17f59a8888d7e3d90acab42e3483e54e88bda6
+checksums           rmd160 8569d7ea4904a0414de2517c0c1981c78077cb1e \
+                    sha256 ad275e01e851979167a7fd1c5b17f59a8888d7e3d90acab42e3483e54e88bda6
 
 depends_lib-append  port:octave-miscellaneous \
                     port:octave-struct
