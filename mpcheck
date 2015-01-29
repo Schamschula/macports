@@ -2,8 +2,8 @@
 
 ##
 #	mpcheck [-a|-e|-f|-m|-o|-s|-y]
-#	2.3.0
-#	20150108
+#	2.3.1
+#	20150128
 ##
 
 DEVELOPMENT="FALSE"
@@ -59,7 +59,7 @@ if [ $OCTAVE == "TRUE" ]; then
 fi
 if [ $SERVER == "TRUE" ]; then
 	echo "Server packages"
-	pkgs="$pkgs apache24-devel apr apr-util bind9 clamav gitlist mailman mysql56 \
+	pkgs="$pkgs adns apache24-devel apr apr-util bind9 clamav gitlist mailman mysql56 \
 	ntp openssh openssl php56 squirrelmail sqlite3"
 fi
 if [ $SECURITY == "TRUE" ]; then
