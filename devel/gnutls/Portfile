@@ -1,11 +1,12 @@
 # -*- Mode: Tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:et:sw=4:ts=4:sts=4
-# $Id: Portfile 129468 2014-12-13 18:42:59Z ryandesign@macports.org $
+# $Id: Portfile 132350 2015-01-30 05:25:21Z devans@macports.org $
 
 PortSystem      1.0
 PortGroup       muniversal 1.0
 
 name            gnutls
-version         3.3.12
+version         3.3.11
+revision        1
 set branch      [join [lrange [split ${version} .] 0 1] .]
 categories      devel security
 # yes, some of the libs are GPL only
@@ -24,8 +25,8 @@ long_description \
 master_sites    ftp://ftp.gnutls.org/gcrypt/gnutls/v${branch}/ \
                 http://archive.hmug.org/src/gnutls/
 
-checksums       rmd160  65078fba5fc3dcde7bd7c19169add4739274a95a \
-                sha256  67ab3e92c5d48f3323b897d7c1aa0bb2af6f3a84f5bd9931cda163a7ff32299b
+checksums       rmd160  97700decd2b5cdb5020ed39671d26b9bd9188f15 \
+                sha256  aef28d629b6ba824bd435f9b23506525e657e3746d4aa021296b13cbaaa6ae71
 
 use_xz          yes
 
@@ -38,7 +39,8 @@ depends_lib     port:gmp \
                 port:libtasn1 \
                 port:p11-kit \
                 port:nettle \
-                path:share/curl/curl-ca-bundle.crt:curl-ca-bundle
+                path:share/curl/curl-ca-bundle.crt:curl-ca-bundle \
+                port:zlib
 
 post-patch {
     # Remove comments which confuse at least Leopard's assembler.
