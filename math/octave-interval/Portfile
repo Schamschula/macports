@@ -1,17 +1,21 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:et:sw=4:ts=4:sts=4
-# $Id: Portfile $
+# $Id: Portfile 132525 2015-02-03 17:38:41Z michaelld@macports.org $
 
 PortSystem          1.0
 PortGroup           octave 1.0
 
-octave.setup        interval 0.1.0
+octave.setup        interval 0.1.1
 platforms           darwin
-license             GPL-2+
-maintainers         gmail.com:mschamschula openmaintainer
-description         The package provides data types for verified computing.
-long_description    ${description} The implementation of intervals in inf-sup format \
-                    is based on interval boundaries represented by binary64 numbers and \
-                    is standard conforming to IEEE 1788.
+license             GPL-3+ ALv2
+maintainers         nomaintainer
+description         Data types for verified computing.
+long_description    ${description} The implementation of intervals in \
+    inf-sup format is based on interval boundaries represented by \
+    binary64 numbers and is standard conforming to IEEE 1788.
 
-checksums           rmd160 6e057412de8e3fb5b5785a1f9b8e2d8233b99be3 \
-                    sha256 0aae5c0e43e2de1d53719189ed47d691493625fa56d35e8bbc38d159d7d39c5b
+checksums           rmd160 22d67f9dfbe0827fccb2202bd2ae6abaee4c1a3e \
+                    sha256 84a33f0aa6c9adbb49847f3eb5d83dad64a639ab30df0744f940451a0d339aad
+
+depends_lib-append  port:mpfr port:gmp
+
+patchfiles-append   patch-src_Makefile.diff
