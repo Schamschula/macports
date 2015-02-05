@@ -1,0 +1,20 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:et:sw=4:ts=4:sts=4
+# $Id: Portfile $
+
+PortSystem          1.0
+PortGroup           octave 1.1
+
+octave.setup        symbolic 2.0.0
+platforms           darwin
+license             GPL-2+
+maintainers         gmail.com:mschamschula openmaintainer
+description         Adds symbolic calculation features to GNU Octave. 
+long_description    ${description} These include common Computer Algebra System tools \
+                    such as algebraic operations, calculus, equation solving, Fourier \
+                    and Laplace transforms, variable precision arithmetic and and other \
+                    features.
+
+checksums           rmd160 5d8d788c9f73b982efba32ebd7af9bf8f67e9964 \
+                    sha256 3566d7bea32f057ce9579af91cddebe4427b57594c1b1513b4038f47dfa73c44
+
+depends_lib-append  port:py-sympy
