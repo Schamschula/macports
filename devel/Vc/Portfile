@@ -7,7 +7,7 @@ PortGroup           cmake 1.0
 name                Vc
 version             0.7.4
 categories          devel
-license             LGPL
+license             LGPL-3+
 maintainers         gmail.com:mschamschula openmaintainer
 description         Vc is a free software library to ease explicit vectorization of \
                     C++ code.
@@ -28,5 +28,4 @@ pre-configure {
     file mkdir ${configure.dir}
 }
 
-build.args          -j16
 build.dir           ${configure.dir}
