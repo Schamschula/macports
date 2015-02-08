@@ -5,7 +5,7 @@ PortSystem          1.0
 PortGroup           muniversal 1.0
 
 name                cmake
-version             3.1.1
+version             3.1.2
 set branch          [join [lrange [split ${version} .] 0 1] .]
 categories          devel
 license             BSD
@@ -20,8 +20,8 @@ homepage            http://www.cmake.org/
 master_sites        http://www.cmake.org/files/v${branch}/
 platforms           darwin freebsd
 
-checksums           rmd160  718de85dd5c06d04e435d77ae2e03091b4cf12b4 \
-                    sha256  b58694e545d51cde5756a894f53107e3d9e469360e1d92e7f6892b55ebc0bebf
+checksums           rmd160  50caf6ff5de97390decf43446ef0733750a5862c \
+                    sha256  2b210f7d867a1e716c1895357ebe63c7b9ae61fdb5f2d300ab2f01795f085b35
 
 depends_lib-append  port:libidn \
                     port:openssl \
