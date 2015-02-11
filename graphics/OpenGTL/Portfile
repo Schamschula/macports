@@ -1,0 +1,39 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id$
+
+PortSystem          1.0
+PortGroup           cmake 1.0
+
+name                OpenGTL
+version             0.9.18
+categories          graphics
+license             LGPL
+maintainers         gmail.com:mschamschula openmaintainer
+description         OpenCTL which is a GPL compatible of the Color Transformation \
+                    Language. 
+long_description    ${description} This language is dedicated at transforming the value \
+                    of a single pixel (for instance Brightness adjustement or \
+                    desaturate). CTL is designed to be part of the Color Management \
+                    process.
+platforms           darwin
+homepage            http://www.opengtl.org/
+master_sites        http://download.opengtl.org/
+
+use_bzip2           yes
+
+checksums           rmd160  19632e70e70afe8bd8c92d829c18b8e3a48623e1 \
+                    sha256  f094b3d2a1a60519975bb3badc05e704f2b93c7a3d2cb753041f2ff27cfcd9f8
+
+depends_build-append   port:llvm-3.3 \
+                    port:texlive-latex \
+                    port:latex2html
+
+depends_lib-append  port:ImageMagick \
+                    port:libpng \
+                    port:zlib
+
+patchfiles          patch-CMakeLists.txt.diff \
+                    patch-OpenShiva-doc-CMakeLists.txt.diff \
+                    llvm-3.3svn.patch \
+                    1792.patch 1793.patch
+configure.args      -DLATEX_OUTPUT_PATH:PATH=share/OpenShiva -Wno-dev

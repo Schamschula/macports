@@ -1,0 +1,14 @@
+--- OpenShiva/doc/CMakeLists.txt.orig	2012-12-29 05:27:12.000000000 -0600
++++ OpenShiva/doc/CMakeLists.txt	2015-02-05 17:46:38.000000000 -0600
+@@ -1,7 +1,7 @@
+ 
+ find_package(LATEX)
+ 
+-if(PDFLATEX_COMPILER)
+-  include(UseLATEX)
+-  add_subdirectory(reference)
+-endif(PDFLATEX_COMPILER)
++#if(PDFLATEX_COMPILER)
++#  include(UseLATEX)
++#  add_subdirectory(reference)
++#endif(PDFLATEX_COMPILER)
