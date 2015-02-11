@@ -1,0 +1,11 @@
+--- a/cmake/ssl.cmake.orig	2015-01-19 07:48:32.000000000 -0600
++++ b/cmake/ssl.cmake	2015-02-11 06:40:45.000000000 -0600
+@@ -166,7 +166,7 @@
+     # Encoded as MNNFFPPS: major minor fix patch status
+     FILE(STRINGS "${OPENSSL_INCLUDE_DIR}/openssl/opensslv.h"
+       OPENSSL_VERSION_NUMBER
+-      REGEX "^#define[\t ]+OPENSSL_VERSION_NUMBER[\t ]+0x[0-9].*"
++      REGEX "^#[\t ]+define[\t ]+OPENSSL_VERSION_NUMBER[\t ]+0x[0-9].*"
+     )
+     STRING(REGEX REPLACE
+       "^.*OPENSSL_VERSION_NUMBER[\t ]+0x([0-9]).*$" "\\1"
