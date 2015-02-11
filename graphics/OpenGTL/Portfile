@@ -36,4 +36,4 @@ patchfiles          patch-CMakeLists.txt.diff \
                     patch-OpenShiva-doc-CMakeLists.txt.diff \
                     llvm-3.3svn.patch \
                     1792.patch 1793.patch
-configure.args      -DLATEX_OUTPUT_PATH:PATH=share/OpenShiva -Wno-dev
+configure.args-append  -DLATEX_OUTPUT_PATH:PATH=share/OpenShiva -Wno-dev
