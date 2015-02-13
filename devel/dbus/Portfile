@@ -6,7 +6,7 @@ PortGroup       muniversal 1.0
 
 name            dbus
 conflicts       dbus-devel
-version         1.8.14
+version         1.8.16
 maintainers     mcalhoun openmaintainer
 categories      devel
 platforms       darwin
@@ -19,8 +19,8 @@ long_description \
 homepage        http://www.freedesktop.org/Software/dbus
 master_sites    http://dbus.freedesktop.org/releases/dbus
 
-checksums           rmd160  3ffea8e91e91b8cd6c31a89fd4786fa99288eabd \
-                    sha256  83425250a6a4c93b9ab4a349771a7700e8ddff2d73a5a088222ca47ae9ce1f1a
+checksums           rmd160  c333f4e5808fc4c5b6a5d77f06bd473971411e60 \
+                    sha256  7f795268efd343ff0498786acb35097564390d40b1b6158daf1b4f742b522b07
 
 # See r59386
 # See r68276
