@@ -1,0 +1,10 @@
+--- babl/babl-palette.c.orig	2012-04-05 09:40:08.000000000 -0500
++++ babl/babl-palette.c	2015-02-13 14:55:17.000000000 -0600
+@@ -20,6 +20,7 @@
+ #include <string.h>
+ #include <stdio.h>
+ #include <limits.h>
++#include <float.h>
+ #include <assert.h>
+ #include "config.h"
+ #include "babl-internal.h"
