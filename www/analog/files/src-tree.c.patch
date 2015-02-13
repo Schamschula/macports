@@ -1,0 +1,45 @@
+*** src/tree.c.orig	2011-08-28 10:00:17.000000000 -0500
+--- src/tree.c	2011-08-28 10:02:48.000000000 -0500
+***************
+*** 872,876 ****
+  	    *name = "Windows:Unknown Windows";
+  	}
+! 	else if (*c >= '6' && *c <= '9')
+  	  *name = "Windows:Unknown Windows";
+  	else
+--- 872,883 ----
+  	    *name = "Windows:Unknown Windows";
+  	}
+! 	else if (*c == '6') 
+! 	  if (*(c + 1) == '.' && (*(c + 2) == '0'))
+! 		*name = "Windows:Windows Vista";
+! 	  else if (*(c + 1) == '.' && (*(c + 2) == '1'))
+! 	    *name = "Windows:Windows 7";
+! 	  else
+! 	    *name = "Windows:Unknown Windows";	  
+! 	else if (*c > '6' && *c <= '9')
+  	  *name = "Windows:Unknown Windows";
+  	else
+***************
+*** 901,906 ****
+  
+      /* Now non-Windows operating systems */
+!     else if ((c = strstr(whole, "Mac")) != NULL)
+! 	*name = "Macintosh";
+      else if (strstr(whole, "Linux") != NULL || strstr(whole, "linux") != NULL)
+        *name = "Unix:Linux";
+--- 908,921 ----
+  
+      /* Now non-Windows operating systems */
+!     else if ((c = strstr(whole, "Mac")) != NULL) {
+!     	if((c = strstr(whole, "PPC")) != NULL)
+! 	  		*name = "Macintosh:PPC";
+! 		else if ((c = strstr(whole, "Intel")) != NULL)
+! 			*name = "Macintosh:Intel";
+! 		else if ((c = strstr(whole, "PowerPC")) != NULL)
+! 			*name = "Macintosh:Classic";
+! 		 else
+! 		 	*name = "Macintosh:Unknown Macintosh";
+! 	 }
+      else if (strstr(whole, "Linux") != NULL || strstr(whole, "linux") != NULL)
+        *name = "Unix:Linux";

@@ -1,0 +1,53 @@
+--- src/tree.c.orig	2004-12-19 07:51:31.000000000 -0600
++++ src/tree.c	2014-12-08 06:48:58.000000000 -0600
+@@ -871,7 +871,16 @@
+ 	  else
+ 	    *name = "Windows:Unknown Windows";
+ 	}
+-	else if (*c >= '6' && *c <= '9')
++	else if (*c == '6') 
++	  if (*(c + 1) == '.' && (*(c + 2) == '0'))
++		*name = "Windows:Windows Vista";
++	  else if (*(c + 1) == '.' && (*(c + 2) == '1'))
++	    *name = "Windows:Windows 7";
++	  else if (*(c + 1) == '.' && (*(c + 2) == '2'))
++	    *name = "Windows:Windows 8";
++	  else
++	    *name = "Windows:Unknown Windows";	  
++	else if (*c > '6' && *c <= '9')
+ 	  *name = "Windows:Unknown Windows";
+ 	else
+ 	  *name = "Windows:Windows NT";
+@@ -900,8 +909,21 @@
+     }
+ 
+     /* Now non-Windows operating systems */
+-    else if ((c = strstr(whole, "Mac")) != NULL)
+-	*name = "Macintosh";
++    else if (strstr(whole, "Mac") != NULL) {
++    	if(strstr(whole, "PPC") != NULL) {
++			*name = "Macintosh:Macintosh (PPC)"; 
++		}
++		else if (strstr(whole, "Intel") != NULL) {
++			*name = "Macintosh:Macintosh (Intel)";
++		}
++		else if (strstr(whole, "PowerPC") != NULL)
++			*name = "Macintosh:Classic";
++        else if (strstr(whole, "like Mac") != NULL) {
++        	*name = "iOS";
++		}
++	    else
++		 	*name = "Macintosh:Unknown Macintosh";
++	}
+     else if (strstr(whole, "Linux") != NULL || strstr(whole, "linux") != NULL)
+       *name = "Unix:Linux";
+     else if (strstr(whole, "BSD") != NULL)
+@@ -931,6 +953,8 @@
+       *name = "RISC OS";
+     else if (strstr(whole, "Amiga") != NULL)
+       *name = "Amiga";
++    else if (strstr(whole, "Android") != NULL) 
++      *name = "Android";
+     else if (strstr(whole, "Symbian") != NULL)
+       *name = "Symbian OS";
+     else if (strstr(whole, "PalmOS") != NULL ||

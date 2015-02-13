@@ -1,0 +1,94 @@
+--- src/tree.c.orig	2004-12-19 07:51:31.000000000 -0600
++++ src/tree.c	2014-12-08 07:36:15.000000000 -0600
+@@ -871,7 +871,16 @@
+ 	  else
+ 	    *name = "Windows:Unknown Windows";
+ 	}
+-	else if (*c >= '6' && *c <= '9')
++	else if (*c == '6') 
++	  if (*(c + 1) == '.' && (*(c + 2) == '0'))
++		*name = "Windows:Windows Vista";
++	  else if (*(c + 1) == '.' && (*(c + 2) == '1'))
++	    *name = "Windows:Windows 7";
++	  else if (*(c + 1) == '.' && (*(c + 2) == '2'))
++	    *name = "Windows:Windows 8";
++	  else
++	    *name = "Windows:Unknown Windows";	  
++	else if (*c > '6' && *c <= '9')
+ 	  *name = "Windows:Unknown Windows";
+ 	else
+ 	  *name = "Windows:Windows NT";
+@@ -900,8 +909,62 @@
+     }
+ 
+     /* Now non-Windows operating systems */
+-    else if ((c = strstr(whole, "Mac")) != NULL)
+-	*name = "Macintosh";
++    else if (strstr(whole, "Mac") != NULL) {
++    	if(strstr(whole, "PPC") != NULL) {
++			if (strstr(whole, "10_0") != NULL)
++				*name = "Macintosh:Cheetah";    	
++			else if (strstr(whole, "10_1") != NULL)
++				*name = "Macintosh:Puma";    	
++			else if (strstr(whole, "10_2") != NULL)
++				*name = "Macintosh:Jaguar";    	
++			else if (strstr(whole, "10_3") != NULL)
++				*name = "Macintosh:Panther (PPC)";    	
++			else if (strstr(whole, "10_4") != NULL)
++				*name = "Macintosh:Tiger (PPC)";    
++			else if (strstr(whole, "10_5") != NULL)
++				*name = "Macintosh:Leopard (PPC)";    
++			else
++				*name = "Macintosh:Unknown (PPC)"; 
++		}
++		else if (strstr(whole, "Intel") != NULL) {
++			if (strstr(whole, "10_3") != NULL)
++				*name = "Macintosh:Panther (Intel)";
++			else if (strstr(whole, "10_4") != NULL)
++				*name = "Macintosh:Tiger (Intel)";
++			else if (strstr(whole, "10_5") != NULL)
++				*name = "Macintosh:Leopard (Intel)";
++			else if (strstr(whole, "10_6") != NULL)
++				*name = "Macintosh:Snow Leopard";
++			else if (strstr(whole, "10_7") != NULL)
++				*name = "Macintosh:Lion";
++			else if (strstr(whole, "10_8") != NULL)
++				*name = "Macintosh:Mountain Lion";
++			else if (strstr(whole, "10_9") != NULL)
++				*name = "Macintosh:Mavericks";
++			else if (strstr(whole, "10_10") != NULL)
++				*name = "Macintosh:Yosemite";
++			else
++				*name = "Macintosh:Unknown (Intel)"; 
++		}
++		else if (strstr(whole, "PowerPC") != NULL)
++			*name = "Macintosh:Classic";
++        else if (strstr(whole, "like Mac") != NULL) {
++        	if (strstr(whole, "OS 4") != NULL)
++        		*name = "iOS:iOS 4";
++			else if (strstr(whole, "OS 5") != NULL)
++				*name = "iOS:iOS 5";
++			else if (strstr(whole, "OS 6") != NULL)
++				*name = "iOS:iOS 6";
++			else if (strstr(whole, "OS 7") != NULL)
++				*name = "iOS:iOS 7";
++			else if (strstr(whole, "OS 4") != NULL)
++				*name = "iOS:iOS 8";
++			else
++				*name = "iOS:iOS Unknown";
++		}
++	    else
++		 	*name = "Macintosh:Unknown Macintosh";
++	}
+     else if (strstr(whole, "Linux") != NULL || strstr(whole, "linux") != NULL)
+       *name = "Unix:Linux";
+     else if (strstr(whole, "BSD") != NULL)
+@@ -931,6 +994,8 @@
+       *name = "RISC OS";
+     else if (strstr(whole, "Amiga") != NULL)
+       *name = "Amiga";
++    else if (strstr(whole, "Android") != NULL) 
++      *name = "Android";
+     else if (strstr(whole, "Symbian") != NULL)
+       *name = "Symbian OS";
+     else if (strstr(whole, "PalmOS") != NULL ||
