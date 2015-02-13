@@ -24,7 +24,8 @@ description         Babl is a library for dynamically handling pixel formats and
 long_description    ${description}
 
 checksums           sha1    b9a811d9d05717d66bc107a18447fbd74cff7eea \
-                    rmd160  4429fc997a34c1e3f171c3097486a90437380ab5
+                    rmd160  4429fc997a34c1e3f171c3097486a90437380ab5 \
+                    sha256  2f802b7f1a17b72c10bf0fe1e69b7a888cf7ce62b7cf1537b030f7f88d55a407
 
 depends_build       port:w3m \
                     port:librsvg
@@ -33,7 +34,7 @@ depends_build       port:w3m \
 
 gobject_introspection no
 
-patchfiles          patch-babl-babl-palette.c.diff
+patchfiles          babl-palette-values-h.patch
 
 configure.args      --disable-silent-rules
 
