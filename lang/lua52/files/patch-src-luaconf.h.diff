@@ -1,0 +1,11 @@
+--- src/luaconf.h.orig	2014-12-29 07:27:55.000000000 -0600
++++ src/luaconf.h	2015-01-19 13:36:04.000000000 -0600
+@@ -175,7 +175,7 @@
+ 
+ #else			/* }{ */
+ 
+-#define LUA_ROOT	"/usr/local/"
++#define LUA_ROOT	"@PREFIX@/"
+ #define LUA_LDIR	LUA_ROOT "share/lua/" LUA_VDIR "/"
+ #define LUA_CDIR	LUA_ROOT "lib/lua/" LUA_VDIR "/"
+ #define LUA_PATH_DEFAULT  \
