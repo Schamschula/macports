@@ -1,0 +1,22 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id$
+
+PortSystem          1.0
+
+name                xclip
+version             0.12
+categories          x11
+license             
+maintainers         gmail.com:mschamschula openmaintainer
+description         xclip is a command line interface to the X11 clipboard.
+long_description    ${description} It can also be used for copying files, as an \
+                    alternative to sftp/scp, thus avoiding password prompts when X11 \
+                    forwarding has already been setup.
+platforms           darwin
+homepage            http://sourceforge.net/projects/xclip/
+master_sites        sourceforge
+
+checksums           rmd160  8c19557031295e041d2f952d6706717a3d125cd8 \
+                    sha256  b7c7fad059ba446df5692d175c2a1d3816e542549661224806db369a0d716c45
+
+depends_lib         port:xorg-libXmu
