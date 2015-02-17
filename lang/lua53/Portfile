@@ -18,6 +18,7 @@ long_description    \
     standalone language.
 
 homepage            http://www.lua.org/
+distname            lua-${version}
 master_sites        ${homepage}ftp/
 
 checksums           rmd160  42a8a628e54b2bc2e211310fc8d72c49c8812a11 \
