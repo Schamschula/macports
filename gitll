@@ -11,7 +11,7 @@
 LPATH=/Users/marius/Development/MacPorts/ports/
 
 #	git pull
-git pull origin master
+/opt/local/bin/git pull origin master
 
 #	portindex if in port root
 if [ "$(pwd)" == "$LPATH" ]; then
