@@ -151,7 +151,7 @@ variant x11 {
 }
 
 variant luaterm description "Enable lua-based terminals" {
-    depends_lib-append      port:lua
+    depends_lib-append      port:lua52
     configure.args-delete   --without-lua
     configure.args-append   --with-lua
 }
