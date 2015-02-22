@@ -2,8 +2,8 @@
 
 ##
 #	mpcheck [-a|-e|-f|-m|-o|-s|-y]
-#	2.3.1
-#	20150220
+#	2.3.2
+#	20150222
 ##
 
 DEVELOPMENT="FALSE"
@@ -44,7 +44,7 @@ if [ $MY == "TRUE" ]; then
 	echo "Maintained ports"
 	pkgs="$pkgs dnscrypt-proxy duff ffe freefont-ttf gawk gifsicle GiNaC gnutls grep grsync \
 	gsed hatools iftop LaTeXiT lftp libgcrypt libgpg-error libpcap libtasn1 \
-	littleutils mksh OpenGTL pyxplot retail rr stunnel surblhost ts wcd"
+	littleutils mksh nghttp2 OpenGTL pyxplot retail rr stunnel surblhost ts wcd"
 fi
 if [ $OCTAVE == "TRUE" ]; then
 	echo "Octave, et al."
