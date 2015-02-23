@@ -1,0 +1,25 @@
+#!/bin/sh
+
+##
+#	mpnew category package version
+#
+#	1.0.0
+#	20141225
+##
+
+#	Variables
+LPATH=/Users/marius/Development/MacPorts/ports/
+
+#	Create directory
+cd $LPATH
+mkdir -p $1/$2
+
+#	Copy file, while adding basic data
+cat var/Portfile.generic | 
+sed "s/CATEGORY/$1/" |
+sed "s/NAME/$2/" |
+sed "s/VERSION/$3/" > $1/$2/Portfile
+
+#	Reindex ports
+portindex
+

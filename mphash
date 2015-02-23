@@ -1,0 +1,25 @@
+#!/bin/sh
+
+##
+#	mphash package
+#
+#	Generate checksums
+#
+#	2.2.0
+#	20140905
+##
+
+#	Get current package version
+VER=$(port info $1 | grep ^$1 | awk '{print $2}' | sed 's/@//')
+
+#	Go to directory
+cd /opt/local/var/macports/distfiles/$1
+
+#	Find archive name
+ARCH=$(ls | grep $VER)
+
+#	checksums
+openssl md5 $ARCH
+openssl rmd160 $ARCH
+openssl sha1 $ARCH
+openssl sha256 $ARCH

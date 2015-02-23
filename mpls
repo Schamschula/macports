@@ -1,0 +1,13 @@
+#!/bin/sh
+
+##
+#	mpls package version
+#	1.0.2
+#	20140703
+##
+
+#	Get Darwin version
+DVER=$(uname -r|awk 'BEGIN {FS="."}; {print $1}')
+VERS=$(echo $2 | sed 's/@//')
+
+tar jtvf /opt/local/var/macports/software/$1/$1-$VERS*.darwin_$DVER.*.tbz2

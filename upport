@@ -1,0 +1,55 @@
+#!/bin/sh
+
+##
+#	upport package
+#	1.4.3
+#	20150109
+##
+
+# get options
+CLEAN="FALSE"
+MODE="VERBOSE"
+
+while getopts cs o
+	do case $o in
+		c) CLEAN="TRUE";;
+		s) MODE="SILENT";;
+	esac
+done
+shift `echo $OPTIND-1 | bc`
+
+# catch ports that can't be cleanly built with upport
+EXCPORTS="bash curl eigen3 git gnuplot sqlite3"
+
+for PORT in $EXCPORTS
+do
+	if [ "$1" == "$PORT" ]; then
+		echo "manually build $1"
+		exit
+	fi
+done
+
+# check if installing or upgrading
+ISINST=$(port installed $1 | awk '{print $1}')
+
+# clean
+if [ $CLEAN == "TRUE" ]; then
+	sudo port clean $1
+fi
+
+# build and generate diff file
+if [ $MODE == "SILENT" ]; then
+	sudo port fetch $1
+	mpuph $1 > /dev/null
+	sudo port upgrade $1
+	mpdiff $1 > /dev/null
+else
+	sudo port -t -v fetch $1
+	mpuph $1
+	if [ "$ISINST" == "None" ]; then
+		sudo port -t -v install $1
+	else
+		sudo port -t -v upgrade $1
+	fi
+	mpdiff $1
+fi
