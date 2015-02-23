@@ -1,5 +1,5 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 129744 2014-12-19 22:01:47Z ryandesign@macports.org $
+# $Id: Portfile 133071 2015-02-19 13:32:58Z ryandesign@macports.org $
 
 PortSystem              1.0
 PortGroup               php 1.1
@@ -90,27 +90,27 @@ switch ${subport_branch} {
     }
     5.4 {
         epoch           1
-        version         5.4.36
+        version         5.4.38
         use_bzip2       yes
-        checksums       md5     70e223be4bb460e465b7a9d7cb5b9cac \
-                        rmd160  1d23d9863ce0211bef58e709396e0f7f66d6bbc3 \
-                        sha256  b0951608c3e8afb978a624c7f79a889980210f5258f666c1d997bd6491e13241
+        checksums       md5     2bf5007ba4bd012f9895c1b441dd4f50 \
+                        rmd160  5cd4d7c80badd19aa7e1081e3fd190607e46e1af \
+                        sha256  abf37db0cfadc9bb814f9df35f6aa966ad63f4f4c4475e432ec625568a5d3e88
     }
     5.5 {
         epoch           2
-        version         5.5.20
+        version         5.5.21
         use_xz          yes
-        checksums       md5     51377838dfee2d7bb4715674ac715394 \
-                        rmd160  a98163d36595d1fe5e772c1170aa8e4e4969dc30 \
-                        sha256  a0649450f8b0a23cd4c9ad15d0aa271d956f9516fc37b9e9dc492459b57721c8
+        checksums       md5     79664ce44f7c93f355a25a3fe3dcc91b \
+                        rmd160  3664ad034b06bf92f48cfc2c3309407fc0a1ef6e \
+                        sha256  f2583540b2698d7d0ee9cfc071c2b56ccc64a52a2b53101511ba8df5b126d6d2
     }
     5.6 {
         epoch           2
-        version         5.6.5
+        version         5.6.6
         use_xz          yes
-        checksums       md5     541a480e1f8747219074c99f3e9edbcc \
-                        rmd160  041a17247eff41a9a5083a7bf1291d0932cf8c79 \
-                        sha256  c5ef4abaef8c1ea66dcfd5a075a2f357b666aff5c5b686fca7c78c1cfd64e996
+        checksums       md5     ed0c9ad2419fffde1d8c03a2d8164179 \
+                        rmd160  6e4943288343f30673448bf8ff880887d2835a3f \
+                        sha256  b963b2d45baeebeeb421c05ee60889e87971e3e27a4be873d265fee3250fde20
     }
 }
 #     5.7 {
