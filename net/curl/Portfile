@@ -130,9 +130,10 @@ if {${name} eq ${subport}} {
         configure.args-replace  --without-gssapi --with-gssapi
     }
 
-    variant http2 description {http/2 protocol} {
+    variant http2 description {Add http/2 support} {
         depends_lib-append      port:nghttp2
-        configure.args-append   --with-nghttp2
+        configure.args-append   --with-http2
+        patchfiles-append       patch-lib-vtls-gtls.c.diff
     }
 
     variant metalink description {Support Metalink XML download description files} {
