@@ -1,13 +1,12 @@
 --- Portfile.orig	2015-02-25 10:30:10.000000000 -0600
 +++ Portfile	2015-02-25 05:34:35.000000000 -0600
-@@ -130,6 +130,12 @@
+@@ -130,6 +130,11 @@
          configure.args-replace  --without-gssapi --with-gssapi
      }
  
 +    variant http2 description {Add http/2 support} {
 +        depends_lib-append      port:nghttp2
 +        configure.args-append   --with-http2
-+        patchfiles-append       patch-lib-vtls-gtls.c.diff
 +    }
 +
      variant metalink description {Support Metalink XML download description files} {
