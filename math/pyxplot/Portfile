@@ -1,5 +1,5 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 116428 2014-01-24 22:07:57Z ryandesign@macports.org $
+# $Id: Portfile 130436 2014-12-30 14:58:58Z khindenburg@macports.org $
 
 PortSystem          1.0
 PortGroup           muniversal 1.0
@@ -26,7 +26,7 @@ checksums           rmd160 d4eb39acfa22868f28ad93665cec5303bc567c8e \
 
 worksrcdir          ${name}-${version}
 
-depends_lib         port:cfitsio \
+depends_lib-append  port:cfitsio \
                     port:fftw \
                     port:ghostscript \
                     port:gsl \
@@ -41,10 +41,10 @@ depends_lib         port:cfitsio \
                     port:libxml2
 
 post-patch {
-	reinplace "s|USRDIR=/usr/local|USRDIR=${prefix}|g" \
+    reinplace "s|USRDIR=/usr/local|USRDIR=${prefix}|g" \
                 ${worksrcpath}/Makefile.skel
 }
 
 livecheck.type      regex
-livecheck.url       ${homepage}download.html
-livecheck.regex     ${name}_${version}${extract.suffix}
+livecheck.url       ${master_sites}
+livecheck.regex     ${name}_(\[0-9.\]+)${extract.suffix}
