@@ -32,5 +32,5 @@ checksums           sha1    9de7a89ef7d336501a41f452fd3936ae66f63a6e \
 test.run            yes
 
 livecheck.type      regex
-livecheck.url       http://www.hardened-php.net/suhosin/download.html
-livecheck.regex     suhosin-(\\d+(\\.\\d+)+)
+livecheck.url       http://www.suhosin.org/stories/download.html
+livecheck.regex     suhosin-(\[0-9.\]+)${extract.suffix}
