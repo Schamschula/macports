@@ -132,10 +132,11 @@ post-destroot {
     xinstall -d ${destroot}${prefix}/etc/${name}
     xinstall -d ${destroot}${prefix}/var/log/${name}
     xinstall -d ${destroot}${prefix}/etc/${name}/rules
-    ## putting in the examples, emergingthreat set has them
-    foreach f { decoder-events.rules http-events.rules stream-events.rules files.rules smtp-events.rules } {
-        xinstall ${worksrcpath}/rules/${f} ${destroot}${prefix}/share/examples/${name}
+    ## putting in the rules, emergingthreat set has them
+    foreach f { decoder-events.rules dns-events.rules http-events.rules stream-events.rules files.rules smtp-events.rules } {
+        xinstall ${worksrcpath}/rules/${f} ${destroot}${prefix}/etc/suricata/rules/${name}
     }
+    xinstall ${worksrcpath}/threshold.config ${destroot}${prefix}/etc/suricata/threshold.config
     destroot.keepdirs ${destroot}${prefix}/etc/${name} \
         ${destroot}${prefix}/var/log/${name} \
         ${destroot}${prefix}/etc/${name}/rules
