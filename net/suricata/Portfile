@@ -1,0 +1,263 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id$
+
+PortSystem          1.0
+
+name                suricata
+version             2.0.7
+categories          net security
+platforms           darwin
+maintainers         yahoo.fr:jul_bsd openmaintainer
+license             BSD
+
+description         Open Source IDS / IPS / NSM engine
+
+long_description    Suricata is a high performance Network IDS, IPS \
+                    and Network Security Monitoring engine. Open Source \
+                    and owned by a community run non-profit foundation, \
+                    the Open Information Security Foundation (OISF). \
+                    Suricata is developed by the OISF and its supporting \
+                    vendors.
+
+homepage            http://suricata-ids.org/
+master_sites        http://www.openinfosecfoundation.org/download/
+
+## https://redmine.openinfosecfoundation.org/projects/suricata/wiki/Mac_OS_X_106x
+## FIXME! one deps resolves to libgcc-devel which can conflict w a lot of ports depending on libgcc
+depends_build       port:autoconf port:automake
+depends_lib         port:pkgconfig port:libnet11 port:libpcap port:pcre \
+                    port:libyaml port:libtool port:libmagic port:jansson
+configure.env       AC_PROG_LIBTOOL=${prefix}/bin/glibtool \
+                    LDFLAGS="-ljansson" CPPFLAGS=-I${prefix}/include
+configure.args      --enable-ipfw --enable-gccprotect \
+                    --enable-unittests \
+                    --disable-geoip --disable-prelude --disable-unix-socket \
+                    --disable-nss --disable-nspr \
+                    --with-libjansson-includes=${prefix}/include \
+                    --with-libjansson-libraries=${prefix}/lib
+
+## Note: only linux support option for non-root user
+##    https://redmine.openinfosecfoundation.org/issues/240
+##    but http://pablo-secdev.blogspot.ca/2010/07/howto-setup-suricata-100-on-mac-os-x.html
+add_users suricata group=suricata home=${prefix}/var/db/suricata shell=/sbin/nologin realname=suricata\ user
+
+use_autoreconf        yes
+
+#compiler.blacklist   clang llvm-gcc-4.2 macports-llvm-gcc-4.2 apple-gcc-4.2 macports-clang macports-clang-3.3
+
+## FIXME! fails on "util-affinity.h:70:5: error: unknown type name 'cpu_set_t'" if enable build.args
+variant universal {}
+#build.args          CFLAGS="${configure.cflags} [get_canonical_archflags cc]"
+configure.cflags-append "${configure.cflags} [get_canonical_archflags cc]"
+
+## Bug report: https://redmine.openinfosecfoundation.org/projects/suricata/search?utf8=%E2%9C%93&issues=1&q=darwin#
+
+test.run            yes
+test.cmd            suricata
+test.args            -u -l /tmp
+
+notes "
+
+To finish install
+https://redmine.openinfosecfoundation.org/projects/suricata/wiki/Basic_Setup
+
+1) Customize config in ${prefix}/etc/${name} like HOME_NET and host-os-policy
+
+You need add extra rules, eventually using oinkmaster:
+https://redmine.openinfosecfoundation.org/projects/suricata/wiki/Rule_Management_with_Oinkmaster
+ex: $ sudo -u oinkmaster ${prefix}/bin/oinkmaster.pl -o ${prefix}/etc/${name}/rules -C ${prefix}/etc/oinkmaster-${name}.conf
+The corresponding oinkmaster config is in the examples directory and
+have been copied to ${prefix}/etc if not existing.
+
+2) Test your config with
+    # suricata -c ${prefix}/etc/suricata/suricata.yaml -T
+
+3) Standard execution
+    # suricata -c ${prefix}/etc/suricata/suricata.yaml -i en1 -D
+    plist launchd file is configured by default with this configuration
+
+Alternative, you can have an ipfw rule set for the engine to see the packets from ipfw. For example:
+    # ipfw add 100 divert 8000 ip from any to any
+Rememember to delete this rule if you are not using it as it will redirect all traffic to this port
+and locked you if nothing handles this.
+The 8000 above should be the same number you pass on the command line of Suricata with the option -d:
+    # suricata -c ${prefix}/etc/suricata/suricata.yaml -i en1 -d 8000
+
+Note: Dropping privileges options are for now not supported outside of libpcap-ng on Linux.
+
+4) Scheduled task to update rules with oinkmaster: a default file has been created as
+      ${prefix}/Library/LaunchDaemons/org.macports.oinkmaster-suricata.plist
+   Check if it fit you and start it like
+      # chown -R oinkmaster ${prefix}/etc/suricata/rules
+      # install -d -o oinkmaster -m 755 ${prefix}/etc/suricata/backup
+      # ln -s ${prefix}/Library/LaunchDaemons/org.macports.oinkmaster-suricata.plist /Library/LaunchDaemons/
+      # launchctl load -w /Library/LaunchDaemons/org.macports.oinkmaster-suricata.plist
+   Test command with
+      # sudo -u oinkmaster ${prefix}/bin/oinkmaster.pl -o ${prefix}/etc/suricata/rules/ -b ${prefix}/etc/suricata/backup/ -C ${prefix}/etc/oinkmaster-suricata.conf
+
+5) Check alert types on usage. For example:
+      $ sed ...
+   And, if necessary, disable false-positive rules
+   (eg SURICATA STREAM ones)
+
+6) To rotate logs, an example config with system newsyslog is included (1/week)
+      ${prefix}/share/examples/${name}/mp-suricata.conf
+   You can install it with
+      # cp ${prefix}/share/examples/${name}/mp-suricata.conf /private/etc/newsyslog.d/
+   And restart newsyslog
+      # launchctl unload -w /System/Library/LaunchDaemons/com.apple.newsyslog.plist
+      # launchctl load -w /System/Library/LaunchDaemons/com.apple.newsyslog.plist
+
+FIXME! recommendation to rotate/handle unified2 log files
+"
+
+post-patch {
+    ## disabling rules which seems to have disappeared from emergingthreats set and may block start
+    reinplace "s|^ - emerging-virus.rules|# - emerging-virus.rules|g" ${worksrcpath}/suricata.yaml.in
+    reinplace "s|filename: /var/log/suricata.log|filename: ${prefix}/var/log/suricata/suricata.log|g" ${worksrcpath}/suricata.yaml.in
+    reinplace "s|magic-file: /usr/share/file/magic|magic-file: ${prefix}/share/misc/magic|g" ${worksrcpath}/suricata.yaml.in
+}
+
+## FIXME! no man? nothing in source. debian?
+post-destroot {
+    xinstall -d ${destroot}${prefix}/share/examples/${name}
+    foreach f { classification.config reference.config suricata.yaml } {
+        xinstall ${worksrcpath}/${f} ${destroot}${prefix}/share/examples/${name}/
+    }
+    xinstall ${filespath}/oinkmaster-${name}.conf ${destroot}${prefix}/share/examples/${name}/
+    reinplace "s|%%PREFIX%%|${prefix}|g" ${destroot}${prefix}/share/examples/${name}/oinkmaster-${name}.conf
+#    copy ${filespath}/mp-suricata.conf ${destroot}${prefix}/share/examples/${name}/
+#    reinplace "s|%%PREFIX%%|${prefix}|g" ${destroot}${prefix}/share/examples/${name}/mp-suricata.conf
+
+    xinstall -d ${destroot}${prefix}/etc/${name}
+    xinstall -d ${destroot}${prefix}/var/log/${name}
+    xinstall -d ${destroot}${prefix}/etc/${name}/rules
+    ## putting in the examples, emergingthreat set has them
+    foreach f { decoder-events.rules http-events.rules stream-events.rules files.rules smtp-events.rules } {
+        xinstall ${worksrcpath}/rules/${f} ${destroot}${prefix}/share/examples/${name}
+    }
+    destroot.keepdirs ${destroot}${prefix}/etc/${name} \
+        ${destroot}${prefix}/var/log/${name} \
+        ${destroot}${prefix}/etc/${name}/rules
+
+    xinstall -d ${destroot}${prefix}/Library/LaunchDaemons/
+    copy ${filespath}/org.macports.oinkmaster-suricata.plist ${destroot}${prefix}/Library/LaunchDaemons/
+    reinplace "s|%%PREFIX%%|${prefix}|g" ${destroot}${prefix}/Library/LaunchDaemons/org.macports.oinkmaster-suricata.plist
+}
+
+post-activate {
+    foreach f { classification.config reference.config suricata.yaml } {
+        if {![file exists ${prefix}/etc/${name}/${f}]} {
+            xinstall ${prefix}/share/examples/${name}/${f} ${prefix}/etc/${name}/
+        }
+    }
+    if {![file exists ${prefix}/etc/oinkmaster-suricata.conf]} {
+        xinstall ${prefix}/share/examples/${name}/oinkmaster-suricata.conf ${prefix}/etc/
+    }
+}
+
+if {${subport} eq ${name}} {
+
+    checksums           rmd160  435d9af659416710e53c2f8ec6ff8ec768dcaaa8 \
+                        sha256  c5c3ccebeecbace39df0ff2d50ec4515b541103ffaa5e33cd1dc79d4955c0dfd
+
+    patchfiles          patch-Makefile.in.diff \
+                        patch-src-output-json.h.diff
+
+    conflicts  ${name}-devel ${name}1
+    livecheck.regex     "<strong>Suricata \\(Stable\\) version is (\\d+\.\\d+\.\\d+), "
+}
+
+subport ${name}-devel {
+
+    version             2.1beta1
+    checksums           rmd160  c85c27f306d6eee05fe1058a0032e5d65e648a33 \
+                        sha256  c3d71638c1c672203eb4665292955438de67825c6736cb6e77f3eb17f84ec352
+
+    ## Got both strlcpy/strlcat errors and "error: unknown type name 'json_t'"
+    patchfiles          patch-configure.ac2.diff \
+                        patch-src-suricata-common.h.diff \
+                        patch-src-suricata-common.h2.diff
+
+    conflicts  ${name} ${name}1
+    livecheck.regex     "<strong>Suricata \\(Development\\) version is (\\d+(?:\\.\\d+)(\\w*)*), "
+}
+
+subport ${name}1 {
+    version             1.4.7
+    checksums           rmd160  225241a6e5fc159347dcfaf6c424180d84cd281e \
+                        sha256  ae4a117d23a8a304f6fba9bd5b7442422b64e4d6bf5ac1e17312b8ee443a6bc9
+
+    depends_lib         port:pkgconfig port:libnet11 port:libpcap port:pcre \
+                        port:libyaml port:libtool port:libmagic port:jansson
+    configure.env       AC_PROG_LIBTOOL=${prefix}/bin/glibtool
+    configure.args      --enable-ipfw --enable-gccprotect \
+                        --enable-unittests \
+                        --disable-geoip --disable-prelude --disable-unix-socket
+
+    patchfiles          patch-configure.ac.diff patch-src-suricata-common.h.diff \
+                        patch-src-suricata-common.h2.diff
+
+    use_autoreconf      yes
+
+    conflicts  ${name} ${name}-devel
+
+    livecheck.type      none
+}
+
+default_variants       +debug +geoip +python27
+
+## https://redmine.openinfosecfoundation.org/projects/suricata/wiki/Debugging
+variant debug description { enable debug, processing will be slower } {
+    ## Note: --enable-debug-validation is incompatible with --unittests
+    ##       https://redmine.openinfosecfoundation.org/projects/suricata/wiki/Unit_Tests
+    configure.args-append    --enable-debug --enable-profiling
+}
+
+#variant spatch description { spatch support. IN CONSTRUCTION } {
+#    ## http://coccinelle.lip6.fr/sp.php
+#}
+
+variant python27 description { Python 2.7 bindings } {
+    depends_build-append     port:python27
+#    configure.env-append     PYTHON=${prefix}/bin/python2.7
+    configure.python         ${prefix}/bin/python2.7
+}
+
+variant prelude description { libprelude support } {
+    depends_lib-append       port:libprelude
+    configure.args-delete    --disable-prelude
+    configure.args-append    --enable-prelude --with-libprelude-prefix=${prefix}
+}
+
+variant geoip description { libgeoip support } {
+    depends_lib-append       port:libgeoip
+    configure.args-delete    --disable-geoip
+    configure.args-append    --enable-geoip --with-libgeoip-includes=${prefix}/include \
+                             --with-libgeoip-libraries=${prefix}/lib
+}
+
+variant unixsocket description { unix-socket support } {
+    depends_lib-append       port:jansson
+    configure.args-delete    --disable-unix-socket
+    configure.args-append    --enable-unix-socket
+}
+
+## https://redmine.openinfosecfoundation.org/projects/suricata/wiki/MD5
+variant nss description { nss/md5 checksums support } {
+    depends_lib-append       port:nss port:nspr
+    configure.args-delete    --disable-nss --disable-nspr
+    configure.args-append    --enable-nss \
+                             --with-libnss-libraries=${prefix}/lib \
+                             --with-libnss-includes=${prefix}/include/nss/ \
+                             --with-libnspr-libraries=${prefix}/lib \
+                             --with-libnspr-includes=${prefix}/include/nspr
+}
+
+
+startupitem.create      yes
+startupitem.executable  ${prefix}/bin/suricata -c ${prefix}/etc/suricata/suricata.yaml -i en1
+startupitem.netchange   yes
+
+livecheck.type      regex
+livecheck.url       ${homepage}/download/

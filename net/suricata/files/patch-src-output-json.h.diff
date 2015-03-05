@@ -1,0 +1,11 @@
+--- src/output-json.h.orig	2015-02-25 07:31:11.000000000 -0600
++++ src/output-json.h	2015-03-03 15:13:27.000000000 -0600
+@@ -32,6 +32,8 @@
+ #include "util-buffer.h"
+ #include "util-logopenfile.h"
+ 
++#include <jansson.h>
++
+ json_t *CreateJSONHeader(Packet *p, int direction_sensative, char *event_type);
+ TmEcode OutputJSON(json_t *js, void *data, uint64_t *count);
+ int OutputJSONBuffer(json_t *js, LogFileCtx *file_ctx, MemBuffer *buffer);
