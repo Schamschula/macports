@@ -8,7 +8,7 @@ PortGroup           compilers 1.0
 
 name                octave-devel
 
-version             4.0.0-tip
+version             4.0.0-rc1
 #conflicts           octave
 categories          math science
 maintainers         michaelld openmaintainer
@@ -24,21 +24,22 @@ long_description    Octave provides a convenient command line interface \
                     modules written in e.g. C++, C or Fortran.
 
 homepage            http://www.gnu.org/software/octave/
-#dist_subdir         octave
-#distname            octave-${version}
+dist_subdir         octave
+distname            octave-${version}
 #master_sites        gnu:octave
-#use_bzip2           yes
-fetch.type          hg
-hg.url              http://www.octave.org/hg/octave
+master_sites		ftp://alpha.gnu.org/gnu/octave
+use_bzip2           yes
+#fetch.type          hg
+#hg.url              http://www.octave.org/hg/octave
 
-pre-configure {
-	system "cd ${worksrcpath} && ./bootstrap"
-}
+#pre-configure {
+#	system "cd ${worksrcpath} && ./bootstrap"
+#}
 
 
 
-#checksums           rmd160  60201b29d368d0c935a34288c227d202ae286c6c \
-#                    sha256  83bbd701aab04e7e57d0d5b8373dd54719bebb64ce0a850e69bf3d7454f33bae
+checksums           rmd160  df8ec443bdabd718c93ce5d2ecb3b201d34a1802 \
+                    sha256  3ca29d07e0b522106d3b7ab033056ac5f261698dbda59606870a279407908b08
 
 compilers.choose    fc f77 f90
 compilers.setup     require_fortran
@@ -49,6 +50,8 @@ depends_build-append \
                     port:bison \
                     port:flex \
                     port:gperf \
+                    port:icoutils \
+                    port:librsvg \
                     port:libtool \
                     path:bin/perl:perl5 \
                     port:pkgconfig
@@ -58,7 +61,10 @@ depends_lib-append \
                     port:curl \
                     port:fftw-3 \
                     port:fftw-3-single \
+                    port:fltk \
                     port:gawk \
+                    port:ghostscript \
+                    port:gl2ps \
                     port:glpk \
                     port:gnuplot \
                     port:GraphicsMagick \
@@ -76,7 +82,6 @@ depends_lib-append \
                     port:texinfo
 
 depends_run-append  port:epstool \
-                    port:ghostscript \
                     port:transfig \
                     port:pstoedit
 
@@ -101,7 +106,7 @@ universal_variant   no
 # when this issue was fixed; add that version to
 # the patch to "mx-inlines.cc".
 
-patchfiles-append   patch-clang-libcxx.diff
+#patchfiles-append   patch-clang-libcxx.diff
 
 # common configure arguments
 
