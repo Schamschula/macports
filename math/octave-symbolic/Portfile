@@ -2,9 +2,9 @@
 # $Id: Portfile $
 
 PortSystem          1.0
-PortGroup           octave 1.1
+PortGroup           octave 1.0
 
-octave.setup        symbolic 2.0.0
+octave.setup        symbolic 2.1.0
 platforms           darwin
 license             GPL-2+
 maintainers         gmail.com:mschamschula openmaintainer
@@ -14,7 +14,7 @@ long_description    ${description} These include common Computer Algebra System 
                     and Laplace transforms, variable precision arithmetic and and other \
                     features.
 
-checksums           rmd160 5d8d788c9f73b982efba32ebd7af9bf8f67e9964 \
-                    sha256 3566d7bea32f057ce9579af91cddebe4427b57594c1b1513b4038f47dfa73c44
+checksums           rmd160 8cd1e45333df54ce2815ea2ef2468b6653cee0c7 \
+                    sha256 5d42e77e7bed56c43d9354ded5b6e9abe2dbe1c07551561a2966467b835b8d8c
 
 depends_lib-append  port:py-sympy
