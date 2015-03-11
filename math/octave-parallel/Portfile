@@ -4,14 +4,14 @@
 PortSystem          1.0
 PortGroup           octave 1.0
 
-octave.setup        parallel 2.2.0
+octave.setup        parallel 2.2.1
 platforms           darwin
 license             GPL-2+ GPL-3+
 maintainers         nomaintainer
 description         Parallel execution package for cluster computers.
 long_description    ${description}
 
-checksums           rmd160 909816bdf2a2ed92bddedbbe9dfc518199b8ef84 \
-                    sha256 a6d9f8e3af82605e940ddd162383a5eb166e6e488e49820498d0e3bc2bfc8a1c
+checksums           rmd160 5ed43f6fb1433cce47fb6075628c3937670e7314 \
+                    sha256 1faf36a7c1750c364ec8089c78cdecbcdbf47c40410c2463e8f3e44dc4d92f33
 
 patchfiles-append   patch-add-unistd.h.diff
