@@ -1,9 +1,9 @@
-# $Id: Portfile 131268 2015-01-08 04:51:22Z ricci@macports.org $
+# $Id: Portfile 133749 2015-03-10 15:38:25Z ricci@macports.org $
 
 PortSystem 1.0
 name		wireshark
 version		1.12.4
-revision	0
+revision	1
 categories	net
 license		{GPL-2 GPL-3}
 maintainers	darkart.com:opendarwin.org
@@ -29,7 +29,8 @@ use_bzip2	yes
 
 conflicts	wireshark-devel
 
-patchfiles	patch-configure.diff
+patchfiles	patch-configure.diff \
+			configure-pixmap-fix.diff
 
 depends_build 		\
 		port:pkgconfig
@@ -132,7 +133,7 @@ variant ipv6 {
 variant lua {
 	configure.args-delete	--without-lua
 	configure.args-append	--with-lua=${prefix}
-	depends_lib-append		port:lua52
+	depends_lib-append		port:lua
 }
 
 variant libsmi {
