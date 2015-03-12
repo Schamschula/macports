@@ -1,10 +1,10 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 87104 2011-11-10 19:29:34Z snc@macports.org $
+# $Id: Portfile 130022 2014-12-24 21:15:49Z ryandesign@macports.org $
 
 PortSystem 1.0
 
 name             snort
-version          2.9.7.0
+version          2.9.7.2
 categories       net
 maintainers      yahoo.fr:jul_bsd openmaintainer
 license          GPL-2
@@ -16,12 +16,12 @@ long_description \
     searching/matching and can be used to detect a variety of attacks \
     and probes, such as buffer overflows, stealth port scans, CGI \
     attacks, SMB probes, OS fingerprinting attempts, and much more.
-homepage         http://www.snort.org/
+homepage         https://www.snort.org/
 platforms        darwin freebsd
-master_sites     ${homepage}/downloads/snort/
+master_sites     ${homepage}downloads/snort/
 
-checksums           rmd160  fa49f3660db9ad940c4c9394d823bbb7faf625c1 \
-                    sha256  9738afea45d20b7f77997cc00055e7dd70f6aea0101209d87efec4bc4eace49b
+checksums           rmd160  e8c40c25fdb2d150d10710ccf639d1952847b21f \
+                    sha256  db57c532919d9ababac127f29dbdc05ed832394880e46cad81a5dde713ccb4be
 
 depends_lib      port:daq
 
@@ -177,5 +177,5 @@ variant percona \
 }
 
 livecheck.type      regex
-livecheck.url       ${homepage}/downloads
+livecheck.url       ${homepage}downloads
 livecheck.regex     >${name}-(\[0-9.\]+)${extract.suffix}<
