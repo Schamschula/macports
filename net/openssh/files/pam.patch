@@ -1,0 +1,11 @@
+--- a/servconf.c	2014-03-17 00:22:44.000000000 -0700
++++ b/servconf.c	2014-03-17 00:31:30.000000000 -0700
+@@ -160,7 +160,7 @@
+ {
+ 	/* Portable-specific options */
+ 	if (options->use_pam == -1)
+-		options->use_pam = 0;
++		options->use_pam = 1;
+ 
+ 	/* Standard Options */
+ 	if (options->protocol == SSH_PROTO_UNKNOWN)
