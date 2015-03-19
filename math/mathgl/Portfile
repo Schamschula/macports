@@ -30,3 +30,7 @@ depends_lib-append  port:fltk \
                     port:ruby22
 
 patchfiles          patch-CMakeLists.txt.diff
+
+livecheck.type      regex
+livecheck.url       ${homepage}/doc_en/Download.html
+livecheck.regex     "${name}-(\\d+(?:\\.\\d+)*)${extract.suffix}"
