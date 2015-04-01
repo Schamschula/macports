@@ -62,3 +62,7 @@ destroot {
 platform darwin {
     build.args-append  OS="OSX"
 }
+
+livecheck.type      regex
+livecheck.url       ${homepage}/download/
+livecheck.regex     "Edition (\\d+\\.\\d+(\[0-9rc.\]+)?) Full"
