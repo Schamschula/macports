@@ -1,10 +1,10 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 132396 2015-01-31 16:17:05Z cal@macports.org $
+# $Id: Portfile 134211 2015-03-20 08:44:08Z mww@macports.org $
 
 PortSystem          1.0
 
 name                sqlite3
-version             3.8.8.3
+version             3.8.9
 categories          databases
 platforms           darwin
 license             public-domain
@@ -26,8 +26,8 @@ master_sites        ${homepage}2015
 
 distname            sqlite-autoconf-[string range [subst [regsub -all {\.([0-9]+)} "${version}.0.0" {[format %02d \1]}]] 0 6]
 
-checksums           rmd160  9063dd4ae39745dfe44d99f514ec084ee4442685 \
-                    sha256  74576964cd9db44c13bf95d6a7c36b06cfdfb2fe4e3e26c9ce1ae0b2e328b411
+checksums           rmd160  b89b63ccf07a5b55976643a41e6d7481c1ed284d \
+                    sha256  76ebb6392cd2289fbff903af7ff67f3e49bd01ff30544b8028ecededd60269a2
 
 depends_lib         port:libedit
 
