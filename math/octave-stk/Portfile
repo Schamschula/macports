@@ -1,10 +1,10 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:et:sw=4:ts=4:sts=4
-# $Id: Portfile 114034 2013-11-27 16:20:17Z michaelld@macports.org $
+# $Id: Portfile 134948 2015-04-11 16:11:25Z khindenburg@macports.org $
 
 PortSystem          1.0
 PortGroup           octave 1.0
 
-octave.setup        stk 2.2.0
+octave.setup        stk 2.2.1
 platforms           darwin
 license             GPL-2+
 maintainers         gmail.com:mschamschula openmaintainer
@@ -19,5 +19,5 @@ long_description    ${description} Its primary focus in on the interpolation/reg
                     STK can be useful for other applications areas (such as \
                     Geostatistics, Machine Learning, Non-parametric Regression, etc.).
 
-checksums           rmd160 cf7ac2145e72afa9f398c59403b1992b5f73bf06 \
-                    sha256 ed87e64a4ed3bdb6a27369b6b3e1c8e4d5778831c945e37d8ead52b257c3a5af
+checksums           rmd160 542cf733da42c0621695bcab4ec86112c0bc49dc \
+                    sha256 91432c570fe717e8079c8e992e8e162c91553994c60381aaad344f81078542e6
