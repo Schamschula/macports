@@ -106,11 +106,11 @@ switch ${subport_branch} {
     }
     5.6 {
         epoch           2
-        version         5.6.7
+        version         5.6.8
         use_xz          yes
-        checksums       md5     4e04eb021de009981ed963f993a171c1 \
-                        rmd160  952208e9a321e8b27862b1d6d5f2ff10e5c78b4f \
-                        sha256  a85522dd2e6f80ee5637e537447ee54896c77a8fabe49d2310830d0e20952787
+        checksums       md5     526a5a7f593de632cd9e8546335de8b7 \
+                        rmd160  94bf75220431f2909ccf9c7020df4f6fc0ade47d \
+                        sha256  4c417387b88e100ca306adeda8051eb9fad93dae8da983f962dabf91a14b2b7b
     }
 }
 #     5.7 {
