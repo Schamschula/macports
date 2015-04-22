@@ -26,7 +26,7 @@ master_sites        gnu
 checksums           rmd160  9ce1c74a6a2c3369681c88fa036d32cb9ebcee65 \
                     sha256  1a8c0772467850bef7197318a95f44abbb678ea83cbf119a3500cc7848276a17
 
-depends_lib         port:libiconv \
-                    port:perl5.16 \
-                    port:texinfo \
+depends_build       port:texinfo \
                     port:texlive-basic
+
+depends_lib         port:libiconv
