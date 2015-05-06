@@ -4,7 +4,7 @@
 PortSystem          1.0
 PortGroup           octave 1.0
 
-octave.setup        database 2.3.1
+octave.setup        database 2.3.2
 platforms           darwin
 license             GPL-3+
 maintainers         nomaintainer
@@ -12,8 +12,8 @@ description         Interface to SQL databases, currently only \
                     postgresql using libpq.
 long_description    ${description}
 
-checksums           rmd160 410431bf35e55aad41e5496cfca6a25d0adab220 \
-                    sha256 4f0494485375997c8308e9d2298625b91ac6d84b07f7ae8bb32f634b90fa6be5
+checksums           rmd160 e0e58800e9f9906ef89afff7526bd70f608de713 \
+                    sha256 922e9c298da92f3ac9596ec4fb0db2acc0f5270aa707b67f0151c2529f658d79
 
 depends_lib-append  port:swig-octave \
                     path:bin/mysql_config5:mysql5 \
