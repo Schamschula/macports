@@ -4,7 +4,7 @@
 PortSystem          1.0
 
 name                sqlite3
-version             3.8.10
+version             3.8.10.1
 categories          databases
 platforms           darwin
 license             public-domain
@@ -26,8 +26,8 @@ master_sites        ${homepage}2015
 
 distname            sqlite-autoconf-[string range [subst [regsub -all {\.([0-9]+)} "${version}.0.0" {[format %02d \1]}]] 0 6]
 
-checksums           rmd160  934884ac3f0ce83ea4ad98f6a9f5cb4b17dd2aab \
-                    sha256  c4b8f9eefbdf0b9bef2044bdc3510c8a3f3b0ddb0489661fb433034187f5a428
+checksums           rmd160  b65958ba1e8ec3837cc295b197cbab85220325ec \
+                    sha256  5f8f2ae6461e637ff63e50fef10b6962764dfc3b81a8c0f80a19794b9d59f7ca
 
 depends_lib         port:libedit
 
