@@ -1,0 +1,11 @@
+--- Makefile.in.orig	2015-03-30 03:21:24.000000000 -0500
++++ Makefile.in	2015-05-13 14:21:17.000000000 -0500
+@@ -602,7 +602,7 @@
+ include @FAPIUFST_MAK@
+ include $(GLSRCDIR)/jpeg.mak
+ # zlib.mak must precede png.mak
+-include $(GLSRCDIR)/zlib.mak
++# include $(GLSRCDIR)/zlib.mak
+ include $(GLSRCDIR)/png.mak
+ include $(GLSRCDIR)/tiff.mak
+ include $(GLSRCDIR)/jbig2.mak
