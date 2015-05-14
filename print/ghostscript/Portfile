@@ -18,9 +18,14 @@ homepage        http://www.cs.wisc.edu/~ghost/
 master_sites    http://downloads.ghostscript.com/public/:source \
                 sourceforge:gs-fonts:fonts \
                 https://github.com/adobe-type-tools/mapping-resources-pdf/archive/:misc
+
+# Note: this needs to be manually updated for new upstream commits
+set mappingresources_commit \
+                3128b3872aa14a4c066d5cbcdde66a3b6bba0982
+
 distfiles       ${distname}.tar.gz:source \
                 ghostscript-fonts-other-6.0.tar.gz:fonts \
-                master.zip:misc
+                ${mappingresources_commit}.zip:misc
 patchfiles      patch-base_unix-dll.mak.diff \
                 patch-base_stdpre.h.diff
 
@@ -32,10 +37,10 @@ checksums           ${distname}.tar.gz \
                     md5     1a643ae62ef166562e4d422b1a601272 \
                     sha1    da62dfcb9c10d96743c7e30c1eebe7166489798c \
                     rmd160  ab60dbf71e7d91283a106c3df381cadfe173082f \
-                    master.zip \
-                    md5     3c84313d1f3c75fe110c09064827abe1 \
-                    sha1    dd1bd1e99f7a609ec79ba42cc38279e663c80716 \
-                    rmd160  93cfb2e52c170de35677ae84d224847407c2306b
+                    ${mappingresources_commit}.zip \
+                    md5     474705024ad12c5f9566b51fc8c645ba \
+                    sha1    ecab5f607db89e1cdce2eb4d180eb563be666875 \
+                    rmd160  1bb3b507ec48b559e4388553391ebece2468dc73
 
 depends_lib     port:expat \
                 port:fontconfig \
@@ -54,16 +59,16 @@ depends_lib     port:expat \
 depends_build   port:pkgconfig
 depends_run     port:perl5
 
-extract.only    ${distname}.tar.gz
+extract.only    ${distname}.tar.gz ghostscript-fonts-other-6.0.tar.gz
 
 post-extract {
-    system "cd ${workpath} && unzip ${distpath}/master.zip"
-    system "cd ${workpath} && unzip ${workpath}/mapping-resources-pdf-master/mappingresources4pdf_2unicode.zip"
-    system "cd ${workpath} && unzip ${workpath}/mapping-resources-pdf-master/mappingresources4pdf_other.zip"
+    system "cd ${workpath} && unzip ${distpath}/${mappingresources_commit}.zip"
+    system "cd ${workpath} && unzip ${workpath}/mapping-resources-pdf-${mappingresources_commit}/mappingresources4pdf_2unicode.zip"
+    system "cd ${workpath} && unzip ${workpath}/mapping-resources-pdf-${mappingresources_commit}/mappingresources4pdf_other.zip"
 
 #   MacPorts's lcms2 is 2.4 and it doesn't support cmsPluginTHR() yet.
 #   foreach d {freetype jbig2dec jpeg lcms2 libpng tiff zlib} 
-    foreach d {freetype jbig2dec jpeg       libpng tiff     } {
+    foreach d {freetype jbig2dec jpeg       libpng tiff zlib} {
         move "${worksrcpath}/${d}" "${worksrcpath}/${d}_local"
     }
 
@@ -74,6 +79,7 @@ post-extract {
 
 post-patch {
     reinplace "s|__PREFIX__|${prefix}|" ${worksrcpath}/base/unix-dll.mak
+    reinplace "s|ZLIBDIR=src|ZLIBDIR=${prefix}/include|" configure.ac configure
 
     # Ensure that MacPorts perl is used
     fs-traverse f ${worksrcpath} {
