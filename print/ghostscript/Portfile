@@ -17,12 +17,10 @@ platforms       darwin
 homepage        http://www.cs.wisc.edu/~ghost/
 master_sites    http://downloads.ghostscript.com/public/:source \
                 sourceforge:gs-fonts:fonts \
-                sourceforge:mapping-for-pdf.adobe:misc
-set mrversion   20091116
+                https://github.com/adobe-type-tools/mapping-resources-pdf/archive/:misc
 distfiles       ${distname}.tar.gz:source \
                 ghostscript-fonts-other-6.0.tar.gz:fonts \
-                mappingresources4pdf_2unicode_${mrversion}.tar.Z:misc \
-                mappingresources4pdf_other_${mrversion}.tar.Z:misc
+                master.zip:misc
 patchfiles      patch-base_unix-dll.mak.diff \
                 patch-base_stdpre.h.diff
 
@@ -34,14 +32,14 @@ checksums           ${distname}.tar.gz \
                     md5     1a643ae62ef166562e4d422b1a601272 \
                     sha1    da62dfcb9c10d96743c7e30c1eebe7166489798c \
                     rmd160  ab60dbf71e7d91283a106c3df381cadfe173082f \
-                    mappingresources4pdf_2unicode_${mrversion}.tar.Z \
-                    md5     59267a7d0b818267c8ce85d1dbc4479a \
-                    sha1    aaf44cb1e5dd2043c932e641b0e41432aee2ca0d \
-                    rmd160  bc1b86e6a5f0e022f88070195eb3e01e167114a7 \
-                    mappingresources4pdf_other_${mrversion}.tar.Z \
-                    md5     202fa0a291fc1f5b50cfa239106c1b92 \
-                    sha1    fc4eabff932c1623f7ee0a34085e79a44d51d0e5 \
-                    rmd160  1e2ea9af6be8b60c9a54963e542fa06ceb2daccd
+                    mappingresources4pdf_2unicode.tar.gz \
+                    md5     a71971193ee6aec83925425b4527891c \
+                    sha1    53714b03833542f2770588b8bd67078cea47c5fd \
+                    rmd160  754f63418c8b8f67f9dbfc4c94dc4530fa1e6e66 \
+                    mappingresources4pdf_other.tar.gz \
+                    md5     c9257029e250d2931cf598224d5bc144 \
+                    sha1    ef3340d6d4b551bc7fd9ad7ea31d8906bfc78ef1 \
+                    rmd160  e6b5bbc1d4982b6119e2acdeb3c60cce2f6b0cd5
 
 depends_lib     port:expat \
                 port:fontconfig \
@@ -68,8 +66,8 @@ post-extract {
     }
 
     #move ${workpath}/MappingOther/Adobe-CNS1-ETen-B5 ${workpath}/MappingOther/Adobe-CNS1-ETenms-B5
-    eval copy -force [glob ${workpath}/ToUnicode/*]    ${worksrcpath}/Resource/CMap
-    eval copy -force [glob ${workpath}/MappingOther/*] ${worksrcpath}/Resource/CMap
+    eval copy -force [glob ${workpath}/mappingresources4pdf_2unicode/*]    ${worksrcpath}/Resource/CMap
+    eval copy -force [glob ${workpath}/mappingresources4pdf_other/*] ${worksrcpath}/Resource/CMap
 }
 
 post-patch {
