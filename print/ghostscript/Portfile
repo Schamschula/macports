@@ -32,14 +32,10 @@ checksums           ${distname}.tar.gz \
                     md5     1a643ae62ef166562e4d422b1a601272 \
                     sha1    da62dfcb9c10d96743c7e30c1eebe7166489798c \
                     rmd160  ab60dbf71e7d91283a106c3df381cadfe173082f \
-                    mappingresources4pdf_2unicode.tar.gz \
-                    md5     a71971193ee6aec83925425b4527891c \
-                    sha1    53714b03833542f2770588b8bd67078cea47c5fd \
-                    rmd160  754f63418c8b8f67f9dbfc4c94dc4530fa1e6e66 \
-                    mappingresources4pdf_other.tar.gz \
-                    md5     c9257029e250d2931cf598224d5bc144 \
-                    sha1    ef3340d6d4b551bc7fd9ad7ea31d8906bfc78ef1 \
-                    rmd160  e6b5bbc1d4982b6119e2acdeb3c60cce2f6b0cd5
+                    master.zip \
+                    md5     3c84313d1f3c75fe110c09064827abe1 \
+                    sha1    dd1bd1e99f7a609ec79ba42cc38279e663c80716 \
+                    rmd160  93cfb2e52c170de35677ae84d224847407c2306b
 
 depends_lib     port:expat \
                 port:fontconfig \
@@ -58,7 +54,13 @@ depends_lib     port:expat \
 depends_build   port:pkgconfig
 depends_run     port:perl5
 
+extract.only    ${distname}.tar.gz
+
 post-extract {
+    system "cd ${workpath} && unzip ${distpath}/master.zip"
+    system "cd ${workpath} && unzip ${workpath}/mapping-resources-pdf-master/mappingresources4pdf_2unicode.zip"
+    system "cd ${workpath} && unzip ${workpath}/mapping-resources-pdf-master/mappingresources4pdf_other.zip"
+
 #   MacPorts's lcms2 is 2.4 and it doesn't support cmsPluginTHR() yet.
 #   foreach d {freetype jbig2dec jpeg lcms2 libpng tiff zlib} 
     foreach d {freetype jbig2dec jpeg       libpng tiff     } {
