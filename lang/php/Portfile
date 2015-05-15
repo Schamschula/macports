@@ -1,5 +1,5 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 133145 2015-02-21 17:07:43Z ryandesign@macports.org $
+# $Id: Portfile 136332 2015-05-15 03:57:10Z ryandesign@macports.org $
 
 PortSystem              1.0
 PortGroup               php 1.1
@@ -90,34 +90,34 @@ switch ${subport_branch} {
     }
     5.4 {
         epoch           1
-        version         5.4.38
+        version         5.4.40
         use_bzip2       yes
-        checksums       md5     2bf5007ba4bd012f9895c1b441dd4f50 \
-                        rmd160  5cd4d7c80badd19aa7e1081e3fd190607e46e1af \
-                        sha256  abf37db0cfadc9bb814f9df35f6aa966ad63f4f4c4475e432ec625568a5d3e88
+        checksums       md5     19dafb2b9fc31517cf5c3309fb8a9923 \
+                        rmd160  2848d814e1038e88156a8d58ad661ed9d42cbbdc \
+                        sha256  4898ffe8ac3ccb2d8cc94f7d76a9ea0414d954f5d4479895ddfccdc2e158a51a
     }
     5.5 {
         epoch           2
-        version         5.5.22
+        version         5.5.25
         use_xz          yes
-        checksums       md5     fb1704131d495f5b3e6ab3b087a8dbe6 \
-                        rmd160  5ede04ab9b2e9017ad3028920e98407f377aa846 \
-                        sha256  5256a7e3999eb11f8b4b407408ea4780f60aa959e0c48cfcf376091e721df223
+        checksums       md5     f58edc4f10d63f03e425c5378f727a7c \
+                        rmd160  d6470474e3fd50a57f20b97bba248ea5ee24d224 \
+                        sha256  ac10015dddfc103b58ccc949504bd50f0d79d0abe74a0cc7842251af06ce8b07
     }
     5.6 {
         epoch           2
-        version         5.6.8
+        version         5.6.9
         use_xz          yes
-        checksums       md5     526a5a7f593de632cd9e8546335de8b7 \
-                        rmd160  94bf75220431f2909ccf9c7020df4f6fc0ade47d \
-                        sha256  4c417387b88e100ca306adeda8051eb9fad93dae8da983f962dabf91a14b2b7b
+        checksums       md5     f6b90cd0503310c38e9573bae1eb38c7 \
+                        rmd160  e35834724e864c7d67fc5578523f02e89a1a42ab \
+                        sha256  1fac497b596f5e4e87d87a7ca90f8725e39a8ca3f9d7adb500fa83c4bb70a73f
     }
 }
-#     5.7 {
+#     7.0 {
 #         # When this becomes a stable version, remove the overrides for homepage,
 #         # master_sites and livecheck, and update php.latest_stable_branch in the
 #         # php-1.1 portgroup.
-#         version         5.7
+#         version         7.0
 #         homepage        http://qa.php.net/
 #         master_sites    http://downloads.php.net/tyrael/
 #         use_xz          yes
@@ -691,6 +691,8 @@ subport ${php}-imap {
 if {[vercmp ${branch} 5.3] >= 0} {
 subport ${php}-intl {
     if {[vercmp ${branch} 5.3] == 0} {
+        revision            2
+    } else {
         revision            1
     }
     
@@ -1190,6 +1192,10 @@ subport ${php}-sqlite {
 }
 
 subport ${php}-tidy {
+    if {[vercmp ${branch} 5.3] <= 0} {
+        revision            1
+    }
+    
     categories-append       www
     
     description             a PHP interface to tidy, the HTML cleaning and \
