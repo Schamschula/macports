@@ -9,7 +9,7 @@ categories          sysutils
 maintainers         nomaintainer
 description         Enhanced GNU dd
 long_description    Enhanced GNU dd
-homepage            http://dc3dd.sourceforge.net/
+homepage            http://sourceforge.net/projects/dc3dd/
 platforms           darwin
 master_sites        sourceforge
 
@@ -39,6 +39,9 @@ depends_build       port:perl5.16 \
 depends_lib         port:gettext \
                     port:libiconv
 
+livecheck.type      regex
+livecheck.url       ${homepage}/files/
+livecheck.regex     ${name}-(\\d+(?:\\.\\d+)*)
 
 #
 ##EOF
