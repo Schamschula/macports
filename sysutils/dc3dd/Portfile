@@ -31,7 +31,7 @@ if {${os.major} >= 11 && ${os.platform} eq "darwin"} {
     configure.args-append gl_cv_func_stpncpy=yes
 }
 
-configure.env       PERL=${prefix}/bin/perl5.16
+configure.perl      ${prefix}/bin/perl5.16
 
 depends_build       port:perl5.16 \
                     port:p5.16-locale-gettext
