@@ -20,6 +20,8 @@ depends_lib         port:pcre \
 checksums           rmd160  efb6c360600bb39e9d7387276b6252b1a7ce686c \
                     sha256  7704b5db858732142586f5043deb0733e2c396535c83081e918fb6993258bc6d
 
+patchfiles          patch-sfbpf-Makefile.in.diff 
+
 livecheck.type      regex
 livecheck.url       ${homepage}downloads
 livecheck.regex     >${name}-(\[0-9.\]+)${extract.suffix}<
