@@ -1,0 +1,23 @@
+--- configure.orig	2012-09-19 07:58:20.000000000 -0500
++++ configure	2015-05-29 12:55:40.000000000 -0500
+@@ -177,16 +177,16 @@
+  exit
+ fi
+ 
+-# 11. CHECK TO SEE WHETHER THIS SYSTEM HAS GCC INSTALLED
++# 11. CHECK TO SEE WHETHER THIS SYSTEM HAS GCC/CLANG INSTALLED
+ 
+-echo $ECHO_N "Checking for gcc               ............. $ECHO_C"
+-whichout=`which gcc 2> conf.stderr`
++echo $ECHO_N "Checking for gcc/clang          ............. $ECHO_C"
++whichout=`echo $CC 2> conf.stderr`
+ rm -f conf.*
+ if test "`echo $whichout | sed 's/\([a-z]*\).*/\1/'`" = "no" ; then whichout="" ; fi
+ if test "$whichout" != "" ; then
+  echo "YES"
+ else
+- echo "NO" ; echo "ERROR: Required program gcc could not be found." >&2 ; exit
++ echo "NO" ; echo "ERROR: Required program cc could not be found." >&2 ; exit
+ fi
+ 
+ # 12. CHECK TO SEE WHETHER THIS SYSTEM HAS GNU READLINE HEADERS
