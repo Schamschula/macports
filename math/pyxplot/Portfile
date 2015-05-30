@@ -6,7 +6,7 @@ PortGroup           muniversal 1.0
 
 name                pyxplot
 version             0.9.2
-revision            2
+revision            3
 categories          math science
 platforms           darwin
 maintainers         gmail.com:mschamschula openmaintainer
@@ -47,6 +47,8 @@ post-patch {
     reinplace "s|USRDIR=/usr/local|USRDIR=${prefix}|g" \
                 ${worksrcpath}/Makefile.skel
 }
+
+build.env           CC=${configure.cc}
 
 livecheck.type      regex
 livecheck.url       [lindex ${master_sites} 0]
