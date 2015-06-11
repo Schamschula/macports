@@ -1,10 +1,10 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:et:sw=4:ts=4:sts=4
-# $Id: Portfile 133724 2015-03-09 16:42:54Z michaelld@macports.org $
+# $Id: Portfile 135433 2015-04-23 19:44:16Z michaelld@macports.org $
 
 PortSystem          1.0
 PortGroup           octave 1.0
 
-octave.setup        symbolic 2.2.0
+octave.setup        symbolic 2.2.1
 platforms           darwin
 license             GPL-3
 maintainers         nomaintainer
@@ -12,8 +12,8 @@ description         Symbolic toolbox based on SymPy.
 
 long_description    ${description}
 
-checksums           rmd160 fbff7a8505d403fa3098241e45802b426f0f7de4 \
-                    sha256 b680177cff24a3dab80f6cdc675f33e7acf7a201d39362ff5c729ae243e8d91a
+checksums           rmd160 4e69948fbc2ef07c2bd183f791e92e160e6d4074 \
+                    sha256 1c162ff3495028db2a50a0dcd739636e6959c55dda815e4c20ca08fb97e88a88
 
 # fix default Python to be within MacPorts
 
@@ -21,18 +21,26 @@ patchfiles-append   patch-inst_sympref.m.diff
 
 variant python27 description "Use Python 2.7 SymPy" conflicts python34 {
     depends_run-append  port:py27-sympy
+    depends_build-append   port:python27
+    
     post-patch {
         reinplace "s|@PYTHON@|${prefix}/bin/python2.7|g" \
             ${worksrcpath}/inst/sympref.m
     }
+    configure.env-append \
+        PYTHON=${prefix}/bin/python2.7
 }
 
 variant python34 description "Use Python 3.4 SymPy" conflicts python27 {
     depends_run-append  port:py34-sympy
+    depends_build-append   port:python234
+    
     post-patch {
         reinplace "s|@PYTHON@|${prefix}/bin/python3.4|g" \
             ${worksrcpath}/inst/sympref.m
     }
+    configure.env-append \
+        PYTHON=${prefix}/bin/python3.4
 }
 
 if {![variant_isset python27] && ![variant_isset python34]} {
