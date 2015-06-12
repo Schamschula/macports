@@ -1,5 +1,5 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 136332 2015-05-15 03:57:10Z ryandesign@macports.org $
+# $Id: Portfile 136491 2015-05-19 02:09:33Z ryandesign@macports.org $
 
 PortSystem              1.0
 PortGroup               php 1.1
@@ -90,11 +90,10 @@ switch ${subport_branch} {
     }
     5.4 {
         epoch           1
-        version         5.4.40
+        version         5.4.41
         use_bzip2       yes
-        checksums       md5     19dafb2b9fc31517cf5c3309fb8a9923 \
-                        rmd160  2848d814e1038e88156a8d58ad661ed9d42cbbdc \
-                        sha256  4898ffe8ac3ccb2d8cc94f7d76a9ea0414d954f5d4479895ddfccdc2e158a51a
+        checksums       rmd160  f14dea2befc58fb4bc7a28d275e8655005085727 \
+                        sha256  5bc4b45a1280ff80a3cf5b8563716f325cfd0121d7fd25aa54d56ff38b3b8272
     }
     5.5 {
         epoch           2
@@ -106,11 +105,11 @@ switch ${subport_branch} {
     }
     5.6 {
         epoch           2
-        version         5.6.9
+        version         5.6.10
         use_xz          yes
-        checksums       md5     f6b90cd0503310c38e9573bae1eb38c7 \
-                        rmd160  e35834724e864c7d67fc5578523f02e89a1a42ab \
-                        sha256  1fac497b596f5e4e87d87a7ca90f8725e39a8ca3f9d7adb500fa83c4bb70a73f
+        checksums       md5     4631ef265253d2f496b3574d297f26ed \
+                        rmd160  f5dbf5fd8ed76b20429187cdde1558be63009f3a \
+                        sha256  1af720c955b0a57aa47606e928616e84c78868aff2a5f269c70601a77d6da8c1
     }
 }
 #     7.0 {
@@ -692,7 +691,7 @@ if {[vercmp ${branch} 5.3] >= 0} {
 subport ${php}-intl {
     if {[vercmp ${branch} 5.3] == 0} {
         revision            2
-    } else {
+    } elseif {[vercmp ${branch} 5.5] == 0} {
         revision            1
     }
     
