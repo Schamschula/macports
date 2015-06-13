@@ -1,11 +1,11 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 136466 2015-05-18 01:37:28Z ryandesign@macports.org $
+# $Id: Portfile 136696 2015-05-24 16:07:40Z larryv@macports.org $
 
 PortSystem          1.0
 PortGroup           cxx11 1.0
 PortGroup           github 1.0
 
-github.setup        tatsuhiro-t nghttp2 1.0.1 v
+github.setup        tatsuhiro-t nghttp2 1.0.2 v
 categories          www
 platforms           darwin
 maintainers         gmail.com:mschamschula openmaintainer
@@ -19,8 +19,8 @@ long_description    ${description} Included are a HTTP/2 client, server and prox
 github.tarball_from releases
 use_xz              yes
 
-checksums           rmd160 bac4fbeec8b3bdcda473d4751d5fbc73e435d6c1 \
-                    sha256 d260383c8d941a880f1e981eecfa09af611cdc995086e4eff95b993cfa52567f
+checksums           rmd160 8cf71306e9968bf3943b2d233ab6741edbe22459 \
+                    sha256 0ea61f0aca47dedfedb6179e26d0e89dac7674fd93fe1d9645d51ff24fcd00cc
 
 depends_build       port:pkgconfig
 
