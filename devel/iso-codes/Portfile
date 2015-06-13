@@ -1,0 +1,44 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id: Portfile 128228 2014-11-16 23:24:39Z devans@macports.org $
+
+PortSystem          1.0
+
+name                iso-codes
+version             3.58
+categories          devel
+platforms           darwin
+supported_archs     noarch
+license             LGPL-2.1+
+maintainers         nomaintainer
+
+description         ISO country, language and currency codes and translations
+long_description    This package aims to provide the list of the country and \
+                    language (and currency) names in one place, rather than \
+                    repeated in many programs.
+
+homepage            http://pkg-isocodes.alioth.debian.org/
+master_sites        debian:i/iso-codes/
+use_xz              yes
+distfiles           ${name}_${version}.orig${extract.suffix}
+
+checksums           rmd160  39de2db8e30be895a4e1194acf19db0e843b21ea \
+                    sha256  86af5735dce6e4eff2b983e5d8aa9a3dea1b8db702333ff20be89e45f7f35a72
+
+depends_build       port:gettext
+
+post-patch {
+    reinplace "s|#!/usr/bin/env python|#!/usr/bin/python|g" \
+        ${worksrcpath}/iso2pot.py
+}
+
+use_parallel_build  yes
+
+post-destroot {
+    xinstall -d ${destroot}${prefix}/share/doc/${name}
+    xinstall -m 644 -W ${worksrcpath} ChangeLog LICENSE README TODO \
+        ${destroot}${prefix}/share/doc/${name}
+}
+
+livecheck.type      regex
+livecheck.url       http://pkg-isocodes.alioth.debian.org/downloads/
+livecheck.regex     ${name}-(\\d+(?:\\.\\d+)*)${extract.suffix}
