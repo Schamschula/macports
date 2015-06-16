@@ -1,10 +1,10 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 135683 2015-04-29 18:40:27Z larryv@macports.org $
+# $Id: Portfile 137497 2015-06-12 18:45:50Z larryv@macports.org $
 
 PortSystem          1.0
 
 name                stunnel
-version             5.18
+version             5.19
 set major           [lindex [split ${version} .] 0]
 categories          security net
 platforms           darwin
@@ -25,8 +25,8 @@ master_sites        http://mirrors.zerg.biz/stunnel/ \
                     http://mirrors.zerg.biz/stunnel/archive/${major}.x/ \
                     ftp://ftp.stunnel.org/stunnel/
 
-checksums           rmd160  ab97f6907c71cd057698bc50918a90b1f59b6a4e \
-                    sha256  0532c0a2f8de3da1ab625e384146501ce5936fac63d01561c3a9bf652b692317
+checksums           rmd160  af9772602340d07961b3f8c2eaaa2aae0d3aab82 \
+                    sha256  0b543242cf26649acfdd9f00de564c3e8de7ac2237d53935ffdc7eb24f4d556d
 
 depends_lib         port:openssl
 
