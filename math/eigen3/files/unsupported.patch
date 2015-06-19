@@ -1,0 +1,27 @@
+--- unsupported/Eigen/src/CMakeLists.txt.orig	2015-06-16 04:53:07.000000000 -0500
++++ unsupported/Eigen/src/CMakeLists.txt	2015-06-19 09:18:22.000000000 -0500
+@@ -1,5 +1,6 @@
+ ADD_SUBDIRECTORY(AutoDiff)
+ ADD_SUBDIRECTORY(BVH)
++ADD_SUBDIRECTORY(Eigenvalues)
+ ADD_SUBDIRECTORY(FFT)
+ ADD_SUBDIRECTORY(IterativeSolvers)
+ ADD_SUBDIRECTORY(KroneckerProduct)
+@@ -9,6 +10,7 @@
+ ADD_SUBDIRECTORY(NonLinearOptimization)
+ ADD_SUBDIRECTORY(NumericalDiff)
+ ADD_SUBDIRECTORY(Polynomials)
++ADD_SUBDIRECTORY(SVD)
+ ADD_SUBDIRECTORY(Skyline)
+ ADD_SUBDIRECTORY(SparseExtra)
+ ADD_SUBDIRECTORY(Splines)
+ --- unsupported/Eigen/CMakeLists.txt.orig	2015-06-16 04:53:07.000000000 -0500
++++ unsupported/Eigen/CMakeLists.txt	2015-06-19 09:19:55.000000000 -0500
+@@ -1,6 +1,6 @@
+ set(Eigen_HEADERS AdolcForward AlignedVector3 ArpackSupport AutoDiff BVH FFT IterativeSolvers KroneckerProduct LevenbergMarquardt
+                   MatrixFunctions MoreVectorization MPRealSupport NonLinearOptimization NumericalDiff OpenGLSupport Polynomials
+-                  Skyline SparseExtra Splines
++                  SVD Skyline SparseExtra Splines
+    )
+ 
+ install(FILES
