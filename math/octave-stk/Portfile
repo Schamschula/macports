@@ -4,7 +4,7 @@
 PortSystem          1.0
 PortGroup           octave 1.0
 
-octave.setup        stk 2.2.1
+octave.setup        stk 2.3.1
 platforms           darwin
 license             GPL-2+
 maintainers         gmail.com:mschamschula openmaintainer
@@ -19,5 +19,5 @@ long_description    ${description} Its primary focus in on the interpolation/reg
                     STK can be useful for other applications areas (such as \
                     Geostatistics, Machine Learning, Non-parametric Regression, etc.).
 
-checksums           rmd160 542cf733da42c0621695bcab4ec86112c0bc49dc \
-                    sha256 91432c570fe717e8079c8e992e8e162c91553994c60381aaad344f81078542e6
+checksums           rmd160 f520ccaccc7d3774c7658dd9e4d3ccf08c0ecf18 \
+                    sha256 b64705ebd8ebbdc7e322c854fdb8c3a8d3e124b0ca109619c8673016510005b5
