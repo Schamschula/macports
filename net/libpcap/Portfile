@@ -1,10 +1,10 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 133793 2015-03-11 16:45:28Z larryv@macports.org $
+# $Id: Portfile 135435 2015-04-23 20:16:26Z larryv@macports.org $
 
 PortSystem          1.0
 
 name                libpcap
-version             1.7.3
+version             1.7.4
 categories          net
 maintainers         gmail.com:mschamschula openmaintainer
 license             BSD
@@ -17,8 +17,8 @@ homepage            http://www.tcpdump.org/
 platforms           darwin
 master_sites        ${homepage}release/
 
-checksums           rmd160  c649f90cf9e5fefec3d12836aab40f0b38881fc4 \
-                    sha256  dd9f85213dc8e948068405b55dd20f8b32e3083e9e0e186f833bd0372e559e2f
+checksums           rmd160  aae0e8fd1aa3273bda2212b6df8f50d3f7161ffc \
+                    sha256  7ad3112187e88328b85e46dce7a9b949632af18ee74d97ffc3f2b41fe7f448b0
 
 configure.args      --disable-bluetooth \
                     --disable-canusb \
