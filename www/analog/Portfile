@@ -1,10 +1,10 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 124751 2014-08-27 23:38:49Z jmr@macports.org $
+# $Id: Portfile 134632 2015-04-01 14:08:26Z khindenburg@macports.org $
 
 PortSystem          1.0
 
 name                analog
-version             6.0.11
+version             6.0.12
 
 categories          www
 license             GPL-2
@@ -22,10 +22,8 @@ master_sites        http://www.c-amie.co.uk/analog/download/src/
 distname            analog-src-[string range [subst [regsub -all {\.} "${version}" {}]] 0 6]ce
 use_zip             yes
 
-checksums           rmd160  14769d38a047fc274570e975d3e88a9a986ca732 \
-                    sha256  5aa8e1a5458f4536555bb0f63888321143fee7e600e89bc3bde4757e9cb047b3
-
-worksrcdir          analog-[string range [subst [regsub -all {\.} "${version}" {-}]] 0 6]source
+checksums           rmd160  01391b8674284c63571653eb6efd49a5d506663c \
+                    sha256  0cb14aa9b9b3e204656fcb61fef5ecefc63b54eca8772a358ab7ea6a1eb443fd
 
 # Note, it'd be nice to use an already-installed version of jpeg and libpng
 # as well, but analog currently doesn't have a HAVE_ define for them, just
@@ -41,7 +39,6 @@ use_configure       no
 
 build.args          DEFS="-DHAVE_ZLIB" LIBS="-lz"
 build.target        analog
-#build.cmd          cd ${worksrcpath}/src && make
 
 destroot {
     xinstall -m 755 -d "${destroot}${prefix}/bin" \
