@@ -1,0 +1,42 @@
+--- CMakeCache.txt.orig	2015-07-02 15:51:21.000000000 -0500
++++ CMakeCache.txt	2015-07-02 15:52:33.000000000 -0500
+@@ -234,10 +234,10 @@
+ FL_LIBRARY:FILEPATH=/opt/local/lib/libfl.a
+ 
+ //Path to a file.
+-ICONV_INCLUDE_DIR:PATH=/opt/local/include
++ICONV_INCLUDE_DIR:PATH=/usr/include
+ 
+ //Path to a library.
+-ICONV_LIBRARY:FILEPATH=/opt/local/lib/libiconv.dylib
++ICONV_LIBRARY:FILEPATH=/usr/libiconv.dylib
+ 
+ //List of language codes for which translations should be compiled
+ // in
+@@ -451,7 +451,7 @@
+ //Details about finding FLEX
+ FIND_PACKAGE_MESSAGE_DETAILS_FLEX:INTERNAL=[/opt/local/bin/flex][v2.5.37()]
+ //Details about finding ICONV
+-FIND_PACKAGE_MESSAGE_DETAILS_ICONV:INTERNAL=[/opt/local/lib/libiconv.dylib][/opt/local/include][1][v()]
++FIND_PACKAGE_MESSAGE_DETAILS_ICONV:INTERNAL=[/usr/lib/libiconv.dylib][/usr/include][1][v()]
+ //Details about finding PythonInterp
+ FIND_PACKAGE_MESSAGE_DETAILS_PythonInterp:INTERNAL=[/opt/local/bin/python][v2.7.10()]
+ //Details about finding Threads
+
+--- src/CMakeFiles/doxygen.dir/build.make.orig	2015-07-02 16:00:11.000000000 -0500
++++ src/CMakeFiles/doxygen.dir/build.make	2015-07-02 16:05:38.000000000 -0500
+@@ -89,7 +89,7 @@
+ bin/doxygen: lib/libqtools.a
+ bin/doxygen: lib/libmd5.a
+ bin/doxygen: lib/libvhdlparser.a
+-bin/doxygen: /opt/local/lib/libiconv.dylib
++bin/doxygen: /usr/lib/libiconv.dylib
+ bin/doxygen: src/CMakeFiles/doxygen.dir/link.txt
+ 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable ../bin/doxygen"
+ 	cd /opt/local/var/macports/build/_Users_marius_Development_MacPorts_ports_textproc_doxygen/doxygen/work/doxygen-1.8.10/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/doxygen.dir/link.txt --verbose=$(VERBOSE)
+
+--- src/CMakeFiles/doxygen.dir/link.txt.orig	2015-07-02 16:06:38.000000000 -0500
++++ src/CMakeFiles/doxygen.dir/link.txt	2015-07-02 16:10:51.000000000 -0500
+@@ -1 +1 @@
+-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++   -Wno-deprecated-register -mmacosx-version-min=10.5 -pipe -Os -arch x86_64 -stdlib=libc++  -DNDEBUG -arch x86_64 -mmacosx-version-min=10.10 -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -L/opt/local/lib -Wl,-headerpad_max_install_names -arch x86_64 CMakeFiles/doxygen.dir/main.cpp.o  -o ../bin/doxygen  ../lib/lib_doxygen.a ../lib/libdoxycfg.a ../lib/libqtools.a ../lib/libmd5.a ../lib/libvhdlparser.a /opt/local/lib/libiconv.dylib -framework CoreServices -Wl,-rpath,/opt/local/lib 
++/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++   -Wno-deprecated-register -mmacosx-version-min=10.5 -pipe -Os -arch x86_64 -stdlib=libc++  -DNDEBUG -arch x86_64 -mmacosx-version-min=10.10 -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -L/opt/local/lib -Wl,-headerpad_max_install_names -arch x86_64 CMakeFiles/doxygen.dir/main.cpp.o  -o ../bin/doxygen  ../lib/lib_doxygen.a ../lib/libdoxycfg.a ../lib/libqtools.a ../lib/libmd5.a ../lib/libvhdlparser.a /usr/lib/libiconv.dylib -framework CoreServices -Wl,-rpath,/opt/local/lib 
