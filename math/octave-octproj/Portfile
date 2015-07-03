@@ -4,7 +4,7 @@
 PortSystem          1.0
 PortGroup           octave 1.0
 
-octave.setup        octproj 1.1.2
+octave.setup        octproj 1.1.5
 platforms           darwin
 license             GPL-2+
 maintainers         gmail.com:mschamschula openmaintainer
@@ -12,9 +12,7 @@ description         This package allows to call functions of PROJ.4 library for 
                     cartographic projections transformations.
 long_description    ${description}
 
-checksums           rmd160 b0c8c3a2c942a3c217e4f8b9c9e3102b1521f40f \
-                    sha256 b1f1e7470606053da21bb7c66d5c82380299f8ed9a4d6de3e07647ac0e2d6cd9
+checksums           rmd160 f47e7addc3ced4f2373a5ab0e726186af0aa6644 \
+                    sha256 ee25b03e66cca30ebedcf09b4303b3e05d8896c3054a69d8e5810492bd86b5d3
 
 depends_lib-append  port:proj
-
-patchfiles          patch-src-Makefile.diff
