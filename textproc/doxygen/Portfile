@@ -47,6 +47,8 @@ license_noconflict      perl5 python27
 
 depends_lib             port:libpng
 
+patchfiles              patch-src-portable_c.c.diff
+
 post-extract {
     # Use our flex
     delete ${worksrcpath}/src/ce_lex.cpp
@@ -74,11 +76,6 @@ post-extract {
     delete ${worksrcpath}/src/vhdlparser.h
 }
 
-post-configure {
-    # Use OS, not MacPorts libiconv, as MacPorts libiconv is missing required symbols.
-	system "cd ${worksrcpath} && patch -p0 < ${filespath}/patch-libiconv.diff"
-}
-
 set cxx_stdlibflags {}
 if {[string match *clang* ${configure.cxx}]} {
     set cxx_stdlibflags -stdlib=${configure.cxx_stdlib}
@@ -89,13 +86,19 @@ destroot.args           INSTALL=${prefix} \
                         MAN1DIR=share/man/man1
 
 variant docs description {Include the doxygen HTML and PDF documentation} {
-    configure.args-append   -Dbuild_doc=YES
+    configure.args-append   -Dbuild_doc=YES \
+                            -EPSTOPDF=${prefix}/bin/epstopdf
 
-    depends_build-append    path:bin/dot:graphviz
+    patchfiles-append       patch-doc-CMakeLists.txt.diff \
+                            patch-examples-CMakeLists.txt.diff
+
+    depends_build-append    path:bin/dot:graphviz \
+                            bin:gs:ghostscript \
+                            port:texlive \
+                            port:texlive-latex-extra
+
     build.target-append     docs
     use_parallel_build      no
-
-    destroot.target-append  install_docs
 }
 
 variant wizard description {Include the GUI wizard based on Qt4} {
@@ -105,34 +108,6 @@ variant wizard description {Include the GUI wizard based on Qt4} {
 
     # tell configure to make the wizard app
     configure.args-append   -Dbuild_wizard=YES
-
-    # on Macs, qmake builds .app directories; when installing, copy
-    # this directory to the correct location (via the reinplace below).
-    patchfiles-append       patch-addon_doxywizard_Makefile.in.diff
-
-    post-patch {
-        # allow for universal building, if desired
-        reinplace "/CONFIG/s@x86@${qt_arch_types}@" \
-            ${worksrcpath}/addon/doxywizard/doxywizard.pro.in
-
-        # give doxywizard the more mac-like name of DoxyWizard
-        reinplace "/^TARGET\[\[:space:\]\]/s%=.*%= DoxyWizard%" \
-            ${worksrcpath}/addon/doxywizard/doxywizard.pro.in
-
-        # fix final install location
-        reinplace "s|__APPLICATIONS_DIR__|${applications_dir}|" \
-            ${worksrcpath}/addon/doxywizard/Makefile.in
-
-        # use the correct QMAKE command; the other should work, but
-        # this one is guaranteed to.
-        reinplace "s|QMAKE=qmake|QMAKE=${qt_qmake_cmd}|g" \
-            ${worksrcpath}/addon/doxywizard/Makefile.in
-    }
-
-    post-destroot {
-        # allow doxywizard to be called from the command line
-        ln -s ${applications_dir}/DoxyWizard.app/Contents/MacOS/DoxyWizard ${destroot}${prefix}/bin/doxywizard
-    }
 }
 
 livecheck.type          regex
