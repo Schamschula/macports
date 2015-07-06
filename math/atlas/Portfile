@@ -202,8 +202,9 @@ if {(${os.major} > 10 && \
 # up to SSE4.2 (Core i1) capable processors, and XCode-clang for newer
 
 if {![variant_isset gcc47] && ![variant_isset gcc48] && \
-    ![variant_isset gcc49] && ![variant_isset clang] && \
-    ![variant_isset perf] && ![variant_isset mpclang34]} {
+    ![variant_isset gcc49] && ![variant_isset gcc5] && \
+    ![variant_isset clang] && ![variant_isset perf] && \
+    ![variant_isset mpclang34]} {
 
     if {${has_avx} == "no"} {
     
