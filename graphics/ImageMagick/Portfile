@@ -39,8 +39,8 @@ master_sites                http://www.imagemagick.org/download/ \
                             ftp://ftp.sunet.se/pub/multimedia/graphics/ImageMagick \
                             ftp://sunsite.icm.edu.pl/packages/ImageMagick
 
-checksums                   rmd160  28eee0e91bc0cef91a6531808addc38c6c26f478 \
-                            sha256  12331c904c691cb128865fdc97e5f8a2654576f9b032e274b74dd7617aa1b9b6
+checksums                   rmd160  79d903b831d72dce50712dfc2632260b263a94b5 \
+                            sha256  b610e5261c01664e19c91e513e21b3c2d76d583b497ee3c7cf2f20876d742328
 
 depends_lib                 port:bzip2 \
                             port:xz \
@@ -153,7 +153,7 @@ variant x11 {
     configure.args-replace  --without-x --with-x
 }
 
-default_variants            +x11
+default_variants            +djvulibre +x11
 
 livecheck.version           ${reasonable_version}
 livecheck.type              regex
