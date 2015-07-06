@@ -153,7 +153,7 @@ variant x11 {
     configure.args-replace  --without-x --with-x
 }
 
-default_variants            +djvulibre +x11
+default_variants            +x11
 
 livecheck.version           ${reasonable_version}
 livecheck.type              regex
