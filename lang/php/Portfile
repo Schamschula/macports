@@ -1,5 +1,5 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 136491 2015-05-19 02:09:33Z ryandesign@macports.org $
+# $Id: Portfile 138050 2015-06-27 00:38:34Z ryandesign@macports.org $
 
 PortSystem              1.0
 PortGroup               php 1.1
@@ -21,7 +21,7 @@ long_description        PHP is a widely-used general-purpose scripting \
                         scripting.
 
 # The list of PHP branches this port provides.
-php.branches            5.2 5.3 5.4 5.5 5.6
+php.branches            5.2 5.3 5.4 5.5 5.6 7.0
 
 # Fix for users specifying the subport name with the wrong case.
 set subport             [string tolower ${subport}]
@@ -90,42 +90,40 @@ switch ${subport_branch} {
     }
     5.4 {
         epoch           1
-        version         5.4.41
+        version         5.4.42
         use_bzip2       yes
-        checksums       rmd160  f14dea2befc58fb4bc7a28d275e8655005085727 \
-                        sha256  5bc4b45a1280ff80a3cf5b8563716f325cfd0121d7fd25aa54d56ff38b3b8272
+        checksums       rmd160  5b91d856f8637abe1cdbb37adc2f43e3ceef8317 \
+                        sha256  6285b2e64bfaa69e5d983d7d981b4f254f5259ad3fd591ca832722a4cc1ae0f9
     }
     5.5 {
         epoch           2
-        version         5.5.25
+        version         5.5.26
         use_xz          yes
-        checksums       md5     f58edc4f10d63f03e425c5378f727a7c \
-                        rmd160  d6470474e3fd50a57f20b97bba248ea5ee24d224 \
-                        sha256  ac10015dddfc103b58ccc949504bd50f0d79d0abe74a0cc7842251af06ce8b07
+        checksums       rmd160  aa78b8cc3cb3b3331e4ee88a199d2c1671e80fee \
+                        sha256  97672c41cf2f95628dbffb63648147b43b23ea41b99ad22ccf5f4fe9b6e91b51
     }
     5.6 {
         epoch           2
-        version         5.6.10
+        version         5.6.11
         use_xz          yes
-        checksums       md5     4631ef265253d2f496b3574d297f26ed \
-                        rmd160  f5dbf5fd8ed76b20429187cdde1558be63009f3a \
-                        sha256  1af720c955b0a57aa47606e928616e84c78868aff2a5f269c70601a77d6da8c1
+        checksums       rmd160  2d729b4437a6ef1146b7534179c2f3a7ba0545a7 \
+                        sha256  3f97dbb1c646b90e1ef638defabe429ef036f903b5baa1c34769d3de4fe62bd4
+    }
+    7.0 {
+        # When this becomes a stable version, remove the overrides for homepage,
+        # master_sites and livecheck, and update php.latest_stable_branch in the
+        # php-1.1 portgroup.
+        version         7.0.0alpha2
+        homepage        http://qa.php.net/
+        master_sites    http://downloads.php.net/~ab/
+        use_xz          yes
+        checksums       md5     050a0353e9999ec7b472aa73b58f1cfe \
+                        rmd160  17c0ec1da846bd376c99c2198d0eafb5669196a3 \
+                        sha256  0c16c3f3e488edbddf1de4b1d5b2758e7f5805705bed84cbe9410631be3efd4d
+        livecheck.url   ${homepage}
+        livecheck.regex php-([strsed ${subport_branch} {g/\\./\\./}](?:\\.\[0-9.\]+)*(?:(?:alpha|beta|RC)\\d+|-latest))\\.tar
     }
 }
-#     7.0 {
-#         # When this becomes a stable version, remove the overrides for homepage,
-#         # master_sites and livecheck, and update php.latest_stable_branch in the
-#         # php-1.1 portgroup.
-#         version         7.0
-#         homepage        http://qa.php.net/
-#         master_sites    http://downloads.php.net/tyrael/
-#         use_xz          yes
-#         checksums       md5     0123456789 \
-#                         rmd160  0123456789 \
-#                         sha256  0123456789
-#         livecheck.url   ${homepage}
-#         livecheck.regex php-([strsed ${subport_branch} {g/\\./\\./}](?:\\.\[0-9.\]+)*(?:(?:alpha|beta|RC)\\d+|-latest))\\.tar
-#     }
 
 # Iterate through branches in reverse order, so that the list of subports in
 # "port info" will show newer versions before older versions.
@@ -138,7 +136,11 @@ set php                 php[php.suffix_from_branch ${branch}]
 
 if {[regexp "^${php}" ${subport}]} {
 
-dist_subdir             php${major}
+if {[vercmp ${major} 5] > 0} {
+    dist_subdir         ${php}
+} else {
+    dist_subdir         php${major}
+}
 
 if {[is_sapi_subport]} {
     
@@ -410,14 +412,15 @@ subport ${php}-apache2handler {
     
     configure.args-append   --with-apxs2=${apxs}
     
-    build.target            libs/libphp5.bundle
+    build.target            libs/libphp${major}.bundle
     
     destroot.violate_mtree  yes
     
     destroot {
         xinstall -m 755 -d ${destroot}${moduledir} ${destroot}${confdir}/extra
-        xinstall -m 644 ${worksrcpath}/libs/libphp5.so ${destroot}${moduledir}/mod_${php}.so
-        xinstall -m 644 ${filespath}/mod_php.conf ${destroot}${confdir}/extra/mod_${php}.conf
+        xinstall -m 644 ${worksrcpath}/libs/libphp${major}.so ${destroot}${moduledir}/mod_${php}.so
+        xinstall -m 644 ${filespath}/mod_php.conf.in ${destroot}${confdir}/extra/mod_${php}.conf
+        reinplace s/@MAJOR@/${major}/g ${destroot}${confdir}/extra/mod_${php}.conf
     }
     
     notes-append "
@@ -620,9 +623,11 @@ subport ${php}-gd {
                             --with-zlib-dir=${prefix} \
                             --enable-gd-native-ttf
     
+    if {[vercmp ${branch} 7] < 0} {
     variant t1lib description {Add PostScript Type 1 font support with t1lib} {
         depends_lib-append      port:t1lib
         configure.args-append   --with-t1lib=${prefix}
+    }
     }
 }
 
@@ -691,8 +696,6 @@ if {[vercmp ${branch} 5.3] >= 0} {
 subport ${php}-intl {
     if {[vercmp ${branch} 5.3] == 0} {
         revision            2
-    } elseif {[vercmp ${branch} 5.5] == 0} {
-        revision            1
     }
     
     categories-append       devel
@@ -757,6 +760,7 @@ subport ${php}-mcrypt {
     configure.args-append   --with-mcrypt=${prefix}
 }
 
+if {[vercmp ${branch} 7] < 0} {
 subport ${php}-mssql {
     php.extensions          mssql pdo_dblib
     
@@ -772,14 +776,21 @@ subport ${php}-mssql {
     configure.args-append   --with-mssql=${prefix} \
                             --with-pdo-dblib=${prefix}
 }
+}
 
 subport ${php}-mysql {
-    php.extensions          mysql mysqli pdo_mysql
+    php.extensions          mysqli pdo_mysql
+    if {[vercmp ${branch} 7] < 0} {
+        php.extensions-prepend mysql
+    }
     
     categories-append       databases
     
-    description             a PHP interface to MySQL databases, including the \
-                            mysql, mysqli and pdo_mysql extensions
+    description             a PHP interface to MySQL databases, including the
+    if {[vercmp ${branch} 7] < 0} {
+        description-append  mysql,
+    }
+    description-append      mysqli and pdo_mysql extensions
     
     long_description        ${description}
     
@@ -950,6 +961,11 @@ subport ${php}-odbc {
     }
 }
 
+# php70-opcache @7.0.0alpha2 fails:
+# too few arguments provided to function-like macro invocation
+# use of undeclared identifier 'accel_xlat_get'
+# too many arguments to function call, expected 4, have 5
+if {[vercmp ${branch} 7] < 0} {
 if {[vercmp ${branch} 5.5] >= 0} {
     subport ${php}-opcache {
         php.extensions.zend opcache
@@ -968,6 +984,7 @@ if {[vercmp ${branch} 5.5] >= 0} {
             xinstall -W ${destroot.dir} -m 644 README ${docdir}
         }
     }
+}
 }
 
 subport ${php}-openssl {
@@ -1274,6 +1291,7 @@ subport ${php}-zip {
 # These variables are not only required by the subsequent code but also by
 # preceding code in phase blocks.
 set branch              ${subport_branch}
+set major               [lindex [split ${branch} .] 0]
 set php                 php[php.suffix_from_branch ${branch}]
 
 if {${name} eq ${subport}} {
