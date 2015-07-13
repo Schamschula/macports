@@ -1,17 +1,19 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:et:sw=4:ts=4:sts=4
-# $Id: Portfile 114034 2013-11-27 16:20:17Z michaelld@macports.org $
+# $Id: Portfile 133798 2015-03-11 19:43:09Z michaelld@macports.org $
 
 PortSystem          1.0
 PortGroup           octave 1.0
 
-octave.setup        parallel 2.2.1
+octave.setup        parallel 3.0.0
 platforms           darwin
 license             GPL-2+ GPL-3+
 maintainers         nomaintainer
 description         Parallel execution package for cluster computers.
 long_description    ${description}
 
-checksums           rmd160 5ed43f6fb1433cce47fb6075628c3937670e7314 \
-                    sha256 1faf36a7c1750c364ec8089c78cdecbcdbf47c40410c2463e8f3e44dc4d92f33
+checksums           rmd160 a30251f7bff0e3a64bd03f203257e72cefee12a0 \
+                    sha256 7ba3105da8e0fab71554bfd50a0b34832d5f12aca3760f7395115083499cb7e1
 
-patchfiles-append   patch-add-unistd.h.diff
+patchfiles          patch-src-parallel-gnutls.h.diff
+
+depends_lib-append  port:gnutls
