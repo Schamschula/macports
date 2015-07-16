@@ -1,11 +1,11 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 138078 2015-06-28 01:11:12Z larryv@macports.org $
+# $Id: Portfile 138681 2015-07-16 02:58:25Z ryandesign@macports.org $
 
 PortSystem          1.0
 PortGroup           cxx11 1.0
 PortGroup           github 1.0
 
-github.setup        tatsuhiro-t nghttp2 1.1.0 v
+github.setup        tatsuhiro-t nghttp2 1.1.1 v
 categories          www
 platforms           darwin
 maintainers         gmail.com:mschamschula openmaintainer
@@ -19,8 +19,8 @@ long_description    ${description} Included are a HTTP/2 client, server and prox
 github.tarball_from releases
 use_xz              yes
 
-checksums           rmd160 e696abfcd178b657a4670168d0047b5776bbbf5e \
-                    sha256 7f299484461f8c445bea8ad143761b9736d0b6a1f164d0f9312236e53fab7d0f
+checksums           rmd160 52570dd747832bd151d34fa9c2b9e3ec232e485f \
+                    sha256 d36ba13066f4e0594c741a6448547f0b492e31043e0149bd39d2503854d6411c
 
 depends_build       port:pkgconfig
 
@@ -43,10 +43,10 @@ configure.env       PYTHON=${prefix}/bin/python2.7 CYTHON=${prefix}/bin/cython-2
                     LIBEVENT_OPENSSL_LIBS="-L${prefix}/lib -levent -levent_openssl" \
                     OPENSSL_CFLAGS=-I${prefix}/include/openssl \
                     OPENSSL_LIBS="-L${prefix}/lib -lcrypto -lssl" \
-                    PYTHON_EXTRA_LDFLAGS="-u _PyMac_Error ${prefix}/Library/Frameworks/Python.framework/Versions/2.7/Python"
+                    PYTHON_EXTRA_LDFLAGS="-u _PyMac_Error ${frameworks_dir}/Python.framework/Versions/2.7/Python"
 
-destroot.env       PYTHONPATH=${destroot}/${prefix}/lib/python2.7/site-packages/
+destroot.env        PYTHONPATH=${destroot}${prefix}/lib/python2.7/site-packages/
 
 pre-destroot {
-	 xinstall -d ${destroot}${prefix}/lib/python2.7/site-packages/
+    xinstall -d ${destroot}${prefix}/lib/python2.7/site-packages/
 }
