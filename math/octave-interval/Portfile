@@ -1,11 +1,11 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:et:sw=4:ts=4:sts=4
-# $Id: Portfile 137149 2015-06-05 14:58:30Z michaelld@macports.org $
+# $Id: Portfile 138159 2015-06-30 18:55:47Z michaelld@macports.org $
 
 PortSystem          1.0
 PortGroup           octave 1.0
 PortGroup           compiler_blacklist_versions 1.0
 
-octave.setup        interval 1.0.0
+octave.setup        interval 1.1.0
 platforms           darwin
 license             GPL-3+
 maintainers         nomaintainer
@@ -19,13 +19,10 @@ long_description    ${description} It can be used to handle uncertainties, estim
                     interval boundaries represented by binary64 numbers and is standard \
                     conforming to IEEE 1788.
 
-checksums           rmd160 3eca712d1c128f66e40a216033e28d444368b85c \
-                    sha256 f46128ff2f2c30b4abb7cb05b0998d186f7ccd09bc9317008a3d005d9e8cda43
+checksums           rmd160 1f30fb285d0e9a1d3f74342750c332d79a882c6d \
+                    sha256 0d0b3f3c3b5c97b1beaadd1372b3617dd491a9362ff62da85df9d665ce1498cb
 
 depends_lib-append  port:mpfr port:gmp
-
-patchfiles-append \
-    patch-src_Makefile.diff
 
 # octave-interval requires <cfenv>, which is part of C++0x and newer.
 # require c++11
