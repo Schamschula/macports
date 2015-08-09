@@ -1,11 +1,11 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 138695 2015-07-16 15:30:48Z ionic@macports.org $
+# $Id: Portfile 139229 2015-08-08 03:10:35Z jeremyhu@macports.org $
 
 PortSystem          1.0
 PortGroup           cxx11 1.0
 PortGroup           github 1.0
 
-github.setup        tatsuhiro-t nghttp2 1.1.2 v
+github.setup        tatsuhiro-t nghttp2 1.2.0 v
 set PythonVersion   2.7
 categories          www
 platforms           darwin
@@ -20,8 +20,8 @@ long_description    ${description} Included are a HTTP/2 client, server and prox
 github.tarball_from releases
 use_xz              yes
 
-checksums           rmd160 863f176b35b6b1ec7f2d77eea40383650b030606 \
-                    sha256 8bd4a1dde16bf82fbacfe26ba48f22f6758c2d38202e7a956e0d070372699237
+checksums           rmd160 d27b7f725f1a1d5d5f4c60bb0a710fe4b82aed74 \
+                    sha256 9e4a419c835b6cfa08ff9743f823638d32d8516aa3abfc86598272d173bc558f
 
 depends_build       port:pkgconfig
 
@@ -29,7 +29,7 @@ depends_lib         port:jansson \
                     port:libev \
                     port:libevent \
                     port:libxml2 \
-                    port:openssl \
+                    path:lib/libssl.dylib:openssl \
                     port:py27-cython \
                     port:py27-setuptools \
                     port:python27 \
@@ -46,10 +46,6 @@ configure.env       CYTHON=${prefix}/bin/cython-${PythonVersion} \
                     OPENSSL_LIBS="-L${prefix}/lib -lcrypto -lssl" \
                     PYTHON=${prefix}/bin/python${PythonVersion} \
                     PYTHON_EXTRA_LDFLAGS="-u _PyMac_Error ${frameworks_dir}/Python.framework/Versions/${PythonVersion}/Python"
-
-#   Patch to deal with https://github.com/tatsuhiro-t/nghttp2/issues/303
-#   Remove once this is fixed upstream.
-patchfiles          patch-python-Makefile.in.diff
 
 destroot.env        PYTHONPATH=${destroot}${prefix}/lib/python2.7/site-packages/
 
