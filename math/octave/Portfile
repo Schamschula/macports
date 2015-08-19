@@ -89,11 +89,8 @@ configure.args \
     --disable-bounds-check \
     --disable-dependency-tracking \
     --with-umfpack="-lumfpack -lSuiteSparse" \
-    --disable-java \
     --disable-jit \
     --enable-link-all-dependencies \
-    --with-opengl \
-    --with-framework-opengl \
     --without-OSMesa \
     --enable-docs
 
@@ -232,7 +229,8 @@ variant glgui conflicts x11 description {Enable OpenGL GUI (via FLTK) as the def
 
 if {[variant_isset glgui]} {
 
-    configure.args-append --with-opengl
+    configure.args-append --with-opengl \
+                          --with-framework-opengl
 
 } else {
 
