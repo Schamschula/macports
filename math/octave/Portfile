@@ -52,7 +52,6 @@ depends_lib-append \
                     port:curl \
                     port:fftw-3 \
                     port:fftw-3-single \
-                    port:fltk \
                     port:gawk \
                     port:ghostscript \
                     port:gl2ps \
