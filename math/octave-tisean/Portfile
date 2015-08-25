@@ -2,7 +2,7 @@
 # $Id: Portfile $
 
 PortSystem          1.0
-PortGroup           octave 1.1
+PortGroup           octave 1.0
 PortGroup           compilers 1.0
 
 octave.setup        tisean 0.2.3
@@ -17,3 +17,5 @@ checksums           rmd160 88d9562a685e0d00ea48f068d161b1022f7126c2 \
 
 compilers.choose    fc f77 f90
 compilers.setup     require_fortran -dragonegg
+
+depends_lib-append  port:octave-signal
