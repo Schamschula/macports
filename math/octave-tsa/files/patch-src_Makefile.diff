@@ -1,20 +1,25 @@
---- src/Makefile.orig	2015-01-24 13:19:09.000000000 -0500
-+++ src/Makefile	2015-01-24 13:20:43.000000000 -0500
-@@ -10,116 +10,36 @@
- # Octave - global install  (e.g. from debian package)
- # OCTAVE_VERSION= 
- # Better alternative: define an OCTAVE_VERSION bash variable (or in .bashrc or .profile)
--OCTAVE_VERSION=-3.8.2
-+#OCTAVE_VERSION=-3.8.2
+--- src/Makefile.orig	2015-01-25 17:26:10.000000000 -0500
++++ src/Makefile	2015-01-25 17:30:51.000000000 -0500
+@@ -4,125 +4,21 @@
+ # http://pub.ist.ac.at/~schloegl/matlab/tsa/
+ ####################################################
  
+-### modify directories according to your needs 
+-
+-# Define non-default octave-version 
+-# Octave - global install  (e.g. from debian package)
+-# OCTAVE_VERSION= 
+-# Better alternative: define an OCTAVE_VERSION bash variable (or in .bashrc or .profile)
+-# OCTAVE_VERSION=-3.6.3
+-
 -# Matlab configuration
 -# MATLABDIR = /usr/local/MATLAB/R2010b
 -# comment the following line if you use MATLAB on 32-bit operating system
 -MEX_OPTION += -largeArrayDims
 -
 -# Mingw crosscompiler: available at http://www.nongnu.org/mingw-cross-env/
--CROSS   = $(HOME)/src/mxe.github.schloegl/usr/bin/i686-w64-mingw32.static
--CROSS64 = $(HOME)/src/mxe.github.schloegl/usr/bin/x86_64-w64-mingw32.static
+-CROSS   = $(HOME)/src/mxe/usr/bin/i686-w64-mingw32.static
+-CROSS64 = $(HOME)/src/mxe/usr/bin/x86_64-w64-mingw32.static
 -# include directory for Win32-Matlab include
 -W32MAT_INC = -I$(HOME)/bin/win32/Matlab/R2010b/extern/include/
 -W64MAT_INC = -I$(HOME)/bin/win64/Matlab/R2010b/extern/include/
@@ -34,32 +39,30 @@
 -W32_LIBS += $(LDLIBS_W32)libblas.a
 -W64_LIBS += $(LDLIBS_W64)libblas.a
 -
--
--
 -CC  	= gcc
 -CXX 	= g++
-+#CC  	= gcc
-+#CXX 	= g++
- CFLAGS 	= -fopenmp -Wall -Wextra -Wconversion -O2 -fPIC 
+-CFLAGS 	= -Wall -Wextra -Wconversion -O2 -fPIC 
 -OCTMEX	= mkoctfile$(OCTAVE_VERSION) --mex
++CFLAGS 	= -Wall -Wextra -Wconversion -O2 -fPIC
++MKOCTFILE = $(PREFIX_BIN)/mkoctfile -v
++OCTMEX	= $(MKOCTFILE) --mex
  RM      = rm
  
- MEX_OPTION  += -lgomp CC\#$(CXX) CXX\#$(CXX) CFLAGS\#"$(CFLAGS)" CXXFLAGS\#"$(CFLAGS)"
+-ifneq (Darwin,$(shell uname))
+-CFLAGS      += -fopenmp
+-MEX_OPTION  += -lgomp
+-endif
+-
+-MEX_OPTION  += CC\#$(CXX) CXX\#$(CXX) CFLAGS\#"$(CFLAGS)" CXXFLAGS\#"$(CFLAGS)"
 -MATMEX      = $(MATLABDIR)/bin/mex $(MEX_OPTION)
-+MKOCTFILE = mkoctfile$(OCTAVE_VERSION) -v
-+OCTMEX	= $(MKOCTFILE) --mex
-+
-+FLIBS = ${shell $(MKOCTFILE) -p FLIBS}
-+INCFLAGS = ${shell $(MKOCTFILE) -p INCFLAGS}
-+INC_CSTDLIB = -include cstdlib
- 
- PROGS = covm_mex.mex sumskipnan_mex.mex #
+-
+-PROGS = covm_mex.mex sumskipnan_mex.mex #
++PROGS = covm_mex.mex sumskipnan_mex.mex
  
  ### per default only the mex-files for octave are built
 -mex4o octave: $(PROGS)
 -
-+octave: $(PROGS)
- 
+-
 -### Matlab configuration - search for a matlab directory if not defined above
 -ifndef MATLABDIR
 -  ifneq (,$(shell ls -1 /usr/local/ |grep MATLAB))
@@ -82,24 +85,24 @@
 -mexw32 win32:  $(patsubst %.mex, %.mexw32, $(PROGS))
 -mexw64 win64:  $(patsubst %.mex, %.mexw64, $(PROGS))
 -all:    octave win32 win64 mex4m
+-
+-clean:
+-	-$(RM) *.o *.obj *.o64 core octave-core *.oct *~ *.mex* 
++octave: $(PROGS)
+ 
 +all:    octave
  
- clean:
- 	-$(RM) *.o *.obj *.o64 core octave-core *.oct *~ *.mex* 
- 
--
  #########################################################
 -
  #	Octave, MATLAB on Linux 
  #########################################################
- %.oct: %.cc
+-%.oct: %.cc
 -	mkoctfile$(OCTAVE_VERSION) "$<"
-+	$(MKOCTFILE) "$<"
  
  %.mex: %.cpp
--	$(OCTMEX) "$<"  -lgomp -llapack -lblas
+ 	$(OCTMEX) "$<" -llapack -lblas
 -%.$(MEX_EXT): %.cpp
--	$(MATMEX) "$<"  -lgomp -llapack -lblas
+-	$(MATMEX) "$<" -llapack -lblas
 -
 -
 -#########################################################
@@ -129,4 +132,3 @@
 -	
 -	
 -
-+	INCFLAGS="$(INCFLAGS) $(INC_CSTDLIB)" $(OCTMEX) $< $(FLIBS) $(LOCAL_FLAGS)
