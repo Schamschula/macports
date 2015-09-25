@@ -1,0 +1,11 @@
+--- oinkmaster.pl.orig	2006-02-18 06:35:21.000000000 -0600
++++ oinkmaster.pl	2015-09-25 13:42:00.000000000 -0500
+@@ -133,7 +133,7 @@
+ # Default locations for configuration file.
+ my @DEFAULT_CONFIG_FILES = qw(
+     /etc/oinkmaster.conf
+-    /usr/local/etc/oinkmaster.conf
++    /opt/local/etc/oinkmaster.conf
+ );
+ 
+ my @DEFAULT_DIST_VAR_FILES = qw(
