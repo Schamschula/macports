@@ -27,6 +27,7 @@ master_sites        http://www.openinfosecfoundation.org/download/
 depends_build       port:autoconf port:automake
 depends_lib         port:pkgconfig port:libnet11 port:libpcap port:pcre \
                     port:libyaml port:libtool port:libmagic port:jansson
+depends_run         port:oinkmaster
 configure.env       AC_PROG_LIBTOOL=${prefix}/bin/glibtool \
                     LDFLAGS="-ljansson" CPPFLAGS=-I${prefix}/include
 configure.args      --enable-ipfw --enable-gccprotect \
