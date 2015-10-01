@@ -4,7 +4,7 @@
 PortSystem 1.0
 
 name             snort
-version          2.9.7.5
+version          2.9.7.6
 categories       net
 maintainers      yahoo.fr:jul_bsd openmaintainer
 license          GPL-2
@@ -20,8 +20,8 @@ homepage         https://www.snort.org/
 platforms        darwin freebsd
 master_sites     ${homepage}downloads/snort/
 
-checksums           rmd160  f9f7402bbc69e6439cd47e1b7d15d924882e0414 \
-                    sha256  ad03f11b5301b16642199a86aa90388eaa53f5003f83b0c5595745a490047be1
+checksums           rmd160  0b4c218ed64146921c6fea2e8ca4ea0abc2cb398 \
+                    sha256  842e8575e26d919a9e74b9ad0c10d1098f7b5ff2189a8422eb51a9a5b6ebbf63
 
 depends_lib      port:daq
 
