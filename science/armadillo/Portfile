@@ -1,11 +1,11 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 139871 2015-08-31 10:47:07Z jmr@macports.org $
+# $Id: Portfile 139973 2015-09-04 19:47:18Z ionic@macports.org $
 
 PortSystem                      1.0
 PortGroup                       cmake 1.0
 
 name                            armadillo
-version                         5.600.2
+version                         6.100.0
 categories                      science
 platforms                       darwin
 maintainers                     gmail.com:mschamschula \
@@ -26,8 +26,8 @@ long_description                Armadillo is a C++ linear algebra library (matri
 homepage                        http://arma.sf.net/
 master_sites                    sourceforge:project/arma
 
-checksums                       rmd160  fea0eafc6e3fdceeb639b910103def8b01649bc4 \
-                                sha256  3a4e16f07dddd16313128eb1cab8e2f257d7461bde4a1d277c85181dcd6d1eda
+checksums                       rmd160  562124845602f9e2797da76d42d1cb274c7737a0 \
+                                sha256  8ba581e5786ba04edefa4628574f6a68eec0f47ca15683ccd0a6354fc2381cc9
 
 depends_build-append            port:pkgconfig
 
