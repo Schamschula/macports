@@ -1,6 +1,6 @@
 diff -Naur a/libinterp/dldfcn/__osmesa_print__.cc b/libinterp/dldfcn/__osmesa_print__.cc
---- a/libinterp/dldfcn/__osmesa_print__.cc	2015-05-23 16:21:53.000000000 +0200
-+++ b/libinterp/dldfcn/__osmesa_print__.cc	2015-10-05 21:08:50.000000000 +0200
+--- libinterp/dldfcn/__osmesa_print__.cc	2015-05-23 16:21:53.000000000 +0200
++++ libinterp/dldfcn/__osmesa_print__.cc	2015-10-05 21:08:50.000000000 +0200
 @@ -27,6 +27,12 @@
  #include <config.h>
  #endif

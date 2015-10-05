@@ -9,6 +9,7 @@ PortGroup           compilers 1.0
 name                octave
 
 version             4.0.0
+revision            1
 #conflicts           octave-devel
 categories          math science
 maintainers         michaelld openmaintainer
@@ -80,7 +81,8 @@ depends_run-append  port:epstool \
 universal_variant   no
 
 # Patch file from Homebrew
-patchfiles-append   patch-rollup.diff
+patchfiles-append   patch-rollup.diff \
+                    osmesa.patch.diff
 
 # common configure arguments
 
@@ -90,7 +92,6 @@ configure.args \
     --with-umfpack="-lumfpack -lSuiteSparse" \
     --disable-jit \
     --enable-link-all-dependencies \
-    --without-OSMesa \
     --enable-docs
 
 # when using "hdf5 +mpich", have to manually include
