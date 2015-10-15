@@ -130,9 +130,10 @@ variant ipv6 {
 
 variant lua {
 	configure.args-delete	--without-lua
-	configure.args-append	--with-lua=${prefix}
+#	configure.args-append	--with-lua=${prefix}
+	configure.env-append    "-I/${prefix}/include/lua-5.2 -L/${prefix}/lib/lua-5.2"
 	depends_lib-append		port:lua52
-	patchfiles-append       patch-epan-wslua-lua_bitop.c.diff
+	patchfiles-append       patch-epan-wslua.diff
 }
 
 variant libsmi {

@@ -1,0 +1,13 @@
+--- epan/wslua/lrexlib.c.orig	2015-08-12 11:47:42.000000000 -0500
++++ epan/wslua/lrexlib.c	2015-10-04 07:11:10.000000000 -0500
+@@ -39,8 +39,8 @@
+ #include <string.h>
+ #include <glib.h>
+ 
+-#include "lua.h"
+-#include "lauxlib.h"
++#include <lua-5.2/lua.h>
++#include <lua-5.2/lauxlib.h>
+ #include "lrexlib.h"
+ 
+ #define N_ALIGN sizeof(int)
