@@ -41,8 +41,8 @@ checksums           ${distname}.tar.gz \
                     rmd160  10a19a10d0388bc084a7c1d3da845068d7169054 \
                     sha256  0eb6f356119f2e49b2563210852e17f57f9dcc5755f350a69a46a0d641a0c401 \
                     ${mappingresources_commit}.zip \
-                    rmd160  1bb3b507ec48b559e4388553391ebece2468dc73 \
-                    sha256  769bf8961b1dbf443a865f7c26363ea143854be5eefe3e61b3ee4c0ebe80a50a
+                    rmd160  b00725e3f5615ac6aaa20a7b4d0dd6e769dca6ee \
+                    sha256  27f87e56092a8293d17f683b008327afbb79fad9f1328227a9916f9be69c9db2
 
 depends_lib         port:expat \
                     port:fontconfig \
