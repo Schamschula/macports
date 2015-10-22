@@ -1,0 +1,81 @@
+
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id: Portfile 141275 2015-10-14 05:27:31Z jwa@macports.org $
+
+PortSystem      1.0
+PortGroup       xcode 1.0
+
+name            TeXShop3
+conflicts	TeXShop
+version         3.58
+
+set major       [lindex [split ${version} .] 0]
+categories      aqua editors
+license         GPL-2+
+maintainers     jwa openmaintainer
+description     TeX previewer for Mac OS X
+long_description   \
+    TeXShop is a TeX previewer for Mac OS X, written in Cocoa.  \
+    Since pdf is a native file format on OS X, TeXShop uses     \
+    "pdftex" and "pdflatex" rather than "tex" and "latex" to    \
+    typeset, these programs in the standard teTeX distribution  \
+    of TeX produce pdf output instead of dvi output.
+homepage        http://pages.uoregon.edu/koch/texshop
+master_sites    http://pages.uoregon.edu/koch
+use_zip         yes
+distname        texshopsource[strsed ${version} {/\.//}]
+dist_subdir     TeXShop/
+#worksrcdir      texshopsource${version}
+worksrcdir      texshopsource[strsed ${version} {/\.//}]
+set propername	TeXShop
+
+checksums           rmd160  eeaffdb252c48eefc7cb98e23d23798ae9ca10b0 \
+                    sha256  e70589a26e80117ca9107e427630d7ba96fb23af822f4b6cd0396035413c17ec
+
+pre-fetch {
+    platform darwin {
+        if {${os.major} < 11} {
+            ui_error "${name} requires at least 10.7, Lion"
+            return -code error	"This version is for 10.7, Lion, and later only"
+        }
+    }
+}
+
+platform darwin 12 {
+    patchfiles-append	patch-MyPDFKitView.m.diff patch-TSAppDelegate.m.diff
+}
+
+platform darwin 13 {
+    patchfiles-append	patch-MyPDFKitView.m.diff patch-TSAppDelegate.m.diff
+}
+
+platform darwin 14 {
+    patchfiles-append	patch-TSAppDelegate.m.diff
+}
+
+post-extract    {
+    set ogrekit "OgreKit.framework/Versions/A/OgreKit"
+    if {![variant_isset universal]} {
+        # thin the bundled frameworks
+        system "cd ${worksrcpath} && lipo -thin ${configure.build_arch} $ogrekit -output $ogrekit"
+    }
+}
+
+macosx_deployment_target     10.7
+
+build.target    ${propername}
+
+xcode.project   ${propername}.xcodeproj
+xcode.configuration Release
+xcode.build.settings    FRAMEWORK_SEARCH_PATHS=${worksrcpath} \
+                        CONFIGURATION_BUILD_DIR=${worksrcpath}/build
+
+destroot.target     ${propername}
+eval xcode.destroot.settings INSTALL_MODE_FLAG=755 ${xcode.build.settings}
+
+post-destroot        {
+    file delete -force ${destroot}${applications_dir}/TeX.mdimporter
+}
+
+livecheck.type      regex
+livecheck.regex     TeXShop \\(v (${major}\.\[0-9.\]+)\\)
