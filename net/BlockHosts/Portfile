@@ -1,0 +1,60 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id$
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                BlockHosts
+version             2.6.0
+categories          net
+license             
+maintainers         gmail.com:mschamschula openmaintainer
+description         
+long_description    
+platforms           darwin
+homepage            http://www.aczoom.com/cms/blockhosts/
+master_sites        http://www.aczoom.com/tools/blockhosts/
+
+checksums           rmd160 fe711d8e9c250da353347b311327d2832da7cf58 \
+                    sha256 b2b6d632efcb9ed252c13bcc51a557db836dc5cdb30b1a1d9e3f4228339400b7
+
+depends_build       port:py${python.version}-setuptools
+                    
+depends_lib-append  port:libiconv \
+                    port:logrotate \
+                    port:logwatch \
+                    port:tcp_wrappers
+
+python.versions     27
+
+patchfiles          blockhosts.cfg.patch 
+                   # patch-blockhosts.py.diff
+
+post-patch {
+    reinplace -locale LANG="C" -W ${worksrcpath} "s|/etc/hosts.allow|${prefix}/etc/hosts.allow|g" bhrss.py blockhosts.py 
+    reinplace -locale LANG="C" -W ${worksrcpath} "s|/etc//etc/blockhosts.cfg|${prefix}/etc/blockhosts/blockhosts.cfg|g" blockhosts.py
+    reinplace -W ${worksrcpath} "s|/etc/|${prefix}/etc/|g" setup.py
+    reinplace -W ${worksrcpath} "s|/usr/bin|${prefix}/bin|g" setup.cfg
+}
+
+build {}
+
+post-destroot {
+    xinstall -d ${destroot}${prefix}/etc/blockhosts
+    xinstall -d ${destroot}${prefix}/etc/logrotate.d
+    xinstall -d ${destroot}${prefix}/etc/logwatch/scripts/services
+    xinstall -d ${destroot}${prefix}/etc/logwatch/conf/services
+    xinstall -d ${destroot}${prefix}/share/blockhosts
+    
+    xinstall ${worksrcpath}/blockhosts.cfg ${destroot}${prefix}/etc/blockhosts/blockhosts.cfg
+    xinstall ${worksrcpath}/logrotate.d/blockhosts ${destroot}${prefix}/etc/logrotate.d/blockhosts
+    xinstall ${worksrcpath}/logwatch/blockhosts ${destroot}${prefix}/etc/logwatch/scripts/blockhosts
+    xinstall ${worksrcpath}/logwatch/blockhosts.conf ${destroot}${prefix}/etc/logwatch/conf/blockhosts.conf
+    
+    foreach f { CHANGES INSTALL README bhrss.html blockhosts.html } {
+        xinstall ${worksrcpath}/${f} ${destroot}${prefix}/share/blockhosts/${f}
+    }
+
+    # delete cfg file in /etc
+    file delete ${destroot}/etc/blockhosts.cfg
+}

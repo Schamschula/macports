@@ -1,0 +1,58 @@
+--- blockhosts.py.orig	2011-06-18 04:06:23.000000000 -0500
++++ blockhosts.py	2015-10-28 13:19:34.000000000 -0500
+@@ -7,15 +7,15 @@
+ 
+ Script to record how many times "sshd" or other service is being attacked,
+ and when a particular IP address exceeds a configured number of
+-failed login attempts, that IP address is added to /etc/hosts.allow with
++failed login attempts, that IP address is added to /opt/local/etc/hosts.allow with
+ the deny flag to prohibit access.
+-Script uses /etc/hosts.allow to store (in comments) count
++Script uses /opt/local/etc/hosts.allow to store (in comments) count
+ of failed attempts, and date of last attempt for each IP address
+ By default, hosts.allow is used, but program can be configured to use any
+ other file, including /etc/hosts.deny, as needed.
+ IP addresses with expired last attempt dates (configurable)
+-can be removed, to keep /etc/hosts.allow size manageable.
+-This script can be run as the optional command in /etc/hosts.allow
++can be removed, to keep /opt/local/etc/hosts.allow size manageable.
++This script can be run as the optional command in /opt/local/etc/hosts.allow
+ itself, so will kick off only when someone connects to a specific service
+ controlled by tcpwrappers, or use cron to periodically run this script.
+ 
+@@ -24,7 +24,7 @@
+ hosts_options should also have been enabled, which requires compile time
+ PROCESS_OPTIONS to be turned on. This allows extensions to the
+ basic hosts.* file line format.  The extensible language supports lines
+-of this format in /etc/hosts.allow:
++of this format in /opt/local/etc/hosts.allow:
+     daemon_list : client_list : option : option ...
+ See the man pages for hosts_options and hosts_access(5) for more
+ information.
+@@ -313,7 +313,7 @@
+     """
+ 
+     HC_OPTIONS = {
+-        "CONFIGFILE": "/etc/blockhosts.cfg",
++        "CONFIGFILE": "/opt/local/etc/blockhosts/blockhosts.cfg",
+         }
+ 
+     # --------------------------------
+@@ -322,7 +322,7 @@
+     # global time definitions, may be used by other scripts importing blockhosts
+     START_TIME = time.time()
+ 
+-    # use ISO time formats to display time, store and decode in /etc/hosts.allow
++    # use ISO time formats to display time, store and decode in /opt/local/etc/hosts.allow
+     # %z is better than %Z, but python2.4 has bug - always displays as +0000,
+     # so can't use %Z%z which would be preferable for human-readable displays
+     # - but note that %z is not accepted by strptime, so stick with %Z for now
+@@ -511,7 +511,7 @@
+     # and no config file provided
+     HC_OPTIONS = {
+         "VERBOSE": Log.MESSAGE_LEVEL,
+-        "HOSTS_BLOCKFILE": "/etc/hosts.allow",
++        "HOSTS_BLOCKFILE": "/opt/local/etc/hosts.allow",
+         "HOST_BLOCKLINE": ("ALL: ", " : deny"),
+             # the line to output, with Host Ip Address in between the
+             # strings above, to turn on blocking of that IP address
