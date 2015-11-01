@@ -1,6 +1,6 @@
---- configure.orig	2015-10-04 07:22:57.000000000 -0500
-+++ configure	2015-10-04 07:36:27.000000000 -0500
-@@ -33974,11 +33974,11 @@
+--- configure.orig	2015-10-30 19:00:38.000000000 -0500
++++ configure	2015-10-30 19:09:49.000000000 -0500
+@@ -33970,11 +33970,11 @@
  		# searches the specified directory.
  		#
  		wireshark_save_CPPFLAGS="$CPPFLAGS"
@@ -15,7 +15,7 @@
  
  		#
  		# Determine Lua version by reading the LUA_VERSION_NUM definition
-@@ -33987,7 +33987,7 @@
+@@ -33983,7 +33983,7 @@
  		#
  		{ $as_echo "$as_me:${as_lineno-$LINENO}: checking Lua version" >&5
  $as_echo_n "checking Lua version... " >&6; }
@@ -24,45 +24,12 @@
  		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: Lua ${lua_ver}" >&5
  $as_echo "Lua ${lua_ver}" >&6; }
  	else
-@@ -34000,7 +34000,7 @@
- $as_echo_n "checking Lua version... " >&6; }
- 		for i in 5.0 5.1 5.2
- 		do
--			[ -d "/usr/include/lua$i" ] && lua_ver=$i
-+			[ -d "/usr/include/lua-5.2/lua$i" ] && lua_ver=$i
- 		done
- 		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: Lua ${lua_ver}" >&5
- $as_echo "Lua ${lua_ver}" >&6; }
-@@ -34036,7 +34036,7 @@
+@@ -34032,7 +34032,7 @@
  
  			if test "x$lua_dir" != "x"
  			then
 -				LUA_INCLUDES="-I$lua_dir/include/lua${lua_ver}"
-+				LUA_INCLUDES="-I$lua_dir/include/lua-5.2/lua${lua_ver}"
++				LUA_INCLUDES="-I$lua_dir/include/lua-5.2"
  			else
  				#
  				# The user didn't specify a directory in which liblua resides;
-@@ -34047,10 +34047,10 @@
- 				{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for extraneous lua header directories" >&5
- $as_echo_n "checking for extraneous lua header directories... " >&6; }
- 				found_lua_dir=""
--				lua_dir_list="/usr/include/lua${lua_ver} $prefix/include/lua${lua_ver}"
-+				lua_dir_list="/usr/include/lua-5.2/lua${lua_ver} $prefix/include/lua-5.2/lua${lua_ver}"
- 				if test "x$ac_cv_enable_usr_local" = "xyes"
- 				then
--					lua_dir_list="$lua_dir_list /usr/local/include/lua${lua_ver}"
-+					lua_dir_list="$lua_dir_list /usr/local/include/lua-5.2/lua${lua_ver}"
- 				fi
- 				for lua_dir_ent in $lua_dir_list
- 				do
-@@ -34201,8 +34201,8 @@
- 				# Put the "-I" and "-L" flags for lua into
- 				# LUA_INCLUDES and LUA_LIBS, respectively.
- 				#
--				LUA_LIBS="-L$lua_dir/lib -llua -lm"
--				LUA_INCLUDES="-I$lua_dir/include"
-+				LUA_LIBS="-L$lua_dir/lib/lua-5.2 -llua -lm"
-+				LUA_INCLUDES="-I$lua_dir/include/lua-5.2"
- 			else
- 				LUA_LIBS="-llua -lm"
- 				LUA_INCLUDES=""
