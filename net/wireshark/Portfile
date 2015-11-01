@@ -128,7 +128,6 @@ variant ipv6 {
 variant lua {
 	configure.args-delete	--without-lua
 	depends_lib-append		port:lua52
-	patchfiles-append       patch-epan-wslua.diff
 }
 
 variant libsmi {
