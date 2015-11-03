@@ -2,8 +2,7 @@
 
 PortSystem 1.0
 name		wireshark
-version		1.12.8
-revision	0
+version		2.0.0rc2
 categories	net
 license		{GPL-2 GPL-3}
 maintainers	darkart.com:opendarwin.org
@@ -19,15 +18,13 @@ long_description A network analyzer that lets you capture and \
 master_sites	http://www.wireshark.org/download/src/			\
 		http://www.wireshark.org/download/src/all-versions/
 
-checksums           md5	    988a4595a4a87dafb3c4870ea40e89b5 \
-                    sha1    d8c23120525a2f3505e822b7684e7367bcd0ba70 \
-                    rmd160  bf87fd1e3404d04f6123d09798b46ea5b2af49e9
+checksums           md5     e533e26ae9372b3d58c7d54eddd2ef1e \
+                    sha1    3bef75cd106dbf6fba8529394202b90cfcc9f5b2 \
+                    rmd160  907eefeae0519986d7d62a288fac3568efda020e
 
 use_bzip2	yes
 
 conflicts	wireshark-devel
-
-patchfiles	patch-configure.diff
 
 depends_build 		\
 		port:pkgconfig
@@ -44,6 +41,7 @@ depends_lib 		\
 configure.args	\
 		--without-libsmi \
 		--disable-usr-local \
+		--disable-osx-deploy-target \
 		--without-adns \
 		--with-c-ares=${prefix} \
 		--without-geoip \
@@ -129,9 +127,7 @@ variant ipv6 {
 
 variant lua {
 	configure.args-delete	--without-lua
-	configure.env-append    "-I/${prefix}/include/lua-5.2 -L/${prefix}/lib/lua-5.2"
 	depends_lib-append		port:lua52
-	patchfiles-append       patch-epan-wslua.diff
 }
 
 variant libsmi {
