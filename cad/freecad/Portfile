@@ -1,5 +1,5 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 135158 2015-04-17 02:13:42Z khindenburg@macports.org $
+# $Id: Portfile 141197 2015-10-12 16:14:25Z michaelld@macports.org $
 
 PortSystem              1.0
 PortGroup               cmake 1.0
@@ -8,9 +8,11 @@ PortGroup               compilers 1.0
 
 name                    freecad
 version                 0.15.4671
+revision                1
 categories              cad
 platforms               darwin
 maintainers             gmail.com:mark.brethen \
+                        gmail.com:mschamschula \
                         openmaintainer
 license                 LGPL-2+
 
