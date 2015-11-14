@@ -1,5 +1,5 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 140077 2015-09-08 20:05:23Z eborisch@macports.org $
+# $Id: Portfile 141462 2015-10-19 13:39:47Z eborisch@macports.org $
 
 PortSystem          1.0
 PortGroup           compilers 1.0
@@ -25,18 +25,17 @@ depends_build-append    port:pkgconfig
 subport eigen3-devel {}
 
 if {${subport} eq ${name}} {
-    bitbucket.setup     eigen eigen 3.2.6
+    bitbucket.setup     eigen eigen 3.2.7
     name                eigen3
     conflicts           eigen3-devel
 
-    # Eigen seems to like to stealth update; keeping this around for the next
-    # time 3.0.4 was stealth updated; see #32613
-    #dist_subdir         ${name}/${version}_32613
-    checksums \
-        rmd160  64424b658a9edb2d822065085e362490a80e91c3 \
-        sha256  8a3352f9a5361fe90e451a7305fb1896fc7f771dc16cc0edd8e6b157f52c343e
+    livecheck.url       http://eigen.tuxfamily.org
+    livecheck.regex     {Eigen (\d+(\.\d+)+) released}
 
-    patchfiles          unsupported.patch
+    checksums \
+        rmd160  5b44530da8a636f0295c926c5520303f111e3386 \
+        sha256  e58e1a11b23cf2754e32b3c5990f318a8461a3613c7acbf6035870daa45c2f3e
+
 } else {
     # No current development version (other than rolling snapshot)
     bitbucket.setup     eigen eigen 3.3-alpha1
@@ -103,11 +102,6 @@ pre-extract {
 
 # Avoid issues when archive changes the top-level directory name
 extract.post_args-append -C ${worksrcpath} --strip-components 1
-
-post-patch {
-    copy ${filespath}/CMakeLists-eigenvalues.txt \
-        ${worksrcpath}/unsupported/Eigen/src/Eigenvalues/CMakeLists.txt
-}
 
 # Install licenses and (if +doc) documentation
 pre-destroot {
