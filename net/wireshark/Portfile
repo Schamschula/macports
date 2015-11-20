@@ -2,7 +2,7 @@
 
 PortSystem 1.0
 name		wireshark
-version		2.0.0rc2
+version		2.0.0
 categories	net
 license		{GPL-2 GPL-3}
 maintainers	darkart.com:opendarwin.org
@@ -18,9 +18,9 @@ long_description A network analyzer that lets you capture and \
 master_sites	http://www.wireshark.org/download/src/			\
 		http://www.wireshark.org/download/src/all-versions/
 
-checksums           md5     e533e26ae9372b3d58c7d54eddd2ef1e \
-                    sha1    3bef75cd106dbf6fba8529394202b90cfcc9f5b2 \
-                    rmd160  907eefeae0519986d7d62a288fac3568efda020e
+checksums           md5     5909af2a09a9a3023ba61bc62e787ad2 \
+                    sha1    f8b226b40e36e4c431b4f70bc3f523b6dd53a501 \
+                    rmd160  79b1badcb34ce5d4d6b8c43de7d0ed2c7c301527
 
 use_bzip2	yes
 
