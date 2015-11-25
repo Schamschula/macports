@@ -9,7 +9,7 @@ PortGroup           compilers 1.0
 name                octave
 
 version             4.0.0
-revision            1
+revision            2
 #conflicts           octave-devel
 categories          math science
 maintainers         michaelld openmaintainer
@@ -240,8 +240,8 @@ if {[variant_isset glgui]} {
 
 variant gui requires qtgui description {Legacy variant} {}
 
-variant qtgui description {Enable experimental Qt GUI Application} {
-
+variant qtgui description {Enable Qt GUI Application} {
+	PortGroup          qt4 1.0
     depends_lib-append port:qscintilla
 
 }
