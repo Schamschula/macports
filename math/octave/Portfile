@@ -242,7 +242,8 @@ if {[variant_isset glgui]} {
 variant gui requires qtgui description {Legacy variant} {}
 
 variant qtgui description {Enable Qt GUI Application} {
-	PortGroup          qt4 1.0
+
+    PortGroup          qt4 1.0
     depends_lib-append port:qscintilla
 
 }
