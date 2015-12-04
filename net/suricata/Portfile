@@ -4,7 +4,7 @@
 PortSystem          1.0
 
 name                suricata
-version             2.0.9
+version             2.0.10
 categories          net security
 platforms           darwin
 maintainers         yahoo.fr:jul_bsd openmaintainer
@@ -160,8 +160,8 @@ post-activate {
 
 if {${subport} eq ${name}} {
 
-    checksums           rmd160  fe6fe6645f44ce15bb49b30e67345ec553e6706e \
-                        sha256  4a19214d7673f9c0eba2e4e5ac78152309464186d16df48944b8f5644faa802d
+    checksums           rmd160  490a461b195bc22bbabbe6105eec8a4dfc2d7a1a \
+                        sha256  c8d1d3b6ce3d2a56577fca224424071afd921739d3859efc8a62229556d4beef
 
     patchfiles          patch-Makefile.in.diff \
                         patch-src-output-json.h.diff

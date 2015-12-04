@@ -1,0 +1,90 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id: Portfile 137982 2015-06-24 04:19:01Z larryv@macports.org $
+
+PortSystem          1.0
+PortGroup           compilers 1.0
+
+name                gsl
+version             2.0
+categories          math science
+maintainers         dtakahashi openmaintainer
+license             GPL-3+
+homepage            http://www.gnu.org/software/gsl
+description         A numerical library for C and C++ programmers
+long_description    The GNU Scientific Library (GSL) is a numerical library  \
+                    for C and C++ programmers.  It is free software under the \
+                    GNU General Public License.  \
+                    \
+                    The library provides a wide range of mathematical routines \
+                    such as random number generators, special functions and \
+                    least-squares fitting. There are over 1000 functions in total.
+
+master_sites        gnu
+checksums           rmd160  828247787079f6e02bda57947a5d98c2692e42b6 \
+                    sha256  e361f0b19199b5e6c21922e9f16adf7eca8dd860842802424906d0f83485ca2d
+
+platforms           darwin
+
+depends_build       port:texinfo
+use_parallel_build  yes
+
+configure.args      --mandir=${prefix}/share/man --infodir=${prefix}/share/info
+test.run            yes
+test.target         check
+
+post-activate    {
+    system "install-info ${prefix}/share/info/gsl-ref.info ${prefix}/share/info/dir"
+}
+
+compilers.choose    cc
+compilers.setup     -dragonegg
+
+variant doc description "Install PDF and HTML documentation" {
+    depends_build   port:ghostscript bin:latex:texlive
+    post-destroot   {
+        system "cd ${worksrcpath} && make dvi"
+        system "cd ${worksrcpath}/doc && dvipdf gsl-ref.dvi gsl-ref.pdf"
+        xinstall -d -m 755 ${destroot}${prefix}/share/doc/${name}
+        xinstall -c -m 644 ${worksrcpath}/doc/gsl-ref.pdf ${destroot}${prefix}/share/doc/${name}
+        system "cd ${worksrcpath}/doc && latex fftalgorithms"
+        system "cd ${worksrcpath}/doc && bibtex fftalgorithms"
+        system "cd ${worksrcpath}/doc && latex fftalgorithms"
+        system "cd ${worksrcpath}/doc && latex fftalgorithms"
+        system "cd ${worksrcpath}/doc && dvipdf fftalgorithms.dvi fftalgorithms.pdf"
+        xinstall -c -m 644 ${worksrcpath}/doc/fftalgorithms.pdf ${destroot}${prefix}/share/doc/${name}
+        system "cd ${worksrcpath} && make html"
+        xinstall -d -m 755 ${destroot}${prefix}/share/doc/${name}/html
+        eval xinstall -c -m 644 [glob ${worksrcpath}/doc/gsl-ref.html/*] ${destroot}${prefix}/share/doc/${name}/html
+    }
+}
+
+variant optimize description "Provide further optimization options (depending on compiler used)" {
+    configure.optflags-append   -O3
+}
+
+platform darwin i386 {
+    if { [variant_isset optimize] } {
+        if { [clang_variant_isset] } {
+            configure.optflags  -march=native
+        } elseif { [gcc_variant_isset] } {
+            configure.optflags  -ftree-vectorize -march=native -mno-avx
+            if { ! ([variant_isset gcc44] ||
+                    [variant_isset gcc45] ||
+                    [variant_isset gcc46]) } {
+                ## Haswell's new instruction sets need to be disabled,
+                ## because these instructions are not recognized by
+                ## cctools' assembler
+                configure.optflags-append -mno-avx2 -mno-bmi -mno-bmi2 
+            }
+        } else {
+            #Default compiler. Check if the compiler supports "native" architecture
+            if { [string match "clang" ${configure.cc}] } {
+                configure.optflags  -march=native
+            }
+        }
+    }
+}
+
+livecheck.type  regex
+livecheck.url   http://ftp.gnu.org/gnu/gsl/
+livecheck.regex ${name}-(\[\\d.\]+)${extract.suffix}

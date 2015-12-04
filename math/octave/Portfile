@@ -9,7 +9,7 @@ PortGroup           compilers 1.0
 name                octave
 
 version             4.0.0
-revision            1
+revision            3
 #conflicts           octave-devel
 categories          math science
 maintainers         michaelld openmaintainer
@@ -80,7 +80,7 @@ depends_run-append  port:epstool \
 
 universal_variant   no
 
-# Patch file from Homebrew
+# Use rollup patch file from Homebrew
 patchfiles-append   patch-rollup.diff \
                     osmesa.patch.diff
 
@@ -240,10 +240,12 @@ if {[variant_isset glgui]} {
 
 variant gui requires qtgui description {Legacy variant} {}
 
-variant qtgui description {Enable experimental Qt GUI Application} {
+variant qtgui description {Enable Qt GUI Application} {
 
+    PortGroup          qt4 1.0
     depends_lib-append port:qscintilla
 
+patchfiles-append      patch-libgui-src-octave-dock-widget.cc.diff
 }
 
 if {[variant_isset qtgui]} {
