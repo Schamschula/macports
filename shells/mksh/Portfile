@@ -1,10 +1,10 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:filetype=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 135240 2015-04-20 04:07:59Z ionic@macports.org $
+# $Id: Portfile 138548 2015-07-11 23:00:35Z khindenburg@macports.org $
 
 PortSystem          1.0
 
 name                mksh
-version             R51
+version             R52
 categories          shells
 platforms           darwin
 maintainers         gmail.com:mschamschula openmaintainer
@@ -20,8 +20,8 @@ master_sites        https://www.mirbsd.org/MirOS/dist/mir/mksh/
 extract.suffix      .tgz
 worksrcdir          ${name}
 
-checksums           rmd160  11ad9db9b2f528b8bfd9c4600e68bd016064c9df \
-                    sha256  9feeaa5ff33d8199c0123675dec29785943ffc67152d58d431802bc20765dadf
+checksums           rmd160  a0b715f52db301dd5dd99a4c50c39646999a91d6 \
+                    sha256  45c2f5cdd2c63a6a831ffae65cea0afd021eabb983537aa21ff893ee38b3768f
 
 post-extract {
     file attributes ${worksrcpath}/Build.sh -permissions a+x
