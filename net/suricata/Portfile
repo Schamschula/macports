@@ -4,7 +4,7 @@
 PortSystem          1.0
 
 name                suricata
-version             2.0.10
+version             2.0.11
 categories          net security
 platforms           darwin
 maintainers         yahoo.fr:jul_bsd openmaintainer
@@ -27,7 +27,6 @@ master_sites        http://www.openinfosecfoundation.org/download/
 depends_build       port:autoconf port:automake
 depends_lib         port:pkgconfig port:libnet11 port:libpcap port:pcre \
                     port:libyaml port:libtool port:libmagic port:jansson
-depends_run         port:oinkmaster
 configure.env       AC_PROG_LIBTOOL=${prefix}/bin/glibtool \
                     LDFLAGS="-ljansson" CPPFLAGS=-I${prefix}/include
 configure.args      --enable-ipfw --enable-gccprotect \
@@ -160,8 +159,8 @@ post-activate {
 
 if {${subport} eq ${name}} {
 
-    checksums           rmd160  490a461b195bc22bbabbe6105eec8a4dfc2d7a1a \
-                        sha256  c8d1d3b6ce3d2a56577fca224424071afd921739d3859efc8a62229556d4beef
+checksums               rmd160  cfa66dd1809d2507be4f6eef3a42f96da0fc8f4e \
+                        sha256  c607f1e18e5636830f42a83f7c67e1466f07db82853f3a9dba4ab8c6c3bc656e
 
     patchfiles          patch-Makefile.in.diff \
                         patch-src-output-json.h.diff
