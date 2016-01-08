@@ -1,5 +1,5 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 140482 2015-09-20 08:33:08Z ryandesign@macports.org $
+# $Id: Portfile 144197 2016-01-04 17:14:39Z ryandesign@macports.org $
 
 PortSystem              1.0
 PortGroup               php 1.1
@@ -97,30 +97,36 @@ switch ${subport_branch} {
     }
     5.5 {
         epoch           2
-        version         5.5.29
+        version         5.5.30
         use_xz          yes
-        checksums       rmd160  17dca3a6ba6285eb383b6c4dd65d0689ab490064 \
-                        sha256  22c72d1b88c8d9a8ab9ca565e9ca5844287c006134098805d9a373a862bbbcad
+        checksums       rmd160  4da82b68d8f5a3e6abe0fe60bb8314c402170083 \
+                        sha256  d00dc06fa5e0f3de048fb0cf940b3cc59b43b3f8cad825d4fffb35503cf2e8f2
     }
     5.6 {
         epoch           2
-        version         5.6.16
+        version         5.6.17
         use_xz          yes
-        checksums       rmd160  1da892a5a935c49b423c6d2190c658e3e9c99a3f \
-                        sha256  8ef43271d9bd8cc8f8d407d3ba569de9fa14a28985ae97c76085bb50d597de98
+        checksums       rmd160  87caf3fa68cd0f80dd27e098377eef154f3123d3 \
+                        sha256  ea9d5749380c7c7171e131616466deacd7cb124b5010eafc34e551b0a7b0fb2c
     }
     7.0 {
+        epoch           2
+        version         7.0.2
+        use_xz          yes
+        checksums       rmd160  0a3c38ef09921118642839e2cdfed849589e1594 \
+                        sha256  556121271a34c442b48e3d7fa3d3bbb4413d91897abbb92aaeced4a7df5f2ab2
+    }
+    7.1 {
         # When this becomes a stable version, remove the overrides for homepage,
         # master_sites and livecheck, and update php.latest_stable_branch in the
         # php-1.1 portgroup.
-        epoch           1
-        version         7.0.0RC3
+        version         7.1.0alpha1
         homepage        http://qa.php.net/
         master_sites    http://downloads.php.net/~ab/
         use_xz          yes
-        checksums       md5     8ee634c37dabd88562e2d3ff978cfbe1 \
-                        rmd160  f71a920544fceed8b9fba7e6d3d7920462f32a0a \
-                        sha256  3d257471325502539b38a149a9420740c1409770761e4ae77855a4c4f0a4e8dd
+        checksums       md5     0123456789abcdef0123456789abcdef \
+                        rmd160  0123456789abcdef0123456789abcdef01234567 \
+                        sha256  0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
         livecheck.url   ${homepage}
         livecheck.regex php-([strsed ${subport_branch} {g/\\./\\./}](?:\\.\[0-9.\]+)*(?:(?:alpha|beta|RC)\\d+|-latest))\\.tar
     }
@@ -172,7 +178,7 @@ if {[is_sapi_subport]} {
     # https://trac.macports.org/ticket/31590
     # Tested all subports (except oracle) and they built with clang-425.  The reported failure was with Xcode 4.2.
     # Xcode 4.3 may work, but leaving it blacklisted due to lack of testing
-    compiler.blacklist  {clang < 400} macports-clang-2.9 macports-clang-3.0 macports-clang-3.1
+    compiler.blacklist  {clang < 400}
     
     set phpinidir       ${prefix}/etc/${php}
     set extraphpinidir  ${prefix}/var/db/${php}
@@ -311,7 +317,7 @@ subport ${php} {
         if {[vercmp ${branch} 5.3] >= 0} {
             # Copy mysqlnd headers.
             xinstall -d ${destroot}${prefix}/include/${php}/php/ext/mysqlnd
-            eval xinstall -m 644 [glob ${worksrcpath}/ext/mysqlnd/*.h] ${destroot}${prefix}/include/${php}/php/ext/mysqlnd
+            xinstall -m 644 {*}[glob ${worksrcpath}/ext/mysqlnd/*.h] ${destroot}${prefix}/include/${php}/php/ext/mysqlnd
         }
     }
     
@@ -335,16 +341,13 @@ subport ${php} {
         default_variants +libedit
     }
     
-    if {[vercmp ${branch} 5.4] < 0} {
+    if {[vercmp ${branch} 5.5] < 0} {
         notes-append "
-PHP ${branch} has reached end-of-life. Please upgrade to PHP 5.4 or newer. The newest stable version is ${php.latest_stable_branch}.
+PHP ${branch} has reached end-of-life. Please upgrade to PHP 5.5 or newer. The newest stable version is ${php.latest_stable_branch}.
 
 To learn how to update your code, please read the following guides:
 
-    http://php.net/manual/en/migration53.php
-    http://php.net/manual/en/migration54.php
-    http://php.net/manual/en/migration55.php
-    http://php.net/manual/en/migration56.php
+    http://php.net/manual/en/migration[php.suffix_from_branch ${php.latest_stable_branch}].php
 
 
 "
@@ -606,6 +609,10 @@ subport ${php}-ftp {
 }
 
 subport ${php}-gd {
+    switch -- ${version} {
+        7.0.1               {revision 1}
+    }
+    
     categories-append       graphics
     
     description             a PHP interface to the gd library
@@ -1213,9 +1220,6 @@ subport ${php}-tidy {
         5.2.17              {revision 2}
         5.3.29              {revision 2}
         5.4.45              {revision 1}
-        5.5.29              {revision 1}
-        5.6.13              {revision 1}
-        7.0.0RC3            {revision 1}
     }
     
     categories-append       www
