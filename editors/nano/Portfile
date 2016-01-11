@@ -1,0 +1,57 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:filetype=tcl:et:sw=4:ts=4:sts=4
+# $Id: Portfile 144504 2016-01-10 17:08:35Z khindenburg@macports.org $
+
+PortSystem      1.0
+
+name            nano
+version         2.5.1
+categories      editors
+platforms       darwin freebsd
+license         GPL-3
+maintainers     nomaintainer
+description     Nano is ANOther editor - enhanced free Pico Clone
+
+long_description \
+    GNU nano is a small and friendly text editor. Besides basic text \
+    editing, nano offers many extra features like an interactive search \
+    and replace, goto line number, auto-indentation, feature toggles, \
+    internationalization support, and filename tab completion.
+
+homepage        http://www.nano-editor.org/
+master_sites    ${homepage}dist/v[strsed ${version} {/\.[0-9]*$//}]/ gnu
+
+checksums       rmd160  4a21384f2db96625bfb2edbead0e330268d42c29 \
+                sha256  e06fca01bf183f4d531aa65a28dffc0e2d10185239909eb3de797023f3453bde
+
+depends_lib     port:gettext \
+                port:libiconv \
+                port:libmagic \
+                port:ncurses \
+                port:zlib
+
+patchfiles      nawk.patch
+
+configure.args  --disable-wrapping-as-root \
+                --enable-nanorc \
+                --enable-utf8
+
+use_parallel_build  yes
+
+destroot.target install-strip
+
+set docdir      ${prefix}/share/doc/${name}
+
+post-destroot {
+    xinstall -d $destroot$docdir/html
+    xinstall -m 644 -W $worksrcpath AUTHORS COPYING ChangeLog INSTALL NEWS \
+        README THANKS TODO doc/nanorc.sample ${destroot}${docdir}
+    xinstall -m 644 -W $worksrcpath/doc faq.html texinfo/nano.html $destroot$docdir/html
+}
+
+notes "
+A sample configuration file is available at ${docdir}/nanorc.sample.
+"
+
+livecheck.url   ${homepage}
+livecheck.type  regex
+livecheck.regex "(\\d+\\.\\d+\\.\\d+)</font>"
