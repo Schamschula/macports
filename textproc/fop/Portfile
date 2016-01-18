@@ -3,7 +3,7 @@
 PortSystem 1.0
 
 name                fop
-version             2.0
+version             2.1
 categories          textproc java
 license             Apache-2
 maintainers         nomaintainer
@@ -30,13 +30,11 @@ homepage            http://xmlgraphics.apache.org/fop/
 # libraries from conflicts with other versions.
 distname            ${name}-${version}-bin
 master_sites        apache:xmlgraphics/fop/binaries/
-checksums           rmd160  c828215b2a8a0b62bd509306593cff8b3609454f \
-                    sha256  1e90cfc9e07c2da088592860fa4651a7640c9e1e3500b71a613a5dea03eb3665
+checksums           rmd160  0b261f214c2d841147f84a76ce14c78d473d1b59 \
+                    sha256  a93b59aa4d0b6d573c9090d8f21dee6c7d0c449a4bd2d48a1723e233dfb423ea
 worksrcdir          ${name}-${version}
 
 livecheck.regex     {(?i)<title>Apache FOP (.*)</title>}
-
-patchfiles          java_home.patch
 
 use_configure       no
 build   {}
@@ -70,9 +68,9 @@ destroot    {
 #variant source description {Build FOP from source instead} {
 #    distname            ${name}-${version}-src
 #    master_sites        apache:xmlgraphics/fop/source/
-#    checksums           md5 d0db54fe3a57a4eabf18599e339d2358 \
-#                        sha1 f54750e12ccdaa2e08c1c4f2b66f27580c84d1e4 \
-#                        rmd160 c828215b2a8a0b62bd509306593cff8b3609454f
+#    checksums           md5 184c578a6269a8287ed150e0fc12868d \
+#                        sha1 3efc0020fdbf14a12851acf6020ea723aebe2af6 \
+#                        rmd160 c047f7512a08120cfed07536c0849b2a999e96d4
 #
 #    depends_build       bin:ant:apache-ant
 #    build.env-append    JAVA_HOME=/Library/Java/Home
