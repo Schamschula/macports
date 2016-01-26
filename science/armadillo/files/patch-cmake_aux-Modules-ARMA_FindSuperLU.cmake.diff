@@ -1,19 +1,16 @@
---- cmake_aux/Modules/ARMA_FindSuperLU.cmake.orig	2015-03-26 10:42:03.000000000 -0500
-+++ cmake_aux/Modules/ARMA_FindSuperLU.cmake	2015-05-02 06:33:31.000000000 -0500
-@@ -6,6 +6,7 @@
- #  SuperLU_INCLUDE_DIR  - directory of SuperLU headers
- 
- find_path(SuperLU_INCLUDE_DIR slu_cdefs.h
+--- cmake_aux/Modules/ARMA_FindSuperLU.cmake.orig	2015-11-09 22:42:43.000000000 -0600
++++ cmake_aux/Modules/ARMA_FindSuperLU.cmake	2015-12-26 10:21:57.000000000 -0600
+@@ -12,11 +12,12 @@
+   /usr/local/include/superlu/
+   /usr/local/include/SuperLU/
+   /usr/local/include/
 +  /opt/local/include/
-   /usr/include/superlu/
-   /usr/include/SuperLU/
-   /usr/include/
-@@ -16,7 +17,7 @@
+ )
  
  find_library(SuperLU_LIBRARY
    NAMES superlu
 -  PATHS /usr/lib64 /usr/lib /usr/local/lib64 /usr/local/lib
-+  PATHS /opt/local/lib /usr/lib64 /usr/lib /usr/local/lib64 /usr/local/lib
++  PATHS /usr/lib64 /usr/lib /usr/local/lib64 /usr/local/lib /opt/local/lib
  )
  
  SET(SuperLU_FOUND NO)

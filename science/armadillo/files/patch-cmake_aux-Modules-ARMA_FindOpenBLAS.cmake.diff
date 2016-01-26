@@ -1,0 +1,11 @@
+--- cmake_aux/Modules/ARMA_FindOpenBLAS.cmake.orig	2015-12-26 10:25:03.000000000 -0600
++++ cmake_aux/Modules/ARMA_FindOpenBLAS.cmake	2015-12-26 10:25:22.000000000 -0600
+@@ -10,7 +10,7 @@
+ foreach (OpenBLAS_NAME ${OpenBLAS_NAMES})
+   find_library(${OpenBLAS_NAME}_LIBRARY
+     NAMES ${OpenBLAS_NAME}
+-    PATHS ${CMAKE_SYSTEM_LIBRARY_PATH} /lib64 /lib /usr/lib64 /usr/lib /usr/local/lib64 /usr/local/lib
++    PATHS ${CMAKE_SYSTEM_LIBRARY_PATH} /lib64 /lib /usr/lib64 /usr/lib /usr/local/lib64 /usr/local/lib /opt/local/lib
+     )
+   
+   set(OpenBLAS_TMP_LIBRARY ${${OpenBLAS_NAME}_LIBRARY})
