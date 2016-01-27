@@ -1,14 +1,14 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 143283 2015-12-09 21:34:01Z cal@macports.org $
+# $Id: Portfile 144800 2016-01-18 19:26:00Z cal@macports.org $
 
 PortSystem          1.0
 
 name                nginx
-version             1.9.9
+version             1.9.10
 categories          www mail
 platforms           darwin
 license             BSD
-maintainers         cal openmaintainer
+maintainers         cal gmail.com:mschamschula openmaintainer
 
 description         High-performance HTTP(S) server, HTTP(S) reverse proxy and IMAP/POP3 proxy server
 long_description    \
@@ -34,8 +34,8 @@ master_sites        http://nginx.org/download:nginx \
 
 distfiles           ${name}-${version}${extract.suffix}:nginx
 checksums           ${name}-${version}${extract.suffix} \
-                    rmd160  221623f7faa4984d285fc6b6442840c1f81b74b7 \
-                    sha256  de66bb2b11c82533aa5cb5ccc27cbce736ab87c9f2c761e5237cda0b00068d73
+                    rmd160  229bb3a24eb52bf28aaad01c88840810d352214c \
+                    sha256  fb14d76844cab0a5a0880768be28965e74f9956790f618c454ef6098e26631d9
 
 depends_lib         port:pcre \
                     port:zlib
@@ -50,7 +50,7 @@ set nginx_logdir    ${prefix}/var/log/${name}
 set nginx_rundir    ${prefix}/var/run/${name}
 set nginx_pidfile   ${nginx_rundir}/${name}.pid
 set nginx_all_confs {fastcgi.conf fastcgi_params mime.types nginx.conf scgi_params uwsgi_params}
-set auto_activate_confs {nginx.conf mime.types fastcgi_params}
+set auto_activate_confs {nginx.conf mime.types fastcgi.conf}
 
 # portfile-scoped vars for variant routines to re-def and use in port-stages (post-extract, pre-patch, etc)
 set nginx_upload_mod_dirname   ""
@@ -204,9 +204,9 @@ variant mp4 description {Enables mp4 streaming with seeking ability} {
 }
 
 variant perl5 description {Add perl support to the server directly within nginx and call perl via SSI} {
-    depends_lib-append      port:perl5.16
+    depends_lib-append      port:perl5.22
     configure.args-append   --with-http_perl_module \
-                            --with-perl=${prefix}/bin/perl5.16
+                            --with-perl=${prefix}/bin/perl5.22
 }
 
 variant random_index description {Randomize directory indexes} {
@@ -234,8 +234,11 @@ variant substitution description {Replace text in pages} {
     configure.args-append   --with-http_sub_module
 }
 
-variant stream description {Enable ngx_stream_core_module for generic TCP proxying and load balancing} {
+variant stream description {Enable ngx_stream_core_module for generic TCP proxying and load balancing (install with +ssl to enable ngx_stream_ssl_module)} {
     configure.args-append   --with-stream
+    if {[variant_isset ssl]} {
+        configure.args-append   --with-stream_ssl_module
+    }
 }
 
 variant upload description {Enable Valery Kholodkov's upload module (http://grid.net.ru/nginx/upload.en.html)} {
