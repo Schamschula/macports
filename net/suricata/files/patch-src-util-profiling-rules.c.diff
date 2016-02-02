@@ -1,0 +1,14 @@
+--- src/util-profiling-rules.c.orig	2016-02-01 18:08:07.000000000 -0600
++++ src/util-profiling-rules.c	2016-02-01 18:09:13.000000000 -0600
+@@ -36,7 +36,11 @@
+ #include "util-profiling.h"
+ #include "util-profiling-locks.h"
+ 
++#ifdef HAVE_LIBJANSSON
++
+ #ifdef PROFILING
++#include <jansson.h>
++#endif
+ 
+ /**
+  * Extra data for rule profiling.

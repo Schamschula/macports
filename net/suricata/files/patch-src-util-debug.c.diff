@@ -1,0 +1,10 @@
+--- src/util-debug.c.orig	2016-02-01 16:50:39.000000000 -0600
++++ src/util-debug.c	2016-02-01 16:51:10.000000000 -0600
+@@ -189,6 +189,7 @@
+ }
+ 
+ #ifdef HAVE_LIBJANSSON
++#include <jansson.h>
+ /**
+  */
+ int SCLogMessageJSON(struct timeval *tval, char *buffer, size_t buffer_size,

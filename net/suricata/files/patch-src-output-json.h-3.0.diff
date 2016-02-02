@@ -1,0 +1,11 @@
+--- src/output-json.h.orig	2016-01-22 09:57:14.000000000 -0600
++++ src/output-json.h	2016-02-01 16:20:26.000000000 -0600
+@@ -32,6 +32,8 @@
+ #include "util-buffer.h"
+ #include "util-logopenfile.h"
+ 
++#include <jansson.h>
++
+ void CreateJSONFlowId(json_t *js, const Flow *f);
+ void JsonTcpFlags(uint8_t flags, json_t *js);
+ json_t *CreateJSONHeader(Packet *p, int direction_sensative, char *event_type);

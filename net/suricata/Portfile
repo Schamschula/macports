@@ -171,14 +171,17 @@ checksums               rmd160  cfa66dd1809d2507be4f6eef3a42f96da0fc8f4e \
 
 subport ${name}-devel {
 
-    version             2.1beta1
-    checksums           rmd160  c85c27f306d6eee05fe1058a0032e5d65e648a33 \
-                        sha256  c3d71638c1c672203eb4665292955438de67825c6736cb6e77f3eb17f84ec352
-
+    version             3.0
+    checksums           rmd160  94e9d389d4c43a09a9ef9bd8160491dffb6fd9ad \
+                        sha256  4b8feb398a0800c955fe24aa31ca446c539e79492155717e826473f902c8e65a
+    
+    destroot.target     install-full
+    
     ## Got both strlcpy/strlcat errors and "error: unknown type name 'json_t'"
-    patchfiles          patch-configure.ac2.diff \
-                        patch-src-suricata-common.h.diff \
-                        patch-src-suricata-common.h2.diff
+    patchfiles          patch-src-output-json.h-3.0.diff \
+                        patch-src-output-json-alert.h.diff \
+                        patch-src-util-debug.c.diff \
+                        patch-src-util-profiling-rules.c.diff
 
     conflicts  ${name} ${name}1
     livecheck.regex     "<strong>Suricata \\(Development\\) version is (\\d+(?:\\.\\d+)(\\w*)*), "
@@ -262,3 +265,4 @@ startupitem.netchange   yes
 
 livecheck.type      regex
 livecheck.url       ${homepage}/download/
+livecheck.regex     ${name}-(\[0-9.\]+)${extract.suffix}
