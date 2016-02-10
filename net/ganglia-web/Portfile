@@ -27,3 +27,7 @@ patchfiles          patch-Makefile.diff
 use_configure       no
 
 build {}
+
+livecheck.type      regex
+livecheck.url       ${homepage}
+livecheck.regex     "Ganglia Web (\[\\d.\]+)"
