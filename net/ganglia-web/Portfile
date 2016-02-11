@@ -24,6 +24,10 @@ depends_run         path:sbin/httpd:apache2
 
 patchfiles          patch-Makefile.diff
 
+post-patch {
+    reinplace "s|@PREFIX@|${prefix}|g" ${worksrcpath}/Makefile 
+}
+
 use_configure       no
 
 build {}
