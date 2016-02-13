@@ -1,0 +1,25 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:et:sw=4:ts=4:sts=4
+# $Id: Portfile 143911 2015-12-26 17:42:16Z michaelld@macports.org $
+
+PortSystem          1.0
+PortGroup           octave 1.0
+PortGroup           compiler_blacklist_versions 1.0
+
+octave.setup        interval 1.4.1
+platforms           darwin
+license             GPL-3+
+maintainers         gmail.com:mschamschula openmaintainer
+description         The interval package for real-valued interval arithmetic provides \
+                    data types and operations for verified computing.
+long_description    ${description} It can be used to handle uncertainties, estimate \
+                    arithmetic errors and produce reliable results. Also it can help \
+                    find guaranteed solutions to numerical problems. Thanks to GNU MPFR \
+                    many arithmetic operations are provided with best possible accuracy. \
+                    The implementation of intervals in inf-sup format is based on \
+                    interval boundaries represented by binary64 numbers and is standard \
+                    conforming to IEEE 1788.
+
+checksums           rmd160 2bfd5d7c66d7e9e87d367ba1a56dceefd64ec89c \
+                    sha256 882febd75c891a4914b94729b1803ce2d0ae459b64e430c2f0d989f0febde307
+
+depends_lib-append  port:mpfr port:gmp
