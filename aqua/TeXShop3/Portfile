@@ -1,13 +1,12 @@
-
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 141275 2015-10-14 05:27:31Z jwa@macports.org $
+# $Id: Portfile 142642 2015-11-18 11:46:30Z jwa@macports.org $
 
 PortSystem      1.0
 PortGroup       xcode 1.0
 
 name            TeXShop3
 conflicts	TeXShop
-version         3.58
+version         3.60
 
 set major       [lindex [split ${version} .] 0]
 categories      aqua editors
@@ -21,16 +20,15 @@ long_description   \
     typeset, these programs in the standard teTeX distribution  \
     of TeX produce pdf output instead of dvi output.
 homepage        http://pages.uoregon.edu/koch/texshop
-master_sites    http://pages.uoregon.edu/koch
+master_sites    ${homepage}/texshop-64
 use_zip         yes
 distname        texshopsource[strsed ${version} {/\.//}]
 dist_subdir     TeXShop/
-#worksrcdir      texshopsource${version}
 worksrcdir      texshopsource[strsed ${version} {/\.//}]
 set propername	TeXShop
 
-checksums           rmd160  eeaffdb252c48eefc7cb98e23d23798ae9ca10b0 \
-                    sha256  e70589a26e80117ca9107e427630d7ba96fb23af822f4b6cd0396035413c17ec
+checksums           rmd160  bcbe1f51ff3798ca48851f7929b2002e99bdab1b \
+                    sha256  c52eb4a98bc7162a7edc7aecc5681974b75004b22ccc6ac28ed083a965d1594a
 
 pre-fetch {
     platform darwin {
@@ -41,24 +39,13 @@ pre-fetch {
     }
 }
 
-platform darwin 12 {
-    patchfiles-append	patch-MyPDFKitView.m.diff patch-TSAppDelegate.m.diff
-}
-
-platform darwin 13 {
-    patchfiles-append	patch-MyPDFKitView.m.diff patch-TSAppDelegate.m.diff
-}
-
-platform darwin 14 {
-    patchfiles-append	patch-TSAppDelegate.m.diff
-}
+# error: -fobjc-arc is not supported on platforms using the legacy runtime
+supported_archs x86_64
 
 post-extract    {
     set ogrekit "OgreKit.framework/Versions/A/OgreKit"
-    if {![variant_isset universal]} {
-        # thin the bundled frameworks
-        system "cd ${worksrcpath} && lipo -thin ${configure.build_arch} $ogrekit -output $ogrekit"
-    }
+    # thin the bundled frameworks
+    system -W ${worksrcpath} "lipo -thin ${configure.build_arch} ${ogrekit} -output ${ogrekit}"
 }
 
 macosx_deployment_target     10.7
@@ -68,7 +55,9 @@ build.target    ${propername}
 xcode.project   ${propername}.xcodeproj
 xcode.configuration Release
 xcode.build.settings    FRAMEWORK_SEARCH_PATHS=${worksrcpath} \
-                        CONFIGURATION_BUILD_DIR=${worksrcpath}/build
+                        CONFIGURATION_BUILD_DIR=${worksrcpath}/build \
+                        CODE_SIGN_IDENTITY= \
+                        CODE_SIGNING_REQUIRED=NO
 
 destroot.target     ${propername}
 eval xcode.destroot.settings INSTALL_MODE_FLAG=755 ${xcode.build.settings}
