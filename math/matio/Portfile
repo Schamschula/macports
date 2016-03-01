@@ -4,7 +4,7 @@
 PortSystem              1.0
 
 name                    matio
-version                 1.5.4
+version                 1.5.6
 
 # handle stealth update. Remove or comment out with next version update.
 #revision                1
@@ -25,8 +25,8 @@ long_description        Matio is a library for reading and writing Matlab \
 homepage                http://sourceforge.net/projects/matio
 master_sites            sourceforge
 
-checksums               rmd160  fd9a7a4a1b3d84d0bf3f3410360ef38e4075a4e1 \
-                        sha256  90d16dfea9070d241ef5818fee2345aee251a3c55b86b5d0314967e61fcd18ef
+checksums               rmd160  cc29dc38ee26fc1c37040fb66e6aa30b08589fe6 \
+                        sha256  39a6e6a40d9fd8d707f4494483b8df30ffd617ba0a19c663e3685ad55ff55878
 
 depends_lib             path:lib/libhdf5.dylib:hdf5 \
                         port:zlib
