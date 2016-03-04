@@ -1,0 +1,96 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id: Portfile 141688 2015-10-26 20:27:01Z ryandesign@macports.org $
+
+PortSystem      1.0
+
+name            tk
+version         8.6.5
+revision        0
+categories      x11
+license         Tcl/Tk
+maintainers     mww openmaintainer
+description     Tcl Tool Kit
+homepage        http://www.tcl.tk/
+long_description \
+  This is Tk version ${version}, a GUI toolkit for Tcl. The best way to get \
+  started with Tcl is to read ``Tcl and the Tk Toolkit'' by John K.         \
+  Ousterhout, Addison-Wesley, ISBN 0-201-63337-X.
+
+platforms       darwin
+
+master_sites    sourceforge:project/tcl/Tcl/${version}
+dist_subdir     tcltk
+distname        ${name}${version}-src
+
+# suck in Tcl as well so we can use it internally.
+distfiles-append    tcl${version}-src${extract.suffix}
+
+checksums           tk${version}-src.tar.gz \
+                    rmd160  dc34fe23e2aa018dfe70d082d99793a48b37aa84 \
+                    sha256  fbbd93541b4cd467841208643b4014c4543a54c3597586727f0ab128220d7946 \
+                    tcl${version}-src.tar.gz \
+                    rmd160  6c31d99775fb7b2c7aeb0d0fb20f2796d75215c2 \
+                    sha256  ce26d5b9c7504fc25d2f10ef0b82b14cf117315445b5afa9e673ed331830fb53
+
+depends_build   port:pkgconfig
+
+# force usage of MacPorts Tcl
+depends_lib \
+    port:tcl \
+    port:Xft2 \
+    port:xorg-libXScrnSaver \
+    port:fontconfig
+
+worksrcdir      ${name}${version}/unix
+
+patch.dir           ${workpath}/${name}${version}
+patchfiles          patch-unix-Makefile.in.diff
+
+post-patch {
+    reinplace s|@TCL_SRC_DIR@|${workpath}/tcl${version}/|g ${worksrcpath}/Makefile.in
+}
+
+configure.args      --mandir=${prefix}/share/man --with-tcl=${prefix}/lib
+configure.cppflags  -I${workpath}/tcl${version}/generic
+configure.ldflags   -L${worksrcpath} -L${prefix}/lib -lfontconfig
+
+destroot.destdir    INSTALL_ROOT=${destroot}
+post-destroot {
+    ln -s wish8.6 ${destroot}${prefix}/bin/wish
+    ln -s libtk8.6.dylib ${destroot}${prefix}/lib/libtk.dylib
+}
+
+if {${configure.build_arch} eq "x86_64" || ${configure.build_arch} eq "ppc64"} {
+    configure.args-append   --enable-64bit
+}
+
+if {${os.platform} eq "darwin" && ${os.subplatform} eq "macosx" && ${os.major} >= 10} {
+    variant quartz conflicts x11 {
+        depends_lib-delete port:Xft2 port:xorg-libXScrnSaver port:fontconfig
+        # tk.h still includes and uses types from X11/Xlib.h
+        depends_lib-append port:xorg-libX11
+        configure.ldflags-delete    -lfontconfig
+        configure.args-append   --enable-aqua
+        post-destroot {
+            delete ${destroot}${prefix}/include/X11
+        }
+    }
+
+    variant x11 conflicts quartz {}
+
+    if {![variant_isset quartz]} {
+        default_variants +x11
+    }
+} else {
+    # Even though X11 is the only option, make a variant so that other ports
+    # can check for it being set with require_active_variants.
+    variant x11 {}
+    default_variants +x11
+}
+
+platform darwin {
+    configure.args-append   tcl_cv_type_64bit="long long"
+}
+
+livecheck.type  regex
+livecheck.regex {Tcl/Tk (\d+(?:\.\d+)*)</a>}
