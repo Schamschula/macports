@@ -1,10 +1,10 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:filetype=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 124327 2014-08-22 21:51:50Z ryandesign@macports.org $
+# $Id: Portfile 135623 2015-04-28 06:57:13Z devans@macports.org $
 
 PortSystem          1.0
 
 name                grsync
-version             1.2.5
+version             1.2.6
 categories          net
 platforms           darwin
 maintainers         gmail.com:mschamschula openmaintainer
@@ -17,20 +17,23 @@ long_description    Grsync makes use of the GTK libraries to synchronize folders
 homepage            http://www.opbyte.it/grsync/
 master_sites        http://www.opbyte.it/release/
 
-checksums           rmd160  c03d4a6857c677a7877650344a0d7d3ed1e8dfa5 \
-                    sha256  4f1443154f7c85ca7b0e93d5fea438e2709776005e7cfc97da89f4899b1c12e5
+checksums           rmd160  a8296e8c4b0961f177e09538048ea1d6d5e7ffdb \
+                    sha256  66d5acea5e6767d6ed2082e1c6e250fe809cb1e797cbbee5c8e8a2d28a895619
 
 depends_build       port:intltool \
-                    port:pkgconfig
+                    port:pkgconfig \
+                    port:autoconf \
+                    port:automake \
+                    port:libtool
 
 depends_lib         port:desktop-file-utils \
                     port:rsync \
                     port:gtk2
 
-# autoreconf to fix intltool perl configuration using our intltool.m4
+# grsync's autogen.sh does not run intltoolize so first run intltoolize manually then
+# reconfigure using upstream autogen.sh for intltool 0.51 compatibility
 
-use_autoreconf      yes
-autoreconf.args     -fvi
+configure.cmd       intltoolize --automake --copy --force && ./autogen.sh && ./configure
 
 configure.args      --disable-unity
 
