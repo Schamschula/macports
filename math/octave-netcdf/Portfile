@@ -1,17 +1,17 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:et:sw=4:ts=4:sts=4
-# $Id: Portfile 137637 2015-06-15 17:17:38Z larryv@macports.org $
+# $Id: Portfile 145577 2016-02-09 23:18:17Z khindenburg@macports.org $
 
 PortSystem          1.0
 PortGroup           octave 1.0
 
-octave.setup        netcdf 1.0.8
+octave.setup        netcdf 1.0.9
 platforms           darwin
 license             GPL-2+
 maintainers         gmail.com:mschamschula openmaintainer
 description         A MATLAB compatible NetCDF interface for Octave.
 long_description    ${description}
 
-checksums           rmd160 99b95f41aeb6f833ed16dc24cef21ab12656b128 \
-                    sha256 6678c790b613912f60fdc9d8d06c4609e3c3e4836feba47f7fe5274d31a8e3f8
+checksums           rmd160 7ce8e03f4bf0d5aee2131f28e39a6853e2992384 \
+                    sha256 3a074d796ab8f256b215d0d1b4853f26501082494cf5b4881afcb2ae2c01d83e
 
 depends_lib-append  port:netcdf
