@@ -1,10 +1,10 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 145690 2016-02-13 00:05:11Z cal@macports.org $
+# $Id: Portfile 146517 2016-03-10 17:49:28Z raimue@macports.org $
 
 PortSystem          1.0
 
 name                nginx
-version             1.9.12
+version             1.9.13
 categories          www mail
 platforms           darwin
 license             BSD
@@ -34,8 +34,8 @@ master_sites        http://nginx.org/download:nginx \
 
 distfiles           ${name}-${version}${extract.suffix}:nginx
 checksums           ${name}-${version}${extract.suffix} \
-                    rmd160  db1c8f7b581d0406da9b5dec7a885901e5a8ca53 \
-                    sha256  1af2eb956910ed4b11aaf525a81bc37e135907e7127948f9179f5410337da042
+                    rmd160  5bbb432e5abe83c300fd3009ee047cd315a38385 \
+                    sha256  f7cd529a5879cd9cd5b62e6fc4a3a7e8d8363cb12c080ab480cc718c55736609
 
 depends_lib         port:pcre \
                     port:zlib
