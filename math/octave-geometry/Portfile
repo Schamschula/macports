@@ -1,10 +1,10 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:et:sw=4:ts=4:sts=4
-# $Id: Portfile 134931 2015-04-11 02:54:54Z khindenburg@macports.org $
+# $Id: Portfile 145604 2016-02-10 19:48:05Z michaelld@macports.org $
 
 PortSystem          1.0
 PortGroup           octave 1.0
 
-octave.setup        geometry 2.1.0
+octave.setup        geometry 2.1.1
 platforms           darwin
 license             GPL-2+
 maintainers         gmail.com:mschamschula openmaintainer
@@ -13,7 +13,7 @@ description         Library for geometric computing extending MatGeom functions.
                     primitives.
 long_description    ${description}
 
-checksums           rmd160 94693769d15baf21606dacc0f20883fd21eb207a \
-                    sha256 a51d4b97ec84e2ab4c1d81ba82a983493538eefcad693ebdec9043210ffb47ff
+checksums           rmd160 2fe378a9b47ced803fa780a74c5002359bdde807 \
+                    sha256 6d089df0d58c701d703cf055c5a8ef7b39e64f6bb918a0656e05aef28ec59b51
 
 depends_lib-append  port:octave-general
