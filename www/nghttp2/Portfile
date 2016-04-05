@@ -37,7 +37,6 @@ depends_lib         port:jansson \
                     port:libevent \
                     port:libxml2 \
                     path:lib/libssl.dylib:openssl \
-                     \
                     port:zlib
 
 configure.args      --disable-silent-rules \
