@@ -1,5 +1,5 @@
---- CMakeLists.txt.orig	2016-02-13 13:03:50.000000000 -0600
-+++ CMakeLists.txt	2016-02-17 19:16:40.000000000 -0600
+--- CMakeLists.txt.orig
++++ CMakeLists.txt
 @@ -569,9 +569,9 @@
  	if(NOT MSVC AND NOT BORLAND)
  		add_subdirectory( utils )
