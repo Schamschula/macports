@@ -1,0 +1,43 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id$
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-acme
+version             0.5.0
+worksrcdir          acme-${version}
+distfiles           acme-${version}${extract.suffix}
+categories          python
+license             Apache-2
+maintainers         gmail.com:mschamschula openmaintainer
+description         ACME protocol implementation in Python.
+long_description    ${description}
+platforms           darwin
+homepage            https://pypi.python.org/pypi/acme
+master_sites        pypi:a/acme
+
+python.versions     27 34 35
+
+checksums           rmd160  88e0e758035d9f017af7549e40f7dddd66216953 \
+                    sha256  0605c63c656d33c883a05675f5db9cfb85d503f2771c885031800e0da7631abd
+
+depends_build-append \
+                    port:py-funcsigs \
+                    port:py-mock \
+                    port:py-nose
+
+depends_lib-append  port:py-asn1 \
+                    port:py-cryptography \
+                    port:py-ndg_httpsclient \
+                    port:py-idna \
+                    port:py-openssl \
+                    port:py-requests \
+                    port:py-rfc3339 \
+                    port:py-setuptools \
+                    port:py-six \
+                    port:py-tz \
+                    port:py-werkzeug
+
+livecheck.type      regex
+livecheck.regex     acme-(\[0-9.\]+)${extract.suffix}
