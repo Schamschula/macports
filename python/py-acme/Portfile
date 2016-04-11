@@ -23,22 +23,25 @@ python.versions     27 34 35
 checksums           rmd160  88e0e758035d9f017af7549e40f7dddd66216953 \
                     sha256  0605c63c656d33c883a05675f5db9cfb85d503f2771c885031800e0da7631abd
 
-depends_build-append \
-                    port:py-funcsigs \
-                    port:py-mock \
-                    port:py-nose
+if {${name} ne ${subport}} {
+    depends_build-append \
+                    port:py${python.version}-funcsigs \
+                    port:py${python.version}-mock \
+                    port:py${python.version}-nose
 
-depends_lib-append  port:py-asn1 \
-                    port:py-cryptography \
-                    port:py-ndg_httpsclient \
-                    port:py-idna \
-                    port:py-openssl \
-                    port:py-requests \
-                    port:py-rfc3339 \
-                    port:py-setuptools \
-                    port:py-six \
-                    port:py-tz \
-                    port:py-werkzeug
-
-livecheck.type      regex
-livecheck.regex     ${real_name}-(\[0-9.\]+)${extract.suffix}
+    depends_lib-append  \
+                    port:py${python.version}-asn1 \
+                    port:py${python.version}-cryptography \
+                    port:py${python.version}-ndg_httpsclient \
+                    port:py${python.version}-idna \
+                    port:py${python.version}-openssl \
+                    port:py${python.version}-requests \
+                    port:py${python.version}-rfc3339 \
+                    port:py${python.version}-setuptools \
+                    port:py${python.version}-six \
+                    port:py${python.version}-tz \
+                    port:py${python.version}-werkzeug
+} else {
+    livecheck.type      regex
+    livecheck.regex     ${real_name}-(\[0-9.\]+)${extract.suffix}
+}

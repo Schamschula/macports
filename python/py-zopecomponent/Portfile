@@ -23,9 +23,12 @@ python.versions     27 34 35
 checksums           rmd160  ea426b44f4917e651487669c0571ff25e3a95d6b \
                     sha256  282c112b55dd8e3c869a3571f86767c150ab1284a9ace2bdec226c592acaf81a
 
-depends_lib-append  port:py-setuptools \
-                    port:py-zope-event \
-                    port:py-zopeinterface
-
-livecheck.type      regex
-livecheck.regex     ${real_name}-(\[0-9.\]+)${extract.suffix}
+if {${name} ne ${subport}} {
+    depends_lib-append  \
+                    port:py${python.version}-setuptools \
+                    port:py${python.version}-zope-event \
+                    port:py${python.version}-zopeinterface
+} else {
+    livecheck.type      regex
+    livecheck.regex     ${real_name}-(\[0-9.\]+)${extract.suffix}
+}
