@@ -4,10 +4,11 @@
 PortSystem          1.0
 PortGroup           python 1.0
 
-name                py-acme
+set real_name       acme
+name                py-${real_name}
 version             0.5.0
-worksrcdir          acme-${version}
-distfiles           acme-${version}${extract.suffix}
+worksrcdir          ${real_name}-${version}
+distfiles           ${real_name}-${version}${extract.suffix}
 categories          python
 license             Apache-2
 maintainers         gmail.com:mschamschula openmaintainer
@@ -40,4 +41,4 @@ depends_lib-append  port:py-asn1 \
                     port:py-werkzeug
 
 livecheck.type      regex
-livecheck.regex     acme-(\[0-9.\]+)${extract.suffix}
+livecheck.regex     ${real_name}-(\[0-9.\]+)${extract.suffix}
