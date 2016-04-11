@@ -9,7 +9,7 @@ name                py-${real_name}
 version             0.4.0
 worksrcdir          ${real_name}-${version}
 distfiles           ${real_name}-${version}${extract.suffix}
-categories          python net
+categories-append   net
 license             BSD
 maintainers         gmail.com:mschamschula openmaintainer
 description         This is a HTTPS client implementation for httplib and urllib2 based \

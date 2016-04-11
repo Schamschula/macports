@@ -9,7 +9,7 @@ name                py-${real_name}
 version             0.5.0
 worksrcdir          ${real_name}-${version}
 distfiles           ${real_name}-${version}${extract.suffix}
-categories          python
+categories-append   security
 license             Apache-2
 maintainers         gmail.com:mschamschula openmaintainer
 description         ACME protocol implementation in Python.

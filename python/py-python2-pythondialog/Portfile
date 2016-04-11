@@ -9,7 +9,6 @@ name                py-${real_name}
 version             3.3.0
 worksrcdir          ${real_name}-${version}
 distfiles           ${real_name}-${version}${extract.suffix}
-categories          python
 license             LGPL-21
 maintainers         gmail.com:mschamschula openmaintainer
 description         pythondialog is a Python wrapper for the UNIX dialog utility.
