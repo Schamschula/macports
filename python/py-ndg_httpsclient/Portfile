@@ -4,10 +4,11 @@
 PortSystem          1.0
 PortGroup           python 1.0
 
-name                py-ndg_httpsclient
+set real_name       ndg_httpsclient
+name                py-${real_name}
 version             0.4.0
-worksrcdir          ndg_httpsclient-${version}
-distfiles           ndg_httpsclient-${version}${extract.suffix}
+worksrcdir          ${real_name}-${version}
+distfiles           ${real_name}-${version}${extract.suffix}
 categories          python net
 license             BSD
 maintainers         gmail.com:mschamschula openmaintainer
@@ -29,4 +30,4 @@ depends_lib-append  port:py-asn1 \
                     port:py-openssl
 
 livecheck.type      regex
-livecheck.regex     ndg_httpsclient-(\[0-9.\]+)${extract.suffix}
+livecheck.regex     ${real_name}-(\[0-9.\]+)${extract.suffix}
