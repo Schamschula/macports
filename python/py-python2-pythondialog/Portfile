@@ -4,10 +4,11 @@
 PortSystem          1.0
 PortGroup           python 1.0
 
-name                py-python2-pythondialog
+set real_name       python2-pythondialog
+name                py-${real_name}
 version             3.3.0
-worksrcdir          python2-pythondialog-${version}
-distfiles           python2-pythondialog-${version}${extract.suffix}
+worksrcdir          ${real_name}-${version}
+distfiles           ${real_name}-${version}${extract.suffix}
 categories          python
 license             LGPL-21
 maintainers         gmail.com:mschamschula openmaintainer
@@ -23,4 +24,4 @@ checksums           rmd160  ef68361d877be373b5a8f98109c8c601563a6eac \
                     sha256  3e6f593fead98f8a526bc3e306933533236e33729f552f52896ea504f55313fa
 
 livecheck.type      regex
-livecheck.regex     python2-pythondialog-(\[0-9.\]+)${extract.suffix}
+livecheck.regex     ${real_name}-(\[0-9.\]+)${extract.suffix}
