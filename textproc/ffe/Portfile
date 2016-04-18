@@ -1,10 +1,10 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:filetype=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 140601 2015-09-27 02:28:15Z ryandesign@macports.org $
+# $Id: Portfile 143995 2015-12-29 16:14:48Z mf2k@macports.org $
 
 PortSystem          1.0
 
 name                ffe
-version             0.3.6
+version             0.3.6-1
 categories          textproc
 platforms           darwin
 maintainers         gmail.com:mschamschula openmaintainer
@@ -20,8 +20,8 @@ long_description    Flat file extractor (ffe) can be used for parsing different 
 homepage            http://ff-extractor.sourceforge.net/
 master_sites        sourceforge:project/ff-extractor/ff-extractor/${version}/
 
-checksums           rmd160  d180e25e3c3b307730a4d3f6348d497c4cb42a90 \
-                    sha256  f508a0698d9ebdfefd41f150634ee97b2c4b3831577dd27d0156893d0c5f0b3c
+checksums           rmd160  9044f6e11b0a234d314bb89817c22f675b74c99e \
+                    sha256  11da84f9e45fa20170a434d1587135c229771a192c97817b493035aeec33e886
 
 livecheck.type          regex
 livecheck.url           http://sourceforge.net/projects/ff-extractor/files/
