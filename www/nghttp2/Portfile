@@ -1,11 +1,11 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 147493 2016-04-05 20:30:36Z cal@macports.org $
+# $Id: Portfile 147513 2016-04-06 12:17:13Z khindenburg@macports.org $
 
 PortSystem          1.0
 PortGroup           cxx11 1.0
 PortGroup           github 1.0
 
-github.setup        tatsuhiro-t nghttp2 1.9.2 v
+github.setup        tatsuhiro-t nghttp2 1.10.0 v
 categories          www
 platforms           darwin
 maintainers         gmail.com:mschamschula openmaintainer
@@ -19,12 +19,12 @@ long_description    ${description} Included are a HTTP/2 client, server and prox
 github.tarball_from releases
 use_xz              yes
 
-checksums           rmd160 ef40a5c6782294116863e22890c0a74a54715fdb \
-                    sha256 3d600ef8bfd151769559bc23806877b8b4eaf3d66776e6c1427b9c04cce8e853
+checksums           rmd160 69bebd4e0ec0592f6c1212b77a9526f185a98ea2 \
+                    sha256 c7e4624d91f32cddfd81233361804c004ef5295851b93e31f95f54a224e5091f
 
 if {![variant_isset python34] && ![variant_isset python35] } { default_variants +python27 }
 
-if {![variant_isset python27] && ![variant_isset python34] && ![variant_isset python35]} { 
+if {![variant_isset python27] && ![variant_isset python34] && ![variant_isset python35]} {
     error "You must select one of the python variants."
 }
 
