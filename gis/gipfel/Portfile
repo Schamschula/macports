@@ -1,0 +1,29 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id$
+
+PortSystem          1.0
+
+name                gipfel
+version             0.4.0
+categories          gis graphics
+license             
+maintainers         mps openmaintainer
+description         gipfel helps to find the names of mountains or points of interest on \
+                    a picture.
+long_description    ${description} It uses a database containing names and GPS data. \
+                    With the given viewpoint (the point from which the picture was taken) \
+                    and two known mountains on the picture, gipfel can compute all \
+                    parameters needed to compute the positions of other mountains on the \
+                    picture.
+platforms           darwin
+homepage            http://flpsed.org/gipfel.html
+master_sites        http://flpsed.org/
+
+checksums           rmd160  34baf7241f4b18d119a5cc0300aa5912284c6de6 \
+                    sha256  30d155b436bdb03f6157d7279f4d342dd811ec85ed4adf1a2677ac3320d889ed
+
+depends_lib         port:fltk \
+                    port:exiv2 \
+                    port:gsl \
+                    port:jpeg \
+                    port:tiff
