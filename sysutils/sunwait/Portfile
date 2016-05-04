@@ -40,3 +40,8 @@ build.target        sunwait
 destroot {
     xinstall -m 755 ${worksrcpath}/sunwait ${destroot}${prefix}/bin
 }
+
+livecheck.type      regex
+livecheck.url       https://sourceforge.net/projects/sunwait4windows/files/
+livecheck.regex     (${name}\[0-9\-\]+)${extract.suffix}
+livecheck.version   ${distname}
