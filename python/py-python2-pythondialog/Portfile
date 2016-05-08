@@ -6,7 +6,7 @@ PortGroup           python 1.0
 
 set real_name       python2-pythondialog
 name                py-${real_name}
-version             3.3.0
+version             3.4.0
 worksrcdir          ${real_name}-${version}
 distfiles           ${real_name}-${version}${extract.suffix}
 license             LGPL-21
@@ -15,12 +15,12 @@ description         pythondialog is a Python wrapper for the UNIX dialog utility
 long_description    ${description}
 platforms           darwin
 homepage            https://pypi.python.org/pypi/python2-pythondialog
-master_sites        pypi:p/python2-pythondialog
+master_sites        https://pypi.io/packages/source/p/python2-pythondialog
 
 python.versions     27
 
-checksums           rmd160  ef68361d877be373b5a8f98109c8c601563a6eac \
-                    sha256  3e6f593fead98f8a526bc3e306933533236e33729f552f52896ea504f55313fa
+checksums           rmd160  ca419d468d8d86f89c660573dddf7bd2e71fa844 \
+                    sha256  a96d9cea9a371b5002b5575d1ec351233112519268d382ba6f3582323b3d1335
 
 if {${name} eq ${subport}} {
     livecheck.type      regex
