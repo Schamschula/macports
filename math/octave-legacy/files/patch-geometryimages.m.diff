@@ -1,0 +1,98 @@
+
+# HG changeset patch
+# User Ben Abbott  <bpabbott@mac.com>
+# Date 1450033759 18000
+# Node ID e5f78891ad9e4b0fef522b91d95598536c7badb9
+# Parent  f1b2a2dbc0e1b93c194fc7485559ec35e7a8aaa9
+Allow doc's images to be generated using gnuplot when osmesa isn't available.
+* geometryimages.m (set_graphics_toolkit): Backup osmesa with gnuplot.
+* interpimages.m (set_graphics_toolkit): ditto.
+* plotimages.m (set_graphics_toolkit): ditto.
+* sparseimages.m (set_graphics_toolkit): ditto.
+
+diff --git a/doc/interpreter/geometryimages.m b/doc/interpreter/geometryimages.m
+--- doc/interpreter/geometryimages.m
++++ doc/interpreter/geometryimages.m
+@@ -141,6 +141,13 @@
+ function set_graphics_toolkit ()
+   if (isempty (available_graphics_toolkits ()))
+     error ("no graphics toolkit available for plotting");
++  elseif (! strcmp ("gnuplot", graphics_toolkit ()) ...
++     && ! octave_config_info ().features.OSMESA)
++    if (! any (strcmp ("gnuplot", available_graphics_toolkits ())))
++      error ("no graphics toolkit available for offscreen plotting");
++    else
++      graphics_toolkit ("gnuplot");
++    endif
+   endif
+ endfunction
+ 
+diff --git a/doc/interpreter/interpimages.m b/doc/interpreter/interpimages.m
+--- doc/interpreter/interpimages.m
++++ doc/interpreter/interpimages.m
+@@ -85,6 +85,13 @@
+ function set_graphics_toolkit ()
+   if (isempty (available_graphics_toolkits ()))
+     error ("no graphics toolkit available for plotting");
++  elseif (! strcmp ("gnuplot", graphics_toolkit ()) ...
++     && ! octave_config_info ().features.OSMESA)
++    if (! any (strcmp ("gnuplot", available_graphics_toolkits ())))
++      error ("no graphics toolkit available for offscreen plotting");
++    else
++      graphics_toolkit ("gnuplot");
++    endif
+   endif
+ endfunction
+ 
+diff --git a/doc/interpreter/plotimages.m b/doc/interpreter/plotimages.m
+--- doc/interpreter/plotimages.m
++++ doc/interpreter/plotimages.m
+@@ -122,6 +122,13 @@
+ function set_graphics_toolkit ()
+   if (isempty (available_graphics_toolkits ()))
+     error ("no graphics toolkit available for plotting");
++  elseif (! strcmp ("gnuplot", graphics_toolkit ()) ...
++     && ! octave_config_info ().features.OSMESA)
++    if (! any (strcmp ("gnuplot", available_graphics_toolkits ())))
++      error ("no graphics toolkit available for offscreen plotting");
++    else
++      graphics_toolkit ("gnuplot");
++    endif
+   endif
+ endfunction
+ 
+diff --git a/doc/interpreter/sparseimages.m b/doc/interpreter/sparseimages.m
+--- doc/interpreter/sparseimages.m
++++ doc/interpreter/sparseimages.m
+@@ -243,6 +243,13 @@
+ function set_graphics_toolkit ()
+   if (isempty (available_graphics_toolkits ()))
+     error ("no graphics toolkit available for plotting");
++  elseif (! strcmp ("gnuplot", graphics_toolkit ()) ...
++     && ! octave_config_info ().features.OSMESA)
++    if (! any (strcmp ("gnuplot", available_graphics_toolkits ())))
++      error ("no graphics toolkit available for offscreen plotting");
++    else
++      graphics_toolkit ("gnuplot");
++    endif
+   endif
+ endfunction
+ 
+diff --git a/doc/interpreter/splineimages.m b/doc/interpreter/splineimages.m
+--- doc/interpreter/splineimages.m
++++ doc/interpreter/splineimages.m
+@@ -166,6 +166,13 @@
+ function set_graphics_toolkit ()
+   if (isempty (available_graphics_toolkits ()))
+     error ("no graphics toolkit available for plotting");
++  elseif (! strcmp ("gnuplot", graphics_toolkit ()) ...
++     && ! octave_config_info ().features.OSMESA)
++    if (! any (strcmp ("gnuplot", available_graphics_toolkits ())))
++      error ("no graphics toolkit available for offscreen plotting");
++    else
++      graphics_toolkit ("gnuplot");
++    endif
+   endif
+ endfunction
+ 
+

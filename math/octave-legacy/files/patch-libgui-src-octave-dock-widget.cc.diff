@@ -1,0 +1,20 @@
+--- libgui/src/octave-dock-widget.cc.orig	2015-05-23 09:21:54.000000000 -0500
++++ libgui/src/octave-dock-widget.cc	2015-12-02 09:54:15.000000000 -0600
+@@ -370,7 +370,7 @@
+       css = background + QString (" color: %1 ;").arg (fg_col.name ());
+ #else
+       css = QString ("QDockWidget::title { " + background +
+-                     "                     text-align: center left;"
++                     "                     text-align: center;"
+                      "                     padding: 0px 0px 0px 4px;}\n"
+                      "QDockWidget { color: %1 ; "
+                      "  titlebar-close-icon: url(:/actions/icons/widget-close%2.png);"
+@@ -386,7 +386,7 @@
+ #if defined (Q_OS_WIN32)
+       css = QString ("");
+ #else
+-      css = QString ("QDockWidget::title { text-align: center left;"
++      css = QString ("QDockWidget::title { text-align: center;"
+                      "                     padding: 0px 0px 0px 4px;}"
+                      "QDockWidget {"
+                      "  titlebar-close-icon: url(:/actions/icons/widget-close.png);"

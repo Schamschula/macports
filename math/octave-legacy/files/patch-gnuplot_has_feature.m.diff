@@ -1,0 +1,53 @@
+
+# HG changeset patch
+# User Ben Abbott  <bpabbott@mac.com>
+# Date 1449974046 18000
+# Node ID c7d881aec36ca0dfc8c9b7e626f2418e929c6c7d
+# Parent  776c0b8c1d07f13cb7e189e6a0222f00d4ae2c4b
+For gnuplot 5.x, add the "color" option to the postscript terminal.
+(bug #42838).
+
+* scripts/plot/util/private/__gnuplot_has_feature__.m: Add a new feature,
+"needs_color_with_postscript".
+* scripts/plot/util/__gnuplot_drawnow__.m: Add the "color" option to the
+postscript terminal when using gnuplot 5.x.
+
+diff --git a/scripts/plot/util/__gnuplot_drawnow__.m b/scripts/plot/util/__gnuplot_drawnow__.m
+--- scripts/plot/util/__gnuplot_drawnow__.m
++++ scripts/plot/util/__gnuplot_drawnow__.m
+@@ -268,6 +268,10 @@
+ 
+     ## Set the gnuplot terminal (type, enhanced, title, options & size).
+     term_str = ["set terminal " term];
++    if (__gnuplot_has_feature__ ("needs_color_with_postscript") ...
++        && strcmp (term, "postscript"))
++      term_str = [term_str, " color"]
++    endif
+     if (! isempty (enh_str))
+       term_str = [term_str " " enh_str];
+     endif
+diff --git a/scripts/plot/util/private/__gnuplot_has_feature__.m b/scripts/plot/util/private/__gnuplot_has_feature__.m
+--- scripts/plot/util/private/__gnuplot_has_feature__.m
++++ scripts/plot/util/private/__gnuplot_has_feature__.m
+@@ -36,7 +36,8 @@
+                          "variable_GPVAL_TERMINALS",
+                          "key_has_font_properties",
+                          "windows_figure_position",
+-                         "has_termoption_dashed"};
++                         "has_termoption_dashed",
++                         "needs_color_with_postscript"};
+   persistent has_features;
+ 
+   if (isempty (has_features))
+@@ -46,8 +47,8 @@
+       ## Don't throw an error if gnuplot isn't installed
+       gnuplot_version = "0.0.0";
+     end_try_catch
+-    versions = {"4.2.5", "4.4", "4.4", "4.4", "4.2", "4.2", "4.4", "4.4", "4.4", "4.4", "4.3"};
+-    operators = {">=", ">=", ">=", ">=", ">=", ">=", ">=", ">=", ">=", ">=", ">="};
++    versions = {"4.2.5", "4.2.5", "4.4", "4.4", "4.4", "4.2", "4.2", "4.4", "4.4", "4.4", "4.4", "4.3", "5.0"};
++    operators = {">=", ">=", ">=", ">=", ">=", ">=", ">=", ">=", ">=", ">=", ">=", ">=", ">="};
+     have_features = false (size (features));
+     for n = 1 : numel (have_features)
+       has_features(n) = compare_versions (gnuplot_version, versions{n}, operators{n});
+
