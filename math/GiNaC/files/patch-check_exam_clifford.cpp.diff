@@ -4,7 +4,7 @@
  	realsymbol a("a");
  	varidx mu(symbol("mu", "\\mu"), 1);
  
--	ex e = clifford_unit(mu, diag_matrix(lst(-1))), e0 = e.subs(mu==0);
+-	ex e = clifford_unit(mu, diag_matrix({-1})), e0 = e.subs(mu==0);
 +	ex e = clifford_unit(mu, diag_matrix(lst(ex(-1)))), e0 = e.subs(mu==0);
  	result += ( exp(a*e0)*e0*e0 == -exp(e0*a) ) ? 0 : 1;
  
