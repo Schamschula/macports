@@ -1,16 +1,17 @@
 # -*- Mode: Tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:et:sw=4:ts=4:sts=4
-# $Id: Portfile 146887 2016-03-19 15:53:25Z khindenburg@macports.org $
+# $Id: Portfile 148228 2016-04-30 17:55:10Z mps@macports.org $
 
 PortSystem      1.0
 PortGroup       muniversal 1.0
 
 name            gnutls
 version         3.4.11
+revision        1
 set branch      [join [lrange [split ${version} .] 0 1] .]
 categories      devel security
 # yes, some of the libs are GPL only
 license         LGPL-2.1+ GPL-3+
-maintainers     gmail.com:mschamschula openmaintainer
+maintainers     mps openmaintainer
 description     GNU Transport Layer Security Library
 homepage        http://www.gnutls.org/
 platforms       darwin
@@ -54,6 +55,7 @@ configure.args  --disable-guile \
                 --disable-silent-rules \
                 --disable-libdane \
                 --enable-local-libopts \
+                --enable-openssl-compatibility \
                 --with-p11-kit \
                 --with-system-priority-file="${prefix}/etc/gnutls/default-priorities" \
                 --with-default-trust-store-file="${prefix}/share/curl/curl-ca-bundle.crt" \
