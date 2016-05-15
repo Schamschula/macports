@@ -11,14 +11,12 @@ worksrcdir          ${real_name}-${version}
 distfiles           ${real_name}-${version}${extract.suffix}
 categories-append   security
 license             Apache-2
-maintainers         gmail.com:mschamschula openmaintainer
+maintainers         mps openmaintainer
 description         ACME protocol implementation in Python.
 long_description    ${description}
 platforms           darwin
 homepage            https://pypi.python.org/pypi/acme
-#master_sites        https://files.pythonhosted.org/packages/source/a/acme
-master_sites        pypi:a/acme \
-                    http://archive.hmug.org/src/acme
+master_sites        https://files.pythonhosted.org/packages/source/a/acme
 
 python.versions     27 34 35
 
