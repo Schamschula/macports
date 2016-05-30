@@ -6,7 +6,7 @@ PortGroup           python 1.0
 
 set real_name       acme
 name                py-${real_name}
-version             0.6.0
+version             0.7.0
 worksrcdir          ${real_name}-${version}
 distfiles           ${real_name}-${version}${extract.suffix}
 categories-append   security
@@ -16,12 +16,12 @@ description         ACME protocol implementation in Python.
 long_description    ${description}
 platforms           darwin
 homepage            https://pypi.python.org/pypi/acme
-master_sites        https://files.pythonhosted.org/packages/source/a/acme
+master_sites        pypi:a/acme
 
 python.versions     27 34 35
 
-checksums           rmd160  c82a106e25545ebf76997a227c559978ed864c6b \
-                    sha256  ec4e6009dfbd629b58473eb06bbebfd9fb2a79fc8831c149e9205bc38a98ecc6
+checksums           rmd160  d62fc9697e61c8614b9b610ed130460015f7b616 \
+                    sha256  9f75a1947978402026b741bdee8a18fc5a1cfd539b78e523b7e5f279bf18eeb9
 
 if {${name} ne ${subport}} {
     depends_build-append \
