@@ -7,7 +7,7 @@ PortGroup           octave 1.0
 octave.setup        symbolic 2.4.0
 platforms           darwin
 license             GPL-3
-maintainers         gmail.com:mschamschula openmaintainer
+maintainers         mps openmaintainer
 description         Symbolic toolbox based on SymPy.
 
 long_description    ${description}
