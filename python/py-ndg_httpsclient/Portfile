@@ -6,12 +6,12 @@ PortGroup           python 1.0
 
 set real_name       ndg_httpsclient
 name                py-${real_name}
-version             0.4.0
+version             0.4.1
 worksrcdir          ${real_name}-${version}
 distfiles           ${real_name}-${version}${extract.suffix}
 categories-append   net
 license             BSD
-maintainers         gmail.com:mschamschula openmaintainer
+maintainers         mps openmaintainer
 description         This is a HTTPS client implementation for httplib and urllib2 based \
                     on PyOpenSSL. 
 long_description    ${description} PyOpenSSL provides a more fully featured SSL \
@@ -23,8 +23,8 @@ master_sites        pypi:n/ndg-httpsclient
 
 python.versions     27 34 35
 
-checksums           rmd160  e5f71f2d369ebc02f3628f88ab1bdabcac444faa \
-                    sha256  e8c155fdebd9c4bcb0810b4ed01ae1987554b1ee034dd7532d7b8fdae38a6274
+checksums           rmd160  9aad4019f92c35a878d08ea48867bcbe3a4cfd9a \
+                    sha256  133931ab2cf7118f8fc7ccc29e289ba8f644dd90f84632fa0e6eb16df4ba1891
 
 if {${name} ne ${subport}} {
     depends_lib-append  port:py${python.version}-asn1 \
