@@ -175,9 +175,9 @@ if {${subport} eq ${name}} {
 
 subport ${name}-devel {
 
-    version             3.0.1
-    checksums           rmd160  4ab30801cc5c1f4dd28d561035240d7cdb53a897 \
-                        sha256  74c685f8da51b3f038a7b8185bdbed274aca25daf64ac7ea01eea60636727f26
+    version             3.1RC1
+    checksums           rmd160  12a496f8182699d7c9e78d7d1bdc7eeaab32addb \
+                        sha256  1adb7b6679b7c641ae9c14f1611c7a557984eae07b774fad841ec19def595e78
     
     destroot.target     install-full
     
