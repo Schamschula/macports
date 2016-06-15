@@ -1,22 +1,22 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id$
+# $Id: Portfile 145655 2016-02-12 17:06:47Z khindenburg@macports.org $
 
 PortSystem          1.0
 
 name                ganglia-web
-version             3.6.2
+version             3.7.2
 categories          net
 license             BSD
-maintainers         gmail.com:mschamschula openmaintainer
+maintainers         mps openmaintainer
 description         Web front end for Ganglia.
 long_description    Web front end for the Ganglia monitoring system for \
                     high-performance computing systems such as clusters and Grids.
 platforms           darwin
-homepage            http://ganglia.sourceforge.net/
+homepage            http://ganglia.info/
 master_sites        sourceforge:project/ganglia/${name}/${version}
 
-checksums           rmd160  d38f5c65f66f366795a437094cfa1869e4a1833a \
-                    sha256  5368dc424fadc0fe1cc47730a628f514f710d59f7f6a4c53848f1a8f1116932a
+checksums           rmd160  2abd57780260ea795a702a877dac63de4dfa669c \
+                    sha256  98820187c98d24d3645b92d31060623de696dad331a361a19874898339523628
 
 depends_lib         port:ganglia
 
@@ -25,7 +25,7 @@ depends_run         path:sbin/httpd:apache2
 patchfiles          patch-Makefile.diff
 
 post-patch {
-    reinplace "s|@PREFIX@|${prefix}|g" ${worksrcpath}/Makefile 
+    reinplace "s|@PREFIX@|${prefix}|g" ${worksrcpath}/Makefile
 }
 
 use_configure       no
@@ -33,5 +33,5 @@ use_configure       no
 build {}
 
 livecheck.type      regex
-livecheck.url       ${homepage}
-livecheck.regex     "Ganglia Web (\[\\d.\]+)"
+livecheck.url       http://ganglia.info/?page_id=66
+livecheck.regex     "ganglia-web/\">(\[\\d.\]+)"
