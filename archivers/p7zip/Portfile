@@ -28,8 +28,7 @@ checksums       rmd160  1b240131d6fc8322830fa893357a62a9cdb81bdb \
 
 # security patches from Debian (will no longer be needed when version >= 16.0.2)
 patchfiles      CVE-2016-2334.patch \
-                CVE-2016-2335.patch \
-                hardening-flags.patch
+                CVE-2016-2335.patch
 
 variant universal {}
 
