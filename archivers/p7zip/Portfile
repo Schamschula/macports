@@ -1,0 +1,65 @@
+# $Id: Portfile 148346 2016-05-05 00:37:04Z mps@macports.org $
+
+PortSystem      1.0
+
+name            p7zip
+version         15.14.1
+revision        1
+categories      archivers
+# contains unrar code which has a restrictive license
+license         LGPL-2.1+ Restrictive/Distributable
+maintainers     gmail.com:stuartwesterman openmaintainer
+platforms       darwin
+description     7-Zip implementation
+
+long_description \
+    p7zip is a port of 7-Zip, a file archiver with \
+    highest compression ratio.
+
+homepage        http://p7zip.sourceforge.net/
+
+master_sites    sourceforge:project/${name}/${name}/${version}
+distname        [strsed ${distname} {g/-/_/}]
+use_bzip2       yes
+distfiles       ${distname}_src_all${extract.suffix}
+
+checksums       rmd160  1b240131d6fc8322830fa893357a62a9cdb81bdb \
+                sha256  699db4da3621904113e040703220abb1148dfef477b55305e2f14a4f1f8f25d4
+
+# security patches from Debian (will no longer be needed when version >= 16.0.2)
+patchfiles      CVE-2016-2334.patch \
+                CVE-2016-2335.patch
+
+variant universal {}
+
+post-patch {
+    # if not root, installing with restricted permissions causes errors
+    #     when attempting to remove work directory
+    # see http://www.linuxfromscratch.org/blfs/view/svn/general/p7zip.html
+    reinplace "s|chmod 444|chmod 644|g" ${worksrcpath}/install.sh
+    reinplace "s|chmod 555|chmod 755|g" ${worksrcpath}/install.sh
+}
+
+configure {
+    copy -force ${worksrcpath}/makefile.macosx_llvm_64bits ${worksrcpath}/makefile.machine
+    # this also corrects a typo in the makefile ('XX' rather than 'CXX')
+    reinplace "s|^XX=/usr/bin/llvm-g++|CXX=${configure.cxx}|" \
+            ${worksrcpath}/makefile.machine
+    reinplace "s|^CC=/usr/bin/llvm-gcc|CC=${configure.cc}|" \
+            ${worksrcpath}/makefile.machine
+    reinplace "s|-m64||g" \
+            ${worksrcpath}/makefile.machine
+    reinplace "s|\$(LOCAL_FLAGS)|[get_canonical_archflags] \$(LOCAL_FLAGS)|" \
+            ${worksrcpath}/makefile.machine
+}
+
+# build 7za, 7z and 7zr
+build.target all3
+
+destroot.destdir    DEST_HOME=${prefix} \
+                    DEST_SHARE_DOC=${prefix}/share/doc/${subport} \
+                    DEST_MAN=${prefix}/share/man \
+                    DEST_DIR=${destroot}
+
+test.run            yes
+test.target         all_test
