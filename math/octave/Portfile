@@ -234,7 +234,6 @@ depends_lib-append  port:qhull
 #--without-z
 depends_lib-append  port:zlib
 patchfiles-append   patch-libinterp-Makefile.in.diff
-configure.args-append  "--with-z-includedir=${prefix}/include --with-z-libdir=${prefix}/lib"
 
 #--without-hdf5
 depends_lib-append  port:hdf5
