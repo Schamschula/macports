@@ -4,7 +4,7 @@
 PortSystem          1.0
 
 name                suricata
-version             3.1
+version             3.1.1
 categories          net security
 platforms           darwin
 maintainers         yahoo.fr:jul_bsd openmaintainer
@@ -159,8 +159,8 @@ post-activate {
 
 if {${subport} eq ${name}} {
 
-    checksums           rmd160  a7625b1d147795c2b148fe4e21cfc2de82bdc889 \
-                        sha256  a05aa534166495a4d9ea6104a936bc8edb49376aeb3ba0b1b2a4d9687d016669
+    checksums           rmd160  c059ac38f7c02e30e52d4e79b5c48cb4f0d3657b \
+                        sha256  b8f5711f4c24627b056a3889b296b29ec515b34bc2287ad20d13ca20da777ff7
 
     destroot.target     install-full
     
