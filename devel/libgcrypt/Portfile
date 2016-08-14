@@ -1,11 +1,11 @@
 # -*- Mode: Tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:et:sw=4:ts=4:sts=4
-# $Id: Portfile 147876 2016-04-20 00:55:45Z khindenburg@macports.org $
+# $Id: Portfile 150581 2016-07-23 05:16:10Z larryv@macports.org $
 
 PortSystem      1.0
 PortGroup       muniversal 1.0
 
 name            libgcrypt
-version         1.7.1
+version         1.7.2
 categories      devel security
 # libs are LGPL, executables and docs are GPL
 license         {GPL-2+ LGPL-2.1+}
@@ -15,20 +15,17 @@ homepage        http://www.gnupg.org/
 platforms       darwin
 
 long_description \
-    This is a general purpose cryptographic library based \
-    on the code from GnuPG. It provides functions for all \
-    cryptograhic building blocks: symmetric ciphers (AES, \
-    DES, Blowfish, CAST5, Twofish, Arcfour), hash algorithms \
-    (MD4, MD5, RIPE-MD160, SHA-1, TIGER-192), MACs (HMAC for \
-    all hash algorithms), public key algorithms (RSA, ElGamal, \
-    DSA), large integer functions, random numbers and a lot of \
-    supporting functions.
+    Libgcrypt is a general purpose cryptographic library originally \
+    based on code from GnuPG. It provides functions for all \
+    cryptographic building blocks: symmetric cipher algorithms and \
+    modes, hash algorithms, MACs, public key algorithms, large integer \
+    functions, random numbers and a lot of supporting functions.
 
 master_sites    gnupg
 use_bzip2       yes
 
-checksums       rmd160  1be0c84cf7bcb1ac8a185ff965e02b9182708f6f \
-                sha256  450d9cfcbf1611c64dbe3bd04b627b83379ef89f11406d94c8bba305e36d7a95
+checksums       rmd160  75ba4fb9ab1bf35623cd25f406d5724e88bcbf78 \
+                sha256  3d35df906d6eab354504c05d749a9b021944cb29ff5f65c8ef9c3dd5f7b6689f
 
 depends_lib     port:libgpg-error
 
