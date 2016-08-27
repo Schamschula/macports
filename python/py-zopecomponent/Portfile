@@ -6,7 +6,7 @@ PortGroup           python 1.0
 
 set real_name       zope.component
 name                py-zopecomponent
-version             4.2.2
+version             4.3.0
 worksrcdir          ${real_name}-${version}
 distfiles           ${real_name}-${version}${extract.suffix}
 categories-append   zope
@@ -20,8 +20,8 @@ master_sites        pypi:z/zope.component
 
 python.versions     27 34 35
 
-checksums           rmd160  ea426b44f4917e651487669c0571ff25e3a95d6b \
-                    sha256  282c112b55dd8e3c869a3571f86767c150ab1284a9ace2bdec226c592acaf81a
+checksums           rmd160  971e323b3af3c8c5ed1548b7bfd383ce3bc6f2cd \
+                    sha256  bb4136c7443610f8c2d2d357cad247c3e90bb5e6f0b7a02b0edfb11924ff9bc2
 
 if {${name} ne ${subport}} {
     depends_lib-append  \
