@@ -1,36 +1,33 @@
-# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 125738 2014-09-25 14:43:03Z mf2k@macports.org $
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:filetype=tcl:et:sw=4:ts=4:sts=4
+# $Id: Portfile 146517 2016-03-10 17:49:28Z raimue@macports.org $
 
 PortSystem  1.0
 
-name                nagios
-version             4.0.8
-categories          net
-license             GPL-2
-maintainers         nomaintainer
-platforms           darwin
+name            nagios
+version         4.2.1
+categories      net
+license         GPL-2
+maintainers     nomaintainer
+platforms       darwin
 
-description         Nagios is a host and service monitoring program
+description     Nagios is a host and service monitoring program
 
 long_description    A network service and host monitor that can notify you \
-                    when servers go down by monitoring for external services \
-                    such as HTTP, FTP, SMTP, SNMP, as well as internal host \
-                    checks for things such as CPU and disk usage and many \
-                    other things.
+            when servers go down by monitoring for external services \
+            such as HTTP, FTP, SMTP, SNMP, as well as internal host \
+            checks for things such as CPU and disk usage and many \
+            other things.
 
-homepage            http://nagios.org
+homepage        http://nagios.org
 
 livecheck.regex     nagios-(\[0-9.\]+)${extract.suffix}
 
 master_sites        sourceforge:project/nagios/nagios-4.x/nagios-${version}
-
-checksums           rmd160 b53631755e0a23aba918a99f58b7bea237fdd799 \
-                    sha256 8b268d250c97851775abe162f46f64724f95f367d752ae4630280cc5d368ca4b
-
-patchfiles          patch-lib-runcmd.c.diff
+checksums       rmd160 ae6eed1681bfff139dc3197d37c4aa5b46ef09b5 \
+                sha256 cb62c5c16964cfc143b126a576a7f8130e634cb9dda4dd3bd3632598d7855a87
 
 depends_build       port:gd2
-depends_lib         port:openssl \
+depends_lib         path:lib/libssl.dylib:openssl \
                     port:nagios-plugins
 
 set sysconfdir      ${prefix}/etc/${name}
@@ -39,20 +36,20 @@ destroot.destdir    prefix=${prefix} DESTDIR=${destroot}
 destroot.target     install install-config install-commandmode install-init
 
 configure.args      --with-cgiurl=/nagios/cgi-bin \
-                    --with-htmurl=/nagios \
-                    --with-nagios-user=nagios \
-                    --with-nagios-grp=nagios \
-                    --with-command-grp=nagios \
-                    --with-gd-lib=${prefix}/lib \
-                    --with-gd-inc=${prefix}/include \
-                    --sbindir=${prefix}/sbin/nagios \
-                    --libexecdir=${prefix}/libexec/nagios \
-                    --datadir=${prefix}/share/nagios \
-                    --with-lockfile=${prefix}/var/nagios/nagios.lock \
-                    --with-init-dir=${prefix}/var/nagios \
-                    --sysconfdir=${sysconfdir} \
-                    --localstatedir=${prefix}/var/nagios \
-                    --with-httpd-conf=/etc/apache2/httpd.conf
+            --with-htmurl=/nagios \
+            --with-nagios-user=nagios \
+            --with-nagios-grp=nagios \
+            --with-command-grp=nagios \
+            --with-gd-lib=${prefix}/lib \
+            --with-gd-inc=${prefix}/include \
+            --sbindir=${prefix}/sbin/nagios \
+            --libexecdir=${prefix}/libexec/nagios \
+            --datadir=${prefix}/share/nagios \
+            --with-lockfile=${prefix}/var/nagios/nagios.lock \
+            --with-init-dir=${prefix}/var/nagios \
+            --sysconfdir=${sysconfdir} \
+            --localstatedir=${prefix}/var/nagios \
+            --with-httpd-conf=/etc/apache2/httpd.conf
 
 platform darwin 8 {
     configure.args-delete --with-httpd-conf=/etc/apache2/httpd.conf
@@ -64,8 +61,8 @@ startupitem.start       "${prefix}/var/nagios/nagios.init start"
 startupitem.stop        "${prefix}/var/nagios/nagios.init stop"
 
 post-patch {
-    reinplace "s|INIT_OPTS=-o root -g root|INIT_OPTS=-o nagios -g nagios|g" \
-        "${worksrcpath}/Makefile.in"
+        reinplace "s|INIT_OPTS=-o root -g root|INIT_OPTS=-o nagios -g nagios|g" \
+                "${worksrcpath}/Makefile.in"
 
     reinplace "s|daemon-init \$(DESTDIR)\$(INIT_DIR)/nagios|daemon-init \$(DESTDIR)\$(INIT_DIR)/nagios.init|g" \
         "${worksrcpath}/Makefile.in"
