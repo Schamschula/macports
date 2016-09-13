@@ -1,11 +1,11 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:filetype=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 125738 2014-09-25 14:43:03Z mf2k@macports.org $
+# $Id: Portfile 152598 2016-09-12 21:29:14Z mps@macports.org $
 
 PortSystem          1.0
 PortGroup           perl5 1.0
 
 name                nagios-plugins
-version             2.0.3
+version             2.1.3
 categories          net
 license             GPL-3+
 maintainers         nomaintainer
@@ -18,42 +18,58 @@ long_description    Nagios plugins are standalone programs that report the \
                     framework.
 
 homepage            http://nagios.org
-master_sites        http://nagios-plugins.org/download/
+master_sites        https://nagios-plugins.org/download/
 
-checksums           rmd160  b682b126c78df51f64d9cb8599d2f9dfd411d5f4 \
-                    sha256  8f0021442dce0138f0285ca22960b870662e28ae8973d49d439463588aada04a
+checksums           rmd160  86bae48de59f95af9e4ec189f89ac38becc6e272 \
+                    sha256  46f57d4b2379f4255719be7605290ec90639b9f411be78091e8971cf54f15453
 
-set perl_version    5.16
-perl5.branches      ${perl_version}
+patchfiles          patch-plugins-check_nt.c.diff
+
+perl5.branches      5.24
 
 destroot.destdir    prefix=${prefix} DESTDIR=${destroot}
 
-depends_lib         port:fping \
-                    port:p${perl_version}-net-snmp \
-                    port:p${perl_version}-digest-sha1 \
-                    port:p${perl_version}-digest-hmac \
-                    port:p${perl_version}-crypt-des \
-                    port:openssl \
-                    port:python27
+depends_build       port:fping \
+                    port:p${perl5.major}-net-snmp \
+                    port:p${perl5.major}-digest-sha1 \
+                    port:p${perl5.major}-digest-hmac \
+                    port:p${perl5.major}-crypt-des \
+                    path:lib/libssl.dylib:openssl
 
 configure.args      --sbindir=${prefix}/share/nagios/cgi-bin \
                     --libexecdir=${prefix}/libexec/nagios \
                     --datadir=${prefix}/share/nagios \
                     --sysconfdir=${prefix}/etc/nagios \
+                    --with-df-command="/bin/df -Pkt noprocfs" \
                     --with-trusted-path=${prefix}/bin:${prefix}/sbin:/bin:/sbin:/usr/bin:/usr/sbin \
                     --with-openssl=${prefix}/bin \
                     --without-mysql \
                     --without-pgsql \
                     --without-radius \
+                    --without-lmstat \
+                    --without-qstat \
+                    --without-qmail-qstat \
                     --with-ps-command="/bin/ps -axwo 'stat uid pid ppid vsz rss pcpu ucomm command'" \
                     --with-ps-format="%s %d %d %d %d %d %f %s %n" \
                     --with-ps-cols=9 \
                     --with-ps-varlist="procstat,&procuid,&procpid,&procppid,&procvsz,&procrss,&procpcpu,procprog,&pos"
 
-variant mysql5 {
-    depends_lib-append path:bin/mysql_config5:mysql5
+variant mysql56 conflicts mysql57 {
+    depends_lib-append path:bin/mysql_config56:mysql56
     configure.args-delete --without-mysql
-    configure.args-append --with-mysql=${prefix}/lib/mysql5
+    configure.args-append --with-mysql=${prefix}/lib/mysql56
+}
+
+variant mysql57 conflicts mysql56 {
+    depends_lib-append path:bin/mysql_config57:mysql57
+    configure.args-delete --without-mysql
+    configure.args-append --with-mysql=${prefix}/lib/mysql57
+}
+
+variant qstat {
+    depends_lib-append port:qstat
+    configure.args-delete --without-qstat
+    configure.args-append --with-qstat=${prefix}/bin
 }
 
 post-extract {
