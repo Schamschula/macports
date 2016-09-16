@@ -1,11 +1,11 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 149434 2016-06-20 10:56:02Z mps@macports.org $
+# $Id: Portfile 152740 2016-09-15 21:43:07Z mps@macports.org $
 
 PortSystem 1.0
 PortGroup           github 1.0
 PortGroup           cxx11 1.0
 
-github.setup        aria2 aria2 1.25.0 release-
+github.setup        aria2 aria2 1.27.0 release-
 github.tarball_from releases
 categories          net
 platforms           darwin
@@ -17,8 +17,8 @@ long_description    aria2 is a download utility with resuming and segmented \
                     
 use_xz              yes
 
-checksums           rmd160  9c61d31aa28d8ae6b0d7de080b6672225ed43684 \
-                    sha256  ff89eb4c76cfc816a6f5abc7dfd416cc3f339e7d02c761f822fa965a18cf0d35
+checksums           rmd160  d26d27a1bd910481f9ad4e1db89d7fd64ccc9af6 \
+                    sha256  166538f3460e405e9812981a4748799fb191ab0bd68e9b38a8e6be0553f9248c
 
 depends_build       port:pkgconfig
 depends_lib         port:gettext port:libiconv port:gnutls port:libxml2
@@ -28,7 +28,8 @@ depends_lib         port:gettext port:libiconv port:gnutls port:libxml2
 # Alternatively, depends_*-append could be used.
 use_autoreconf      yes
 
-configure.cxxflags-append "-I${prefix}/include/libxml2"
+configure.cxxflags-append -I${prefix}/include/libxml2
+configure.ldflags-append  -lintl
 configure.args      --with-gnutls --with-libgnutls-prefix=${prefix} \
                     --with-libiconv-prefix=${prefix} \
                     --with-libintl-prefix=${prefix} \
