@@ -104,17 +104,17 @@ switch ${subport_branch} {
     }
     5.6 {
         epoch           2
-        version         5.6.25
+        version         5.6.26
         use_xz          yes
-        checksums       rmd160  34855615ed98478e97074c65bf6a6a90146e49ac \
-                        sha256  7535cd6e20040ccec4594cc386c6f15c3f2c88f24163294a31068cf7dfe7f644
+        checksums       rmd160  2d32c95ece7c426af5b3c3f454ddb74cd209711a \
+                        sha256  203a854f0f243cb2810d1c832bc871ff133eccdf1ff69d32846f93bc1bef58a8
     }
     7.0 {
         epoch           2
-        version         7.0.10
+        version         7.0.11
         use_xz          yes
-        checksums       rmd160  a8f11b4abf45f163e023aff63a13bcad9c07cf4f \
-                        sha256  348476ff7ba8d95a1e28e1059430c10470c5f8110f6d9133d30153dda4cdf56a
+        checksums       rmd160  fd7cece47adc0976ac2e95c63a5d8c59ff347137 \
+                        sha256  d4cccea8da1d27c11b89386f8b8e95692ad3356610d571253d00ca67d524c735
     }
     7.1 {
         # When this becomes a stable version, remove the overrides for homepage,
