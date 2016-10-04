@@ -2,6 +2,7 @@
 # $Id: Portfile 148228 2016-04-30 17:55:10Z mps@macports.org $
 
 PortSystem          1.0
+PortGroup           cxx11 1.0
 PortGroup           octave 1.0
 
 octave.setup        parallel 3.1.1
