@@ -5,7 +5,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           python 1.0
 
-github.setup        certbot certbot 0.9.0 v
+github.setup        certbot certbot 0.9.1 v
 name                py-certbot
 categories-append   security
 license             Apache-2
@@ -20,8 +20,8 @@ python.versions     27 34 35
 python.default_version \
                     27
 
-checksums           rmd160  1ddc759153d8459da429db44f3d619de3b032e93 \
-                    sha256  8a4a61606dad363aa8abcbca4bb9af8b2de87c650ada9f1710572c93316e25d3
+checksums           rmd160  a672b9c6af78422b5632f2a8a0e7ce34c8cfec4f \
+                    sha256  dab0ae33696cdf4f0107b58e12a54a1fa251155714e455393ee9608f07c5fe14
 
 if {${name} ne ${subport}} {
     depends_lib-append  \
