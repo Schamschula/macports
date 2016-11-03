@@ -1,0 +1,28 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id$
+
+PortSystem          1.0
+PortGroup           github 1.0
+PortGroup           python 1.0
+
+github.setup        ryanmcgrath twython 3.4.0
+set real_name       twython
+name                py-${real_name}
+categories          python net
+license             
+maintainers         mps openmaintainer
+description         Actively maintained, pure Python wrapper for the Twitter API.
+long_description    ${description} Supports both normal and streaming Twitter APIs.
+platforms           darwin
+
+python.versions     27
+
+checksums           rmd160  c32c50fbc18e569a55f4a0b8f52684568fe11c73 \
+                    sha256  f4215082bf5c08f5f45024cf67a6a2f0653a4259567489c5eff05997be900f56
+
+if {${name} ne ${subport}} {
+    depends_lib-append  port:py${python.version}-requests-oauthlib
+}
+
+livecheck.type      regex
+livecheck.regex     ${real_name}-(\[0-9.\]+)${extract.suffix}
