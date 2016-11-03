@@ -2,21 +2,21 @@
 # $Id$
 
 PortSystem          1.0
+PortGroup           github 1.0
 
-name                xclip
-version             0.12
+github.setup        astrand xclip 0.13
 categories          x11
-license             
-maintainers         gmail.com:mschamschula openmaintainer
+license             GPL-2+
+maintainers         mps openmaintainer
 description         xclip is a command line interface to the X11 clipboard.
 long_description    ${description} It can also be used for copying files, as an \
                     alternative to sftp/scp, thus avoiding password prompts when X11 \
                     forwarding has already been setup.
 platforms           darwin
-homepage            http://sourceforge.net/projects/xclip/
-master_sites        sourceforge
 
-checksums           rmd160  8c19557031295e041d2f952d6706717a3d125cd8 \
-                    sha256  b7c7fad059ba446df5692d175c2a1d3816e542549661224806db369a0d716c45
+checksums           rmd160  2468886a6ef1255d79948c7d4e48eec82c2c15b9 \
+                    sha256  680af217983d53f6c9f6e235fcd746bd363e37b223193683f6782c4b05f1b47c
 
 depends_lib         port:xorg-libXmu
+
+use_autoreconf      yes
