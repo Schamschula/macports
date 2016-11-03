@@ -15,7 +15,7 @@ description         Actively maintained, pure Python wrapper for the Twitter API
 long_description    ${description} Supports both normal and streaming Twitter APIs.
 platforms           darwin
 
-python.versions     27
+python.versions     27 35
 
 checksums           rmd160  c32c50fbc18e569a55f4a0b8f52684568fe11c73 \
                     sha256  f4215082bf5c08f5f45024cf67a6a2f0653a4259567489c5eff05997be900f56
