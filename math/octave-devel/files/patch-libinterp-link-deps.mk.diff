@@ -1,0 +1,12 @@
+--- libinterp/link-deps.mk.orig	2016-07-01 13:47:07.000000000 -0500
++++ libinterp/link-deps.mk	2016-11-11 15:47:16.000000000 -0600
+@@ -17,7 +17,8 @@
+   $(GL2PS_LIBS) \
+   $(LLVM_LIBS) \
+   $(JAVA_LIBS) \
+-  $(LAPACK_LIBS)
++  $(LAPACK_LIBS) \
++  $(Z_LIBS)
+ 
+ LIBOCTINTERP_LINK_OPTS = \
+   $(FT2_LDFLAGS) \

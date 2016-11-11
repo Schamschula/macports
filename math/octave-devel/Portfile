@@ -23,9 +23,9 @@ homepage            http://www.gnu.org/software/octave
 #fetch.type          hg
 #hg.url              http://hg.savannah.gnu.org/hgweb/octave/
 
-set version_release 4.0.2
+set version_release 4.0.3
 set version_rc      4.2.0-rc4
-set version_tip     4.1.0+
+set version_tip     4.2.0+
 
 if { ${name} eq ${subport} } {
     version         ${version_tip}
@@ -59,8 +59,8 @@ subport octave-devel-rc {
 
 subport octave-devel-release {
     version         ${version_release}
-    revision        3
-    hg.tag          acaf1e137c5e
+    revision        0
+    hg.tag          00f7b278defd
 
     if {${version_release} eq ${version_rc}} {
         conflicts-append octave-devel-release
@@ -74,10 +74,14 @@ subport octave-devel-release {
     patchfiles-append   \
         octave-bug_41027.patch
 
+    # add missing zlib 
+    patchfiles-append   \
+        patch-libinterp-link-deps.mk.diff
+    
     checksums-append               \
         ${hg.tag}${extract.suffix} \
-        rmd160  454f0f6ef1657a49f9a41ff5bae03c09a332d77f \
-        sha256  3aafb5568bd46c1c6e6bae494cf8fdf457e8a84fea402b14a454e992c0885a8c
+        rmd160  3506df6b7c142448bddd50bdf4d47a8f593f7603 \
+        sha256  2409aca13faeff3afa0f25d8d39dad200fc49fdf69bec4fa004becefcf71f25a
 
     livecheck.regex   "<a href=\"/hgweb/octave/rev/(\[a-zA-Z0-9.\]+)\">\nrelease-"
 }
