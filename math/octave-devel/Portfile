@@ -3,8 +3,8 @@
 PortSystem          1.0
 PortGroup           compilers  1.0
 PortGroup           muniversal 1.0
-PortGroup           active_variants 1.1
 PortGroup           compiler_blacklist_versions 1.0
+PortGroup           linear_algebra 1.0
 PortGroup           select     1.0
 
 name                octave-devel
@@ -23,19 +23,23 @@ homepage            http://www.gnu.org/software/octave
 #fetch.type          hg
 #hg.url              http://hg.savannah.gnu.org/hgweb/octave/
 
-set version_release 4.0.3
+set version_release 4.2.0
 set version_rc      4.2.0-rc4
 set version_tip     4.2.0+
 
 if { ${name} eq ${subport} } {
     version         ${version_tip}
-    revision        1
-    hg.tag          6ea9681bb225
+    revision        2
+    hg.tag          31b86d30874d
+
+    # see http://savannah.gnu.org/bugs/?48773
+    patchfiles-append \
+        patch-qscintilla2.diff
 
     checksums-append               \
         ${hg.tag}${extract.suffix} \
-        rmd160  c0f835aab682d88901d321a033d706f489e7d9a1 \
-        sha256  794a26658fb717a07c3931bfca171047501734b5239cc318e8cd2109ab733c41
+        rmd160  631e75837cef70056472ab549059076498cf98b3 \
+        sha256  60816bd948bad3cb8d1fd270876d13d6cfee5d973d0b877da89fdc3a4c2454dd
 
     livecheck.regex   "<a href=\"/hgweb/octave/rev/(\[a-zA-Z0-9.\]+)\">\ntip"
 }
@@ -49,6 +53,10 @@ subport octave-devel-rc {
         conflicts-append octave-devel-release
     }
 
+    # see http://savannah.gnu.org/bugs/?48773
+    patchfiles-append \
+        patch-qscintilla2.diff
+
     checksums-append               \
         ${hg.tag}${extract.suffix} \
         rmd160  d5c405d684ea3d3a8114db1bf8a03a214112e77e \
@@ -60,28 +68,20 @@ subport octave-devel-rc {
 subport octave-devel-release {
     version         ${version_release}
     revision        0
-    hg.tag          00f7b278defd
+    hg.tag          708a4fcb7382
 
     if {${version_release} eq ${version_rc}} {
         conflicts-append octave-devel-release
     }
 
-    # see http://savannah.gnu.org/bugs/?func=detailitem&item_id=46592
+    # see http://savannah.gnu.org/bugs/?48773
     patchfiles-append \
-        patch-e870a68742a6.diff
+        patch-qscintilla2.diff
 
-    # see http://savannah.gnu.org/bugs/?41027
-    patchfiles-append   \
-        octave-bug_41027.patch
-
-    # add missing zlib 
-    patchfiles-append   \
-        patch-libinterp-link-deps.mk.diff
-    
     checksums-append               \
         ${hg.tag}${extract.suffix} \
-        rmd160  3506df6b7c142448bddd50bdf4d47a8f593f7603 \
-        sha256  2409aca13faeff3afa0f25d8d39dad200fc49fdf69bec4fa004becefcf71f25a
+        rmd160  7a53b139b32385429dbd9e09026a63f89c416637 \
+        sha256  e0c6af411ed5c058a2e557ca8eb4f0875a3e5e4f91f88d91a6e3644c50c9aa94
 
     livecheck.regex   "<a href=\"/hgweb/octave/rev/(\[a-zA-Z0-9.\]+)\">\nrelease-"
 }
@@ -98,25 +98,33 @@ compiler.blacklist-append { clang <= 318.0.61 }
 select.group octave
 select.file  ${filespath}/${subport}
 
-# see ${worksrcpath}/.hgsubstate to find revision of gnulib-hg subrepository that should be used
-if { ${subport} eq "octave-devel-rc" || ${subport} eq "octave-devel-release" } {
+# see ${worksrcpath}/.hgsubstate to find revision of gnulib or gnulib-hg subrepository that should be used
+if { ${subport} eq "octave-devel-release" } {
     set hg_gnu_tag      c2b547926f34
 
     checksums-append \
         ${hg_gnu_tag}${extract.suffix} \
         rmd160  a1b1f6326862b2a4905de42a42ab85b21fe17499 \
         sha256  4f1dc6ecc7e27891f317e064f789f305dd4d9ab2b4ca7a762c3ec8a8ec9777dd
-} else {
-    # check http://hg.savannah.gnu.org/hgweb/octave/gnulib-hg/rev for latest version
-    set hg_gnu_tag      c2b547926f34 
+} elseif { ${subport} eq "octave-devel-rc" } {
+    set hg_gnu_tag      a05c0ede6620
 
     checksums-append \
         ${hg_gnu_tag}${extract.suffix} \
-        rmd160  a1b1f6326862b2a4905de42a42ab85b21fe17499 \
-        sha256  4f1dc6ecc7e27891f317e064f789f305dd4d9ab2b4ca7a762c3ec8a8ec9777dd
+        rmd160  07d7528f0cc77e0d5ab3dd4497fabebf7882295c \
+        sha256  1ecb78b45c9b6c72d4c3b36d120491b58e22dc3e44095255aec306c1a80db2c9
+} else {
+    # check http://hg.octave.org/gnulib for latest version
+    set hg_gnu_tag      a05c0ede6620
+
+    checksums-append \
+        ${hg_gnu_tag}${extract.suffix} \
+        rmd160  07d7528f0cc77e0d5ab3dd4497fabebf7882295c \
+        sha256  1ecb78b45c9b6c72d4c3b36d120491b58e22dc3e44095255aec306c1a80db2c9
 }
 
 master_sites        http://hg.savannah.gnu.org/hgweb/octave/archive:octave \
+                    http://hg.octave.org/gnulib/archive:gnulib \
                     http://hg.savannah.gnu.org/hgweb/octave/gnulib-hg/archive:gnulib
 
 distfiles           \
@@ -127,7 +135,11 @@ worksrcdir          octave-${hg.tag}
 
 post-extract {
     # mimic presence of mercurial subrepository
-    move ${worksrcpath}/../gnulib-hg-${hg_gnu_tag} ${worksrcpath}/gnulib-hg
+    if { ${subport} eq "octave-devel-release" } {
+        move ${worksrcpath}/../gnulib-hg-${hg_gnu_tag} ${worksrcpath}/gnulib-hg
+    } else {
+        move ${worksrcpath}/../gnulib-${hg_gnu_tag} ${worksrcpath}/gnulib
+    }
 }
 
 pre-patch {
@@ -154,7 +166,7 @@ pre-patch {
     } elseif { [variant_exists clang33] && [variant_isset clang33] } {
         set gl2psbug yes
     }
-    if { ${gl2psbug} } {
+    if { ${gl2psbug} && ${subport} eq "octave-devel-release" } {
         patchfiles-append   patch-gl2ps_renderer.diff
     }
 }
@@ -167,7 +179,11 @@ depends_build-append \
 
 use_autoconf         yes
 autoconf.cmd         ./bootstrap
-autoconf.args        --no-git --gnulib-srcdir=gnulib-hg
+if { ${subport} eq "octave-devel-release" } {
+    autoconf.args        --gnulib-srcdir=gnulib-hg --no-git
+} else {
+    autoconf.args        --gnulib-srcdir=gnulib    --no-git
+}
 
 # avoid depends_build-append port:coreutils
 configure.env-append MKDIR_P="/bin/mkdir -p"
@@ -281,7 +297,7 @@ configure.args-append       \
     --without-magick        \
     --disable-docs
 
-if { ${subport} eq "octave-devel-rc" || ${subport} eq "octave-devel-release" } {
+if { ${subport} eq "octave-devel-release" } {
     configure.args-append       \
         --disable-gui
 } else {
@@ -326,6 +342,9 @@ depends_lib-append  port:qhull
 
 #--without-z
 depends_lib-append  port:zlib
+#if { ${subport} eq "octave-devel-release" } {
+#    patchfiles-append patch-libinterp-Makefile.in.diff
+#}
 
 #--without-hdf5
 if { ${name} eq ${subport} } {
@@ -378,42 +397,8 @@ depends_run-append   \
 
 depends_run-append port:octave_select
 
-variant accelerate description {use BLAS from Apple's Accelerate.framework} conflicts atlas openblas {
-    depends_lib-append port:vecLibFort
-
-    configure.args-append        \
-        --with-blas=-lvecLibFort \
-        --with-lapack=""
-}
-
-variant openblas description {use BLAS from MacPorts' openblas port} conflicts atlas accelerate {
-
-    depends_lib-append path:lib/libopenblas.dylib:OpenBLAS
-    # LAPACK required
-    require_active_variants path:lib/libopenblas.dylib:OpenBLAS lapack
-
-    # replicate default values if configure script finds openblas on its own
-    configure.args-append        \
-        --with-blas=-lopenblas   \
-        --with-lapack=""
-}
-
-variant atlas description {use BLAS from MacPorts' atlas port} conflicts accelerate openblas {
-    depends_lib-append port:atlas
-
-    # replicate default values if configure script finds atlas on its own
-    configure.args-append        \
-        --with-blas="-lcblas -lf77blas -latlas" \
-        --with-lapack=-llapack
-}
-
-if {![variant_isset accelerate] && ![variant_isset openblas] && ![variant_isset atlas] } {
-    default_variants-append +accelerate
-}
-
-if {![variant_isset accelerate] && ![variant_isset openblas] && ![variant_isset atlas] } {
-    ui_error "\n\nYou must select either the +accelerate, +atlas, or +openblas variant.\n"
-    return -code error "Invalid variant selection"
+pre-configure {
+    configure.args-append --with-blas="-L${prefix}/lib ${linalglib}" --with-lapack=""
 }
 
 variant java description {enable Java interface} {
@@ -425,17 +410,43 @@ variant java description {enable Java interface} {
 #    #51480
 #default_variants-append +java
 
-variant qt4gui description {build the GUI using Qt4} {
+variant qt4 conflicts qt5 description {build the GUI using Qt4} {
     PortGroup qt4 1.0
+
     depends_lib-append  port:qscintilla
 
-    if { ${subport} eq "octave-devel-rc" || ${subport} eq "octave-devel-release" } {
+    if { ${subport} eq "octave-devel-release" } {
         configure.args-replace --disable-gui --enable-gui
     } else {
-        configure.args-replace --without-qt --with-qt
+        configure.args-replace --without-qt --with-qt=4
     }
 }
-default_variants-append +qt4gui
+
+if { ${subport} ne "octave-devel-release" } {
+    variant qt5 conflicts qt4 description {build the GUI using Qt5} {
+        PortGroup qt5 1.0
+
+        depends_lib-append port:qscintilla2
+
+        # see http://savannah.gnu.org/bugs/?41027
+        patchfiles-append   \
+            patch-iconsize.diff
+
+        # location of libqscintilla2.dylib
+        configure.ldflags-append \
+            -L${qt_libs_dir}
+
+        configure.args-replace --without-qt --with-qt=5
+
+        configure.env-append PATH=${qt_dir}/bin:$env(PATH)
+        build.env-append     PATH=${qt_dir}/bin:$env(PATH)
+    }
+    if { ![variant_isset qt4] && ![variant_isset qt5] } {
+        default_variants-append +qt5
+    }
+} else {
+    default_variants-append +qt4
+}
 
 variant fltk description {enable fltk as a graphics toolkit for plotting} {
     depends_lib-append path:lib/libfltk.dylib:fltk
@@ -444,7 +455,7 @@ variant fltk description {enable fltk as a graphics toolkit for plotting} {
 }
 default_variants-append +fltk
 
-if {[variant_isset fltk] || [variant_isset qt4gui]} {
+if {[variant_isset fltk] || [variant_isset qt4] || [variant_isset qt5]} {
 
     # native_graphics (fltk) and gui (Qt) require OpenGL and font and printing capabilities
     depends_lib-append  \
@@ -455,7 +466,7 @@ if {[variant_isset fltk] || [variant_isset qt4gui]} {
     configure.args-replace --without-opengl --with-framework-opengl
 }
 
-if {[variant_isset fltk] && [variant_isset qt4gui]} {
+if { ([variant_isset fltk] && [variant_isset qt4]) || ([variant_isset fltk] && [variant_isset qt5]) } {
     notes-append "unless octave is run with --no-gui-libs, graphics_toolkit(\"fltk\") will cause a crash"
 }
 
@@ -504,7 +515,7 @@ variant app description "build application bundle to launch ${subport}" {
         xinstall -d -m 0755 ${worksrcpath}/${appName}/Contents/MacOS
 
         set script [open "${worksrcpath}/${appName}/Contents/MacOS/Octave" w 0755]
-        if { [variant_isset qt4gui] } {
+        if { [variant_isset qt4] || [variant_isset qt5] } {
             puts ${script} "#!/bin/sh"
             puts ${script} ""
             puts ${script} "${prefix}/bin/octave-${version} --force-gui"
@@ -628,26 +639,26 @@ if {${magickDefault}} {
     default_variants-append +graphicsmagick
 }
 
-if { ${subport} eq "octave-devel-rc" || ${subport} eq "octave-devel-release" } {
-    # remove architecture flags from header file
-    if { [variant_exists universal] && [variant_isset universal] } {
-        merger-post-destroot {
-            foreach arch ${universal_archs_to_use} {
-                set hfile ${destroot}-${arch}${prefix}/include/octave-${version}/octave/oct-conf.h
-                reinplace -E "s:\\w*-arch ${arch}::g" ${hfile}
-                reinplace -E {s:\\w*-m32::g}          ${hfile}
-                reinplace -E {s:\\w*-m64::g}          ${hfile}
-            }
-        }
-    } else {
-        post-destroot {
-            set hfile ${destroot}${prefix}/include/octave-${version}/octave/oct-conf.h
-            reinplace -E "s:\\w*-arch ${build_arch}::g" ${hfile}
-            reinplace -E {s:\\w*-m32::g}                ${hfile}
-            reinplace -E {s:\\w*-m64::g}                ${hfile}
-        }
-    }
-}
+# if { ${subport} eq "octave-devel-release" } {
+#     # remove architecture flags from header file
+#     if { [variant_exists universal] && [variant_isset universal] } {
+#         merger-post-destroot {
+#             foreach arch ${universal_archs_to_use} {
+#                 set hfile ${destroot}-${arch}${prefix}/include/octave-${version}/octave/oct-conf.h
+#                 reinplace -E "s:\\w*-arch ${arch}::g" ${hfile}
+#                 reinplace -E {s:\\w*-m32::g}          ${hfile}
+#                 reinplace -E {s:\\w*-m64::g}          ${hfile}
+#             }
+#         }
+#     } else {
+#         post-destroot {
+#             set hfile ${destroot}${prefix}/include/octave-${version}/octave/oct-conf.h
+#             reinplace -E "s:\\w*-arch ${build_arch}::g" ${hfile}
+#             reinplace -E {s:\\w*-m32::g}                ${hfile}
+#             reinplace -E {s:\\w*-m64::g}                ${hfile}
+#         }
+#     }
+# }
 
 # remove or rename conflicting files
 post-destroot {
