@@ -1,12 +1,10 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 150747 2016-07-27 22:39:07Z ricci@macports.org $
 
 PortSystem          1.0
 PortGroup           cmake 1.0
 
 name                wireshark2
-version             2.2.1
-revision            0
+version             2.2.2
 categories          net
 license             {GPL-2 GPL-3}
 maintainers         darkart.com:opendarwin.org
@@ -28,9 +26,9 @@ distfiles           wireshark-${version}${extract.suffix}
 
 worksrcdir          wireshark-${version}
 
-checksums           sha256  900e22af04c8b35e0d02a25a360ab1fb7cfe5ac18fc48a9afd75a7103e569149 \
-                    rmd160  46214dad4b4ac3b9f1f3f8fc95192d0cc1e3377d \
-                    sha1    fe07ab3582f39111ce5c78f5de6f44a8667000ac
+checksums           sha256  f9acef5e9a9021a400b4244fafc06969f41ec594ec57fd7f0ff63bafca0055b3 \
+                    rmd160  8aafc482c9ee55f18a0c57e7afaabeccc35a9551 \
+                    sha1    b92a292b95e2ea010014364ff513d86afdc8e5a6
 
 conflicts           wireshark-devel wireshark
 
