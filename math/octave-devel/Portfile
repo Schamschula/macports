@@ -29,8 +29,8 @@ set version_tip     4.2.0+
 
 if { ${name} eq ${subport} } {
     version         ${version_tip}
-    revision        5
-    hg.tag          d90bc9cdc638
+    revision        6
+    hg.tag          1c73344fd348
 
     # see http://savannah.gnu.org/bugs/?48773
     patchfiles-append \
@@ -38,8 +38,8 @@ if { ${name} eq ${subport} } {
 
     checksums-append               \
         ${hg.tag}${extract.suffix} \
-        rmd160  cabe4318fd3e82d5dcdfebebb882d0fa9c23a801 \
-        sha256  4e145f18a057020482d8e40a32662d522a4a6b826c86733b48677d9d1585bfcc
+        rmd160  34e06b26c0c9008cc47367d79ceae8abbdd63c02 \
+        sha256  2f24139c7aa03b8732c62269c4a6aaba568a31b3a10e56c498fe08a69991fd80
 
     livecheck.regex   "<a href=\"/hgweb/octave/rev/(\[a-zA-Z0-9.\]+)\">\ntip"
 }
