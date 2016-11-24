@@ -29,17 +29,13 @@ set version_tip     4.2.0+
 
 if { ${name} eq ${subport} } {
     version         ${version_tip}
-    revision        8
-    hg.tag          7184b4516a68
-
-    # see http://savannah.gnu.org/bugs/?48773
-    patchfiles-append \
-        patch-qscintilla2.diff
+    revision        9
+    hg.tag          e2afee0041bf
 
     checksums-append               \
         ${hg.tag}${extract.suffix} \
-        rmd160  986053ca162d59c4dfdad066fcfcc7a871c3893d \
-        sha256  e5a038a096804aa9ba75eafefe4f6ab7790ea92651ef12919fbfd7119386ab2a
+        rmd160  346c06bd989301186141141c522a0ff0a9e471c4 \
+        sha256  3a706e923b96b25fd7f59ae388d854c26bac7cfb43c96928be315300aef619fa
 
     livecheck.regex   "<a href=\"/hgweb/octave/rev/(\[a-zA-Z0-9.\]+)\">\ntip"
 }
