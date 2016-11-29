@@ -29,13 +29,13 @@ set version_tip     4.2.0+
 
 if { ${name} eq ${subport} } {
     version         ${version_tip}
-    revision        10
-    hg.tag          c88f88296789
+    revision        11
+    hg.tag          a3bd04422a87
 
     checksums-append               \
         ${hg.tag}${extract.suffix} \
-        rmd160  33defb0c26f099f2be9758724c075d9505f68b59 \
-        sha256  4b6e6a47c56eccd76f29056a1c5bdc596aefcafd1ec79295fe10b596082a145e
+        rmd160  ddd08ed13e73c1bca58b64a40ef2d43ecc8efb90 \
+        sha256  f36b800a5a55e108f2dd94fdd3b003ada63a2b9880b737c12684bf5b9723217f
 
     livecheck.regex   "<a href=\"/hgweb/octave/rev/(\[a-zA-Z0-9.\]+)\">\ntip"
 }
@@ -111,12 +111,13 @@ if { ${subport} eq "octave-devel-release" } {
         sha256  1ecb78b45c9b6c72d4c3b36d120491b58e22dc3e44095255aec306c1a80db2c9
 } else {
     # check http://hg.octave.org/gnulib for latest version
-    set hg_gnu_tag      a05c0ede6620
+    set hg_gnu_tag      cf443b963cbb
+#                       cf443b963cbba2a9ad06ea71aa88927ec686e086
 
     checksums-append \
         ${hg_gnu_tag}${extract.suffix} \
-        rmd160  07d7528f0cc77e0d5ab3dd4497fabebf7882295c \
-        sha256  1ecb78b45c9b6c72d4c3b36d120491b58e22dc3e44095255aec306c1a80db2c9
+        rmd160  dbf92a091a48e6bfc47a8b6ac6c1de97a3633f41 \
+        sha256  941fc50c943d3a5cb4ac26b73fa8396e6b990b639dfeccd8d5eede178f669e42
 }
 
 master_sites        http://hg.savannah.gnu.org/hgweb/octave/archive:octave \
