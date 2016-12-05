@@ -23,6 +23,3 @@ checksums           rmd160  c32c50fbc18e569a55f4a0b8f52684568fe11c73 \
 if {${name} ne ${subport}} {
     depends_lib-append  port:py${python.version}-requests-oauthlib
 }
-
-livecheck.type      regex
-livecheck.regex     ${real_name}-(\[0-9.\]+)${extract.suffix}

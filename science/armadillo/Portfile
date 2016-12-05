@@ -1,12 +1,11 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 153559 2016-10-04 13:01:06Z mps@macports.org $
 
 PortSystem                      1.0
 PortGroup                       cmake 1.0
 PortGroup                       compiler_blacklist_versions 1.0
 
 name                            armadillo
-version                         7.500.0
+version                         7.500.2
 categories                      science
 platforms                       darwin
 maintainers                     mps \
@@ -29,8 +28,8 @@ master_sites                    sourceforge:project/arma
 
 use_xz                          yes
 
-checksums                       rmd160  d9a75521f6f1f97bc656289abd8bd3ddad51fbab \
-                                sha256  7aa6f82b226753b7a534cd77dffb08f82ecbcf60662aa1ea5a7ff5c7c46828f5
+checksums                       rmd160  4c967ac8049f70a1c2247e6ab59edc391d1c6f2f \
+                                sha256  bdde22b47cc9718a05762300828ba4e086aa0527970e4ce08eb08677fb2623ea
 
 depends_build-append            port:pkgconfig
 
