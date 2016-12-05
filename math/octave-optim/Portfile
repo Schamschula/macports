@@ -1,14 +1,14 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:et:sw=4:ts=4:sts=4
-# $Id: Portfile 148180 2016-04-28 23:31:27Z mps@macports.org $
 
 PortSystem          1.0
 PortGroup           octave 1.0
 PortGroup           compilers 1.0
 
 octave.setup        optim 1.5.2
+revision 1
 platforms           darwin
 license             GFDL GPL-3+ BSD public-domain
-maintainers         nomaintainer
+maintainers         mps openmaintainer
 description         Unconstrained Non-linear Optimization toolkit.
 long_description    ${description}
 
