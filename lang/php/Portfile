@@ -1,5 +1,4 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 145931 2016-02-21 16:14:53Z ryandesign@macports.org $
 
 PortSystem              1.0
 PortGroup               php 1.1
@@ -111,10 +110,10 @@ switch ${subport_branch} {
     }
     7.0 {
         epoch           2
-        version         7.0.13
+        version         7.0.14
         use_xz          yes
-        checksums       rmd160  de27c68bac8995e8a369dd53d63854aa64dd1170 \
-                        sha256  357ba7f93975d7d836abed0852dc3ed96a988af539e87750613294cbee82f1bf
+        checksums       rmd160  e4b59aa1c5e4cecefb6f4ceb264c314431c5315f \
+                        sha256  0f1dff6392a1cc2ed126b9695f580a2ed77eb09d2c23b41cabfb41e6f27a8c89
     }
     7.1 {
         # When this becomes a stable version, remove the overrides for homepage,
