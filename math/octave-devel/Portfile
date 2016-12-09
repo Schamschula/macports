@@ -29,13 +29,13 @@ set version_tip     4.2.0+
 
 if { ${name} eq ${subport} } {
     version         ${version_tip}
-    revision        13
-    hg.tag          f9fdd2f66514
+    revision        14
+    hg.tag          2830a770405b
 
     checksums-append               \
         ${hg.tag}${extract.suffix} \
-        rmd160  9520cccea424e631b2ea165dedaa0e5996acbc91 \
-        sha256  54d950de95c5ff947bcf9153df4594e0bd5beec32c9dbadaeb10283cfcc1e4bf
+        rmd160  0db34640c70ade537f4a58d641a83c0ce887de0f \
+        sha256  713d3e81a2273551852a80b9c5954c9eb0c097e4e5ce6121c414b45c8a9dcb29
 
     livecheck.regex   "<a href=\"/hgweb/octave/rev/(\[a-zA-Z0-9.\]+)\">\ntip"
 }
