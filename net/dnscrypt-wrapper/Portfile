@@ -1,31 +1,32 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 130875 2015-01-03 12:30:17Z jann@macports.org $
 
 PortSystem          1.0
-PortGroup			github 1.0
+PortGroup           github 1.0
 
-github.setup        Cofyc dnscrypt-wrapper 41801dd
-fetch.type          git
+github.setup        cofyc dnscrypt-wrapper 0.2.2 v
+#fetch.type          git
 
 name                dnscrypt-wrapper
 categories          net
 license             ISC
-maintainers         gmail.com:mschamschula openmaintainer
+maintainers         mps openmaintainer
 description         This is dnscrypt wrapper (server-side dnscrypt-proxy), which helps to \
                     add dnscrypt support to any name resolver.
 long_description    ${description}
-homepage            http://dnscrypt.org/
+homepage            https://dnscrypt.org/
 
 platforms           darwin
 depends_build       port:autoconf
 depends_lib         port:libevent \
                     port:libsodium
 
+checksums           rmd160  a51cb2d3a88741b2741810bd87d53658eaf75ece \
+                    sha256  ff7e6773fb53454ddb2952892440516ee0a600a19cf7c2c124151cfad7b6ef70
+
 patchfiles          patch-Makefile.diff
 
 pre-configure {
 	system "cd ${worksrcpath} && make configure"
-	system "cd ${worksrcpath} && git clone https://github.com/Cofyc/argparse.git -b master"
 }
 
 # startupitem.create      yes
