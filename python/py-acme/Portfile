@@ -1,5 +1,4 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id$
 
 PortSystem          1.0
 PortGroup           python 1.0
@@ -18,7 +17,7 @@ platforms           darwin
 homepage            https://pypi.python.org/pypi/acme
 master_sites        pypi:a/acme
 
-python.versions     27 34 35
+python.versions     27 34 35 36
 
 checksums           rmd160  c07c88faa7177fd6cc5002c4cd151260dbb97d29 \
                     sha256  a6eff1f955eb2e4316abd9aa2fedb6d9345e6b5b8a2d64ea0ad35e05d6124099
