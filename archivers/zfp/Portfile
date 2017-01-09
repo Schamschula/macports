@@ -1,0 +1,33 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+
+github.setup        LLNL zfp 0.5.0
+categories          archivers
+license             bsd
+maintainers         mps openmaintainer
+description         zfp is an open source library for compressed numerical arrays
+long_description    zfp is an open source C/C++ library for compressed numerical \
+                    arrays that support high throughput read and write random access.
+platforms           darwin
+homepage            http://computation.llnl.gov/projects/floating-point-compression
+
+checksums           rmd160  64b0ebd20e6037a2d10511a5e4a657d3fb31f5ab \
+                    sha256  4ce308a1d99f7d85c0664e2a1c3394a3dda97f0b31e6f929f2ec1aca98054753
+
+use_configure       no
+
+build.args          shared
+
+pre-build {
+	file mkdir ${worksrcpath}/lib
+}
+
+destroot {
+	xinstall -d  ${destroot}${prefix}/include/${name}
+	xinstall -m 640 {*}[glob ${worksrcpath}/inc/*] \
+        ${destroot}${prefix}/include/${name}
+	xinstall -m 640 {*}[glob ${worksrcpath}/lib/*] \
+        ${destroot}${prefix}/lib
+}
