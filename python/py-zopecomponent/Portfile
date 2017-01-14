@@ -10,7 +10,7 @@ worksrcdir          ${real_name}-${version}
 distfiles           ${real_name}-${version}${extract.suffix}
 categories-append   zope
 license             ZPL-2.1
-maintainers         gmail.com:mschamschula openmaintainer
+maintainers         mps openmaintainer
 description         This package represents the core of the Zope Component Architecture.
 long_description    ${description}
 platforms           darwin
