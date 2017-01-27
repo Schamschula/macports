@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 
 github.setup        cofyc dnscrypt-wrapper 0.2.2 v
-#fetch.type          git
+revision            1
 
 name                dnscrypt-wrapper
 categories          net
