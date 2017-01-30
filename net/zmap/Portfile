@@ -1,0 +1,22 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           cmake 1.0
+PortGroup           github 1.0
+
+github.setup        zmap zmap 2.1.1 v
+categories          net
+license             Apache-2.0
+maintainers         mps openmaintainer
+description         ZMap: The Internet Scanner
+long_description    ZMap is a fast single packet network scanner designed for \
+                    Internet-wide network surveys.
+platforms           darwin
+
+checksums           rmd160  9133e247c406d71b91f8b91e070255a9dd72aedc \
+                    sha256  204bd559f56238fa841baa27d8be5ce16f473f594b49198799f79cfe35c28103
+
+depends_lib-append  port:byacc \
+                    port:gengetopt \
+                    port:json-c \
+                    port:libdnet
