@@ -4,10 +4,10 @@
 PortSystem          1.0
 
 name                suricata
-version             3.2
+version             3.2.1
 categories          net security
 platforms           darwin
-maintainers         yahoo.fr:jul_bsd openmaintainer
+maintainers         {mps @Schamschula} openmaintainer
 license             BSD
 
 description         Open Source IDS / IPS / NSM engine
@@ -159,8 +159,8 @@ post-activate {
 
 if {${subport} eq ${name}} {
 
-    checksums           rmd160  d15115a809b9970cfbb726a1574d271b1e43cdda \
-                        sha256  41cbe19c6fd6bd51ebcbc29063f558e2fbba4a2450e5809fee2e461f16a4ed68
+    checksums           rmd160  cac4be50ac2662771f18b5de43bfb22ef43c393f \
+                        sha256  0e0b0cf49016804bb2fb1fc4327341617e76a67902f4e03e0ef6d16c1d7d3994
 
     destroot.target     install-full
     
