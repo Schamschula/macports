@@ -1,0 +1,16 @@
+--- sqlite3.c.orig	2017-02-13 10:25:44.000000000 -0600
++++ sqlite3.c	2017-02-14 11:19:36.000000000 -0600
+@@ -215,9 +215,12 @@
+ #else
+ # define GCC_VERSION 0
+ #endif
+-#if defined(__clang__) && !defined(_WIN32) && !defined(SQLITE_DISABLE_INTRINSIC)
++#if defined(__clang__) && !defined(_WIN32) && !defined(__apple_build_version__) && !defined(SQLITE_DISABLE_INTRINSIC)
+ # define CLANG_VERSION \
+             (__clang_major__*1000000+__clang_minor__*1000+__clang_patchlevel__)
++#elif defined(__clang__) && defined(__apple_build_version__)
++# define CLANG_VERSION \
++            ((__clang_major__-4)*1000000+__clang_minor__*1000+__clang_patchlevel__)
+ #else
+ # define CLANG_VERSION 0
+ #endif

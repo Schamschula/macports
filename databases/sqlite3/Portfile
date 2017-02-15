@@ -39,7 +39,8 @@ configure.args      --enable-threadsafe \
                     AWK=/usr/bin/awk
 
 # search in worksrcpath for sqlite3.h first -- dont pick up an installed one!
-configure.cppflags-prepend  -DSQLITE_ENABLE_COLUMN_METADATA \
+configure.cppflags-prepend  -DSQLITE_DISABLE_INTRINSIC \
+                            -DSQLITE_ENABLE_COLUMN_METADATA \
                             -DSQLITE_ENABLE_FTS3_PARENTHESIS \
                             -DSQLITE_ENABLE_FTS4 \
                             -DSQLITE_ENABLE_FTS5 \
