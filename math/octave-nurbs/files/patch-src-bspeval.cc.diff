@@ -1,0 +1,11 @@
+--- src/bspeval.cc.orig	2015-08-17 05:23:44.000000000 -0500
++++ src/bspeval.cc	2017-02-18 19:27:16.000000000 -0600
+@@ -16,7 +16,7 @@
+ 
+ #include <octave/oct.h>
+ #include "low_level_functions.h"
+-#include <omp.h>
++#include <libomp/omp.h>
+ 
+ static bool bspeval_bad_arguments(const octave_value_list& args);
+ 
