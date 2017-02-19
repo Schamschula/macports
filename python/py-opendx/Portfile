@@ -7,7 +7,7 @@ set real_name       opendx
 name                py-${real_name}
 version             1.11
 categories          science
-license             
+license             permissive
 maintainers         {mps @Schamschula} openmaintainer
 description         Py-OpenDX is a Python binding for the OpenDX API.
 long_description    ${description}
