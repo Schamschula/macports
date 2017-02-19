@@ -1,0 +1,27 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+set real_name       opendx
+name                py-${real_name}
+version             1.11
+categories          science
+license             
+maintainers         {mps @Schamschula} openmaintainer
+description         Py-OpenDX is a Python binding for the OpenDX API.
+long_description    ${description}
+platforms           darwin
+homepage            https://people.freebsd.org/~rhh/py-opendx/index.html
+master_sites        https://people.freebsd.org/~rhh/py-opendx/
+
+python.versions     27
+
+checksums           rmd160  84d6073b6cd0779df3c21b04cc7eadd2eb86e570 \
+                    sha256  47c0f707d7cd2c2fdb02000132e3a31f1d10abc9108ebeddb98753f84c7e6dd0
+
+patchfiles          patch-setup.py.diff
+
+post-patch {
+	    reinplace "s|%PREFIX%|${prefix}|" ${worksrcpath}/setup.py
+}

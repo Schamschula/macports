@@ -1,0 +1,20 @@
+--- setup.py.orig	2001-01-20 14:42:32.000000000 -0600
++++ setup.py	2017-02-18 18:34:36.000000000 -0600
+@@ -3,7 +3,7 @@
+ """Setup script for the OpenDX module distribution."""
+ 
+ #DX_PREFIX = '/home/rhh/software/dx-cvs-20010116'
+-DX_PREFIX = '/usr/local/dx'
++DX_PREFIX = '%PREFIX%'
+ 
+ # Packaged with Distutils-1.0.1 and Python 2.0
+ try:
+@@ -54,7 +54,7 @@
+                       sources      = ['DX/DXL_wrap.c','DX/DXL_fix.c'],
+                       include_dirs = [DX_PREFIX+'/dx/include'],
+ 
+-                      library_dirs = [DX_PREFIX+'/dx/lib_sgi','/usr/local/lib32'],
++                      library_dirs = [DX_PREFIX+'/dx/lib_macos'],
+                       libraries    = ['DXL','DXlite'],
+ 
+                       #library_dirs = [DX_PREFIX+'/dx/lib_sgi','/usr/local/lib32'],
