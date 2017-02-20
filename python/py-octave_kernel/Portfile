@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           python 1.0
 
-github.setup        Calysto octave_kernel 0.25.0 v
+github.setup        Calysto octave_kernel 0.25.1 v
 set real_name       octave_kernel
 name                py-${real_name}
 license             Modified BSD
@@ -13,8 +13,8 @@ description         A Jupyter kernel for Octave
 long_description    ${description}
 platforms           darwin
 
-checksums           rmd160  e3b28f19bdef942f5c18e42ea0d988a447b03a00 \
-                    sha256  bf175f3bf68424d3c326d62c23e13460d1de362b4fd4b1e10e0d52aa8a2cd7b6
+checksums           rmd160  87246393cee319dcbc23ae0307177becf683e5dd \
+                    sha256  798ffba8020d7049065cfc31796bc61661210aa8a6f7a95208d4a216a91d51a8
 
 python.versions     27 34 35 36
 
