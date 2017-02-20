@@ -17,3 +17,9 @@ checksums           rmd160  e3b28f19bdef942f5c18e42ea0d988a447b03a00 \
                     sha256  bf175f3bf68424d3c326d62c23e13460d1de362b4fd4b1e10e0d52aa8a2cd7b6
 
 python.versions     27 34 35 36
+
+if {${name} ne ${subport}} {
+    depends_lib-append  \
+                    port:octave \
+                    port:py${python.version}-metakernel
+}

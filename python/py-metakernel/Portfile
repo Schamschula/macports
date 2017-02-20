@@ -19,3 +19,8 @@ checksums           rmd160  f56854850c57787bc4c62e7de60d562b2949b32e \
                     sha256  877d594e583b99e1a5657b3863cc303187a8445ff7ffd5d327e22355652f8f9c
 
 python.versions     27 34 35 36
+
+if {${name} ne ${subport}} {
+    depends_lib-append  \
+                    port:py${python.version}-notebook
+}
