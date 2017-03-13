@@ -5,10 +5,10 @@ PortGroup           octave 1.0
 PortGroup           compilers 1.0
 
 octave.setup        optim 1.5.2
-revision 1
+revision 2
 platforms           darwin
 license             GFDL GPL-3+ BSD public-domain
-maintainers         mps openmaintainer
+maintainers         {mps @Schamschula} openmaintainer
 description         Unconstrained Non-linear Optimization toolkit.
 long_description    ${description}
 
