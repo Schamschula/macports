@@ -5,6 +5,7 @@ PortGroup           github 1.0
 PortGroup           python 1.0
 
 github.setup        Calysto octave_kernel 0.26.0 v
+revision            1
 set real_name       octave_kernel
 name                py-${real_name}
 license             Modified BSD
@@ -22,4 +23,10 @@ if {${name} ne ${subport}} {
     depends_lib-append  \
                     port:octave \
                     port:py${python.version}-metakernel
+    
+    post-destroot {
+        exec ${prefix}/bin/python${python.branch} \
+        ${destroot}${prefix}/Library/Frameworks/Python.framework/Versions/${python.branch}/lib/python${python.branch}/site-packages/octave_kernel/install.py \
+        --prefix ${destroot}${prefix}
+    }
 }
