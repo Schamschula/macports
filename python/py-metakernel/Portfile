@@ -15,8 +15,8 @@ long_description    ${description} which includes core magic functions (includin
                     processing, downloads, and much more).
 platforms           darwin
 
-checksums           rmd160  3e3298134f3e177fc800abc26928d7a64f19a16c \
-                    sha256  7f1d190b377e9a664cf64c3f62719953b34d3ae0cf17989a90d0fb7cdbde8182
+checksums           rmd160  40222a36cec6cf9b594033328d3062d6c097d9e3 \
+                    sha256  477b5d2081c922ba99228db3f9417b2d3e82b9e3c30469130c6051ba57e17f4c
 
 python.versions     27 34 35 36
 
