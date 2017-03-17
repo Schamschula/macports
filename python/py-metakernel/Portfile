@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           python 1.0
 
-github.setup        Calysto metakernel 0.20.0 v
+github.setup        Calysto metakernel 0.20.1 v
 set real_name       metakernel
 name                py-${real_name}
 license             Modified BSD
@@ -15,8 +15,8 @@ long_description    ${description} which includes core magic functions (includin
                     processing, downloads, and much more).
 platforms           darwin
 
-checksums           rmd160  40222a36cec6cf9b594033328d3062d6c097d9e3 \
-                    sha256  477b5d2081c922ba99228db3f9417b2d3e82b9e3c30469130c6051ba57e17f4c
+checksums           rmd160  8199edbf097848d61baa8300e1268eb9049eac65 \
+                    sha256  ffadfc70aec5cc8f8103f99893ef0caeb7242ca9345a2b307aa01038f14cf9c8
 
 python.versions     27 34 35 36
 
