@@ -29,7 +29,6 @@ if {${name} ne ${subport}} {
 #        ${destroot}${prefix}/Library/Frameworks/Python.framework/Versions/${python.branch}/lib/python${python.branch}/site-packages/octave_kernel/install.py \
 #        --prefix ${destroot}${prefix}
 #    }
-}
 
 notes "
 ************************************************************
@@ -40,3 +39,4 @@ octave_kernel needs to install some files in each user's
 ${prefix}/bin/python${python.branch} ${prefix}/Library/Frameworks/Python.framework/Versions/${python.branch}/lib/python${python.branch}/site-packages/octave_kernel/install.py
 ************************************************************
 "
+}
