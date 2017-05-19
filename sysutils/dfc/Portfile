@@ -21,3 +21,7 @@ checksums           rmd160  444e069ceb46ec5d8d0bb57e64f2740704f314fa \
 
 depends_lib         port:gettext \
                     port:libiconv
+
+livecheck.type      regex
+livecheck.url       ${homepage}/files
+livecheck.regex     "${name}-(\\d+(?:\\.\\d+)*)${extract.suffix}"
