@@ -1,0 +1,26 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+
+name                goaccess
+version             1.2
+categories          www
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         GoAccess was designed to be a fast, terminal-based log analyzer.
+long_description    ${description} Its core idea is to quickly analyze and view web \
+                    server statistics in real time without needing to use your browser.
+platforms           darwin
+homepage            https://goaccess.io/
+master_sites        http://tar.goaccess.io/
+
+checksums           rmd160  79db6509d6e10a4ecb5199e637b8e1663cd7e599 \
+                    sha256  6ba9f66540ea58fc2c17f175265f9ed76d74a8432eeac1182b74ebf4f2cd3414
+
+configure.args      --enable-tcb \
+                    --enable-utf8 \
+                    --with-openssl
+
+depends_lib         port:ncurses \
+                    port:openssl \
+                    port:tokyocabinet
