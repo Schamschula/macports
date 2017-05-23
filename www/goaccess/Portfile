@@ -24,3 +24,7 @@ configure.args      --enable-tcb \
 depends_lib         port:ncurses \
                     port:openssl \
                     port:tokyocabinet
+
+livecheck.type      regex
+livecheck.url       ${homepage}download
+livecheck.regex     ${name}-(\\d+(?:\\.\\d+)*)
