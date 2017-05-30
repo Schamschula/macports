@@ -1,0 +1,18 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+
+github.setup        koct9i ioping 1.0 v
+categories          sysutils
+license             GPL3+
+maintainers         {mps @Schamschula} openmaintainer
+description         A tool to monitor I/O latency in real time.
+long_description    ${description} It shows disk latency in the same way as ping shows \
+                    network latency.
+platforms           darwin
+
+checksums           rmd160  fc481feb1d61cd321cd396b72ad476cccdcc00c1 \
+                    sha256  3b951d4268a630ce61b2569d721a4aec8bef7a8990890b2db34fd1f642b8f7f5
+
+use_configure       no
