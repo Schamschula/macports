@@ -1,5 +1,4 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 142161 2015-11-05 03:22:04Z khindenburg@macports.org $
 
 PortSystem              1.0
 PortGroup               cmake 1.0
@@ -8,9 +7,10 @@ PortGroup               github 1.0
 PortGroup               qt4 1.0
 
 github.setup            FreeCAD FreeCAD 0.16
+name                    freecad
 categories              cad
 platforms               darwin
-maintainers             gmail.com:mark.brethen mps openmaintainer
+maintainers             gmail.com:mark.brethen {mps @Schamschula} openmaintainer
 license                 LGPL-2+
 
 description \
@@ -57,6 +57,8 @@ post-patch {
     reinplace "s|/Applications|${applications_dir}|" \
         ${worksrcpath}/src/Mod/OpenSCAD/OpenSCADUtils.py
 }
+
+cmake.out_of_source     yes
 
 compilers.choose        fc
 compilers.setup         -dragonegg -g95 require_fortran
