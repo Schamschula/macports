@@ -1,4 +1,4 @@
-# $Id: mailman.conf.in 45477 2009-01-16 14:56:58Z ryandesign@macports.org $
+# $Id$
 #
 # Mailman configuration file fragment for Apache
 
