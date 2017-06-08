@@ -4,7 +4,7 @@
 PortSystem          1.0
 
 name                suricata
-version             3.2.1
+version             3.2.2
 categories          net security
 platforms           darwin
 maintainers         {mps @Schamschula} openmaintainer
@@ -159,8 +159,8 @@ post-activate {
 
 if {${subport} eq ${name}} {
 
-    checksums           rmd160  cac4be50ac2662771f18b5de43bfb22ef43c393f \
-                        sha256  0e0b0cf49016804bb2fb1fc4327341617e76a67902f4e03e0ef6d16c1d7d3994
+    checksums           rmd160  4ab859a2c8cf9860c40a1ff68fe4141887d0597d \
+                        sha256  b1d8e5e53a76fbc89712d10ca8e2208f68f6fc2def0e6ac82e9693bb586a49cb
 
     destroot.target     install-full
     
@@ -169,7 +169,7 @@ if {${subport} eq ${name}} {
                         patch-src-output-json-alert.h.diff \
                         patch-src-util-profiling-rules.c.diff
 
-    conflicts  ${name} ${name}1
+    conflicts  ${name}-devel
     livecheck.regex     "<strong>Suricata \\(Development\\) version is (\\d+(?:\\.\\d+)(\\w*)*), "
 }
 
@@ -186,7 +186,7 @@ subport ${name}-devel {
                         patch-src-output-json-alert.h.diff \
                         patch-src-util-profiling-rules.c.diff
 
-    conflicts  ${name} ${name}1
+    conflicts  ${name}
     livecheck.regex     "<strong>Suricata \\(Development\\) version is (\\d+(?:\\.\\d+)(\\w*)*), "
 }
 
@@ -199,11 +199,11 @@ variant debug description { enable debug, processing will be slower } {
     configure.args-append    --enable-debug --enable-profiling
 }
 
-#variant spatch description { spatch support. IN CONSTRUCTION } {
+#variant spatch description { spatch support. IN CONSTRUCTION } {
 #    ## http://coccinelle.lip6.fr/sp.php
 #}
 
-variant python27 description { Python 2.7 bindings } {
+variant python27 description { Python 2.7 bindings } {
     depends_build-append     port:python27
 #    configure.env-append     PYTHON=${prefix}/bin/python2.7
     configure.python         ${prefix}/bin/python2.7
