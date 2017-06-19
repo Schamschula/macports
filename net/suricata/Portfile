@@ -24,11 +24,21 @@ master_sites        http://downloads.suricata-ids.org/
 
 ## https://redmine.openinfosecfoundation.org/projects/suricata/wiki/Mac_OS_X_106x
 ## FIXME! one deps resolves to libgcc-devel which can conflict w a lot of ports depending on libgcc
-depends_build       port:autoconf port:automake
-depends_lib         port:pkgconfig port:libnet11 port:libpcap port:pcre \
-                    port:libyaml port:libtool port:libmagic port:jansson
+depends_build       port:autoconf \
+                    port:automake
+
+depends_lib         port:jansson \
+                    port:libnet11 \
+                    port:libpcap \
+                    port:libmagic \
+                    port:libtool \
+                    port:libyaml \
+                    port:pcre \
+                    port:pkgconfig
+
 configure.env       AC_PROG_LIBTOOL=${prefix}/bin/glibtool \
                     LDFLAGS="-ljansson" CPPFLAGS=-I${prefix}/include
+
 configure.args      --enable-ipfw --enable-gccprotect \
                     --enable-unittests \
                     --disable-geoip --disable-prelude --disable-unix-socket \
@@ -175,14 +185,21 @@ if {${subport} eq ${name}} {
 
 subport ${name}-devel {
 
-    version             3.2RC1
-    checksums           rmd160  bd882e697560e68fd8be0a68e0ffa4769cc81085 \
-                        sha256  c988ff4e1637561627c4053efcaaf2193922d61fd263b9b895bfdb538236dbf8
+    version             4.0.0-beta1
+    checksums           rmd160  8e4e5f32c80ba8b0973aa0dd460490393bd4aac1 \
+                        sha256  a36ebf0e20a0f732504da86ca9f1a121a9d3220948a9048ad555b3db40f129a2
+
+    depends_lib-append  port:libhtp
+
+    configure.args-append \
+                        --enable-non-bundled-htp \
+                        --with-libhtp-includes=${prefix}/include \
+                        --with-libhtp-libraries=${prefix}/lib
     
     destroot.target     install-full
     
     ## Got both strlcpy/strlcat errors and "error: unknown type name 'json_t'"
-    patchfiles          patch-src-output-json.h-3.0.diff \
+    patchfiles          patch-src-output-json.h-4.0.diff \
                         patch-src-output-json-alert.h.diff \
                         patch-src-util-profiling-rules.c.diff
 
