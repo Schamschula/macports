@@ -127,7 +127,6 @@ post-patch {
     reinplace "s|magic-file: /usr/share/file/magic|magic-file: ${prefix}/share/misc/magic|g" ${worksrcpath}/suricata.yaml.in
 }
 
-## FIXME! no man? nothing in source. debian?
 post-destroot {
     xinstall -d ${destroot}${prefix}/share/examples/${name}
     foreach f { classification.config reference.config suricata.yaml } {
