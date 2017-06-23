@@ -1,15 +1,13 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: Portfile 133339 2015-02-26 19:43:32Z larryv@macports.org $
 
 PortSystem          1.0
-PortGroup           muniversal 1.0
 
 name                pyxplot
 version             0.9.2
-revision            3
+revision            7
 categories          math science
 platforms           darwin
-maintainers         gmail.com:mschamschula openmaintainer
+maintainers         {mps @Schamschula} openmaintainer
 license             GPL-3+
 
 description         Pyxplot is a multi-purpose graph plotting tool
@@ -48,7 +46,9 @@ post-patch {
                 ${worksrcpath}/Makefile.skel
 }
 
-build.env           CC=${configure.cc}
+universal_variant   no
+
+build.env           CC="${configure.cc}"
 
 livecheck.type      regex
 livecheck.url       [lindex ${master_sites} 0]

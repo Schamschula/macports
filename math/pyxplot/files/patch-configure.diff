@@ -1,23 +1,25 @@
 --- configure.orig	2012-09-19 07:58:20.000000000 -0500
-+++ configure	2015-05-29 18:48:32.000000000 -0500
-@@ -177,22 +177,22 @@
++++ configure	2015-09-07 21:12:47.000000000 -0500
+@@ -177,22 +177,21 @@
   exit
  fi
  
 -# 11. CHECK TO SEE WHETHER THIS SYSTEM HAS GCC INSTALLED
-+# 11. CHECK TO SEE WHETHER THIS SYSTEM HAS GCC/CLANG INSTALLED
++# 11. CHECK TO SEE WHETHER THIS SYSTEM HAS A COMPILER INSTALLED
  
 -echo $ECHO_N "Checking for gcc               ............. $ECHO_C"
 -whichout=`which gcc 2> conf.stderr`
-+echo $ECHO_N "Checking for gcc/clang          ............. $ECHO_C"
-+whichout=`echo $CC 2> conf.stderr`
- rm -f conf.*
- if test "`echo $whichout | sed 's/\([a-z]*\).*/\1/'`" = "no" ; then whichout="" ; fi
- if test "$whichout" != "" ; then
+-rm -f conf.*
+-if test "`echo $whichout | sed 's/\([a-z]*\).*/\1/'`" = "no" ; then whichout="" ; fi
+-if test "$whichout" != "" ; then
++CC="${CC:-gcc}"
++echo $ECHO_N "Checking for $CC               ............. $ECHO_C"
++if $CC -v 2> conf.stderr
++then
   echo "YES"
  else
 - echo "NO" ; echo "ERROR: Required program gcc could not be found." >&2 ; exit
-+ echo "NO" ; echo "ERROR: Required program cc could not be found." >&2 ; exit
++ echo "NO" ; echo "ERROR: Required program $CC could not be found or does not work." >&2 ; exit
  fi
  
  # 12. CHECK TO SEE WHETHER THIS SYSTEM HAS GNU READLINE HEADERS
@@ -28,7 +30,7 @@
  then
   rm -f conf.*
   echo "YES"
-@@ -208,7 +208,7 @@
+@@ -208,7 +207,7 @@
  # 13. CHECK TO SEE WHETHER THIS SYSTEM HAS CFITSIO HEADERS
  
  echo $ECHO_N "Checking for libcfitsio-dev    ............. $ECHO_C"
@@ -37,7 +39,7 @@
  then
   rm -f conf.*
   echo "YES"
-@@ -224,7 +224,7 @@
+@@ -224,7 +223,7 @@
  # 14. CHECK TO SEE WHETHER THIS SYSTEM HAS GSL HEADERS
  
  echo $ECHO_N "Checking for libgsl0-dev       ............. $ECHO_C"
@@ -46,7 +48,7 @@
  then
   rm -f conf.*
   echo "YES"
-@@ -250,7 +250,7 @@
+@@ -250,7 +249,7 @@
  # 15. CHECK TO SEE WHETHER THIS SYSTEM HAS FFTW HEADERS
  
  echo $ECHO_N "Checking for libfftw3-dev      ............. $ECHO_C"
@@ -55,7 +57,7 @@
  then
   rm -f conf.*
   echo "YES"
-@@ -260,7 +260,7 @@
+@@ -260,7 +259,7 @@
   rm -f conf.*
   echo "NO"
   echo $ECHO_N "Checking for libfftw2-dev      ............. $ECHO_C"
@@ -64,7 +66,7 @@
   then
    rm -f conf.*
    echo "YES"
-@@ -290,7 +290,7 @@
+@@ -290,7 +289,7 @@
  # 17. CHECK TO SEE WHETHER THIS SYSTEM HAS LIBPNG HEADERS
  
  echo $ECHO_N "Checking for libpng-dev        ............. $ECHO_C"
@@ -73,7 +75,7 @@
  then
   rm -f conf.*
   echo "YES"
-@@ -304,7 +304,7 @@
+@@ -304,7 +303,7 @@
  # 18. CHECK TO SEE WHETHER THIS SYSTEM HAS KPATHSEA HEADERS
  
  echo $ECHO_N "Checking for libkpathsea-dev   ............. $ECHO_C"
