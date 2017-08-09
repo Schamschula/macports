@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                suricata
-version             3.2.2
+version             4.0.0
 categories          net security
 platforms           darwin
 maintainers         {mps @Schamschula} openmaintainer
@@ -167,13 +167,20 @@ post-activate {
 
 if {${subport} eq ${name}} {
 
-    checksums           rmd160  4ab859a2c8cf9860c40a1ff68fe4141887d0597d \
-                        sha256  b1d8e5e53a76fbc89712d10ca8e2208f68f6fc2def0e6ac82e9693bb586a49cb
+    checksums           rmd160  7b99bfdd98ffadba9d12c27f76d825d6d67efd4f \
+                        sha256  6b8b183a8409829ca92c71854cc1abed45f04ccfb7f14c08211f4edf571fa577
 
+    depends_lib-append  port:libhtp
+
+    configure.args-append \
+                        --enable-non-bundled-htp \
+                        --with-libhtp-includes=${prefix}/include \
+                        --with-libhtp-libraries=${prefix}/lib
+    
     destroot.target     install-full
     
     ## Got both strlcpy/strlcat errors and "error: unknown type name 'json_t'"
-    patchfiles          patch-src-output-json.h-3.0.diff \
+    patchfiles          patch-src-output-json.h-4.0.diff \
                         patch-src-output-json-alert.h.diff \
                         patch-src-util-profiling-rules.c.diff
 
