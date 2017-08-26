@@ -6,7 +6,7 @@ PortGroup           python 1.0
 
 name                py-pygmsh
 set real_name       pygmsh
-github.setup        nschloe pygmsh 3.2.1 v
+github.setup        nschloe pygmsh 3.2.2 v
 
 worksrcdir          ${real_name}-${version}
 distfiles           ${real_name}-${version}${extract.suffix}
@@ -17,20 +17,17 @@ description         PyGmsh combines power of Gmsh.
 long_description    ${description} with the versatility of Python and to provide \
                     useful abstractions from the Gmsh scripting language so you can \
                     create complex geometries more easily.
+categories-append   science
 
 python.versions     27 35 36
 
 platforms           darwin
 
-checksums           rmd160  c1b4ae9c9e8641fedd1b2866b186b279b0062e86 \
-                    sha256  e7c625f4d484843f881c216133dff1896a30bd540137314e5f03421104a45035
+checksums           rmd160  ff741f7b846d4845dbc6fa30996feb56d16ddf11 \
+                    sha256  21e02cae1187ee77bd231410369414c798b5ee56c85cb519e99adc8c87fa19d3
 
 if {${name} ne ${subport}} {
     depends_lib-append  \
                     port:py${python.version}-pbr \
-                    port:py${python.version}-setuptools
-                    
-} else {
-    livecheck.type      regex
-    livecheck.regex     ${real_name}-(\[0-9.\]+)${extract.suffix}
+                    port:py${python.version}-setuptools         
 }
