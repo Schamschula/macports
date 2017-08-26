@@ -4,9 +4,9 @@
 PortSystem          1.0
 
 name                gitlist
-version             0.5.0
+version             0.6.0
 categories          devel
-maintainers         gmail.com:mschamschula openmaintainer
+maintainers         {mps @Schamschula} openmaintainer
 
 homepage            http://gitlist.org/
 
