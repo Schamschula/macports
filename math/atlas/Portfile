@@ -8,7 +8,7 @@ categories              math
 license                 BSD
 name                    atlas
 version                 3.10.2
-revision                2
+revision                3
 use_bzip2               yes
 
 # additional versions
@@ -51,7 +51,20 @@ checksums           atlas${version}.tar.bz2 \
 
 worksrcdir          ATLAS
 
-variant gcc6        conflicts   gcc49 gcc5 mpclang37 perf\
+variant gcc7        conflicts   gcc49 gcc5 gcc6 mpclang37 perf\
+                    description {build using macports-gcc-5} {
+
+    configure.compiler      macports-gcc-7
+}
+
+if {[variant_isset gcc7]} {
+
+    set gcc_version 7
+    set use_clang   ""
+
+}
+
+variant gcc6        conflicts   gcc49 gcc5 gcc7 mpclang37 perf\
                     description {build using macports-gcc-5} {
 
     configure.compiler      macports-gcc-6
@@ -64,7 +77,7 @@ if {[variant_isset gcc6]} {
 
 }
 
-variant gcc5        conflicts   gcc49 gcc6 mpclang37 perf\
+variant gcc5        conflicts   gcc49 gcc6 gcc7 mpclang37 perf\
                     description {build using macports-gcc-5} {
 
     configure.compiler      macports-gcc-5
@@ -77,7 +90,7 @@ if {[variant_isset gcc5]} {
 
 }
 
-variant gcc49       conflicts   gcc6 gcc5 mpclang37 perf\
+variant gcc49       conflicts   gcc6 gcc5 gcc7 mpclang37 perf\
                     description {build using macports-gcc-4.9} {
 
     configure.compiler      macports-gcc-4.9
@@ -90,7 +103,7 @@ if {[variant_isset gcc49]} {
 
 }
 
-variant mpclang37   conflicts   gcc49 gcc6 gcc5 perf\
+variant mpclang37   conflicts   gcc49 gcc6 gcc5 gcc7 perf\
                     description {use mp-clang-3.7 and gfortran} { 
 
     configure.compiler      macports-clang-3.7
