@@ -9,7 +9,7 @@ categories          archivers sysutils
 platforms           darwin freebsd linux
 license             BSD
 description         xar is the eXtensible ARchiver
-maintainers         mww mps
+maintainers         {mps @Schamschula} openmaintainer
 long_description    ${description}
 
 worksrcdir          ${distname}/xar
@@ -26,10 +26,3 @@ depends_lib         port:bzip2 \
 patchfiles	        patch-ext2.c
 
 use_autoconf        yes
-
-configure.args      --with-xml2-config=${prefix}/bin/xml2-config
-
-post-destroot {
-    reinplace "s/installed=no/installed=yes/" ${destpath}${prefix}/lib/libxar.la
-}
-
