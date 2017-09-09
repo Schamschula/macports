@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           cmake 1.0
 
 name                dfc
-version             3.1.0
+version             3.1.1
 categories          sysutils
 license             permissive
 maintainers         {mps @Schamschula} openmaintainer
@@ -14,10 +14,10 @@ long_description    ${description} In some ways, it is a modernized version of d
                     different formats such as CSV or HTML.
 platforms           darwin
 homepage            https://projects.gw-computing.net/projects/dfc/
-master_sites        https://projects.gw-computing.net/attachments/download/614/
+master_sites        https://projects.gw-computing.net/attachments/download/615/
 
-checksums           rmd160  444e069ceb46ec5d8d0bb57e64f2740704f314fa \
-                    sha256  8ad98ba1a9685a1bf33a2d3b8f2737dedef6019543d19d1b5ebd1783be740feb
+checksums           rmd160  2caa55133f5757aaf42e82245dde35051e47a6e4 \
+                    sha256  962466e77407dd5be715a41ffc50a54fce758a78831546f03a6bb282e8692e54
 
 depends_lib         port:gettext \
                     port:libiconv
