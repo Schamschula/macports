@@ -8,8 +8,8 @@ github.setup        ryanmcgrath twython 3.4.0
 set real_name       twython
 name                py-${real_name}
 categories          python net
-license             
-maintainers         mps openmaintainer
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
 description         Actively maintained, pure Python wrapper for the Twitter API.
 long_description    ${description} Supports both normal and streaming Twitter APIs.
 platforms           darwin
