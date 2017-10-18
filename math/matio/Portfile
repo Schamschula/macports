@@ -17,7 +17,7 @@ long_description        Matio is a library for reading and writing Matlab \
                         save files. It is used by scientific data processing \
                         programs.
 
-homepage                https://sourceforge.net/projects/matio
+homepage                http://sourceforge.net/projects/matio
 master_sites            sourceforge:project/matio/matio/${version}/
 
 checksums               rmd160  e94f30d113ab4d0d73c0da564af928f1be5bdf7e \
@@ -48,3 +48,5 @@ post-destroot {
 
 test.run                yes
 test.target             check
+
+livecheck.regex     ${name}-(\\d+\\.\\d+\\.\\d+)${extract.suffix}
