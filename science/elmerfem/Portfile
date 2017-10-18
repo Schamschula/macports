@@ -57,11 +57,12 @@ post-destroot {
       ln ${destroot}${prefix}/share/elmersolver/lib/EliminateDirichlet.dylib ${destroot}${prefix}/lib/EliminateDirichlet.dylib
 }
 
-
+# Currently there is a linking issue here:
 variant gui description "build with GUI" {
     configure.args-append   -DWITH_ELMERGUI:BOOL=TRUE \
                             -DWITH_QT5:BOOL=TRUE
-    depends_lib-append      port:qt5
+    depends_lib-append      port:qt5 \
+                            port:qt5-qtscript
 }
 
 variant hypre description "build with hypre" {
