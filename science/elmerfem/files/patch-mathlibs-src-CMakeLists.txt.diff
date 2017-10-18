@@ -1,0 +1,11 @@
+--- mathlibs/src/CMakeLists.txt.orig	2017-05-24 04:29:12.000000000 -0500
++++ mathlibs/src/CMakeLists.txt	2017-10-17 11:43:22.000000000 -0500
+@@ -6,7 +6,7 @@
+   ADD_SUBDIRECTORY(lapack)
+ ENDIF()
+ 
+-ADD_SUBDIRECTORY(arpack)
++# ADD_SUBDIRECTORY(arpack)
+ IF(MPI_FOUND)
+   ADD_SUBDIRECTORY(parpack)
+ ENDIF()

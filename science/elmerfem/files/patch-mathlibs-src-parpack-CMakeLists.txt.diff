@@ -1,0 +1,10 @@
+--- mathlibs/src/parpack/CMakeLists.txt.orig	2017-05-24 04:29:12.000000000 -0500
++++ mathlibs/src/parpack/CMakeLists.txt	2017-10-17 12:03:39.000000000 -0500
+@@ -17,6 +17,7 @@
+ LINK_DIRECTORIES(${MPI_Fortran_LIBRARIES})
+ 
+ ADD_LIBRARY(parpack SHARED ${parpack_SRCS})
++ADD_LIBRARY(parpack SHARED arpack)
+ 
+ ADD_DEPENDENCIES(parpack arpack)
+ 

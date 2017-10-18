@@ -1,0 +1,89 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           cmake 1.0
+PortGroup           compilers 1.0
+PortGroup           github 1.0
+
+github.setup        ElmerCSC elmerfem 8.3 release-
+set git_tag         a51651c
+license             LGPL-2.1 GPL-2 Restrictive/Distributable
+categories          science
+platforms           darwin
+maintainers         {mps @Schamschula} openmaintainer
+
+description         Elmer is an open source multiphysical simulation software.
+
+long_description    ${description} Elmer includes physical models of fluid dynamics, \
+                    structural mechanics, electromagnetics, heat transfer and acoustics, \
+                    for example. These are described by partial differential equations \
+                    which Elmer solves by the Finite Element Method (FEM).
+
+homepage            https://www.csc.fi/web/elmer
+
+conflicts           arpack
+
+cmake.out_of_source yes
+use_parallel_build  no
+
+checksums           rmd160  810de855826bffbc471d5cabbb25493af08db983 \
+                    sha256  4767e0a282233874e55345ba7fae00617040b7ce3e0b615537e06d30766326ee
+
+compilers.choose    fc
+compilers.setup     -dragonegg -g95 require_fortran
+
+depends_lib-append  port:openblas \
+                    port:scalapack
+
+configure.args-append   -DWITH_MPI:BOOL=FALSE \
+                        -DCMAKE_INSTALL_RPATH=${prefix}/lib/elmerfem
+
+if {[variant_isset mpich] || [variant_isset openmpi]} {
+    post-destroot {
+        foreach dylib {libelmersolver.dylib libfhuti.dylib libmatc.dylib \
+            libmpi_stubs.dylib libparpack.dylib libarpack.dylib} {
+                ln ${destroot}${prefix}/lib/elmersolver/${dylib} ${destroot}${prefix}/lib/
+        }
+    }
+} else {
+    post-destroot {
+        foreach dylib {libelmersolver.dylib libfhuti.dylib libmatc.dylib \
+            libmpi_stubs.dylib libarpack.dylib} {
+                ln ${destroot}${prefix}/lib/elmersolver/${dylib} ${destroot}${prefix}/lib/
+        }
+    }
+}
+post-destroot {
+      ln ${destroot}${prefix}/share/elmersolver/lib/EliminateDirichlet.dylib ${destroot}${prefix}/lib/EliminateDirichlet.dylib
+}
+
+
+variant gui description "build with GUI" {
+    configure.args-append   -DWITH_ELMERGUI:BOOL=TRUE \
+                            -DWITH_QT5:BOOL=TRUE
+    depends_lib-append      port:qt5
+}
+
+variant hypre description "build with hypre" {
+    configure.args-append   -DWITH_Hypre:BOOL=TRUE
+    depends_lib-append      port:hypre
+}
+
+variant mumps description "build with mumps" {
+    configure.args-append   -DWITH_Mumps:BOOL=TRUE
+    depends_lib-append      port:mumps
+}
+
+variant mpich conflicts openmpi description "build with mpich" {
+    PortGroup               mpi 1.0
+    
+    configure.args-delete   -DWITH_MPI:BOOL=FALSE
+    depends_lib-append      port:mpich-default  
+}
+
+variant openmpi conflicts mpich description "build with openmpi" {
+    PortGroup               mpi 1.0
+    
+    configure.args-delete   -DWITH_MPI:BOOL=FALSE
+    depends_lib-append      port:openmpi-default  
+}
