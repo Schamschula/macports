@@ -1,0 +1,38 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id$
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-PyMieScatt
+version             1.3.2
+platforms           darwin
+license             GPL
+maintainers         nomaintainer
+
+description         A collection of forward and inverse Mie solving routines based on \
+                    Bohren and Huffman s Mie Theory derivations.
+long_description    ${description}
+
+homepage            http://air.eece.wustl.edu/people/ben-sumlin/
+master_sites        https://pypi.python.org/packages/32/a8/4017b607a4cced9f34e00608aab0304247c3372545ec81a2a113633fd5f1
+distname            PyMieScatt-${version}
+
+checksums           md5     4857dd6459d50505e2d94cdd61a6c421 \
+                    rmd160  8588d8aa8b01da04febcf5c448ce20448dd5a626 \
+                    sha256  06bae74c2093b18a49a7f7fc5b5e8617b518e3240f99dd880d89f321b0f1c755
+
+python.versions     27 34 35
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                        port:py${python.version}-setuptools
+
+    depends_lib-append  port:py${python.version}-scipy \
+                        port:py${python.version}-numpy \
+                        port:py${python.version}-matplotlib
+
+    livecheck.type      none
+} else {
+    livecheck.type      pypi
+}
