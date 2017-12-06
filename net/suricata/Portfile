@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                suricata
-version             4.0.1
+version             4.0.3
 categories          net security
 platforms           darwin
 maintainers         {mps @Schamschula} openmaintainer
@@ -19,7 +19,7 @@ long_description    Suricata is a high performance Network IDS, IPS \
                     vendors.
 
 homepage            https://suricata-ids.org/
-master_sites        http://downloads.suricata-ids.org/
+master_sites        https://www.openinfosecfoundation.org/download/
 
 ## https://redmine.openinfosecfoundation.org/projects/suricata/wiki/Mac_OS_X_106x
 ## FIXME! one deps resolves to libgcc-devel which can conflict w a lot of ports depending on libgcc
@@ -32,6 +32,8 @@ depends_lib         port:jansson \
                     port:libmagic \
                     port:libtool \
                     port:libyaml \
+                    port:nspr \
+                    port:nss \
                     port:pcre \
                     port:pkgconfig
 
@@ -167,8 +169,8 @@ post-activate {
 
 if {${subport} eq ${name}} {
 
-    checksums           rmd160  be29d33aa9ba0aa79056cff9899430f94c9e80c5 \
-                        sha256  0e73edb2911791644d82a62ab4f75517bbed339c0f21aadc0eb307b313643885
+    checksums           rmd160  1874b0a98388fa8d650676791e91164d978fbc20 \
+                        sha256  81a0bcb10b5c0b00efeafb4aac3ef70bf0e36b060ac6300d867f15f3dbe0e437
 
     depends_lib-append  port:libhtp
 
