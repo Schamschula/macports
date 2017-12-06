@@ -124,8 +124,6 @@ FIXME! recommendation to rotate/handle unified2 log files
 
 post-patch {
     ## disabling rules which seems to have disappeared from emergingthreats set and may block start
-    reinplace "s|^ - emerging-virus.rules|# - emerging-virus.rules|g" ${worksrcpath}/suricata.yaml.in
-    reinplace "s|filename: /var/log/suricata.log|filename: ${prefix}/var/log/suricata/suricata.log|g" ${worksrcpath}/suricata.yaml.in
     reinplace "s|magic-file: /usr/share/file/magic|magic-file: ${prefix}/share/misc/magic|g" ${worksrcpath}/suricata.yaml.in
 }
 
