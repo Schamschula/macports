@@ -16,3 +16,7 @@ checksums           rmd160  fc481feb1d61cd321cd396b72ad476cccdcc00c1 \
                     sha256  3b951d4268a630ce61b2569d721a4aec8bef7a8990890b2db34fd1f642b8f7f5
 
 use_configure       no
+
+pre-build {
+    reinplace "s|PREFIX=/usr/local|PREFIX=${prefix}|" ${worksrcpath}/Makefile
+}
