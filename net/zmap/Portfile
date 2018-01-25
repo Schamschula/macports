@@ -5,6 +5,7 @@ PortGroup           cmake 1.0
 PortGroup           github 1.0
 
 github.setup        zmap zmap 2.1.1 v
+revision            1
 categories          net
 license             Apache-2.0
 maintainers         mps openmaintainer
@@ -20,3 +21,5 @@ depends_lib-append  port:byacc \
                     port:gengetopt \
                     port:json-c \
                     port:libdnet
+
+patchfiles          patch-CMakeLists.txt.diff
