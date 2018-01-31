@@ -4,6 +4,7 @@ PortSystem          1.0
 
 name                nginx
 version             1.13.8
+revision            1
 categories          www mail
 platforms           darwin
 license             BSD
@@ -364,13 +365,12 @@ variant devel_kit description {Enable ngx_devel_kit module (https://github.com/s
 variant lua requires devel_kit description {Enable Lua module (https://github.com/openresty/lua-nginx-module)} {
     depends_lib-append      port:luajit
     set ngx_lua_filename    lua-nginx-module
-    set ngx_lua_version     0.10.8
+    set ngx_lua_version     0.10.10
     set ngx_lua_distname    ${ngx_lua_filename}-${ngx_lua_version}
     distfiles-append        v${ngx_lua_version}.tar.gz:lua_module
     checksums-append        v${ngx_lua_version}.tar.gz \
-                            rmd160  7e0959c91c439c679a8c2276d9817b279fed5315 \
-                            sha256  d67449c71051b3cc2d6dd60df0ae0d21fca08aa19c9b30c5b95ee21ff38ef8dd
-    patchfiles-append       patch-src-ngx_http_lua_headers.c.diff
+                            rmd160  9388cf1b6811720010f2d17814bae9e9baa44637 \
+                            sha256  b4acb84e2d631035a516d61830c910ef6e6485aba86096221ec745e0dbb3fbc9
 
     configure.cflags        -I${prefix}/include/luajit-2.0/ ${configure.cflags}
     configure.env           LUAJIT_INC=${prefix}/include/luajit-2.0/
@@ -378,14 +378,6 @@ variant lua requires devel_kit description {Enable Lua module (https://github.co
     configure.args-append   --add-module=${workpath}/${ngx_lua_distname}
 
     nginx_set_portfile_var  nginx_lua_mod_dirname    "${ngx_lua_distname}"
-
-    # patch routine balks on file names with "../", but rel-paths in patchfiles start from $worksrcpath
-    pre-patch {
-        ln -s   "${workpath}/${nginx_lua_mod_dirname}" "${worksrcpath}/nginx_lua_module.tmp"
-    }
-    post-patch {
-        file delete   "${worksrcpath}/nginx_lua_module.tmp"
-    }
 }
 
 variant headers_more description {Enable headers-more module (https://github.com/openresty/headers-more-nginx-module)} {
