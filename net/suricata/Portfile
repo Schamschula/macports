@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                suricata
-version             4.0.3
+version             4.0.4
 categories          net security
 platforms           darwin
 maintainers         {mps @Schamschula} openmaintainer
@@ -167,8 +167,8 @@ post-activate {
 
 if {${subport} eq ${name}} {
 
-    checksums           rmd160  1874b0a98388fa8d650676791e91164d978fbc20 \
-                        sha256  81a0bcb10b5c0b00efeafb4aac3ef70bf0e36b060ac6300d867f15f3dbe0e437
+    checksums           rmd160  24110fef1d2969ebb4b60ab28fdfd7978053e64a \
+                        sha256  617e83b6e20b03aa7d5e05a980d3cb6d2810ec18a6f15a36bf66c81c9c0a2abb
 
     depends_lib-append  port:libhtp
 
