@@ -3,7 +3,8 @@
 PortSystem          1.0
 PortGroup           github 1.0
 
-github.setup        cofyc dnscrypt-wrapper 0.4.0 v
+github.setup        cofyc dnscrypt-wrapper 0.4.1 v
+
 name                dnscrypt-wrapper
 categories          net
 license             ISC
@@ -11,15 +12,14 @@ maintainers         {mps @Schamschula} openmaintainer
 description         This is dnscrypt wrapper (server-side dnscrypt-proxy), which helps to \
                     add dnscrypt support to any name resolver.
 long_description    ${description}
-homepage            https://dnscrypt.org/
 
 platforms           darwin
 depends_build       port:autoconf
 depends_lib         port:libevent \
                     port:libsodium
 
-checksums           rmd160  b51ef7e148a796388e524daf964fa03f6cd0ff6e \
-                    sha256  a70a3cbbd0bb585869fc145073fad573f6615fa23c34f5b5396e9fc678f814fe
+checksums           rmd160  06872cfde1c81e1979cb523441fff81ecc16a06d \
+                    sha256  5ba23ad06cd187741951ce09d51968152c208f937133e124ed969e7e37110701
 
 patchfiles          patch-Makefile.diff
 
