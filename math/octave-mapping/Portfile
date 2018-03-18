@@ -1,13 +1,13 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:et:sw=4:ts=4:sts=4
-# $Id: Portfile 139733 2015-08-25 18:10:28Z michaelld@macports.org $
 
 PortSystem          1.0
 PortGroup           octave 1.0
 
 octave.setup        mapping 1.2.1
+revision            3
 platforms           darwin
 license             GPL-2+
-maintainers         gmail.com:mschamschula openmaintainer
+maintainers         {mps @Schamschula} openmaintainer
 description         Simple Mapping functions.
 long_description    ${description}
 
