@@ -1,0 +1,13 @@
+--- CMakeLists.txt.orig	2016-04-06 20:39:34.000000000 -0500
++++ CMakeLists.txt	2018-01-16 10:10:35.000000000 -0600
+@@ -789,8 +789,8 @@
+         SET(PYTHON_BASENAME -python2.7) # for PySide
+ 
+         if(DEFINED MACPORTS_PREFIX)
+-            find_package(Shiboken REQUIRED HINTS "${PYTHON_LIBRARY_DIR}/cmake")
+-            find_package(PySide REQUIRED HINTS "${PYTHON_LIBRARY_DIR}/cmake")
++            find_package(Shiboken REQUIRED HINTS "${PYTHON_LIBRARY_DIR}/lib/cmake")
++            find_package(PySide REQUIRED HINTS "${PYTHON_LIBRARY_DIR}/lib/cmake")
+         endif(DEFINED MACPORTS_PREFIX)
+ 
+         find_package(Shiboken)# REQUIRED
