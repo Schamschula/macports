@@ -24,10 +24,11 @@ long_description \
     Source (LGPL2+ license) and extremely modular, allowing for very \
     advanced extension and customization.
 
-homepage                http://www.freecadweb.org/
+homepage                https://www.freecadweb.org
 
 checksums               rmd160  02eee552016fc0664fdeef030569be082d600bad \
-                        sha256  990aab10320921d14169979b19d349234f7d81de6921c23dbcd6d05be8bfa8a8
+                        sha256  990aab10320921d14169979b19d349234f7d81de6921c23dbcd6d05be8bfa8a8 \
+                        size    111706057
 
 depends_lib-append      port:python27 \
                         port:boost \
@@ -60,7 +61,7 @@ post-patch {
 }
 
 compilers.choose        fc
-compilers.setup         -dragonegg -g95 require_fortran
+compilers.setup         require_fortran -g95
 
 cmake.install_prefix    ${prefix}/libexec/${name}
 cmake.install_rpath     ${cmake.install_prefix}/lib
