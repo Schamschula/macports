@@ -30,7 +30,7 @@ checksums           rmd160  810de855826bffbc471d5cabbb25493af08db983 \
                     sha256  4767e0a282233874e55345ba7fae00617040b7ce3e0b615537e06d30766326ee
 
 compilers.choose    fc
-compilers.setup     -dragonegg -g95 require_fortran
+compilers.setup     require_fortran -g95
 
 depends_lib-append  port:openblas \
                     port:scalapack
