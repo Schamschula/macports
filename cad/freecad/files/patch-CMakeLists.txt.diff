@@ -1,13 +1,11 @@
---- CMakeLists.txt.orig	2016-04-06 20:39:34.000000000 -0500
-+++ CMakeLists.txt	2018-01-16 10:10:35.000000000 -0600
-@@ -789,8 +789,8 @@
-         SET(PYTHON_BASENAME -python2.7) # for PySide
+--- CMakeLists.txt.orig	2018-04-06 03:48:37.000000000 -0500
++++ CMakeLists.txt	2018-04-15 14:34:46.000000000 -0500
+@@ -245,7 +245,7 @@
+     set(CMAKE_MACOSX_RPATH TRUE)
+ endif(APPLE)
  
-         if(DEFINED MACPORTS_PREFIX)
--            find_package(Shiboken REQUIRED HINTS "${PYTHON_LIBRARY_DIR}/cmake")
--            find_package(PySide REQUIRED HINTS "${PYTHON_LIBRARY_DIR}/cmake")
-+            find_package(Shiboken REQUIRED HINTS "${PYTHON_LIBRARY_DIR}/lib/cmake")
-+            find_package(PySide REQUIRED HINTS "${PYTHON_LIBRARY_DIR}/lib/cmake")
-         endif(DEFINED MACPORTS_PREFIX)
- 
-         find_package(Shiboken)# REQUIRED
+-OPTION(BUILD_FEM "Build the FreeCAD FEM module" ON)
++OPTION(BUILD_FEM "Build the FreeCAD FEM module" OFF)
+ OPTION(BUILD_SANDBOX "Build the FreeCAD Sandbox module which is only for testing purposes" OFF)
+ OPTION(BUILD_TEMPLATE "Build the FreeCAD template module which is only for testing purposes" OFF)
+ OPTION(BUILD_ADDONMGR "Build the FreeCAD addon manager module" ON)
