@@ -1,0 +1,34 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+PortGroup           python 1.0
+
+set real_name       cmd2
+name                py-${real_name}
+github.setup        python-cmd2 cmd2 0.8.7
+
+categories-append   sysutils
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         cmd2 is a tool for building interactive command line applications \
+                    in Python.
+long_description    ${description} Its goal is to make it quick and easy for developers \
+                    to build feature-rich and user-friendly interactive command line \
+                    applications. It provides a simple API which is an extension of \
+                    Python's built-in cmd module. cmd2 provides a wealth of features \
+                    on top of cmd to make your life easier and eliminates much of the \
+                    boilerplate code which would be necessary when using cmd.
+
+platforms           darwin
+
+python.versions     27
+
+checksums           rmd160  0a525c23825875014b03c53d731661583f8ea9b4 \
+                    sha256  67dd242112add57ee83c94d32b340e72850643cd0caa646d7ba8305f517a96b3 \
+                    size    375987
+
+if {${name} ne ${subport}} {
+    depends_lib-append  \
+                    port:py${python.version}-setuptools
+}
