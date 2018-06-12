@@ -1,0 +1,32 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+PortGroup           python 1.0
+
+set real_name       cymon
+name                py-${real_name}
+github.setup        eSentire cymon-python 0.1
+
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         Python library for Cymon.io APIs
+long_description    ${description}
+platforms           darwin
+worksrcdir          ${real_name}-python-${version}
+
+python.versions     27
+
+checksums           rmd160  ecb0ed2cb84189c9c39a4300711fad14aad05141 \
+                    sha256  436e42eb54a5ef86d2d99103c24f9660d5510eee6de8705109e75be386b39f1a \
+                    size    2599
+
+if {${name} ne ${subport}} {
+    pre-configure { 
+        copy ${filespath}/setup.py ${worksrcpath}
+    }
+    
+    depends_lib-append  \
+                    port:py${python.version}-requests \
+                    port:py${python.version}-setuptools
+}
