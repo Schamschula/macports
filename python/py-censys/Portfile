@@ -1,0 +1,28 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+set real_name       censys
+name                py-${real_name}
+version             0.0.8
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         This is a light weight Python wrapper to the Censys REST API.
+long_description    ${description}
+platforms           darwin
+homepage            https://github.com/censys/censys-python
+master_sites        pypi:c/censys
+distfiles           ${real_name}-${version}${extract.suffix}
+worksrcdir          ${real_name}-${version}
+
+python.versions     27
+
+checksums           rmd160  faa3e1ac1bac2099c6e15e1aa0179497029dbc36 \
+                    sha256  7e5f623fbdc2ce1dcf3ef531e63ba486f7e255f20c4d4006b4f70b6d59a78534 \
+                    size    10807
+
+if {${name} ne ${subport}} {
+    depends_lib-append  \
+                    port:py${python.version}-setuptools
+}
