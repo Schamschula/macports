@@ -1,0 +1,31 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+PortGroup           python 1.0
+
+set real_name       fuzzyfinder
+name                py-${real_name}
+github.setup        amjith fuzzyfinder 2.1.0
+
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         Fuzzy Finder implemented in Python. Matches partial string entries \
+                    from a list of strings.
+long_description    ${description} Works similar to fuzzy finder in SublimeText and \
+                    Vim's Ctrl-P plugin.
+platforms           darwin
+
+python.versions     27
+
+checksums           rmd160  461f04ce170a1ff64d8e6cef46c6835e554fb51e \
+                    sha256  fb3dd9526792141641160e6ffd187543ff32ced5494ea0c7ba2d3b0553b3f683 \
+                    size    71105
+
+if {${name} ne ${subport}} {
+    depends_lib-append  \
+                    port:py${python.version}-coveralls \
+                    port:py${python.version}-pytest \
+                    port:py${python.version}-pytest-cov \
+                    port:py${python.version}-setuptools
+}
