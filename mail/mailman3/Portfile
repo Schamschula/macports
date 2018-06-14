@@ -4,8 +4,8 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 set real_name       mailman
-name                py-${real_name}
-version             3.1.0
+name                ${real_name}3
+version             3.1.1
 categories          mail python
 conflicts           mailman
 
@@ -26,17 +26,16 @@ platforms           darwin
 homepage            http://www.list.org/
 master_sites        pypi:m/mailman
 
-checksums           rmd160  39bccb7ab7eafcd87478f79b8823e74b0fe42e84 \
-                    sha256  4d206d40dfa1477f1cedb6e618ef9963bd187ac99fd4e7835c943a1d75dbc374
+checksums           rmd160  28eb64d5f53f40d6dd26034730203750fc62142d \
+                    sha256  5b4214ecefc5f0ffa9b809b16e9927ab7fb2aebb9f754db223ffa9a3839ec23f \
+                    size    749014
 
 python.versions     35 36
 
-if {${name} ne ${subport}} {
-    depends_lib-append  \
-                    port:py${python.version}-setuptools
+depends_lib-append  port:py${python.version}-setuptools
 
-    livecheck.type      none
-} else {
-    livecheck.type      regex
-    livecheck.regex     ${real_name}-(\[0-9.\]+)${extract.suffix}
-}
+livecheck.type      none
+
+livecheck.type      regex
+livecheck.url       ${homepage}
+livecheck.regex     "${real_name} (\[0-9.\]+)"
