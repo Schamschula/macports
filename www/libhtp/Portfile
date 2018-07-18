@@ -3,16 +3,18 @@
 PortSystem          1.0
 PortGroup           github 1.0
 
-github.setup        OISF libhtp 0.5.26
+github.setup        OISF libhtp 0.5.27
 categories          www
-license             
+license
 maintainers         {mps @Schamschula} openmaintainer
 description         LibHTP is a security-aware parser for the HTTP protocol and the \
                     related bits and pieces.
 long_description    ${description}
 platforms           darwin
 
-checksums           rmd160  3af81f4f1e5104be6c644d713deadc9fba002575 \
-                    sha256  f5d8f7c8cf89ec1ea8604c9a50322cce6a58fbdd646399005c01eed4cf74e041
+checksums           rmd160  5fc8e58f9170a643bb7d25a3e5d772c14cb98795 \
+                    sha256  8e495dfd9857d9b22cb3e318e15cafa05b07ad2d41ba72d61ba3bdcdb217a11b \
+                    size    464968
 
 use_autoreconf      yes
+
