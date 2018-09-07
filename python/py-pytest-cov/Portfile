@@ -6,7 +6,7 @@ PortGroup           python 1.0
 
 set real_name       pytest-cov
 name                py-${real_name}
-github.setup        pytest-dev pytest-cov 2.5.1 v
+github.setup        pytest-dev pytest-cov 2.6.0 v
 
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
@@ -16,9 +16,9 @@ platforms           darwin
 
 python.versions     27
 
-checksums           rmd160  0a638c776c281f75aefc456b015e0c5ce1e40809 \
-                    sha256  bbaded60a837dad4828c662976c6845deabe1e9c764efe02ee23969286e1189b \
-                    size    28674
+checksums           rmd160  d6af70563b9776b42e969be8836e006c11e6f64e \
+                    sha256  10c33ce7ac28a3f3c2dea9131dfcaebf831b16f4881d38f730cac13d5fc5ca50 \
+                    size    30647
 
 if {${name} ne ${subport}} {
     depends_lib-append  \
