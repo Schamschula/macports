@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           github 1.0
 
-github.setup        koct9i ioping 1.0 v
+github.setup        koct9i ioping 1.1 v
 categories          sysutils
 license             GPL3+
 maintainers         {mps @Schamschula} openmaintainer
@@ -12,8 +12,9 @@ long_description    ${description} It shows disk latency in the same way as ping
                     network latency.
 platforms           darwin
 
-checksums           rmd160  fc481feb1d61cd321cd396b72ad476cccdcc00c1 \
-                    sha256  3b951d4268a630ce61b2569d721a4aec8bef7a8990890b2db34fd1f642b8f7f5
+checksums           rmd160  b79b9e1cc3c22ff87fedd4ff9c1d96150c8edc44 \
+                    sha256  82bf4e95bdd630783496e9d432155755439e6b70badfb5e5845ae39ab3952ac2 \
+                    size    29276
 
 use_configure       no
 
