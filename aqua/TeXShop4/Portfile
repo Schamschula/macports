@@ -54,6 +54,19 @@ pre-fetch {
     }
 }
 
+patchfiles          patch-Sources-TSAppDelegate.m.diff   
+
+post-patch {
+    platform darwin {
+        if {${os.major} < 17} {
+            reinplace "s|#define HIGHSIERRAORHIGHER|// #define HIGHSIERRAORHIGHER|g" ${worksrcpath}/Sources/globals.h
+        }
+        if {${os.major} < 18} {
+            reinplace "s|#define MOJAVEORHIGHER|// #define MOJAVEORHIGHER|g" ${worksrcpath}/Sources/globals.h
+        }
+    }
+}
+
 # error: -fobjc-arc is not supported on platforms using the legacy runtime
 supported_archs     x86_64
 
