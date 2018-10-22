@@ -5,7 +5,7 @@ PortGroup           github 1.0
 PortGroup           cxx11 1.1
 
 github.setup        aria2 aria2 1.34.0 release-
-revision            1
+revision            2
 github.tarball_from releases
 categories          net
 platforms           darwin
@@ -25,7 +25,8 @@ depends_build-append    port:pkgconfig
 depends_lib-append      port:gettext \
                         port:libiconv \
                         port:libuv \
-                        port:libxml2
+                        port:libxml2 \
+                        port:nettle
 
 # use_* must be defined after depends_*, otherwise the automatic dependencies
 # will be overwritten.
@@ -60,4 +61,10 @@ variant sqlite3 description {Add sqlite3 support} {
 # appletls not available on 10.6 or earlier
 if {${os.platform} eq "darwin" && ${os.major} <= 10} {
         default_variants-append +gnutls
+}
+
+# libuv presently not available on 10.4 or earlier
+if {${os.platform} eq "darwin" && ${os.major} <= 8} {
+        depends_lib-delete    port:libuv
+        configure.args-delete --with-libuv
 }
