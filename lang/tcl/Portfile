@@ -35,7 +35,7 @@ configure.cppflags-delete  -I${prefix}/include
 configure.ldflags-delete   -L${prefix}/lib
 
 pre-configure {
-    # sqlite3 package is provided by sqlite3
+    # sqlite3 package is provided by sqlite3-tcl
     delete [glob ${worksrcpath}/../pkgs/sqlite*]
 }
 
