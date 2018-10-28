@@ -83,6 +83,11 @@ platform darwin 8 {
     configure.cppflags-append -DSQLITE_WITHOUT_ZONEMALLOC
 }
 
+notes "
+The Sqlite3 Tcl package is now being provided by the sqlite3-tcl port:
+sudo port install sqlite3-tcl
+"
+
 test.run            yes
 
 livecheck.type      regex
