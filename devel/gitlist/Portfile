@@ -4,7 +4,7 @@
 PortSystem          1.0
 
 name                gitlist
-version             0.6.0
+version             1.0.1
 categories          devel
 maintainers         {mps @Schamschula} openmaintainer
 
