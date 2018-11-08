@@ -1,10 +1,10 @@
---- src/output-json-alert.h.orig	2016-02-01 16:40:07.000000000 -0600
-+++ src/output-json-alert.h	2016-02-01 16:40:24.000000000 -0600
+--- src/output-json-alert.h.orig	2018-11-06 03:02:13.000000000 -0600
++++ src/output-json-alert.h	2018-11-07 06:19:51.000000000 -0600
 @@ -29,6 +29,7 @@
  
- void TmModuleJsonAlertLogRegister (void);
+ void JsonAlertLogRegister(void);
  #ifdef HAVE_LIBJANSSON
 +#include <jansson.h>
- void AlertJsonHeader(const Packet *p, const PacketAlert *pa, json_t *js);
+ void AlertJsonHeader(void *ctx, const Packet *p, const PacketAlert *pa, json_t *js,
+                      uint16_t flags);
  #endif /* HAVE_LIBJANSSON */
- 

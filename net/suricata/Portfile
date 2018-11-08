@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                suricata
-version             4.0.5
+version             4.1.0
 categories          net security
 platforms           darwin
 maintainers         {mps @Schamschula} openmaintainer
@@ -21,17 +21,32 @@ long_description    Suricata is a high performance Network IDS, IPS \
 homepage            https://suricata-ids.org/
 master_sites        https://www.openinfosecfoundation.org/download/
 
+checksums       rmd160  a9e63441120075e3c311f37d3806758babac3d59 \
+                sha256  bd9b00fb4fc255566d4d8a8b52eb4977b4e8b49b37710d166cba75e6a93a504a \
+                size    15602196
+
+destroot.target     install-full
+
+## Got both strlcpy/strlcat errors and "error: unknown type name 'json_t'"
+patchfiles          patch-Makefile.am.diff \
+                    patch-src-output-json.h-4.0.diff \
+                    patch-src-output-json-alert.h.diff \
+                    patch-src-util-profiling-rules.c.diff
+
 ## https://redmine.openinfosecfoundation.org/projects/suricata/wiki/Mac_OS_X_106x
 ## FIXME! one deps resolves to libgcc-devel which can conflict w a lot of ports depending on libgcc
 depends_build       port:autoconf \
                     port:automake
 
-depends_lib         port:jansson \
+depends_lib         port:cargo \
+                    port:jansson \
+                    port:libhtp \
                     port:libnet11 \
                     port:libpcap \
                     port:libmagic \
                     port:libtool \
                     port:libyaml \
+                    port:lz4 \
                     port:nspr \
                     port:nss \
                     port:pcre \
@@ -40,10 +55,14 @@ depends_lib         port:jansson \
 configure.env       AC_PROG_LIBTOOL=${prefix}/bin/glibtool \
                     LDFLAGS="-ljansson" CPPFLAGS=-I${prefix}/include
 
-configure.args      --enable-ipfw --enable-gccprotect \
+configure.args      --enable-ipfw \
+                    --enable-gccprotect \
+                    --enable-non-bundled-htp \
                     --enable-unittests \
                     --disable-geoip --disable-prelude --disable-unix-socket \
                     --disable-nss --disable-nspr \
+                    --with-libhtp-includes=${prefix}/include \
+                    --with-libhtp-libraries=${prefix}/lib \
                     --with-libjansson-includes=${prefix}/include \
                     --with-libjansson-libraries=${prefix}/lib
 
@@ -79,6 +98,10 @@ https://redmine.openinfosecfoundation.org/projects/suricata/wiki/Rule_Management
 ex: $ sudo -u oinkmaster ${prefix}/bin/oinkmaster.pl -o ${prefix}/etc/${name}/rules -C ${prefix}/etc/oinkmaster-${name}.conf
 The corresponding oinkmaster config is in the examples directory and
 have been copied to ${prefix}/etc if not existing.
+
+or suricata-update:
+$ sudo /opt/local/bin/suricata-update --suricata /opt/local/bin/suricata \
+--suricata-conf /opt/local/etc/suricata/suricata.yaml --no-test --no-reload
 
 2) Test your config with
     # suricata -c ${prefix}/etc/suricata/suricata.yaml -T
@@ -165,54 +188,6 @@ post-activate {
     }
 }
 
-if {${subport} eq ${name}} {
-
-    checksums       rmd160  251881f228a96cf120291341871c6567cc929d09 \
-                    sha256  74dacb4359d57fbd3452e384eeeb1dd77b6ae00f02e9994ad5a7b461d5f4c6c2 \
-                    size    12494906
-
-    depends_lib-append  port:libhtp
-
-    configure.args-append \
-                        --enable-non-bundled-htp \
-                        --with-libhtp-includes=${prefix}/include \
-                        --with-libhtp-libraries=${prefix}/lib
-    
-    destroot.target     install-full
-    
-    ## Got both strlcpy/strlcat errors and "error: unknown type name 'json_t'"
-    patchfiles          patch-src-output-json.h-4.0.diff \
-                        patch-src-output-json-alert.h.diff \
-                        patch-src-util-profiling-rules.c.diff
-
-    conflicts  ${name}-devel
-    livecheck.regex     "<strong>Suricata \\(Development\\) version is (\\d+(?:\\.\\d+)(\\w*)*), "
-}
-
-subport ${name}-devel {
-
-    version             4.0.0-beta1
-    checksums           rmd160  8e4e5f32c80ba8b0973aa0dd460490393bd4aac1 \
-                        sha256  a36ebf0e20a0f732504da86ca9f1a121a9d3220948a9048ad555b3db40f129a2
-
-    depends_lib-append  port:libhtp
-
-    configure.args-append \
-                        --enable-non-bundled-htp \
-                        --with-libhtp-includes=${prefix}/include \
-                        --with-libhtp-libraries=${prefix}/lib
-    
-    destroot.target     install-full
-    
-    ## Got both strlcpy/strlcat errors and "error: unknown type name 'json_t'"
-    patchfiles          patch-src-output-json.h-4.0.diff \
-                        patch-src-output-json-alert.h.diff \
-                        patch-src-util-profiling-rules.c.diff
-
-    conflicts  ${name}
-    livecheck.regex     "<strong>Suricata \\(Development\\) version is (\\d+(?:\\.\\d+)(\\w*)*), "
-}
-
 default_variants       +debug +geoip +python27
 
 ## https://redmine.openinfosecfoundation.org/projects/suricata/wiki/Debugging
@@ -227,7 +202,8 @@ variant debug description { enable debug, processing will be slower } {
 #}
 
 variant python27 description { Python 2.7 bindings } {
-    depends_build-append     port:python27
+    depends_build-append     port:python27  \
+                             port:py27-yaml
 #    configure.env-append     PYTHON=${prefix}/bin/python2.7
     configure.python         ${prefix}/bin/python2.7
 }
@@ -262,6 +238,7 @@ variant nss description { nss/md5 checksums support } {
                              --with-libnspr-includes=${prefix}/include/nspr
 }
 
+default_variants       +debug +geoip +python27
 
 startupitem.create      yes
 startupitem.executable  ${prefix}/bin/suricata -c ${prefix}/etc/suricata/suricata.yaml -i en1
@@ -270,3 +247,4 @@ startupitem.netchange   yes
 livecheck.type      regex
 livecheck.url       ${homepage}/download/
 livecheck.regex     ${name}-(\[0-9.\]+)${extract.suffix}
+
