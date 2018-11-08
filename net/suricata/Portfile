@@ -188,8 +188,6 @@ post-activate {
     }
 }
 
-default_variants       +debug +geoip +python27
-
 ## https://redmine.openinfosecfoundation.org/projects/suricata/wiki/Debugging
 variant debug description { enable debug, processing will be slower } {
     ## Note: --enable-debug-validation is incompatible with --unittests
