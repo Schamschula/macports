@@ -1,0 +1,28 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+
+name                gitlab-runner
+version             11.5.0
+categories          devel
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         GitLab Runner
+long_description    GitLab Runner is the open source project that is used to \
+                    run your jobs and send the results back to GitLab. It is \
+                    used in conjunction with GitLab CI, the open-source \
+                    continuous integration service included with GitLab that \
+                    coordinates the jobs.
+platforms           darwin
+homepage            https://gitlab.com/gitlab-org/gitlab-runner
+master_sites        https://gitlab.com/gitlab-org/gitlab-runner/-/archive/v${version}
+
+distname            ${name}-v${version}
+
+checksums           rmd160  b849263c3928213a83af53b4242cb823e49cca4a \
+                    sha256  abb8a6aa66ff2a7bbec97d7a91f0adf43e7b885490ef3506bfcb2522cf302aba \
+                    size    25751187
+
+use_configure       no
+
+depends_lib         port:go
