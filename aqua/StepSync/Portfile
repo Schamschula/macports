@@ -1,0 +1,35 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           xcode 1.0
+
+name                StepSync
+version             1.0
+categories          aqua
+license             GPL-2+
+maintainers         {mps @Schamschula} openmaintainer
+description         StepSync allows keeping two folders synchronized, it can be thus \
+                    used as a back-up utility.
+long_description    ${description} StepSync determines which files were added or removed \
+                    or changed (based on last modification date) as well as addition or \
+                    deletion of folders.
+platforms           darwin
+homepage            http://gap.nongnu.org/stepsync/index.html
+master_sites        http://savannah.nongnu.org/download/gap/
+
+checksums           rmd160  07b2f351c7387c9aecba318b4462f3dc3130db86 \
+                    sha256  97ccd23828280ba54235240413718bb96c7403763709848ef327e3cb93e39d38 \
+                    size    34056
+
+# This is a temporary kludge. The new Xcode build system fails to
+# destroot this for reasons that are poorly understood.
+# Remove this when a better fix is known.
+if {[vercmp ${xcodeversion} 10.0] >= 0} {
+    destroot.pre_args   -UseNewBuildSystem=NO
+}
+
+post-patch {
+    delete ${worksrcpath}/StepSync.xcode
+    delete ${worksrcpath}/StepSync-SL.xcodeproj
+    delete ${worksrcpath}/StepSync-T.xcodeproj
+}
