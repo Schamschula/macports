@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           github 1.0
 
-github.setup        cofyc dnscrypt-wrapper 0.4.1 v
+github.setup        cofyc dnscrypt-wrapper 0.4.2 v
 
 name                dnscrypt-wrapper
 categories          net
@@ -18,8 +18,8 @@ depends_build       port:autoconf
 depends_lib         port:libevent \
                     port:libsodium
 
-checksums           rmd160  06872cfde1c81e1979cb523441fff81ecc16a06d \
-                    sha256  5ba23ad06cd187741951ce09d51968152c208f937133e124ed969e7e37110701
+checksums           rmd160  8fc7c0021c646d4d6ccb91735f6c117c79995f49 \
+                    sha256  2eb810a84603fabc4e21beb5de5f08801bf58191ff361e7b36122517a1e587d1
 
 patchfiles          patch-Makefile.diff
 
