@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                suricata
-version             4.1.0
+version             4.1.1
 categories          net security
 platforms           darwin
 maintainers         {mps @Schamschula} openmaintainer
@@ -21,9 +21,9 @@ long_description    Suricata is a high performance Network IDS, IPS \
 homepage            https://suricata-ids.org/
 master_sites        https://www.openinfosecfoundation.org/download/
 
-checksums       rmd160  a9e63441120075e3c311f37d3806758babac3d59 \
-                sha256  bd9b00fb4fc255566d4d8a8b52eb4977b4e8b49b37710d166cba75e6a93a504a \
-                size    15602196
+checksums           rmd160  be3b133dd548bd64ef900d53e9188333b231e96b \
+                    sha256  c30058072029e7fde09133674d9f2f840a674eecbeae1f8b1779a3aae8166bb0 \
+                    size    15579715
 
 destroot.target     install-full
 
@@ -100,8 +100,8 @@ The corresponding oinkmaster config is in the examples directory and
 have been copied to ${prefix}/etc if not existing.
 
 or suricata-update:
-$ sudo /opt/local/bin/suricata-update --suricata /opt/local/bin/suricata \
---suricata-conf /opt/local/etc/suricata/suricata.yaml --no-test --no-reload
+$ sudo ${prefix}/bin/suricata-update --suricata ${prefix}/bin/suricata \
+--suricata-conf ${prefix}/etc/suricata/suricata.yaml --no-test --no-reload
 
 2) Test your config with
     # suricata -c ${prefix}/etc/suricata/suricata.yaml -T
@@ -199,11 +199,18 @@ variant debug description { enable debug, processing will be slower } {
 #    ## http://coccinelle.lip6.fr/sp.php
 #}
 
-variant python27 description { Python 2.7 bindings } {
+variant python27 description { Python 2.7 bindings } conflicts python37 {
     depends_build-append     port:python27  \
                              port:py27-yaml
 #    configure.env-append     PYTHON=${prefix}/bin/python2.7
     configure.python         ${prefix}/bin/python2.7
+}
+
+variant python37 description { Python 3.7 bindings } conflicts python27 {
+    depends_build-append     port:python37  \
+                             port:py37-yaml
+#    configure.env-append     PYTHON=${prefix}/bin/python3.7
+    configure.python         ${prefix}/bin/python3.7
 }
 
 variant prelude description { libprelude support } {
