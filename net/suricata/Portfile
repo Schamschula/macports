@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                suricata
-version             4.1.1
+version             4.1.2
 categories          net security
 platforms           darwin
 maintainers         {mps @Schamschula} openmaintainer
@@ -21,9 +21,9 @@ long_description    Suricata is a high performance Network IDS, IPS \
 homepage            https://suricata-ids.org/
 master_sites        https://www.openinfosecfoundation.org/download/
 
-checksums           rmd160  be3b133dd548bd64ef900d53e9188333b231e96b \
-                    sha256  c30058072029e7fde09133674d9f2f840a674eecbeae1f8b1779a3aae8166bb0 \
-                    size    15579715
+checksums           rmd160  93de1e898f19ffab5b17d31e64ff68c1e092e01b \
+                    sha256  73575b041a50cc48a2a53f6503ab4d355166d7acbd4997cd04045f848f8bea96 \
+                    size    15602689
 
 destroot.target     install-full
 
@@ -194,10 +194,6 @@ variant debug description { enable debug, processing will be slower } {
     ##       https://redmine.openinfosecfoundation.org/projects/suricata/wiki/Unit_Tests
     configure.args-append    --enable-debug --enable-profiling
 }
-
-#variant spatch description { spatch support. IN CONSTRUCTION } {
-#    ## http://coccinelle.lip6.fr/sp.php
-#}
 
 variant python27 description { Python 2.7 bindings } conflicts python37 {
     depends_build-append     port:python27  \
