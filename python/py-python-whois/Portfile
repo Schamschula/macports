@@ -5,7 +5,8 @@ PortGroup           python 1.0
 
 set real_name       python-whois
 name                py-${real_name}
-version             0.7.0
+version             0.7.1
+revision            0
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
 description         A simple importable Python module which will produce parsed WHOIS \
@@ -19,9 +20,9 @@ worksrcdir          ${real_name}-${version}
 
 python.versions     27 36
 
-checksums           rmd160  ed5b2e334a03aba99279df86722697a53896e249 \
-                    sha256  39b187060c8f798f381f7ee119d44bda564cee3fc2190e56ff8d0c3332286cf7 \
-                    size    82497
+checksums           rmd160  6c2db98bf2e2a2754ef2f7912fa896b6ac382c50 \
+                    sha256  71b5ebf276e2277053ee70f88923cef1da7bbe9b42fe723ff238234b7b7ac8c9 \
+                    size    83403
 
 if {${name} ne ${subport}} {
     depends_lib-append  \
