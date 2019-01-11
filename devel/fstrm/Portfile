@@ -1,0 +1,23 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+
+github.setup        farsightsec fstrm 0.4.0 v
+categories          devel
+license             Apache-2
+maintainers         {mps @Schamschula} openmaintainer
+description         fstrm is a C implementation of the Frame Streams data transport \
+                    protocol.
+long_description    ${description}
+platforms           darwin
+
+checksums           rmd160  76a16cd2c93c47965e96df36189db5df3e4d5d11 \
+                    sha256  7acdb63de2e105bdafdf16f798053f51ba114f271f19bc376aa34eeb00b33be4 \
+                    size    194858
+
+depends_build       port:pkgconfig
+
+depends_lib         port:libevent
+
+use_autoreconf      yes
