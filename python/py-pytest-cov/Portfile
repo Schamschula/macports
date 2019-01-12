@@ -1,26 +1,42 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
 
 PortSystem          1.0
-PortGroup           github 1.0
 PortGroup           python 1.0
 
-set real_name       pytest-cov
-name                py-${real_name}
-github.setup        pytest-dev pytest-cov 2.6.0 v
-
-license             MIT
-maintainers         {mps @Schamschula} openmaintainer
-description         This plugin produces coverage reports.
-long_description    ${description}
+name                py-pytest-cov
+version             2.6.1
+categories-append   devel
 platforms           darwin
+license             MIT
 
-python.versions     27
+python.versions     27 36 37
 
-checksums           rmd160  d6af70563b9776b42e969be8836e006c11e6f64e \
-                    sha256  10c33ce7ac28a3f3c2dea9131dfcaebf831b16f4881d38f730cac13d5fc5ca50 \
-                    size    30647
+maintainers         {gmail.com:ottenr.work @reneeotten} openmaintainer
+
+description         Pytest plugin for measuring coverage.
+long_description    ${description}
+
+homepage            https://github.com/pytest-dev/pytest-cov
+master_sites        pypi:[string index ${python.rootname} 0]/${python.rootname}
+
+distname            ${python.rootname}-${version}
+
+checksums           rmd160  1006d79dac96888b1d2f7c41d03be921ac915a0f \
+                    sha256  0ab664b25c6aa9716cbf203b17ddb301932383046082c081b9848a0edf5add33 \
+                    size    35307
 
 if {${name} ne ${subport}} {
-    depends_lib-append  \
-                    port:py${python.version}-setuptools
+    depends_build-append    port:py${python.version}-setuptools
+
+    depends_lib-append      port:py${python.version}-coverage \
+                            port:py${python.version}-pytest
+
+    post-destroot {
+        set docdir ${prefix}/share/doc/${subport}
+        xinstall -d ${destroot}${docdir}
+        xinstall -m 0644 -W ${worksrcpath} LICENSE CONTRIBUTING.rst \
+            AUTHORS.rst CHANGELOG.rst README.rst ${destroot}${docdir}
+    }
+
+    livecheck.type      none
 }
