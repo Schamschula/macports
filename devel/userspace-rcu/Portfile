@@ -3,7 +3,8 @@
 PortSystem          1.0
 
 name                userspace-rcu
-version             0.10.1
+version             0.10.2
+revision            0
 categories          devel
 license             LGPL-2.1
 maintainers         {mps @Schamschula} openmaintainer
@@ -14,8 +15,8 @@ platforms           darwin
 homepage            http://liburcu.org
 master_sites        https://lttng.org/files/urcu/
 
-checksums           rmd160  c857a3458c682bc957a9c32cc28d6bec6254b311 \
-                    sha256  9c09220be4435dc27fcd22d291707b94b97f159e0c442fbcd60c168f8f79eb06 \
-                    size    503347
+checksums           rmd160  a9f00fe70ca96d44b8102119d565cda0e5a234cc \
+                    sha256  b3f6888daf6fe02c1f8097f4a0898e41b5fe9975e121dc792b9ddef4b17261cc \
+                    size    503833
 
 use_bzip2           yes
