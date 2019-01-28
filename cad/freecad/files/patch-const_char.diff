@@ -1,0 +1,33 @@
+--- src/CXX/IndirectPythonInterface.cxx.orig	2018-04-06 03:48:37.000000000 -0500
++++ src/CXX/IndirectPythonInterface.cxx	2019-01-27 19:03:41.000000000 -0600
+@@ -549,7 +549,7 @@
+ PYCXX_EXPORT int &_Py_OptimizeFlag()                 { return Py_OptimizeFlag; }
+ PYCXX_EXPORT int &_Py_NoSiteFlag()                   { return Py_NoSiteFlag; }
+ PYCXX_EXPORT int &_Py_VerboseFlag()                  { return Py_VerboseFlag; }
+-PYCXX_EXPORT char *__Py_PackageContext()             { return _Py_PackageContext; }
++PYCXX_EXPORT const char *__Py_PackageContext()       { return _Py_PackageContext; }
+ 
+ //
+ //    Needed to keep the abstactions for delayload interface
+--- src/CXX/Python3/IndirectPythonInterface.hxx.orig	2018-04-06 03:48:37.000000000 -0500
++++ src/CXX/Python3/IndirectPythonInterface.hxx	2019-01-27 19:10:22.000000000 -0600
+@@ -178,7 +178,7 @@
+ PYCXX_EXPORT void _XINCREF( PyObject *op );
+ PYCXX_EXPORT void _XDECREF( PyObject *op );
+ 
+-PYCXX_EXPORT char *__Py_PackageContext();
++PYCXX_EXPORT const char *__Py_PackageContext();
+ };
+ 
+ #endif    // __CXX_INDIRECT_PYTHON_INTERFACE__HXX__
+--- src/Base/PyObjectBase.cpp.orig	2018-04-06 03:48:37.000000000 -0500
++++ src/Base/PyObjectBase.cpp	2019-01-27 19:16:53.000000000 -0600
+@@ -141,7 +141,7 @@
+ 
+ PyObject* PyObjectBase::__getattro(PyObject * obj, PyObject *attro)
+ {
+-    char *attr;
++    const char *attr;
+ #if PY_MAJOR_VERSION >= 3
+     attr = PyUnicode_AsUTF8(attro);
+ #else
