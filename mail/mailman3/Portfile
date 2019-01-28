@@ -34,9 +34,9 @@ worksrcdir          ${real_name}-${version}
 
 python.versions     36 37
 
-depends_lib-append  port:py${python.version}-setuptools
-
-livecheck.type      none
+depends_lib-append  port:libsass \
+                    port:py${python.version}-setuptools \
+                    port:py${python.version}-whoosh
 
 livecheck.type      regex
 livecheck.url       ${homepage}
