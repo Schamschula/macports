@@ -7,7 +7,7 @@ set real_name       mailman
 name                ${real_name}3
 version             3.2.0
 revision            0
-categories          mail python
+categories-append   mail
 
 license             GPL-3+
 maintainers         {mps @Schamschula} openmaintainer
@@ -37,6 +37,18 @@ python.versions     36 37
 depends_lib-append  port:libsass \
                     port:py${python.version}-setuptools \
                     port:py${python.version}-whoosh
+
+variant python36 conflicts python37 description {Use Python 3.6} {
+    python.default_version 36
+}
+
+variant python37 conflicts python36 description {Use Python 3.7} {
+    python.default_version 37
+}
+
+if {![variant_isset python36] && ![variant_isset python37]} {
+    default_variants +python37
+}
 
 livecheck.type      regex
 livecheck.url       ${homepage}
