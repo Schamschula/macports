@@ -5,7 +5,8 @@ PortGroup           python 1.0
 
 set real_name       mailman
 name                ${real_name}3
-version             3.1.1
+version             3.2.0
+revision            0
 categories          mail python
 conflicts           mailman
 
@@ -26,11 +27,11 @@ platforms           darwin
 homepage            http://www.list.org/
 master_sites        pypi:m/mailman
 
-checksums           rmd160  28eb64d5f53f40d6dd26034730203750fc62142d \
-                    sha256  5b4214ecefc5f0ffa9b809b16e9927ab7fb2aebb9f754db223ffa9a3839ec23f \
-                    size    749014
+checksums           rmd160  063f334b963618974e84b64f25478423961dcfa1 \
+                    sha256  5527eedc65007d9c6d35183e641295b242dbb877e684c22f89bbd90d56ce4517 \
+                    size    773200
 
-python.versions     35 36
+python.versions     36 37
 
 depends_lib-append  port:py${python.version}-setuptools
 
