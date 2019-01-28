@@ -1,0 +1,38 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           cmake 1.1
+
+name                med-file
+version             3.3.1
+categories          cad
+license             LGPL-3
+maintainers         {mps @Schamschula} openmaintainer
+description         The purpose of the MED module is to provide a standard for storing \
+                    and recovering computer data associated to numerical meshes and \
+                    fields, and to facilitate the exchange between codes and solvers. 
+long_description    ${description}
+platforms           darwin
+homepage            https://www.salome-platform.org/user-section/about/med
+master_sites        https://files.salome-platform.org/Salome/other/
+
+distname            med-${version}
+
+checksums           rmd160  95cf43a1982c1dc0651ad6c20ca7af7a4052c74a \
+                    sha256  dd631ef813838bc7413ff0dd6461d7a0d725bcfababdf772ece67610a8d22588 \
+                    size    43379218
+
+post-extract {
+    move ${workpath}/${worksrcdir}_SRC ${workpath}/${worksrcdir}
+}
+
+patchfiles          hdf5-1.10-support.patch
+
+post-patch {
+   reinplace "s|HDF_VERSION_MINOR_REF EQUAL 8|HDF_VERSION_MINOR_REF EQUAL 10|g" \
+                ${worksrcpath}/config/cmake_files/medMacros.cmake
+}
+
+depends_lib-append  port:hdf5
+
+cmake.out_of_source yes
