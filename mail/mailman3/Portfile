@@ -34,8 +34,7 @@ worksrcdir          ${real_name}-${version}
 
 python.versions     36 37
 
-depends_lib-append  port:libsass \
-                    port:py${python.version}-setuptools \
+depends_lib-append  port:py${python.version}-setuptools \
                     port:py${python.version}-whoosh
 
 variant python36 conflicts python37 description {Use Python 3.6} {
