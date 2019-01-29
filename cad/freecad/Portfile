@@ -46,6 +46,8 @@ patchfiles              cMake-FindCoin3D.cmake.diff
 if {${subport} eq ${name}} {
     PortGroup               qt4 1.0
 
+    conflicts               ${name}-devel
+
     github.setup            FreeCAD FreeCAD 0.17
     revision                3
 
@@ -106,6 +108,8 @@ if {${subport} eq ${name}} {
 
 subport ${name}-devel {
     PortGroup               qt5 1.0
+
+    conflicts               ${name}
 
     github.setup            FreeCAD FreeCAD 0.18_pre
     revision                0
