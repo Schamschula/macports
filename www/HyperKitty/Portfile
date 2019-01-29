@@ -1,0 +1,39 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           active_variants 1.1
+PortGroup           python 1.0
+
+name                HyperKitty
+version             1.2.1
+categories          www
+license             GPL-3
+maintainers         {mps @Schamschula} openmaintainer
+description         HyperKitty is an open source Django application under development. \
+                    It aims to provide a web interface to access GNU Mailman v3 archives.
+long_description    ${description}
+platforms           darwin
+homepage            https://pypi.org/project/HyperKitty/
+master_sites        pypi:h/hyperkitty
+
+checksums           rmd160  5c08185e76c45baf36632ab44a2282aa9b7ebdaf \
+                    sha256  73695ca8887a965bba5241ef55bbfd9d391cb01e684de1aa35b748ca852de720 \
+                    size    1374223
+
+python.versions     36 37
+
+depends_lib-append  port:libsass \
+                    port:py${python.version}-django \
+                    port:py${python.version}-setuptools
+
+variant python36 conflicts python37 description {Use Python 3.6} {
+    python.default_version 36
+}
+
+variant python37 conflicts python36 description {Use Python 3.7} {
+    python.default_version 37
+}
+
+if {![variant_isset python36] && ![variant_isset python37]} {
+    default_variants +python37
+}
