@@ -24,8 +24,6 @@ long_description \
 
 homepage                https://www.freecadweb.org
 
-depends_build-append    port:gmake
-
 depends_lib-append      port:boost \
                         port:Coin-framework \
                         port:eigen3 \
