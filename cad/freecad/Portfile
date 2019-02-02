@@ -109,12 +109,12 @@ subport ${name}-devel {
 
     conflicts               ${name}
 
-    github.setup            FreeCAD FreeCAD 0.18_pre
+    github.setup            FreeCAD FreeCAD f94e76c
     revision                0
 
-    checksums               rmd160  21f82b35b25d4f2d886a4a404781a7df46272c28 \
-                            sha256  6a32757564ce8cdd88457c4c3ba238b99623d905aea95f02164b0b9509745030 \
-                            size    192380015
+        checksums           rmd160  7ace00466e1983cfc8a90cdb1146bb51ed11ea9a \
+                            sha256  4a1e0137b158077e307c5a036f3b13184b559d62f311f8c2560b44ab49921838 \
+                            size    195643902
 
     set python_version      37
     set python_dot_version  3.7
