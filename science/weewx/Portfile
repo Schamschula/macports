@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                weewx
-version             3.8.2
+version             3.9.0
 categories          science
 license             
 maintainers         {mps @Schamschula} openmaintainer
