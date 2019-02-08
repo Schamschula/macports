@@ -1,19 +1,40 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
 
 PortSystem          1.0
+PortGroup           python 1.0
 
 name                weewx
 version             3.9.1
 categories          science
-license             
+license             GPL-3
 maintainers         {mps @Schamschula} openmaintainer
-description         
-long_description    
+description         WeeWX is a free, open source, software program, written in Python, \
+                    which interacts with your weather station to produce graphs, \
+                    reports, and HTML pages.
+long_description    ${description}
 platforms           darwin
 homepage            http://weewx.com
 master_sites        ${homepage}/downloads/
 
+checksums           rmd160  38b2cedf2010f1ede6682e9261bdbbfcea2c2f3b \
+                    sha256  b56a0926f6c0f522a3707eeb90912e0a5e21bc0a97c017289416c7846d6c19dc \
+                    size    1618491
+
+python.versions     27
+
+depends_lib-append  port:py${python.version}-cheetah \
+                    port:py${python.version}-configobj \
+                    port:py${python.version}-ephem \
+                    port:py${python.version}-pil \
+                    port:py${python.version}-pyusb \
+                    port:py${python.version}-setuptools \
+                    port:py${python.version}-serial \
+                    port:py${python.version}-sqlite
+
+post-patch {
+    reinplace "s|home = /home|${prefix}/www|" ${worksrcpath}/setup.cfg
+}
+
 livecheck.type      regex
 livecheck.url       ${master_sites}
 livecheck.regex     ${name}-(\[0-9.\]+)${extract.suffix}
-
