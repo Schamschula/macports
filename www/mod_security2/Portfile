@@ -5,11 +5,11 @@ PortSystem          1.0
 name                mod_security2
 set name_package    modsecurity
 version             2.9.3
-revision            0
+revision            1
 categories          www security
 license             Apache-2
 platforms           darwin
-maintainers         {pixilla @pixilla} {mps @Schamschula} openmaintainer
+maintainers         {mps @Schamschula} openmaintainer
 description         Apache 2 intrusion detection and prevention engine for web applications
 long_description    ModSecurity is an open source intrusion detection and \
                     prevention engine for web applications. It operates \
