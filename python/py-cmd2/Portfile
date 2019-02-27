@@ -6,7 +6,8 @@ PortGroup           python 1.0
 
 set real_name       cmd2
 name                py-${real_name}
-github.setup        python-cmd2 cmd2 0.9.3
+github.setup        python-cmd2 cmd2 0.8.9
+revision            0
 
 categories-append   sysutils
 license             MIT
@@ -24,9 +25,9 @@ platforms           darwin
 
 python.versions     27
 
-checksums           rmd160  5e5abde0759e015bc5c4eb9db27931768e8691b5 \
-                    sha256  2ca8c11aefe3d4f8b5d8f003ba1d1e7101aacddbeffbda690cd34444e7c9c4f8 \
-                    size    407917
+checksums           rmd160  8db920296556046f52ee47c37f36266a38fc101b \
+                    sha256  af84ab497722f7b37ffcff22fa0748f932e9526f011b8a0df30a699fd7ad3609 \
+                    size    377192
 
 if {${name} ne ${subport}} {
     depends_lib-append  \
