@@ -6,9 +6,9 @@ PortGroup           perl5 1.0
 
 github.setup        duncs clusterssh 4.13.2 release-
 revision            0
-set major           [lindex [split ${version} .] 0]
 platforms           darwin
 categories          sysutils
+license             {Artistic-1 GPL}
 maintainers         nomaintainer
 
 description         Cluster Admin via SSH
@@ -21,8 +21,6 @@ long_description    ClusterSSH controls a number of xterm windows via a \
 checksums           rmd160  d85dd5d46aac50590ac9e9726b55c30551c574cc \
                     sha256  9cb9db9d0eff9f308599f8fb5dbeeaedea91248001346d1ae9b06e921bd0d31f \
                     size    84805
-
-distname            clusterssh-${version}
 
 perl5.branches      5.28
 
