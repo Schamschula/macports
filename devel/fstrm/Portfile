@@ -3,7 +3,8 @@
 PortSystem          1.0
 PortGroup           github 1.0
 
-github.setup        farsightsec fstrm 0.4.0 v
+github.setup        farsightsec fstrm 0.5.0 v
+revision            0
 categories          devel
 license             Apache-2
 maintainers         {mps @Schamschula} openmaintainer
@@ -12,9 +13,9 @@ description         fstrm is a C implementation of the Frame Streams data transp
 long_description    ${description}
 platforms           darwin
 
-checksums           rmd160  76a16cd2c93c47965e96df36189db5df3e4d5d11 \
-                    sha256  7acdb63de2e105bdafdf16f798053f51ba114f271f19bc376aa34eeb00b33be4 \
-                    size    194858
+checksums           rmd160  8ca654d65a1570c61a8e35ca7f67e48b72a8ba2a \
+                    sha256  4b121e32db1fb85adeec8b7e5db233b06d4669779222a5da2c82a1e6b72c24e6 \
+                    size    134954
 
 depends_build       port:pkgconfig
 
