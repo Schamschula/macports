@@ -4,7 +4,8 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           python 1.0
 
-github.setup        ryanmcgrath twython 3.4.0
+github.setup        ryanmcgrath twython 3.7.0
+revision            0
 set real_name       twython
 name                py-${real_name}
 categories          python net
@@ -14,10 +15,11 @@ description         Actively maintained, pure Python wrapper for the Twitter API
 long_description    ${description} Supports both normal and streaming Twitter APIs.
 platforms           darwin
 
-python.versions     27 35 36
+python.versions     27 36 37
 
-checksums           rmd160  c32c50fbc18e569a55f4a0b8f52684568fe11c73 \
-                    sha256  f4215082bf5c08f5f45024cf67a6a2f0653a4259567489c5eff05997be900f56
+checksums           rmd160  257a974ad1273acd95e7a924ef7ca222825c2308 \
+                    sha256  375546bdb662ebd9fb12ccb6d4b47d5f9678632983575a9fb380aef508a1633b \
+                    size    373245
 
 if {${name} ne ${subport}} {
     depends_lib-append  port:py${python.version}-requests-oauthlib
