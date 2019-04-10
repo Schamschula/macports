@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                nginx
-version             1.15.10
+version             1.15.11
 revision            0
 categories          www mail
 platforms           darwin
@@ -36,9 +36,9 @@ master_sites        https://nginx.org/download:nginx \
 
 distfiles           ${name}-${version}${extract.suffix}:nginx
 checksums           ${name}-${version}${extract.suffix} \
-                    rmd160  0242cda1477a74dcfac8709a33e671b6e625faa5 \
-                    sha256  b865743abd52bce4745d0f7e7fedde3cafbaaab617b022c105e3e4e456537c3c \
-                    size    1032228
+                    rmd160  afb3531b998e76b4937cbacc17c9eb7880db5028 \
+                    sha256  d5eb2685e2ebe8a9d048b07222ffdab50e6ff6245919eebc2482c1f388e3f8ad \
+                    size    1032272
 
 depends_lib         port:pcre \
                     port:zlib
@@ -121,7 +121,7 @@ notes "\
     Additionally, the files [join ${auto_activate_confs} ", "] have been copied to ${nginx_confdir} if they didn't exist yet.\n\
     Adjust these files to your needs before starting nginx."
 
-default_variants +mp4 +flv +secure_link +ssl +http2
+default_variants +mp4 +flv +secure_link +ssl +http2 +stream
 
 variant auth_request description {Add client authorization based on the result of a subrequest} {
     configure.args-append   --with-http_auth_request_module
@@ -240,7 +240,8 @@ variant substitution description {Replace text in pages} {
 variant stream description {Enable ngx_stream_core_module for generic TCP proxying and load balancing (install with +ssl to enable ngx_stream_ssl_module)} {
     configure.args-append   --with-stream
     if {[variant_isset ssl]} {
-        configure.args-append   --with-stream_ssl_module
+        configure.args-append \
+            --with-stream_ssl_module --with-stream_ssl_preread_module
     }
 }
 
