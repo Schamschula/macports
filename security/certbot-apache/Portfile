@@ -22,6 +22,14 @@ checksums           rmd160  dee97fe0d089e33270cc71a2896c217e65285d5c \
                     sha256  406764e0b31f7c764ac721a3e308902aefe169fc2ed229c06141fafc2173059d \
                     size    178115
 
+if {[variant_isset python37]} {
+    python.default_version 37
+} elseif {[variant_isset python36]} {
+    python.default_version 36
+} else {
+    python.default_version 27
+}
+
 depends_lib-append  port:certbot \
                     port:py${python.version}-acme \
                     port:py${python.version}-python-augeas \
@@ -31,19 +39,12 @@ depends_lib-append  port:certbot \
                     port:py${python.version}-mock
 
 variant python27 conflicts python36 python37 description {Use Python 2.7} {
-    python.default_version     27
-    require_active_variants    certbot python27
+    depends_lib-append  port:py${python.version}-python2-pythondialog
 }
 
-variant python36 conflicts python27 python37 description {Use Python 3.6} {
-    python.default_version     36
-    require_active_variants    certbot python36
-}
+variant python36 conflicts python27 python37 description {Use Python 3.6} {}
 
-variant python37 conflicts python27 python36 description {Use Python 3.7} {
-    python.default_version     37
-    require_active_variants    certbot python37
-}
+variant python37 conflicts python27 python36 description {Use Python 3.7} {}
 
 if {![variant_isset python36] && ![variant_isset python37]} {
     default_variants +python27
