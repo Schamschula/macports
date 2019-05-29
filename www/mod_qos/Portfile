@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                mod_qos
-version             11.62
+version             11.63
 revision            0
 categories          www
 license             Apache-2
@@ -15,9 +15,9 @@ platforms           darwin
 homepage            http://mod-qos.sourceforge.net/index.html
 master_sites        sourceforge:project/mod-qos/
 
-checksums           rmd160  8a96149bb72ea2ac98db99194ef43047acce87c0 \
-                    sha256  9ce8dab2010087e6e70e8c63d613b8a474419a04fc887ab8339dfdf88c330674 \
-                    size    1244039
+checksums           rmd160  5016b229b68c3b0051f94edd72b7bd4de1044d52 \
+                    sha256  1a391c476d59617f69108d2069a4e0eadfc639caf3a4da29b0374d9e603815c8 \
+                    size    1244801
 
 depends_build       port:autoconf \
                     port:automake
@@ -36,17 +36,13 @@ build.dir           ${configure.dir}
 
 pre-configure { copy ${filespath}/aclocal.m4 ${worksrcpath}/tools }
 
-if {[variant_isset apache22]} {
-    set apxs        ${prefix}/apache22/bin/apxs
-    set mdir        ${destroot}${prefix}/apache22/modules/
-} else {
-    set apxs        ${prefix}/bin/apxs
-    set mdir        ${destroot}${prefix}/lib/apache2/modules/
-}
+set apxs            ${prefix}/bin/apxs
+set mdir            ${destroot}${prefix}/lib/apache2/modules/
 
 variant apache22 description "use apache22 instead of apache2" {
-    depends_lib-replace port:apache2 port:apache22
-    destroot.violate_mtree  yes
+    # remove after 2020-05-06
+    ui_error "Please do not install this variant since Apache 2.2 is obsolete."
+    return -code error
 }
 
 post-build {
