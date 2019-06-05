@@ -3,8 +3,8 @@
 PortSystem          1.0
 
 name                knot
-version             2.8.1
-revision            2
+version             2.8.2
+revision            0
 categories          net
 license             GPL-3+
 maintainers         {mps @Schamschula} openmaintainer
@@ -17,9 +17,9 @@ master_sites        https://secure.nic.cz/files/knot-dns/
 
 use_xz              yes
 
-checksums           rmd160  b62d4e5491b92be8617c8af4ac1cf648df886ef7 \
-                    sha256  b21bf03e5cb6804df4e0e8b3898446349e86ddae5bf110edaf240d0ad1e2a2c6 \
-                    size    1169260
+checksums           rmd160  2e03a0a5e0fbb718d4e1e661b5b3a68d484e68e5 \
+                    sha256  00d24361a2406392c508904fad943536bae6369981686b4951378fc1c9a5a137 \
+                    size    1193760
 
 depends_build       port:pkgconfig \
                     port:py27-sphinx 
