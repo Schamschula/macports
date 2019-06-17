@@ -4,7 +4,10 @@ PortSystem              1.0
 PortGroup               cmake 1.1
 PortGroup               compilers 1.0
 PortGroup               github 1.0
+PortGroup               qt4 1.0
 
+github.setup            FreeCAD FreeCAD 0.18.2
+revision                0
 name                    freecad
 categories              cad
 platforms               darwin
@@ -24,14 +27,44 @@ long_description \
 
 homepage                https://www.freecadweb.org
 
+checksums               rmd160  61e3540e1d37b0ba5c2eff1915d9df637124ecd7 \
+                        sha256  7191b1db897a37463f90867b6493ca7d52bc0c6c96c5e7a4598d394f0b3f53cf \
+                        size    219943827
+
+depends_build-append    port:doxygen
+
 depends_lib-append      port:boost \
                         port:Coin-framework \
                         port:eigen3 \
                         port:freetype \
                         port:oce \
+                        port:py27-backports-functools_lru_cache \
+                        port:py27-matplotlib \
+                        port:py27-pivy \
+                        port:py27-pyside \
+                        port:py27-pyside-tools \
+                        port:py27-shiboken \
+                        port:SoQt \
                         port:swig \
                         port:swig-python \
-                        port:xercesc3
+                        port:xercesc3 \
+                        port:zlib
+
+depends_run             port:qt4-mac-sqlite3-plugin
+
+patchfiles              cMake-FindCoin3D.cmake.diff \
+                        patch-src-Main-MainPy.cpp.diff
+
+# disable FreeCAD FEM module, as it requires hdf5 1.8.x
+patchfiles-append       patch-CMakeLists.txt.diff
+
+post-patch {
+    reinplace "s|QLibraryInfo::location.*|QLatin1String\(\"${applications_dir}/Qt4/\"\);|" \
+        ${worksrcpath}/src/Gui/Assistant.cpp
+
+    reinplace "s|/Applications|${applications_dir}|" \
+        ${worksrcpath}/src/Mod/OpenSCAD/OpenSCADUtils.py
+}
 
 compilers.choose        fc
 compilers.setup         require_fortran -g95
@@ -39,123 +72,43 @@ compilers.setup         require_fortran -g95
 cmake.install_prefix    ${prefix}/libexec/${name}
 cmake.install_rpath     ${cmake.install_prefix}/lib
 
-patchfiles              cMake-FindCoin3D.cmake.diff
+configure.pre_args-replace \
+                        -DCMAKE_INSTALL_NAME_DIR=${prefix}/lib \
+                        -DCMAKE_INSTALL_NAME_DIR=${cmake.install_prefix}/lib
 
-if {${subport} eq ${name}} {
-    PortGroup               qt4 1.0
+configure.args-append   -DCMAKE_INSTALL_DATADIR=${prefix}/share/${name} \
+                        -DCMAKE_INSTALL_DOCDIR=${prefix}/share/doc/${name} \
+                        -DCMAKE_FRAMEWORK_PATH=${frameworks_dir} \
+                        -DMACPORTS_PREFIX=${prefix} \
+                        -DPYSIDEUIC4BINARY=${prefix}/bin/pyside-uic-2.7 \
+                        -DPYSIDERCC4BINARY=${prefix}/bin/pyside-rcc-2.7
 
-    conflicts               ${name}-devel
+pre-configure {
+    # The c++ compiler is used for linking instead of fc.
+    # -L needs a path to a directory.
 
-    github.setup            FreeCAD FreeCAD 0.17
-    revision                3
+    set libgfortran [exec ${configure.fc} --print-file-name libgfortran.a]
+    configure.ldflags-append "-L[file dirname ${libgfortran}]"
 
-    checksums               rmd160  9f6da6f2d1b666e818de0103520d96c95cd089dd \
-                            sha256  db93b20132c97fe07b169ce453e656c94d05874f1a648c6ae4e446904ef2dcd2 \
-                            size    192380486
-
-    depends_lib-append      port:python27 \
-                            port:py27-matplotlib \
-                            port:py27-pivy \
-                            port:py27-pyside \
-                            port:py27-pyside-tools \
-                            port:py27-shiboken \
-                            port:SoQt \
-                            port:zlib
-
-    depends_run             port:qt4-mac-sqlite3-plugin
-
-    # disable FreeCAD FEM module, as it requires hdf5 1.8.x
-    patchfiles-append       patch-CMakeLists.txt.diff
-
-    post-patch {
-        reinplace "s|QLibraryInfo::location.*|QLatin1String\(\"${applications_dir}/Qt4/\"\);|" \
-            ${worksrcpath}/src/Gui/Assistant.cpp
-
-        reinplace "s|/Applications|${applications_dir}|" \
-            ${worksrcpath}/src/Mod/OpenSCAD/OpenSCADUtils.py
-    }
-
-    configure.pre_args-replace \
-                            -DCMAKE_INSTALL_NAME_DIR=${prefix}/lib \
-                            -DCMAKE_INSTALL_NAME_DIR=${cmake.install_prefix}/lib
-
-    configure.args-append   -DCMAKE_INSTALL_DATADIR=${prefix}/share/${name} \
-                            -DCMAKE_INSTALL_DOCDIR=${prefix}/share/doc/${name} \
-                            -DCMAKE_FRAMEWORK_PATH=${frameworks_dir} \
-                            -DMACPORTS_PREFIX=${prefix} \
-                            -DPYSIDEUIC4BINARY=${prefix}/bin/pyside-uic-2.7 \
-                            -DPYSIDERCC4BINARY=${prefix}/bin/pyside-rcc-2.7
-
-    pre-configure {
-        # The c++ compiler is used for linking instead of fc.
-        # -L needs a path to a directory.
-
-        set libgfortran [exec ${configure.fc} --print-file-name libgfortran.a]
-        configure.ldflags-append "-L[file dirname ${libgfortran}]"
-
-        set python_prefix [exec ${prefix}/bin/python2.7-config --prefix]
-        configure.args-append -DBUILD_ROBOT=NO \
-            -DPYTHON_LIBRARY=${python_prefix}/Python \
-            -DPYTHON_INCLUDE_DIR=${python_prefix}/Headers \
-            -DPYTHON_EXECUTABLE=${python_prefix}/bin/python2.7 \
-            -DShiboken_DIR=${python_prefix}/lib/cmake/Shiboken-1.2.4 \
-            -DPySide_DIR=${python_prefix}/lib/cmake/PySide-1.2.4 \
-            -DOCE_DIR=${frameworks_dir}/OCE.framework/Versions/0.17/Resources
-    }
+    set python_prefix [exec ${prefix}/bin/python2.7-config --prefix]
+    configure.args-append -DBUILD_ROBOT=NO \
+        -DPYTHON_LIBRARY=${python_prefix}/Python \
+        -DPYTHON_INCLUDE_DIR=${python_prefix}/Headers \
+        -DPYTHON_EXECUTABLE=${python_prefix}/bin/python2.7 \
+        -DShiboken_DIR=${python_prefix}/lib/cmake/Shiboken-1.2.4 \
+        -DPySide_DIR=${python_prefix}/lib/cmake/PySide-1.2.4 \
+        -DOCE_DIR=${frameworks_dir}/OCE.framework/Versions/0.17/Resources
 }
 
-subport ${name}-devel {
-    PortGroup               qt5 1.0
-
-    conflicts               ${name}
-
-    github.setup            FreeCAD FreeCAD f94e76c
-    revision                0
-
-        checksums           rmd160  7ace00466e1983cfc8a90cdb1146bb51ed11ea9a \
-                            sha256  4a1e0137b158077e307c5a036f3b13184b559d62f311f8c2560b44ab49921838 \
-                            size    195643902
-
-    set python_version      37
-    set python_dot_version  3.7
-
-    depends_lib-append      port:hdf5 \
-                            port:med-file \
-                            port:python${python_version} \
-                            port:py${python_version}-matplotlib \
-                            port:py${python_version}-pyside \
-                            port:py${python_version}-pyside-tools \
-                            port:py${python_version}-shiboken \
-                            port:qt5-qtwebkit \
-                            port:vtk
-
-    configure.pre_args-replace \
-                            -DCMAKE_INSTALL_NAME_DIR=${prefix}/lib \
-                            -DCMAKE_INSTALL_NAME_DIR=${cmake.install_prefix}/lib
-
-    configure.args-append   -DCMAKE_INSTALL_DATADIR=${prefix}/share/${name} \
-                            -DCMAKE_INSTALL_DOCDIR=${prefix}/share/doc/${name} \
-                            -DCMAKE_FRAMEWORK_PATH=${frameworks_dir} \
-                            -DMACPORTS_PREFIX=${prefix} \
-                            -DPYSIDEUIC4BINARY=${prefix}/bin/pyside-uic-${python_dot_version} \
-                            -DPYSIDERCC4BINARY=${prefix}/bin/pyside-rcc-${python_dot_version}
-
-    pre-configure {
-        # The c++ compiler is used for linking instead of fc.
-        # -L needs a path to a directory.
-
-        set libgfortran [exec ${configure.fc} --print-file-name libgfortran.a]
-        configure.ldflags-append "-L[file dirname ${libgfortran}]"
-
-        set python_prefix [exec ${prefix}/bin/python${python_dot_version}-config --prefix]
-        configure.args-append -DBUILD_ROBOT=NO \
-            -DPYTHON_LIBRARY=${python_prefix}/Python \
-            -DPYTHON_INCLUDE_DIR=${python_prefix}/Headers \
-            -DPYTHON_EXECUTABLE=${python_prefix}/bin/python${python_dot_version} \ \
-            -DShiboken_DIR=${python_prefix}/lib/cmake/Shiboken-1.2.4 \
-            -DPySide_DIR=${python_prefix}/lib/cmake/PySide-1.2.4 \
-            -DOCE_DIR=${frameworks_dir}/OCE.framework/Versions/0.17/Resources
-    }
+post-configure {
+    reinplace "s|sed -i|sed -i .orig|" \
+        ${workpath}/build/src/Mod/Arch/CMakeFiles/Arch.dir/build.make \
+        ${workpath}/build/src/Mod/Draft/CMakeFiles/Draft.dir/build.make \
+        ${workpath}/build/src/Mod/Material/CMakeFiles/Material.dir/build.make \
+        ${workpath}/build/src/Mod/OpenSCAD/CMakeFiles/OpenSCAD.dir/build.make \
+        ${workpath}/build/src/Mod/Plot/CMakeFiles/Plot.dir/build.make \
+        ${workpath}/build/src/Mod/Ship/CMakeFiles/Ship.dir/build.make \
+        ${workpath}/build/src/Mod/Tux/CMakeFiles/Tux.dir/build.make
 }
 
 post-destroot {
