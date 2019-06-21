@@ -46,3 +46,7 @@ post-extract {
 configure.args-append \
                     -DENABLE_TESTING=Off \
                     -DPERL_EXECUTABLE=${prefix}/bin/perl
+
+livecheck.type      regex
+livecheck.url       https://github.com/ARMmbed/mbedtls/releases
+livecheck.regex     ${name}-(\\d+(?:\\.\\d+)*)
