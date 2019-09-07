@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 set real_name       python-whois
 name                py-${real_name}
-version             0.7.1
+version             0.7.2
 revision            0
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
@@ -20,9 +20,9 @@ worksrcdir          ${real_name}-${version}
 
 python.versions     27 36
 
-checksums           rmd160  6c2db98bf2e2a2754ef2f7912fa896b6ac382c50 \
-                    sha256  71b5ebf276e2277053ee70f88923cef1da7bbe9b42fe723ff238234b7b7ac8c9 \
-                    size    83403
+checksums           rmd160  1426fb186428c4b507095029194d022779d65b76 \
+                    sha256  79793794788d49f28430f75cb92b22b0ee59b0210a7e8519494b47fa70e6ec3b \
+                    size    90030
 
 if {${name} ne ${subport}} {
     depends_lib-append  \
