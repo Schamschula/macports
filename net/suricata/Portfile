@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                suricata
-version             4.1.4
+version             4.1.5
 revision            0
 categories          net security
 platforms           darwin
@@ -22,9 +22,9 @@ long_description    Suricata is a high performance Network IDS, IPS \
 homepage            https://suricata-ids.org/
 master_sites        https://www.openinfosecfoundation.org/download/
 
-checksums           rmd160  e6d6794f02c9955ae01b5670206b9758e1e83f8b \
-                    sha256  2da50d91f92adf8b1af930f388361f76424420b88f553f610e2780e4240f2009 \
-                    size    15661783
+checksums           rmd160  9ae71694d133f12837503e5316fec815cddbfa83 \
+                    sha256  cee5f6535cd7fe63fddceab62eb3bc66a63fc464466c88ec7a41b7a1331ac74b \
+                    size    15729747
 
 destroot.target     install-full
 
@@ -53,8 +53,7 @@ depends_lib         port:cargo \
                     port:pcre \
                     port:pkgconfig
 
-configure.env       AC_PROG_LIBTOOL=${prefix}/bin/glibtool \
-                    LDFLAGS="-ljansson" CPPFLAGS=-I${prefix}/include
+configure.env       AC_PROG_LIBTOOL=${prefix}/bin/glibtool 
 
 configure.args      --enable-ipfw \
                     --enable-gccprotect \
