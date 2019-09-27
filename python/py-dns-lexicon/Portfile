@@ -22,8 +22,6 @@ checksums           rmd160  6577523fb1d3aebeac0e4bb5e33baa06666996cf \
                     sha256  521e88113262851208d963980745dce267d37de98c2f837a0b0fc9c73f9e6cf8 \
                     size    3211759
 
-#patchfiles          patch-setup.py.diff
-
 if {${name} ne ${subport}} {
     depends_build-append \
                     port:py${python.version}-setuptools
