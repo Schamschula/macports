@@ -1,0 +1,12 @@
+--- src/ImageMetaData.cxx.orig	2010-03-11 06:36:30.000000000 -0600
++++ src/ImageMetaData.cxx	2019-10-13 14:41:09.000000000 -0500
+@@ -17,8 +17,7 @@
+ #include <sys/types.h>
+ #include <sys/stat.h>
+ 
+-#include <exiv2/image.hpp>
+-#include <exiv2/exif.hpp>
++#include <exiv2/exiv2.hpp>
+ 
+ #include "../config.h"
+ #include "ImageMetaData.H"

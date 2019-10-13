@@ -4,7 +4,7 @@ PortSystem          1.0
 
 name                gipfel
 version             0.4.0
-revision            3
+revision            4
 categories          gis graphics
 license             GPL-3
 maintainers         mps openmaintainer
@@ -28,3 +28,5 @@ depends_lib         port:fltk \
                     port:gsl \
                     port:jpeg \
                     port:tiff
+
+patchfiles          patch-src-ImageMetaData.cxx.diff
