@@ -239,7 +239,10 @@ variant nss description { nss/md5 checksums support } {
                              --with-libnspr-includes=${prefix}/include/nspr
 }
 
-default_variants       +debug +geoip +python27
+default_variants       +debug +geoip 
+if {![variant_isset python27] && ![variant_isset python37]} {
+    default_variants   +python37
+}
 
 startupitem.create      yes
 startupitem.executable  ${prefix}/bin/suricata -c ${prefix}/etc/suricata/suricata.yaml -i en1
