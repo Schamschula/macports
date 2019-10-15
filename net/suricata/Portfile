@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                suricata
-version             4.1.5
+version             5.0.0
 revision            0
 categories          net security
 platforms           darwin
@@ -22,9 +22,9 @@ long_description    Suricata is a high performance Network IDS, IPS \
 homepage            https://suricata-ids.org/
 master_sites        https://www.openinfosecfoundation.org/download/
 
-checksums           rmd160  9ae71694d133f12837503e5316fec815cddbfa83 \
-                    sha256  cee5f6535cd7fe63fddceab62eb3bc66a63fc464466c88ec7a41b7a1331ac74b \
-                    size    15729747
+checksums           rmd160  8cbf84d64be55fadffc66c46cdd7dc9aed88cff8 \
+                    sha256  6a3dcc427196927a5cdefd32c290fa352d6405e9bb6d3fe12c71f47d31d98a63 \
+                    size    23689051
 
 destroot.target     install-full
 
@@ -45,6 +45,7 @@ depends_lib         port:cargo \
                     port:libnet11 \
                     port:libpcap \
                     port:libmagic \
+                    port:libmaxminddb \
                     port:libtool \
                     port:libyaml \
                     port:lz4 \
@@ -152,9 +153,8 @@ post-patch {
 
 post-destroot {
     xinstall -d ${destroot}${prefix}/share/examples/${name}
-    foreach f { classification.config reference.config suricata.yaml } {
-        xinstall ${worksrcpath}/${f} ${destroot}${prefix}/share/examples/${name}/
-    }
+    xinstall ${worksrcpath}/suricata.yaml ${destroot}${prefix}/share/examples/${name}/
+
     xinstall ${filespath}/oinkmaster-${name}.conf ${destroot}${prefix}/share/examples/${name}/
     reinplace "s|%%PREFIX%%|${prefix}|g" ${destroot}${prefix}/share/examples/${name}/oinkmaster-${name}.conf
 #    copy ${filespath}/mp-suricata.conf ${destroot}${prefix}/share/examples/${name}/
