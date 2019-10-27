@@ -21,19 +21,23 @@ checksums           rmd160  3550b9dda3b29109a978a273892758d7f0950d31 \
                     sha256  54a329128ed1934451b6e3c26dd0a6adc7b2a48cc7f7606ad7454b61d0834f89 \
                     size    1610209
 
-python.versions     36 37
+python.versions     36 37 38
 
 depends_lib-append  port:py${python.version}-django \
                     port:py${python.version}-setuptools
 
-variant python36 conflicts python37 description {Use Python 3.6} {
+variant python36 conflicts python37 python38 description {Use Python 3.6} {
     python.default_version 36
 }
 
-variant python37 conflicts python36 description {Use Python 3.7} {
+variant python37 conflicts python36 python38 description {Use Python 3.7} {
     python.default_version 37
 }
 
-if {![variant_isset python36] && ![variant_isset python37]} {
+variant python38 conflicts python36 python37 description {Use Python 3.8} {
+    python.default_version 38
+}
+
+if {![variant_isset python36] && ![variant_isset python37] && ![variant_isset python38]} {
     default_variants +python37
 }
