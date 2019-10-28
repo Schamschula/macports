@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           cmake 1.1
 PortGroup           github 1.0
 
-github.setup        ARMmbed mbed-crypto 1.1.1 mbedcrypto-
+github.setup        ARMmbed mbed-crypto 2.0.0 mbedcrypto-
 revision            0
 categories          devel
 license             Apache-2
@@ -15,9 +15,9 @@ description         The Mbed cryptography library is a reference implementation 
 long_description    ${description}
 platforms           darwin
 
-checksums           rmd160  098f8e0847a621b94f3995afadb07be9aeb54802 \
-                    sha256  347b685dd0295b775f96a7f6b43a28c5f92da86fd26c26e2e113cb0604590891 \
-                    size    2910071
+checksums           rmd160  1fe53648966028536b06e24ec67da341c4ecd9c3 \
+                    sha256  a2e6c0a8c43bab0d6d0aa7b7a9fb8f951994edef66ba7a4d59b47c899d51fda1 \
+                    size    3001813
 
 depends_build-append \
                     port:perl5 \
