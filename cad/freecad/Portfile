@@ -6,7 +6,7 @@ PortGroup               compilers 1.0
 PortGroup               github 1.0
 PortGroup               qt4 1.0
 
-github.setup            FreeCAD FreeCAD 0.18.2
+github.setup            FreeCAD FreeCAD 0.18.4
 revision                0
 name                    freecad
 categories              cad
@@ -27,9 +27,9 @@ long_description \
 
 homepage                https://www.freecadweb.org
 
-checksums               rmd160  61e3540e1d37b0ba5c2eff1915d9df637124ecd7 \
-                        sha256  7191b1db897a37463f90867b6493ca7d52bc0c6c96c5e7a4598d394f0b3f53cf \
-                        size    219943827
+checksums               rmd160  2fdb6bb247571e2ffaffaca1defb02ca0b2e1cc5 \
+                        sha256  d2f10f861cbcc9d19b34f79cd1c96baca2f23174f232e834f64a7c4a74f5f1e7 \
+                        size    219760632
 
 depends_build-append    port:doxygen
 
@@ -37,7 +37,7 @@ depends_lib-append      port:boost \
                         port:Coin-framework \
                         port:eigen3 \
                         port:freetype \
-                        port:oce \
+                        port:opencascade \
                         port:py27-backports-functools_lru_cache \
                         port:py27-matplotlib \
                         port:py27-pivy \
@@ -130,6 +130,10 @@ post-destroot {
 
     reinplace -W ${appdir}/Contents "s,@@VERSION@@,${version},g" Info.plist
     reinplace -W ${appdir}/Contents/MacOS "s,@@PREFIX@@,${prefix},g" FreeCAD
+}
+
+variant oce description {use Community Edition version of Open CASCADE} {
+     depends_lib-replace port:opencascade port:oce
 }
 
 github.livecheck.regex  {(\d\.\d+(\.\d+)?(?!_pre))}
