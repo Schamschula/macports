@@ -1,0 +1,33 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+PortGroup           python 1.0
+
+github.setup        astropy pytest-doctestplus 0.4.0 v
+name                py-pytest-doctestplus
+revision            0
+categories          python
+license             BSD
+maintainers         {mps @Schamschula} openmaintainer
+description         This package contains a plugin for the pytest framework that \
+                    provides advanced doctest support and enables the testing of \
+                    reStructuredText (".rst") files.
+long_description    ${description}
+platforms           darwin
+
+checksums           rmd160  3e71fd29f7dad31b4de1f6b6850b86d64a2ee9b0 \
+                    sha256  ae540056b010288923c4dfbc3ca2902bec234c5477f77bf5bcc42fa090ac2769 \
+                    size    16624
+
+python.versions     27 37 38
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                        port:py${python.version}-setuptools
+
+    depends_lib-append  port:py${python.version}-six \
+                        port:py${python.version}-pytest
+
+    livecheck.type      none
+}
