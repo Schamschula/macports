@@ -1,0 +1,30 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+PortGroup           python 1.0
+
+github.setup        astropy pytest-openfiles 0.4.0 v
+name                py-pytest-openfiles
+revision            0
+categories          python
+license             BSD
+maintainers         {mps @Schamschula} openmaintainer
+description         This package provides a plugin for the pytest framework that allows \
+                    developers to detect whether any file handles or other file-like \
+                    objects were inadvertently left open at the end of a unit test.
+long_description    ${description}
+platforms           darwin
+
+checksums           rmd160  eb26b2a3872ee8d1f30e7a8f3e6b43b741c0e8bd \
+                    sha256  05ecaf7cafb25070d5ad030ef0a9888dff273be814235be004c9e3498fcbb1ca \
+                    size    6692
+
+python.versions     27 37 38
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                        port:py${python.version}-setuptools
+
+    livecheck.type      none
+}
