@@ -3,8 +3,8 @@
 PortSystem          1.0
 
 name                hunspell-en
-version             2017.08.24
-revision            2
+version             2019.10.06
+revision            0
 distname            scowl-${version}
 categories          textproc
 license             permissive
@@ -16,12 +16,14 @@ homepage            http://wordlist.aspell.net/dicts/
 master_sites        sourceforge:wordlist
 supported_archs     noarch
 
-checksums           rmd160  74e1de4c302fd9c08a4cb6ffc09d91ab591e9696 \
-                    sha256  ba84da9f5af06dbfded82236372545c06fd8162c3d48d11410bdfcf27ef3b0cd                    
+checksums           rmd160  c142709773ef1a8e29b741c73c5f6f0574b69418 \
+                    sha256  a885f2558cfcb91f561f7eeb1c84dcd2ff329dd9e5e39d5fee80b7cb8296a749 \
+                    size    2560603
 
 use_configure       no
 
 depends_build       port:aspell \
+                    port:perl5 \
                     port:dos2unix
 
 depends_lib         port:hunspell
@@ -31,7 +33,7 @@ build.cmd           ./make-hunspell-dict
 build.target        -all
 use_parallel_build  no
 
-set installdir "$destroot$prefix/share/hunspell/"
+set installdir "${destroot}${prefix}/share/hunspell/"
 
 pre-destroot {
     xinstall -d -m 755 $installdir
@@ -143,5 +145,5 @@ subport hunspell-en_US_large {
 
 livecheck.type      regex
 livecheck.url       https://sourceforge.net/projects/wordlist/files/SCOWL/
-livecheck.regex     "(\[0-9.\]+)${extract.suffix}"
+livecheck.regex     "(\\d{4}\\.\\d{2}\\.\\d{2})"
 
