@@ -1,13 +1,13 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
-# $Id: $
 
 PortSystem          1.0
 
 name                retail
-version             1.0.1
+version             1.0.2
+revision            0
 categories          textproc
-maintainers         gmail.com:mschamschula openmaintainer
 platforms           darwin
+maintainers         {mps @Schamschula} openmaintainer
 license             GPL-2+
 
 description         Re-Tail is a command line program which is intended as an \
@@ -24,7 +24,24 @@ long_description    Re-Tail is a command line program which is intended as an \
 homepage            http://xjack.org/retail/
 master_sites        ${homepage}download/
 
-checksums           rmd160  271f532a965d7173ad5090e69c60861888eb657b \
-                    sha256  056d9f3852a05399d478f4852e4a82b1165aa433341f39228decdd82ed58fcce
+checksums           rmd160  68e8e46904eda68466beadb24a566d4314299d5d \
+                    sha256  e5795a3ef1464e1dfe1930d29abcf142f724d428cf3c4081b8fe048b262723e6 \
+                    size    63180
+
+patchfiles          patch-src-Makefile.in.diff
+
+configure.args      --mandir=${prefix}/share/man
 
 build.target        default
+
+post-destroot {
+    set docdir ${prefix}/share/doc/${subport}
+    xinstall -d ${destroot}${docdir}
+    xinstall -m 644 -W ${worksrcpath} \
+        COPYING \
+        CREDITS \
+        ChangeLog \
+        README \
+        TODO \
+        ${destroot}${docdir}
+}
