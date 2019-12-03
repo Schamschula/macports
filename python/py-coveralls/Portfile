@@ -6,7 +6,7 @@ PortGroup           python 1.0
 
 set real_name       coveralls
 name                py-${real_name}
-github.setup        coveralls-clients coveralls-python 1.8.2
+github.setup        coveralls-clients coveralls-python 1.9.1
 revision            0
 
 license             MIT
@@ -18,11 +18,11 @@ long_description    ${description} This package provides seamless integration wi
 platforms           darwin
 worksrcdir          coveralls-python-${version}
 
-python.versions     27 37
+python.versions     27 37 38
 
-checksums           rmd160  9b63459cf920712cde2ddcb414d13aa45d98fa8b \
-                    sha256  4e19595922a4e74f628df55de972afcc2c71ce3a86862b1d3c566d72760a845a \
-                    size    23218
+checksums           rmd160  7b8eb2dc25eb683673ae1e49da71c72b188d02cd \
+                    sha256  0298b73f891f62432ad780f20f2f8a0f12f21303235ddbf7c23e1ec4a38ef39b \
+                    size    24221
 
 if {${name} ne ${subport}} {
     depends_lib-append  \
