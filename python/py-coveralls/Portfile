@@ -6,7 +6,7 @@ PortGroup           python 1.0
 
 set real_name       coveralls
 name                py-${real_name}
-github.setup        coveralls-clients coveralls-python 1.10.0
+github.setup        coveralls-clients coveralls-python 1.11.0
 revision            0
 
 license             MIT
@@ -20,9 +20,9 @@ worksrcdir          coveralls-python-${version}
 
 python.versions     27 37 38
 
-checksums           rmd160  b949e34eef6cb4854f7afdd03cd875d4b8b8d624 \
-                    sha256  5cb23ba3f2fdec1206a2fdea7379721ad52caa582973f128814b7d9663169f94 \
-                    size    25650
+checksums           rmd160  e2380dc32904be9d9735b99acd888c92a4cdc9a2 \
+                    sha256  6655148beba6370c4bec1bb00e039ca617320055a996d8f52812ce168d7d7d2b \
+                    size    26121
 
 if {${name} ne ${subport}} {
     depends_lib-append  \
