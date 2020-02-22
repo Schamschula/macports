@@ -1,0 +1,23 @@
+--- aux/zeekctl/aux/pysubnettree/CMakeLists.txt.orig	2020-02-21 20:57:20.000000000 -0600
++++ aux/zeekctl/aux/pysubnettree/CMakeLists.txt	2020-02-21 21:06:38.000000000 -0600
+@@ -50,6 +50,8 @@
+ swig_link_libraries(SubnetTree ${PYTHON_LIBRARIES})
+ set_source_files_properties(${swig_generated_file_fullname} SubnetTree.cc
+                             PROPERTIES COMPILE_FLAGS -fno-strict-aliasing)
++set_source_files_properties(${swig_generated_file_fullname} SubnetTree.cc
++                            PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 
+ ########################################################################
+ ## Install Files
+@@ -61,8 +63,10 @@
+ 
+ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/SubnetTree.py
+         DESTINATION ${PY_MOD_INSTALL_DIR})
+-install(TARGETS ${SWIG_MODULE_SubnetTree_REAL_NAME}
++if (APPLE)
++    install(TARGETS ${SWIG_MODULE_SubnetTree_REAL_NAME}
+         DESTINATION ${PY_MOD_INSTALL_DIR})
++endif ()
+ 
+ ########################################################################
+ ## Build Summary
