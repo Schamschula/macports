@@ -46,11 +46,11 @@ post-extract {
 configure.args-append \
                     -DENABLE_TESTING=On \
                     -DPERL_EXECUTABLE=${prefix}/bin/perl \
-                    -DPYTHON_EXECUTABLE:FILEPATH=${prefix}/bin/python38 \
+                    -DPYTHON_EXECUTABLE:FILEPATH=${prefix}/bin/python3.8 \
                     -DUSE_SHARED_MBEDTLS_LIBRARY=On
 
 test.run            yes
 
 livecheck.type      regex
 livecheck.url       https://github.com/ARMmbed/mbedtls/releases
-livecheck.regex     ${name}-(\\d+(?:\\.\\d+)+)
+livecheck.regex     ${name}-(\\d+(?:\\.\\d+)*)${extract.suffix}
