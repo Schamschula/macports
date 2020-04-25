@@ -5,20 +5,25 @@ PortGroup           cmake 1.0
 PortGroup           github 1.0
 
 github.setup        zmap zmap 2.1.1 v
-revision            1
+revision            2
 categories          net
 license             Apache-2.0
-maintainers         mps openmaintainer
+maintainers         {mps @Schamschula} openmaintainer
 description         ZMap: The Internet Scanner
 long_description    ZMap is a fast single packet network scanner designed for \
                     Internet-wide network surveys.
 platforms           darwin
 
 checksums           rmd160  9133e247c406d71b91f8b91e070255a9dd72aedc \
-                    sha256  204bd559f56238fa841baa27d8be5ce16f473f594b49198799f79cfe35c28103
+                    sha256  204bd559f56238fa841baa27d8be5ce16f473f594b49198799f79cfe35c28103 \
+                    size    131723
+
+depends_build-append \
+                    port:pkgconfig
 
 depends_lib-append  port:byacc \
                     port:gengetopt \
+                    port:gmp \
                     port:json-c \
                     port:libdnet
 
