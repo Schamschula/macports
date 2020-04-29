@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                suricata
-version             5.0.2
+version             5.0.3
 revision            0
 categories          net security
 platforms           darwin
@@ -22,9 +22,9 @@ long_description    Suricata is a high performance Network IDS, IPS \
 homepage            https://suricata-ids.org/
 master_sites        https://www.openinfosecfoundation.org/download/
 
-checksums           rmd160  841561e5e2a6f7679f1022c0fbc482b12f4cbb8a \
-                    sha256  7f30cac92feeab2a9281b6059b96f9f163dce9aadcc959a6c0b9a2f6d750cee7 \
-                    size    23735393
+checksums           rmd160  29dee8a9139f747b95be83642a507a2cd6888e93 \
+                    sha256  34413ecdad2ff2452526dbcd22f1279afd0935151916c0ff9cface4b0b5665db \
+                    size    23744731
 
 destroot.target     install-full
 
@@ -195,18 +195,22 @@ variant debug description { enable debug, processing will be slower } {
     configure.args-append    --enable-debug --enable-profiling
 }
 
-variant python27 description { Python 2.7 bindings } conflicts python37 {
+variant python27 description { Python 2.7 bindings } conflicts python37 python38 {
     depends_build-append     port:python27  \
                              port:py27-yaml
-#    configure.env-append     PYTHON=${prefix}/bin/python2.7
     configure.python         ${prefix}/bin/python2.7
 }
 
-variant python37 description { Python 3.7 bindings } conflicts python27 {
+variant python37 description { Python 3.7 bindings } conflicts python27 python38 {
     depends_build-append     port:python37  \
                              port:py37-yaml
-#    configure.env-append     PYTHON=${prefix}/bin/python3.7
     configure.python         ${prefix}/bin/python3.7
+}
+
+variant python38 description { Python 3.8 bindings } conflicts python27 python37 {
+    depends_build-append     port:python38  \
+                             port:py38-yaml
+    configure.python         ${prefix}/bin/python3.8
 }
 
 variant prelude description { libprelude support } {
@@ -240,8 +244,8 @@ variant nss description { nss/md5 checksums support } {
 }
 
 default_variants       +debug +geoip 
-if {![variant_isset python27] && ![variant_isset python37]} {
-    default_variants   +python37
+if {![variant_isset python27] && ![variant_isset python37] && ![variant_isset python38]} {
+    default_variants   +python38
 }
 
 startupitem.create      yes
