@@ -1,0 +1,17 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           octave 1.0
+
+octave.setup        windows 1.5.0
+revision            0
+platforms           darwin
+license             GPL-2+
+maintainers         nomaintainer
+description         Provides COM interface and additional \
+                    functionality on Windows.
+long_description    ${description}
+
+checksums           rmd160  259a6f0c7abbc41d3512d7e733a77d49b8b5178f \
+                    sha256  6a74abf203aae61542dbb8ff66b0ca6856b87c30a736591fdf699980f0707a15 \
+                    size    302719
