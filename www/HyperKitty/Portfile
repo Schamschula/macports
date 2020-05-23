@@ -28,14 +28,18 @@ depends_lib-append  port:libsass \
                     port:py${python.version}-isort \
                     port:py${python.version}-setuptools
 
-variant python36 conflicts python37 description {Use Python 3.6} {
+variant python36 conflicts python37 python38 description {Use Python 3.6} {
     python.default_version 36
 }
 
-variant python37 conflicts python36 description {Use Python 3.7} {
+variant python37 conflicts python36 python38 description {Use Python 3.7} {
     python.default_version 37
 }
 
+variant python38 conflicts python36 python37 description {Use Python 3.8} {
+    python.default_version 38
+}
+
 if {![variant_isset python36] && ![variant_isset python37]} {
-    default_variants +python37
+    default_variants +python38
 }
