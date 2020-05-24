@@ -32,21 +32,25 @@ checksums           rmd160  6432b1a636b104935a0b30fdacfe9fe30e5b0306 \
 
 worksrcdir          ${real_name}-${version}
 
-python.versions     36 37
+python.versions     36 37 38
 
 depends_lib-append  port:py${python.version}-setuptools \
                     port:py${python.version}-whoosh
 
-variant python36 conflicts python37 description {Use Python 3.6} {
+variant python36 conflicts python37 python38 description {Use Python 3.6} {
     python.default_version 36
 }
 
-variant python37 conflicts python36 description {Use Python 3.7} {
+variant python37 conflicts python36 python38 description {Use Python 3.7} {
     python.default_version 37
 }
 
-if {![variant_isset python36] && ![variant_isset python37]} {
-    default_variants +python37
+variant python38 conflicts python36 python37 description {Use Python 3.8} {
+    python.default_version 38
+}
+
+if {![variant_isset python36] && ![variant_isset python37] && ![variant_isset python38]} {
+    default_variants +python38
 }
 
 livecheck.type      regex
