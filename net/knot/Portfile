@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                knot
-version             2.9.3
+version             2.9.5
 revision            0
 categories          net
 license             GPL-3+
@@ -17,12 +17,12 @@ master_sites        https://secure.nic.cz/files/knot-dns/
 
 use_xz              yes
 
-checksums           rmd160  56fa572f9525ffe203a034ab13a4c5f157182d84 \
-                    sha256  f2adf137d70955a4a20df90c5409e10be8e1127204a98b27d626ac090531a07e \
-                    size    1214512
+checksums           rmd160  74a139694f4124e9437ed0dff30e594501efcb45 \
+                    sha256  1109a8ba212ff8ddfdbaf44a6f8fc13a2b880a98a9e54c19112ba72a1aacbf76 \
+                    size    1190872
 
 depends_build       port:pkgconfig \
-                    port:py37-sphinx 
+                    port:py38-sphinx
 
 depends_lib         port:fstrm \
                     port:gnutls \
@@ -30,6 +30,6 @@ depends_lib         port:fstrm \
                     port:protobuf-c \
                     port:userspace-rcu
 
-startupitem.create	    yes
-startupitem.netchange	yes
-startupitem.executable	${prefix}/sbin/knotd -c ${prefix}/etc/knot.conf
+startupitem.create      yes
+startupitem.netchange   yes
+startupitem.executable  ${prefix}/sbin/knotd -c ${prefix}/etc/knot.conf
