@@ -1,0 +1,17 @@
+--- setup.cfg.orig	2020-05-30 17:45:10.000000000 -0500
++++ setup.cfg	2020-06-02 15:53:05.000000000 -0500
+@@ -6,9 +6,9 @@
+ # windows: c:\Users\weewx
+ 
+ [install]
+-home = /home/weewx
++#home = /home/weewx
+ 
+-prefix =
+-exec-prefix =
+-install_lib = %(home)s/bin
+-install_scripts = %(home)s/bin
++prefix =  ${prefix}
++exec-prefix =  ${prefix}/bin
++#install_lib = %(home)s/bin
++#install_scripts = %(home)s/bin

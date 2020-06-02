@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                weewx
-version             4.1.0
+version             4.1.1
 revision            0
 categories          science
 license             GPL-3
@@ -15,30 +15,29 @@ description         WeeWX is a free, open source, software program, written in P
 long_description    ${description}
 platforms           darwin
 homepage            http://weewx.com
-master_sites        ${homepage}/downloads/
+master_sites        ${homepage}/downloads/released_versions/
 
-checksums           rmd160  651620357a75e6beaa848560b28476610682815a \
-                    sha256  fae74c4160a2141f3f1681b998a691318770516af46366f194c3e9e3d6273b3c \
-                    size    1554019
+checksums           rmd160  7b2d310484943100a0b47811f7ba51900a7c3972 \
+                    sha256  f9c30d6e5f491c003dfaac2a71d9e05b5a65146623d42f50837991b6f2093419 \
+                    size    1586240
 
 python.versions     27 37 38
 
 depends_lib-append  port:py${python.version}-cheetah \
                     port:py${python.version}-configobj \
                     port:py${python.version}-ephem \
-                    port:py${python.version}-pil \
+                    port:py${python.version}-Pillow \
                     port:py${python.version}-pyusb \
                     port:py${python.version}-setuptools \
-                    port:py${python.version}-serial                    
+                    port:py${python.version}-serial
 
 if {[variant_isset python27]} {
     depends_lib-append \
                     port:py${python.version}-sqlite
 }
 
-post-patch {
-    reinplace "s|home = /home|${prefix}/www|" ${worksrcpath}/setup.cfg
-}
+patchfiles          patch-setup.cfg.diff \
+                    patch-setup.py.diff
 
 livecheck.type      regex
 livecheck.url       ${master_sites}
