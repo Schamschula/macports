@@ -5,7 +5,7 @@ PortGroup           active_variants 1.1
 PortGroup           python 1.0
 
 name                HyperKitty
-version             1.3.2
+version             1.3.3
 revision            0
 categories          www
 license             GPL-3
@@ -17,9 +17,9 @@ platforms           darwin
 homepage            https://pypi.org/project/HyperKitty/
 master_sites        pypi:h/hyperkitty
 
-checksums           rmd160  eae4981d6446ee65e2e12097cf0a7ede62472193 \
-                    sha256  08ad1dbd619c957eddc2aa46eea229adb00213ac00f33e867cbb38dfc19e4e24 \
-                    size    1472683
+checksums           rmd160  115835233ea3eb6f438c7ca5e87593266f89930f \
+                    sha256  b628d2e45878cce78505a474a64c0960da1be784e9f63456d1aad86a70ca055d \
+                    size    1936346
 
 python.versions     36 37 38
 
