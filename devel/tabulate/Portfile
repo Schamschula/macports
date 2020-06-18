@@ -1,0 +1,23 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem              1.0
+PortGroup               cmake 1.1
+PortGroup               github 1.0
+
+github.setup            p-ranav tabulate 1.2 v
+revision                0
+categories              devel
+license                 MIT
+maintainers             {mps @Schamschula} openmaintainer
+description             tabulate is a header-only library for printing aligned, formated \
+                        and colorized tables in moder C++.
+long_description        ${description}
+platforms               darwin
+
+checksums               rmd160  58721add360a8ff1448921328dcf54ec95e4d2c0 \
+                        sha256  cec94ad08e070d1fd004e601ea1d19f0c4fd7a84efd1624ecb0845f64850a664 \
+                        size    2463820
+
+compiler.cxx_standard   2017
+
+cmake.out_of_source     yes
