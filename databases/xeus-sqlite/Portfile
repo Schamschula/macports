@@ -38,17 +38,9 @@ configure.args-append   -Dnlohmann_json_DIR=${prefix}/lib/cmake/nlohmann_json \
                         -Dcppzmq_DIR=${prefix}/share/cmake/cppzmq \
                         -DSQLiteCpp_DIR=${prefix}/lib/cmake/SQLiteCpp \
                         -Dtabulate_DIR=${prefix}/lib/cmake/tabulate \
+                        -DZeroMQ_DIR=${prefix}/share/cmake/ZeroMQ \
                         -DCMAKE_PREFIX_PATH:PATH=${prefix}/lib/pkgconfig \
                         -DOPENSSL_INCLUDE_DIR=${prefix}/include/openssl \
-                        -DOPENSSL_CRYPTO_LIBRARY=${prefix}/lib \
+                        -DOPENSSL_CRYPTO_LIBRARY=${prefix}/lib/libssl.dylib \
                         -DSQLite3_INCLUDE_DIR=${prefix}/include \
-                        -DSQLite3_LIBRARY=${prefix}/lib
-
-post-configure {
-    reinplace "s|${prefix}/lib -llibzmq ${prefix}/lib|-L${prefix}/lib -lzmq -lsqlite3|g" \
-            ${workpath}/build/CMakeFiles/xeus-sqlite.dir/link.txt 
-    reinplace "s|-llibzmq ${prefix}/lib|-L${prefix}/lib -lzmq -lsqlite3|g" \
-            ${workpath}/build/CMakeFiles/xsqlite.dir/link.txt
-    reinplace "s|\<${prefix}/lib||g" \
-            ${workpath}/build/CMakeFiles/xsqlite.dir/link.txt
-}
+                        -DSQLite3_LIBRARY=${prefix}/lib/libsqlite3.dylib
