@@ -26,6 +26,7 @@ depends_build-append    port:pkgconfig
 
 depends_lib-append      port:cppzmq \
                         port:openssl \
+                        port:py38-notebook \
                         port:sqlite3 \
                         port:sqlitecpp \
                         port:tabulate \
