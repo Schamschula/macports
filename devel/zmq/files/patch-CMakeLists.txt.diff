@@ -1,0 +1,11 @@
+--- a/CMakeLists.txt.orig	2019-07-08 11:06:38.000000000 -0500
++++ b/CMakeLists.txt	2020-06-17 16:15:03.000000000 -0500
+@@ -1156,7 +1156,7 @@
+     set_target_properties(libzmq PROPERTIES
+       COMPILE_DEFINITIONS "DLL_EXPORT"
+       PUBLIC_HEADER "${public_headers}"
+-      VERSION "5.2.2"
++      VERSION "8.2.0"
+       SOVERSION "5"
+       OUTPUT_NAME "zmq"
+       PREFIX "lib")
