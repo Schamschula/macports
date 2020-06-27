@@ -4,7 +4,7 @@ PortSystem              1.0
 PortGroup               cmake 1.1
 PortGroup               github 1.0
 
-github.setup            jupyter-xeus xeus 0.24.0
+github.setup            jupyter-xeus xeus 0.24.1
 revision                0
 categories              devel science
 license                 BSD
@@ -16,9 +16,9 @@ long_description        ${description} It takes the burden of implementing the J
                         interpreter part of the kernel.
 platforms               darwin
 
-checksums               rmd160  5633e4baec8ef2cb7a94492599a3b8e69e976854 \
-                        sha256  01dbe3ff7adc0c015b574a82405aabe1d0ad246e87584c16657e3967ca69c587 \
-                        size    5349847
+checksums               rmd160  bcce29cd569f12eaf44aea4915d77be68ac0b4ec \
+                        sha256  a8751d8f04fd39293d0205a1d948f99068e4c8bba6db2ffde9eda150915e3562 \
+                        size    5422545
 
 cmake.out_of_source     yes
 
