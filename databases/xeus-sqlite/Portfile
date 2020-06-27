@@ -4,7 +4,7 @@ PortSystem              1.0
 PortGroup               cmake 1.1
 PortGroup               github 1.0
 
-github.setup            jupyter-xeus xeus-sqlite 0.1.0
+github.setup            jupyter-xeus xeus-sqlite 0.1.1
 revision                0
 categories              databases
 license                 BSD
@@ -14,9 +14,9 @@ description             xeus-sqlite is a Jupyter kernel for SQL based on the nat
 long_description        ${description}
 platforms               darwin
 
-checksums               rmd160  6654356be4ab63575ccd8743736ddf55584ea0db \
-                        sha256  63a2c4c017b41f43bb2ec7fce5bb900780bd04bc58bea98254df45eedfefcf30 \
-                        size    24502
+checksums               rmd160  0babd8e98b33cbc0bd508a14dabb81565b052c5e \
+                        sha256  88ee8f54891a636a205d5df6c8a512de53b6fb9f6bc7702f7f50f69e7e3be5d3 \
+                        size    24485
 
 compiler.cxx_standard   2017
 
