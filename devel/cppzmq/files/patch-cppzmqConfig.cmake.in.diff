@@ -1,0 +1,15 @@
+--- cppzmqConfig.cmake.in.orig	2020-01-16 02:30:11.000000000 -0600
++++ cppzmqConfig.cmake.in	2020-06-18 19:08:39.000000000 -0500
+@@ -25,9 +25,9 @@
+     find_package(ZeroMQ REQUIRED)
+ endif()
+ 
+-if(NOT ZeroMQ_FOUND)
+-    message(FATAL_ERROR "ZeroMQ was NOT found!")
+-endif()
++# if(NOT ZeroMQ_FOUND)
++#     message(FATAL_ERROR "ZeroMQ was NOT found!")
++# endif()
+ 
+ if(NOT TARGET @PROJECT_NAME@)
+     include("${CMAKE_CURRENT_LIST_DIR}/@PROJECT_NAME@Targets.cmake")
