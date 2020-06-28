@@ -24,9 +24,20 @@ cmake.out_of_source     yes
 
 depends_build-append    port:pkgconfig
 
+variant python37 conflicts python38 description {Build using Python 3.7} {
+    depends_lib-append  port:py37-notebook
+}
+
+variant python38 conflicts python37 description {Build using Python 3.8} {
+    depends_lib-append  port:py38-notebook
+}
+
+if {![variant_isset python37] && ![variant_isset python38]} {
+    default_variants +python38
+}
+
 depends_lib-append      port:cppzmq \
-                        port:openssl \
-                        port:py38-notebook \
+                        path:lib/libssl.dylib:openssl \
                         port:sqlite3 \
                         port:sqlitecpp \
                         port:tabulate \
