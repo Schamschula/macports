@@ -1,0 +1,67 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+
+name                php-composer
+version             1.10.8
+revision            0
+categories          php
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         Composer is a tool for dependency management in PHP.
+long_description    ${description} It allows you to declare the libraries your project \
+                    depends on and it will manage (install/update) them for you.
+platforms           darwin
+homepage            https://getcomposer.org/
+master_sites        ${homepage}:installer \
+                    ${homepage}download/${version}:composer
+distfiles           installer \
+                    composer.phar
+
+checksums           installer \
+                    rmd160  6f1aae21a0d97d2085a6672886c1cbe48b3b10ea \
+                    sha256  57e86c1d5b50757694acec149247f43c533d611c45d7c6daec884cd39771cb50 \
+                    size    277509 \
+                    composer.phar \
+                    rmd160  15a522e6d44f7e6a0d7ca667faa5a46a46127b30 \
+                    sha256  4c40737f5d5f36d04f8b2df37171c6a1ff520efcadcb8626cc7c30bd4c5178e5 \
+                    size    1977918
+
+
+set php_branch      73
+
+variant php71 conflicts php72 php73 description {Use Python 7.1} {
+    set php_branch  71
+}
+
+variant php72 conflicts php71 php73 description {Use Python 7.2} {
+    set php_branch  72
+}
+
+variant php73 conflicts php71 php72 description {Use Python 7.3} {}
+
+if {![variant_isset php71] && ![variant_isset php72] && ![variant_isset php73]} {
+    default_variants +php73
+}
+
+depends_lib         port:php${php_branch} \
+                    port:php${php_branch}-mbstring \
+                    port:php${php_branch}-openssl
+
+use_configure       no
+
+extract {
+    file copy ${distpath}/installer ${workpath}/composer-setup.php
+    file copy ${distpath}/composer.phar ${workpath}/
+}
+
+build   {}
+
+destroot {
+    exec ${prefix}/bin/php${php_branch} ${workpath}/composer-setup.php \
+        --install-dir=${destroot}${prefix}/bin --filename=composer
+}
+
+livecheck.type      regexm
+livecheck.url       ${homepage}download/
+livecheck.regex     {v(\d+\.\d+\.\d+)}
