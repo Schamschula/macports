@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                php-composer
-version             1.10.8
+version             1.10.9
 revision            0
 categories          php
 license             MIT
@@ -15,17 +15,17 @@ platforms           darwin
 homepage            https://getcomposer.org/
 master_sites        ${homepage}:installer \
                     ${homepage}download/${version}:composer
-distfiles           installer \
-                    composer.phar
+distfiles           installer:installer \
+                    composer.phar:composer
 
 checksums           installer \
                     rmd160  6f1aae21a0d97d2085a6672886c1cbe48b3b10ea \
                     sha256  57e86c1d5b50757694acec149247f43c533d611c45d7c6daec884cd39771cb50 \
                     size    277509 \
                     composer.phar \
-                    rmd160  15a522e6d44f7e6a0d7ca667faa5a46a46127b30 \
-                    sha256  4c40737f5d5f36d04f8b2df37171c6a1ff520efcadcb8626cc7c30bd4c5178e5 \
-                    size    1977918
+                    rmd160  2d0b16eac8e18962f768076bcd34ad097e4b1a47 \
+                    sha256  70d6b9c3e0774b398a372dcb7f89dfe22fc25884e6e09ebf277286dd64cfaf35 \
+                    size    1980987
 
 
 set php_branch      73
