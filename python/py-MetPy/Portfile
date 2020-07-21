@@ -16,6 +16,7 @@ long_description    ${description}
 platforms           darwin
 homepage            https://github.com/Unidata/MetPy
 master_sites        pypi:M/MetPy
+distname            ${real_name}-${version}
 
 python.versions     37 38
 
@@ -29,6 +30,7 @@ if {${name} ne ${subport}} {
                     port:py${python.version}-numpy \
                     port:py${python.version}-pandas \
                     port:py${python.version}-pint \
+                    port:py${python.version}-pooch \
                     port:py${python.version}-scipy \
                     port:py${python.version}-setuptools \
                     port:py${python.version}-setuptools_scm \
