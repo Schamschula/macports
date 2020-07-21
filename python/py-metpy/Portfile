@@ -3,8 +3,8 @@
 PortSystem          1.0
 PortGroup           python 1.0
 
+name                py-metpy
 set real_name       MetPy
-name                py-${real_name}
 version             0.12.1
 revision            0
 categories          python science
