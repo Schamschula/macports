@@ -5,11 +5,11 @@
  )
  
 +add_library(BROTLICOMMON SHARED IMPORTED)
-+set_target_properties(BROTLICOMMON PROPERTIES IMPORTED_LOCATION %PREFIX%/lib/libbrotlicommon-static.a)
++set_target_properties(BROTLICOMMON PROPERTIES IMPORTED_LOCATION %PREFIX%/lib/libbrotlicommon.dylib)
 +add_library(BROTLIDEC SHARED IMPORTED)
-+set_target_properties(BROTLIDEC PROPERTIES IMPORTED_LOCATION %PREFIX%/lib/libbrotlidec-static.a)
++set_target_properties(BROTLIDEC PROPERTIES IMPORTED_LOCATION %PREFIX%/lib/libbrotlidec.dylib)
 +add_library(BROTLIENC SHARED IMPORTED)
-+set_target_properties(BROTLIENC PROPERTIES IMPORTED_LOCATION %PREFIX%/lib/libbrotlienc-static.a)
++set_target_properties(BROTLIENC PROPERTIES IMPORTED_LOCATION %PREFIX%/lib/libbrotlienc.dylib)
 +
  add_library(brunslidec-static STATIC
    ${BRUNSLI_DEC_SOURCES}
