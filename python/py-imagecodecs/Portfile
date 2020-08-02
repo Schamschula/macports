@@ -33,7 +33,7 @@ if {${name} ne ${subport}} {
                     port:brunsli \
                     port:bzip2 \
                     port:charls \
-                    port:giflib \
+                    port:giflib5 \
                     port:jpeg \
                     port:libaec \
                     port:openjpeg \
