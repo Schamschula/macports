@@ -46,8 +46,7 @@ variant doc description {Install HTML documentation} {
 }
 
 if {![variant_isset doc]} {
-    patchfiles-append \
-                    patch-no-docs.diff
+    patchfiles      patch-no-docs.diff
 }
 
 livecheck.regex     /${name}-(${major}\\.\[0-9.\]+)${extract.suffix}
