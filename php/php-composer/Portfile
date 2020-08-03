@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                php-composer
-version             1.10.9
+version             1.10.10
 revision            0
 categories          php
 license             MIT
@@ -23,10 +23,9 @@ checksums           installer \
                     sha256  57e86c1d5b50757694acec149247f43c533d611c45d7c6daec884cd39771cb50 \
                     size    277509 \
                     composer.phar \
-                    rmd160  2d0b16eac8e18962f768076bcd34ad097e4b1a47 \
-                    sha256  70d6b9c3e0774b398a372dcb7f89dfe22fc25884e6e09ebf277286dd64cfaf35 \
-                    size    1980987
-
+                    rmd160  cd4fcdbc381bb1682a3b798d59529c4d9e50a3d4 \
+                    sha256  8f16aa77b1236ed40855d8d141c0a939d108a939c8e73f9f32eadd3f05f181b9 \
+                    size    1994167
 
 set php_branch      73
 
