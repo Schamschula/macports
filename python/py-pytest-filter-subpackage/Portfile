@@ -1,0 +1,30 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-pytest-filter-subpackage
+version             0.1.1
+revision            0
+license             BSD
+maintainers         {mps @Schamschula} openmaintainer
+description         This package contains a simple plugin for the pytest framework that \
+                    provides a shortcut to testing all code and documentation for a \
+                    given sub-package.
+long_description    ${description}
+platforms           darwin
+
+checksums           rmd160  d87a563e89d0c293b154c237fe4fb803a0d60ad8 \
+                    sha256  b7d8fc3a42989b652032e6b0998a87dd00d43bf2b013ba5d2e86f930da149ae8 \
+                    size    6532
+
+python.versions     27 37 38
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                        port:py${python.version}-setuptools_scm
+
+    depends_lib-append  port:py${python.version}-pytest
+
+    livecheck.type      none
+}
