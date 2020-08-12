@@ -1,13 +1,11 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
 
 PortSystem          1.0
-PortGroup           github 1.0
 PortGroup           python 1.0
 
-github.setup        astropy pytest-arraydiff 0.3 v
 name                py-pytest-arraydiff
+version             0.3
 revision            0
-categories          python
 license             BSD
 maintainers         {mps @Schamschula} openmaintainer
 description         This is a py.test plugin to facilitate the generation and comparison \
