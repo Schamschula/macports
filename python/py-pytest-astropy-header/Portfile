@@ -1,13 +1,11 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
 
 PortSystem          1.0
-PortGroup           github 1.0
 PortGroup           python 1.0
 
-github.setup        astropy pytest-astropy-header 0.1 v
 name                py-pytest-astropy-header
+version             0.1.2
 revision            0
-categories          python
 license             BSD
 maintainers         {mps @Schamschula} openmaintainer
 description         This plugin package provides a way to include information about the \
@@ -16,9 +14,9 @@ description         This plugin package provides a way to include information ab
 long_description    ${description}
 platforms           darwin
 
-checksums           rmd160  b05f8d2d5fcc014241fa308cb56aa97180881632 \
-                    sha256  82546ff777f0b23407cbdf95c021fe728ac2a7e27b3dd800998392378098af53 \
-                    size    7503
+checksums           rmd160  a251ab30286604ae538430491e41a2fe87bb4f4a \
+                    sha256  afdc79650b24d175d54da459fc88f597144e65af3e7eb85fe9e61231f25307f9 \
+                    size    9260
 
 python.versions     27 37 38
 
