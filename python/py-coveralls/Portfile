@@ -1,12 +1,10 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
 
 PortSystem          1.0
-PortGroup           github 1.0
 PortGroup           python 1.0
 
-set real_name       coveralls
-name                py-${real_name}
-github.setup        coveralls-clients coveralls-python 2.1.1
+name                py-coveralls
+version             2.1.2
 revision            0
 
 license             MIT
@@ -20,12 +18,14 @@ worksrcdir          coveralls-python-${version}
 
 python.versions     27 37 38
 
-checksums           rmd160  b360d77dd99a75baf0bb235d39f44d16edc8511b \
-                    sha256  f8284c74eeeb6410c6455fcfc7f4c7aad13939cdf8d9e58ad97f2cd149798955 \
-                    size    27339
+checksums           rmd160  3492a4d3d61ace6bf270991c190036eba556851b \
+                    sha256  4430b862baabb3cf090d36d84d331966615e4288d8a8c5957e0fd456d0dd8bd6 \
+                    size    15566
 
 if {${name} ne ${subport}} {
     depends_lib-append  \
                     port:py${python.version}-pytest-runner \
                     port:py${python.version}-setuptools
+
+    livecheck.type      none
 }
