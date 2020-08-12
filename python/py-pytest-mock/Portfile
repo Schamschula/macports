@@ -1,0 +1,28 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-pytest-mock
+version             3.2.0
+revision            0
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         This plugin provides a mocker fixture
+long_description    ${description} which is a thin-wrapper around the patching API provided by the mock package
+platforms           darwin
+
+checksums           rmd160  65781d490b47d06fce1a54c6faa090a48220226d \
+                    sha256  7122d55505d5ed5a6f3df940ad174b3f606ecae5e9bc379569cdcbd4cd9d2b83 \
+                    size    25569
+
+python.versions     27 37 38
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                        port:py${python.version}-setuptools_scm
+
+    depends_lib-append  port:py${python.version}-pytest
+
+    livecheck.type      none
+}
