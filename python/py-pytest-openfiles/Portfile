@@ -1,13 +1,11 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
 
 PortSystem          1.0
-PortGroup           github 1.0
 PortGroup           python 1.0
 
-github.setup        astropy pytest-openfiles 0.4.0 v
 name                py-pytest-openfiles
+version             0.5.0
 revision            0
-categories          python
 license             BSD
 maintainers         {mps @Schamschula} openmaintainer
 description         This package provides a plugin for the pytest framework that allows \
@@ -16,15 +14,15 @@ description         This package provides a plugin for the pytest framework that
 long_description    ${description}
 platforms           darwin
 
-checksums           rmd160  eb26b2a3872ee8d1f30e7a8f3e6b43b741c0e8bd \
-                    sha256  05ecaf7cafb25070d5ad030ef0a9888dff273be814235be004c9e3498fcbb1ca \
-                    size    6692
+checksums           rmd160  8f21b3d94d080b4a476220f3503f2440fd3126ce \
+                    sha256  179c2911d8aee3441fee051aba08e0d9b4dab61b829ae4811906d5c49a3b0a58 \
+                    size    8323
 
 python.versions     27 37 38
 
 if {${name} ne ${subport}} {
     depends_build-append \
-                        port:py${python.version}-setuptools
+                        port:py${python.version}-setuptools_scm
 
     livecheck.type      none
 }
