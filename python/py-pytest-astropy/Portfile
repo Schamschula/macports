@@ -1,0 +1,40 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-pytest-astropy
+version             0.8.0
+revision            0
+license             BSD
+maintainers         {mps @Schamschula} openmaintainer
+description         This plugin package provides a way to include information about the \
+                    system, Python installation, and select dependencies in the header \
+                    of the output when running pytest.
+long_description    ${description}
+platforms           darwin
+
+checksums           rmd160  f5a772539bfa64d93a5af1bddcf88612cd6d89f1 \
+                    sha256  619800eb2cbf64548fbea25268efe7c6f6ae206cb4825f34abd36f27bcf946a2 \
+                    size    4572
+
+python.versions     27 37 38
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                        port:py${python.version}-setuptools_scm
+
+    depends_lib-append  port:py${python.version}-hypothesis \
+                        port:py${python.version}-pytest \
+                        port:py${python.version}-pytest-arraydiff \
+                        port:py${python.version}-pytest-astropy-header \
+                        port:py${python.version}-pytest-cov \
+                        port:py${python.version}-pytest-doctestplus \
+                        port:py${python.version}-pytest-filter-subpackage \
+                        port:py${python.version}-pytest-mock \
+                        port:py${python.version}-pytest-openfiles \
+                        port:py${python.version}-pytest-remotedata
+
+
+    livecheck.type      none
+}
