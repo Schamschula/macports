@@ -82,12 +82,6 @@ if {![variant_isset python37] && ![variant_isset python38]} {
                     +python38
 }
 
-# fix Catalina build issue
-platform darwin 19 {
-    patchfiles-append \
-                    patch-auxil-broker-src-detail-sqlite_backend.cc.diff
-}
-
 post-destroot {
     xinstall -d ${destroot}${prefix}/share/examples/${name}
     copy ${worksrcpath}/auxil/zeekctl/etc/node.cfg ${destroot}${prefix}/share/examples/${name}/
