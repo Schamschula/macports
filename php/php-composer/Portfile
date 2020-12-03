@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                php-composer
-version             1.10.13
+version             2.0.7
 revision            0
 categories          php
 license             MIT
@@ -13,19 +13,13 @@ long_description    ${description} It allows you to declare the libraries your p
                     depends on and it will manage (install/update) them for you.
 platforms           darwin
 homepage            https://getcomposer.org/
-master_sites        ${homepage}:installer \
-                    ${homepage}download/${version}:composer
-distfiles           installer:installer \
-                    composer.phar:composer
+master_sites        ${homepage}
+distfiles           installer
 
 checksums           installer \
                     rmd160  7c6ff6afcd3058e032e24c12de7a7e2d876f261c \
                     sha256  0b9feb83e12e76edcad301c5d3e0a4fdde08bccc597c5e75d979d9bd8ab5c3c4 \
-                    size    276215 \
-                    composer.phar \
-                    rmd160  55ba9e5f09435a985000037b0be389701fb221e8 \
-                    sha256  5ca7445cfd48dd27c5a84aa005a47b4d9fd91132313830609875df3a6973708f \
-                    size    1994202
+                    size    276215 
 
 set php_branch      73
 
@@ -51,7 +45,6 @@ use_configure       no
 
 extract {
     file copy ${distpath}/installer ${workpath}/composer-setup.php
-    file copy ${distpath}/composer.phar ${workpath}/
 }
 
 build   {}
