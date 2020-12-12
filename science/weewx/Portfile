@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                weewx
-version             4.1.1
+version             4.2.0
 revision            0
 categories          science
 license             GPL-3
@@ -17,11 +17,26 @@ platforms           darwin
 homepage            http://weewx.com
 master_sites        ${homepage}/downloads/released_versions/
 
-checksums           rmd160  7b2d310484943100a0b47811f7ba51900a7c3972 \
-                    sha256  f9c30d6e5f491c003dfaac2a71d9e05b5a65146623d42f50837991b6f2093419 \
-                    size    1586240
+checksums           rmd160  35d171f86a1d9931c69ebb84ad09ebac91dfce6c \
+                    sha256  63933d7fc6520d7bfa0ff6882f70e8be9530a8125bce876e2162074f09e35acb \
+                    size    1603116
 
-python.versions     27 37 38
+python.versions     37 38 39
+
+variant python37 conflicts python27 python36 python38 python39 description {Use Python 3.7} {}
+variant python38 conflicts python27 python36 python37 python39 description {Use Python 3.8} {}
+variant python39 conflicts python27 python36 python37 python38 description {Use Python 3.9} {}
+
+if {![variant_isset python37] && ![variant_isset python39]} {
+    default_variants +python38
+}
+
+foreach pv {39 38 37} {
+    if {[variant_isset python${pv}]} {
+        python.default_version ${pv}
+        break
+    }
+}
 
 depends_lib-append  port:py${python.version}-cheetah \
                     port:py${python.version}-configobj \
@@ -30,11 +45,6 @@ depends_lib-append  port:py${python.version}-cheetah \
                     port:py${python.version}-pyusb \
                     port:py${python.version}-setuptools \
                     port:py${python.version}-serial
-
-if {[variant_isset python27]} {
-    depends_lib-append \
-                    port:py${python.version}-sqlite
-}
 
 patchfiles          patch-setup.cfg.diff \
                     patch-setup.py.diff
