@@ -1,0 +1,40 @@
+--- src/cap_ffmpeg_impl_ov.hpp.orig	2020-03-01 14:57:55.000000000 -0600
++++ src/cap_ffmpeg_impl_ov.hpp	2020-12-20 14:38:28.000000000 -0600
+@@ -76,10 +76,7 @@
+ #define CV_UNUSED(name) (void)name
+ #endif
+ 
+-#ifdef __cplusplus
+ extern "C" {
+-#endif
+-
+ #include "ffmpeg_codecs.hpp"
+ 
+ #include <libavutil/mathematics.h>
+@@ -95,10 +92,7 @@
+ 
+ #include <libavcodec/avcodec.h>
+ #include <libswscale/swscale.h>
+-
+-#ifdef __cplusplus
+ }
+-#endif
+ 
+ #if defined _MSC_VER && _MSC_VER >= 1200
+ #pragma warning( default: 4244 4510 4610 )
+@@ -119,6 +113,7 @@
+   return err_buf;
+ }
+ 
++extern "C" {
+ #if defined _WIN32
+     #include <windows.h>
+     #if defined _MSC_VER && _MSC_VER < 1900
+@@ -139,6 +134,7 @@
+     #include <mach/mach.h>
+ #endif
+ #endif
++}
+ 
+ #ifndef MIN
+ #define MIN(a, b) ((a) < (b) ? (a) : (b))
