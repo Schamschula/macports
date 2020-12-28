@@ -37,12 +37,12 @@ variant libgcrypt conflicts gnutls nss ssl description {Use libgcrypt} {
                     port:libgcrypt
 }
 
-variant nss conflicts gnutlslibgcrypt ssl description {Use nss, the Mozilla cryptographic library)} {
+variant nss conflicts gnutls libgcrypt ssl description {Use nss, the Mozilla cryptographic library)} {
     depends_lib-append \
                     port:nss
 }
 
-variant ssl conflicts gnutlslibgcrypt nss description {Use openssl, or compatible library} {
+variant ssl conflicts gnutls libgcrypt nss description {Use openssl, or compatible library} {
     depends_lib-append \
                     path:lib/libssl.dylib:openssl
 }
