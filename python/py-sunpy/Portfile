@@ -1,0 +1,65 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-sunpy
+version             2.0.6
+revision            0
+categories          python
+license             BSD
+maintainers         {mps @Schamschula} openmaintainer
+description         SunPy is an open-source Python library for Solar Physics data \
+                    analysis and visualization.
+long_description    {*}${description}
+platforms           darwin
+homepage            https://sunpy.org
+
+python.versions     37 38 39
+
+checksums           rmd160  0f96e3c22e0376454f56a4d6ecc5981713a71698 \
+                    sha256  c748ac3da4e3bb62ec6a6a73ba0743ac86ee2166b1172eaa865e10c5e0a32e81 \
+                    size    8060851
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                    port:py${python.version}-extension-helpers \
+                    port:py${python.version}-setuptools_scm
+
+    depends_lib-append \
+                    port:py${python.version}-astropy \
+                    port:py${python.version}-numpy \
+                    port:py${python.version}-parfive
+
+    livecheck.type  none
+
+    variant asdf {
+        depends_lib-append \
+                    port:py${python.version}-pyasdf
+    }
+
+    variant database {
+        depends_lib-append \
+                    port:py${python.version}-sqlalchemy
+    }
+
+    variant image {
+        depends_lib-append \
+                    port:py${python.version}-scikit-image \
+                    port:py${python.version}-scipy
+    }
+
+    variant net {
+        depends_lib-append \
+                    port:py${python.version}-beautifulsoup4 \
+                    port:py${python.version}-dateutil \
+                    port:py${python.version}-drms \
+                    port:py${python.version}-pandas \
+                    port:py${python.version}-tqdm \
+                    port:py${python.version}-zeep
+    }
+
+    default_variants +database +image +net
+
+    livecheck.type  none
+}
