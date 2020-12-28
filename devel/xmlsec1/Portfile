@@ -26,9 +26,28 @@ depends_build       port:libtool \
 depends_lib         port:libxml2 \
                     port:libxslt
 
-variant libgcrypt {
+variant gnutls conflicts libgcrypt nss ssl description {Use gnutls} {
+    depends_lib-append \
+                    port:gnutls \
+                    port:libgcrypt
+}
+
+variant libgcrypt conflicts gnutls nss ssl description {Use libgcrypt} {
     depends_lib-append \
                     port:libgcrypt
 }
 
-default_variants +libgcrypt
+variant nss conflicts gnutlslibgcrypt ssl description {Use nss, the Mozilla cryptographic library)} {
+    depends_lib-append \
+                    port:nss
+}
+
+variant ssl conflicts gnutlslibgcrypt nss description {Use openssl, or compatible library} {
+    depends_lib-append \
+                    path:lib/libssl.dylib:openssl
+}
+
+if {![variant_isset libgcrypt] && ![variant_isset nss]  && ![variant_isset ssl]} {
+    default_variants \
+                    +gnutls
+}
