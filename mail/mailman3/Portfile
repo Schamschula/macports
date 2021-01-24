@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 set real_name       mailman
 name                ${real_name}3
-version             3.3.1
+version             3.3.2
 revision            0
 categories-append   mail
 
@@ -26,32 +26,29 @@ distfiles           ${real_name}-${version}${extract.suffix}
 
 conflicts           mailman
 
-checksums           rmd160  6432b1a636b104935a0b30fdacfe9fe30e5b0306 \
-                    sha256  b8cfa4b50453abf2b499b272db17c25865d81a49208c43b004ec4989c88eae45 \
-                    size    1184548
+checksums           rmd160  06c129babdc6059b4d2ba2efaab4a793ea432837 \
+                    sha256  af01971a6abd9002211ced964c650066f6451ab8fa967b16127e3088dc9aac28 \
+                    size    1396750
 
 worksrcdir          ${real_name}-${version}
 
-python.versions     36 37 38
+variant python37 conflicts python27 python36 python38 python39 description {Use Python 3.7} {}
+variant python38 conflicts python27 python36 python37 python39 description {Use Python 3.8} {}
+variant python39 conflicts python27 python36 python37 python38 description {Use Python 3.9} {}
+
+if {![variant_isset python37] && ![variant_isset python39]} {
+    default_variants +python38
+}
+
+foreach pv {39 38 37} {
+    if {[variant_isset python${pv}]} {
+        python.default_version ${pv}
+        break
+    }
+}
 
 depends_lib-append  port:py${python.version}-setuptools \
                     port:py${python.version}-whoosh
-
-variant python36 conflicts python37 python38 description {Use Python 3.6} {
-    python.default_version 36
-}
-
-variant python37 conflicts python36 python38 description {Use Python 3.7} {
-    python.default_version 37
-}
-
-variant python38 conflicts python36 python37 description {Use Python 3.8} {
-    python.default_version 38
-}
-
-if {![variant_isset python36] && ![variant_isset python37] && ![variant_isset python38]} {
-    default_variants +python38
-}
 
 livecheck.type      regex
 livecheck.url       ${homepage}
