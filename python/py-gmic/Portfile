@@ -1,0 +1,50 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+PortGroup           python 1.0
+
+name                py-gmic
+version             2.9.2
+github.setup        myselfhimself gmic-py ${version} v
+revision            0
+categories-append   science
+license             CeCILL
+maintainers         {mps @Schamschula} openmaintainer
+description         Python binding for G'MIC - A Full-Featured Open-Source Framework for Image Processing
+long_description    {*}${description}
+platforms           darwin
+homepage            https://gmic.eu
+
+python.versions     37 38 39
+
+checksums           rmd160  2d59092df741829e900b4cbd305f45342975293a \
+                    sha256  a4f4b3d4f55418a2259841f5fe035cf4846601fe67129cf9cf193058211d39b7 \
+                    size    9650780
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                    port:py${python.version}-pkgconfig \
+                    port:py${python.version}-pytest \
+                    port:py${python.version}-pytest-xdist \
+                    port:py${python.version}-setuptools \
+                    port:py${python.version}-wheel
+
+    depends_lib-append  \
+                    port:CImg \
+                    port:gmic \
+                    port:libomp \
+                    port:openmpi \
+                    port:py${python.version}-numpy \
+                    port:py${python.version}-Pillow \
+                    port:py${python.version}-psutil \
+                    port:py${python.version}-wurlitzer
+
+    patchfiles      patch-setup.py.diff
+    
+    post-patch {
+        reinplace "s|%PREFIX%|${prefix}|g" ${worksrcpath}/setup.py
+    }
+
+    livecheck       none
+}
