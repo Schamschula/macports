@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-gmic
-version             2.9.2
+version             2.9.4-alpha1
 revision            0
 
 # revision bump for gmic update
@@ -27,9 +27,9 @@ distfiles           v${version}${extract.suffix}:py-gmic \
 python.versions     37 38 39
 
 checksums           v${version}${extract.suffix} \
-                    rmd160  acb32f5d097a5324ca9e5c4b38b640c09e207268 \
-                    sha256  19bd7aee3f47f9c06b203ab9a3d4173614d1fb5053aeb24097b8592010cdcb54 \
-                    size    9650477 \
+                    rmd160  11db37d67af0d451661562a3cae66b4b18a9b0fb \
+                    sha256  da38a9afecbc20dfc5dade26c5be94d13514dbc8498aba5f7277107cee26712e \
+                    size    13255511 \
                     gmic_${gmic_version}${extract.suffix} \
                     rmd160  f2b8179bd16d7a04b8c47355bb5582c268edb075 \
                     sha256  790bee48f496765f6b59067dfb10dc34e1eb576caf9a95f30af0d567026eacc7 \
@@ -62,8 +62,10 @@ if {${name} ne ${subport}} {
     post-patch {
         reinplace   "s|%PREFIX%|${prefix}|g" ${build.dir}/setup.py
 
-        copy        ${workpath}/gmic-${gmic_version}/src/CImg.h \
-                    ${workpath}/gmic-${gmic_version}/src/gmic.cpp \
+        xinstall    -d ${build.dir}/src/gmic
+        move        ${workpath}/gmic-${gmic_version}/src ${build.dir}/src/gmic
+        copy        ${build.dir}/src/gmic/src/CImg.h \
+                    ${build.dir}/src/gmic/src/gmic.cpp \
                         ${build.dir}
     }
 
