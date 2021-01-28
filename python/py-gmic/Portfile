@@ -44,7 +44,6 @@ if {${name} ne ${subport}} {
                     port:py${python.version}-wheel
 
     depends_lib-append  \
-                    port:CImg \
                     port:gmic \
                     port:libomp \
                     port:openmpi \
@@ -61,8 +60,11 @@ if {${name} ne ${subport}} {
     patchfiles      patch-setup.py.diff
 
     post-patch {
-        reinplace "s|%PREFIX%|${prefix}|g" ${build.dir}/setup.py
-        copy        ${workpath}/gmic-${gmic_version}/src/gmic.cpp ${build.dir}
+        reinplace   "s|%PREFIX%|${prefix}|g" ${build.dir}/setup.py
+
+        copy        ${workpath}/gmic-${gmic_version}/src/CImg.h \
+                    ${workpath}/gmic-${gmic_version}/src/gmic.cpp \
+                        ${build.dir}
     }
 
     livecheck       none
