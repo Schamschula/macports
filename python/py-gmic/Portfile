@@ -7,7 +7,7 @@ name                py-gmic
 version             2.9.4-alpha1
 revision            0
 
-# revision bump for gmic update
+# gmic and py-gmic should be the same version 
 set gmic_version    2.9.4
 
 categories-append   science
@@ -40,21 +40,25 @@ if {${name} ne ${subport}} {
 
     depends_build-append \
                     port:py${python.version}-pkgconfig \
-                    port:py${python.version}-setuptools \
-                    port:py${python.version}-wheel
+                    port:py${python.version}-setuptools
 
     depends_lib-append  \
-                    port:gmic \
+                    port:curl \
+                    path:lib/libavcodec.dylib:ffmpeg \
+                    port:fftw-3 \
+                    port:GraphicsMagick \
+                    port:ilmbase \
+                    port:jpeg \
+                    port:libpng \
                     port:libomp \
-                    port:openmpi \
+                    port:opencv4 \
+                    port:openexr \
                     port:py${python.version}-numpy \
                     port:py${python.version}-Pillow \
                     port:py${python.version}-psutil \
-                    port:py${python.version}-wurlitzer
-
-    depends_test-append \
-                    port:py${python.version}-pytest \
-                    port:py${python.version}-pytest-xdist
+                    port:py${python.version}-wurlitzer \
+                    port:tiff \
+                    port:zlib
 
     patch.dir       ${build.dir}
     patchfiles      patch-setup.py.diff
