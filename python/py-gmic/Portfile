@@ -64,9 +64,6 @@ if {${name} ne ${subport}} {
 
         xinstall    -d ${build.dir}/src/gmic
         move        ${workpath}/gmic-${gmic_version}/src ${build.dir}/src/gmic
-#         copy        ${build.dir}/src/gmic/src/CImg.h \
-#                     ${build.dir}/src/gmic/src/gmic.cpp \
-#                         ${build.dir}
     }
 
     livecheck       none
