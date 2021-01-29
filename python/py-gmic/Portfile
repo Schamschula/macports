@@ -58,6 +58,10 @@ if {${name} ne ${subport}} {
                     port:py${python.version}-psutil \
                     port:py${python.version}-wurlitzer \
                     port:tiff \
+                    port:xorg-libX11 \
+                    port:xorg-libXext \
+                    port:xorg-libice \
+                    port:xorg-libsm \
                     port:zlib
 
     patch.dir       ${build.dir}
