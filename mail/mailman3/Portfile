@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 set real_name       mailman
 name                ${real_name}3
-version             3.3.2
+version             3.3.3
 revision            0
 categories-append   mail
 
@@ -26,9 +26,9 @@ distfiles           ${real_name}-${version}${extract.suffix}
 
 conflicts           mailman
 
-checksums           rmd160  06c129babdc6059b4d2ba2efaab4a793ea432837 \
-                    sha256  af01971a6abd9002211ced964c650066f6451ab8fa967b16127e3088dc9aac28 \
-                    size    1396750
+checksums           rmd160  af864e92811fbac28e2699e8d683e8021f29bf1f \
+                    sha256  0d54921d0395a3e2310b738c02bb16ff6232ea74198e6a77da4835de75e8d62d \
+                    size    1478203
 
 worksrcdir          ${real_name}-${version}
 
