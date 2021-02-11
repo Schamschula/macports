@@ -1,6 +1,8 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
 
 PortSystem          1.0
+
+PortGroup           conflicts_build 1.0
 if {${subport} eq "gmic-clib"} {
     PortGroup       makefile        1.0
 } else {
@@ -33,6 +35,9 @@ long_description    G'MIC stands for GREYC's Magic Image Converter. It is \
 homepage            https://gmic.eu
 master_sites        https://gmic.eu/files/source/
 
+# gmic will pick up include files from opencv, opencv3 dods not conflict
+conflicts_build     opencv
+
 use_parallel_build  no
 
 distfiles           ${name}_${version}${extract.suffix}
@@ -48,16 +53,13 @@ depends_lib         port:curl \
                     port:ilmbase \
                     path:include/turbojpeg.h:libjpeg-turbo \
                     port:libpng \
-                    port:opencv \
+                    port:opencv4 \
                     port:openexr \
                     port:tiff \
                     port:zlib
 
 patchfiles          patch-CMakeLists.txt.diff \
                     patch-src-Makefile.diff
-
-# until opencv4 properly links force opencv
-patchfiles-append   patch-cmake-FindOpenCV.cmake.diff
 
 compiler.cxx_standard           2011
 
@@ -94,11 +96,11 @@ if {${subport} eq ${name}} {
                                 -DENABLE_X=OFF
 
     # insert path to opencv4 libraries, as cmake fails to do so
-    # post-configure {
-#         reinplace  "s|-lopencv_gapi.4.5.0|-L${prefix}/lib/opencv4 -lopencv_gapi.4.5.0|g" \
-#                    ${build.dir}/CMakeFiles/gmic.dir/link.txt \
-#                    ${build.dir}/CMakeFiles/libgmic.dir/link.txt
-#     }
+    post-configure {
+        reinplace  "s|-lopencv_gapi.4.5.0|-L${prefix}/lib/opencv4 -lopencv_gapi.4.5.0|g" \
+                   ${build.dir}/CMakeFiles/gmic.dir/link.txt \
+                   ${build.dir}/CMakeFiles/libgmic.dir/link.txt
+    }
 
     variant x11 {
         configure.args-replace  -DENABLE_X=OFF \
