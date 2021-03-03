@@ -4,13 +4,13 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-coveralls
-version             3.0.0
+version             3.0.1
 revision            0
 
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
 description         coveralls.io is a service for publishing your coverage stats online.
-long_description    ${description} This package provides seamless integration with \
+long_description    {*}${description} This package provides seamless integration with \
                     coverage.py (and thus py.test, nosetests, etc...) in your Python \
                     project.
 platforms           darwin
@@ -18,12 +18,14 @@ worksrcdir          coveralls-python-${version}
 
 python.versions     27 37 38 39
 
-checksums           rmd160  b325ef6d51c359d651eadec3dc1f770e866a55ad \
-                    sha256  5399c0565ab822a70a477f7031f6c88a9dd196b3de2877b3facb43b51bd13434 \
-                    size    16722
+checksums           rmd160  288cad690cef0d0ecb30b8b85d49552c6dcdd099 \
+                    sha256  cbb942ae5ef3d2b55388cb5b43e93a269544911535f1e750e1c656aef019ce60 \
+                    size    16886
 
 if {${name} ne ${subport}} {
     depends_lib-append  \
                     port:py${python.version}-pytest-runner \
                     port:py${python.version}-setuptools
+
+    livecheck.type  none
 }
