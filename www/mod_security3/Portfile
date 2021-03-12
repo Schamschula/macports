@@ -1,0 +1,67 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+
+name                mod_security3
+set name_package    modsecurity
+github.setup        SpiderLabs ${name_package} 3.0.4 v
+revision            0
+categories          www security
+license             Apache-2
+platforms           darwin
+maintainers         {mps @Schamschula} openmaintainer
+description         Apache 2 intrusion detection and prevention engine for web applications
+long_description    ModSecurity is an open source intrusion detection and \
+                    prevention engine for web applications. It operates \
+                    embedded into the web server, acting as a powerful \
+                    umbrella - shielding applications from attacks.
+homepage            http://www.modsecurity.org
+
+github.tarball_from releases
+distname            ${name_package}-v${version}
+
+checksums           rmd160  f3041d21a98d051b1cc51867fd734edbcd33ffea \
+                    sha256  b4231177dd80b4e076b228e57d498670113b69d445bab86db25f65346c24db22 \
+                    size    2806291
+
+depends_build       port:pkgconfig
+
+depends_lib         port:curl \
+                    port:icu \
+                    port:libgeoip \
+                    port:libmaxminddb \
+                    port:libxml2 \
+                    port:lua \
+                    port:luarocks \
+                    port:ssdeep \
+                    port:yajl
+
+patchfiles          patch-configure.diff
+
+set apxs            ${prefix}/bin/apxs
+set httpd_conf      ${prefix}/etc/apache2/httpd.conf
+set mdir            ${destroot}${prefix}/lib/apache2/modules/
+
+configure.args      --with-apxs=${apxs} \
+                    --with-geoip=${prefix} \
+                    --with-pcre=${prefix}/bin/pcre-config \
+                    --with-apr=${prefix}/bin/apr-1-config \
+                    --with-apu=${prefix}/bin/apu-1-config \
+                    --with-curl=${prefix}/bin/curl-config \
+                    --with-libxml=${prefix} \
+                    --with-lua=${prefix} \
+                    --with-ssdeep=${prefix} \
+                    --with-yajl=${prefix}
+
+notes "
+
+# Now edit ${httpd_conf} and add the following lines at the end of the LoadModules section:
+    LoadFile ${prefix}/lib/libxml2.dylib
+    LoadFile ${prefix}/lib/liblua.dylib
+    LoadModule security2_module modules/mod_security2.so
+
+# And finally reload apache.
+    $ sudo apachectl graceful
+
+"
