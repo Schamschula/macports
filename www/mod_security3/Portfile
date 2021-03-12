@@ -39,15 +39,8 @@ depends_lib         port:curl \
 
 patchfiles          patch-configure.diff
 
-set apxs            ${prefix}/bin/apxs
-set httpd_conf      ${prefix}/etc/apache2/httpd.conf
-set mdir            ${destroot}${prefix}/lib/apache2/modules/
-
-configure.args      --with-apxs=${apxs} \
-                    --with-geoip=${prefix} \
+configure.args      --with-geoip=${prefix} \
                     --with-pcre=${prefix}/bin/pcre-config \
-                    --with-apr=${prefix}/bin/apr-1-config \
-                    --with-apu=${prefix}/bin/apu-1-config \
                     --with-curl=${prefix}/bin/curl-config \
                     --with-libxml=${prefix} \
                     --with-lua=${prefix} \
