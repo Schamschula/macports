@@ -16,7 +16,7 @@ long_description    ModSecurity is an open source intrusion detection and \
                     prevention engine for web applications. It operates \
                     embedded into the web server, acting as a powerful \
                     umbrella - shielding applications from attacks.
-homepage            http://www.modsecurity.org
+homepage            https://github.com/SpiderLabs/ModSecurity
 
 github.tarball_from releases
 distname            ${name_package}-v${version}
@@ -46,15 +46,3 @@ configure.args      --with-geoip=${prefix} \
                     --with-lua=${prefix} \
                     --with-ssdeep=${prefix} \
                     --with-yajl=${prefix}
-
-notes "
-
-# Now edit ${httpd_conf} and add the following lines at the end of the LoadModules section:
-    LoadFile ${prefix}/lib/libxml2.dylib
-    LoadFile ${prefix}/lib/liblua.dylib
-    LoadModule security2_module modules/mod_security2.so
-
-# And finally reload apache.
-    $ sudo apachectl graceful
-
-"
