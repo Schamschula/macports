@@ -1,24 +1,40 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
 
 PortSystem          1.0
-PortGroup           github 1.0
 PortGroup           python 1.0
 
-github.setup        fatiando verde 1.5.0 v
+name                verde
+version             1.6.0
 revision            0
-categories-prepend  science
+categories-append   science
 license             BSD
 maintainers         {mps @Schamschula} openmaintainer
 description         Verde is a Python library for processing spatial data
-long_description    ${description} (bathymetry, geophysics surveys, etc) and \
+long_description    {*}${description} (bathymetry, geophysics surveys, etc) and \
                     interpolating it on regular grids (i.e., gridding).
 platforms           darwin
 
-checksums           rmd160  4297972b05f74253140b9c8f87f4b30d5aebce73 \
-                    sha256  e85226616a1a19579ae471c027ace893a2bfab90b5e171f5785ebee176974346 \
-                    size    2822048
+checksums           rmd160  6465be186ce8536b7678a1d3cb7c34606be05254 \
+                    sha256  92d450a7e16768c4149a3627f3f08bb84e78af31cd627817ff1658aefae6570d \
+                    size    2812131
 
-python.versions     37 38
+variant python37 conflicts python38 python39 description {Use Python 3.7} {}
+variant python38 conflicts python37 python39 description {Use Python 3.8} {}
+variant python39 conflicts python37 python38 description {Use Python 3.9} {}
+
+if {![variant_isset python37] && ![variant_isset python39]} {
+    default_variants +python38
+}
+
+foreach pv {39 38 37} {
+    if {[variant_isset python${pv}]} {
+        python.default_version ${pv}
+        break
+    }
+}
+
+depends_build-append \
+                    port:py${python.version}-setuptools_scm
 
 depends_lib-append  port:py${python.version}-dask \
                     port:py${python.version}-numpy \
@@ -26,16 +42,4 @@ depends_lib-append  port:py${python.version}-dask \
                     port:py${python.version}-pooch \
                     port:py${python.version}-scikit-learn \
                     port:py${python.version}-scipy \
-                    port:py${python.version}-setuptools
-
-variant python37 conflicts python38 description {Use Python 3.7} {
-    python.default_version 37
-}
-
-variant python38 conflicts python37 description {Use Python 3.8} {
-    python.default_version 38
-}
-
-if {![variant_isset python37] && ![variant_isset python38]} {
-    default_variants +python38
-}
+                    port:py${python.version}-xarray
