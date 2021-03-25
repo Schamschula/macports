@@ -1,0 +1,66 @@
+--- kex.h.orig	2021-03-02 04:31:47.000000000 -0600
++++ kex.h	2021-03-03 19:06:48.000000000 -0600
+@@ -82,6 +82,15 @@
+ 	PROPOSAL_COMP_ALGS_STOC,
+ 	PROPOSAL_LANG_CTOS,
+ 	PROPOSAL_LANG_STOC,
++#ifdef GSSAPI
++	KEX_GSS_GRP1_SHA1,
++	KEX_GSS_GRP14_SHA1,
++	KEX_GSS_GRP14_SHA256,
++	KEX_GSS_GRP16_SHA512,
++	KEX_GSS_GEX_SHA1,
++	KEX_GSS_NISTP256_SHA256,
++	KEX_GSS_C25519_SHA256,
++#endif
+ 	PROPOSAL_MAX
+ };
+ 
+@@ -152,6 +161,12 @@
+ 	u_int	flags;
+ 	int	hash_alg;
+ 	int	ec_nid;
++#ifdef GSSAPI
++	int	gss_deleg_creds;
++	int	gss_trust_dns;
++	char	*gss_host;
++	char	*gss_client;
++#endif
+ 	char	*failed_choice;
+ 	int	(*verify_host_key)(struct sshkey *, struct ssh *);
+ 	struct sshkey *(*load_host_public_key)(int, int, struct ssh *);
+@@ -173,8 +188,10 @@
+ 
+ int	 kex_names_valid(const char *);
+ char	*kex_alg_list(char);
++char	*kex_gss_alg_list(char);
+ char	*kex_names_cat(const char *, const char *);
+ int	 kex_assemble_names(char **, const char *, const char *);
++int	 kex_gss_names_valid(const char *);
+ 
+ int	 kex_exchange_identification(struct ssh *, int, const char *);
+ 
+@@ -202,6 +219,10 @@
+ int	 kexgex_server(struct ssh *);
+ int	 kex_gen_client(struct ssh *);
+ int	 kex_gen_server(struct ssh *);
++#ifdef GSSAPI
++int	 kexgss_client(struct ssh *);
++int	 kexgss_server(struct ssh *);
++#endif
+ 
+ int	 kex_dh_keypair(struct kex *);
+ int	 kex_dh_enc(struct kex *, const struct sshbuf *, struct sshbuf **,
+@@ -234,6 +255,12 @@
+     const BIGNUM *, const u_char *, size_t,
+     u_char *, size_t *);
+ 
++int	 kex_gen_hash(int hash_alg, const struct sshbuf *client_version,
++    const struct sshbuf *server_version, const struct sshbuf *client_kexinit,
++    const struct sshbuf *server_kexinit, const struct sshbuf *server_host_key_blob,
++    const struct sshbuf *client_pub, const struct sshbuf *server_pub,
++    const struct sshbuf *shared_secret, u_char *hash, size_t *hashlen);
++
+ void	kexc25519_keygen(u_char key[CURVE25519_SIZE], u_char pub[CURVE25519_SIZE])
+ 	__attribute__((__bounded__(__minbytes__, 1, CURVE25519_SIZE)))
+ 	__attribute__((__bounded__(__minbytes__, 2, CURVE25519_SIZE)));

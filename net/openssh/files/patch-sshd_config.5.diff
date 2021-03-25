@@ -1,0 +1,45 @@
+--- sshd_config.5.orig	2021-03-03 18:45:19.000000000 -0600
++++ sshd_config.5	2021-03-03 19:54:18.000000000 -0600
+@@ -648,6 +648,11 @@
+ Specifies whether user authentication based on GSSAPI is allowed.
+ The default is
+ .Cm no .
++.It Cm GSSAPIKeyExchange
++Specifies whether key exchange based on GSSAPI is allowed. GSSAPI key exchange
++doesn't rely on ssh keys to verify host identity.
++The default is
++.Cm no .
+ .It Cm GSSAPICleanupCredentials
+ Specifies whether to automatically destroy the user's credentials cache
+ on logout.
+@@ -700,6 +705,30 @@
+ rsa-sha2-512,rsa-sha2-256,ssh-rsa
+ .Ed
+ .Pp
++.It Cm GSSAPIStoreCredentialsOnRekey
++Controls whether the user's GSSAPI credentials should be updated following a
++successful connection rekeying. This option can be used to accepted renewed
++or updated credentials from a compatible client. The default is
++.Cm no .
++.Pp
++For this to work
++.Cm GSSAPIKeyExchange
++needs to be enabled in the server and also used by the client.
++.It Cm GSSAPIKexAlgorithms
++The list of key exchange algorithms that are accepted by GSSAPI
++key exchange. Possible values are
++.Bd -literal -offset 3n
++gss-gex-sha1-,
++gss-group1-sha1-,
++gss-group14-sha1-,
++gss-group14-sha256-,
++gss-group16-sha512-,
++gss-nistp256-sha256-,
++gss-curve25519-sha256-
++.Ed
++.Pp
++The default is
++.Dq gss-gex-sha1-,gss-group14-sha1- .
+ The list of available signature algorithms may also be obtained using
+ .Qq ssh -Q HostbasedAcceptedAlgorithms .
+ This was formerly named HostbasedAcceptedKeyTypes.
