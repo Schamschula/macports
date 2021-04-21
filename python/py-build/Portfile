@@ -1,0 +1,27 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-build
+version             0.3.1.post1
+revision            0
+categories-append   devel
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         A simple, correct PEP517 package builder.
+long_description    {*}${description}
+platforms           darwin
+homepage            https://github.com/pypa/build
+
+checksums           rmd160  a63505b032b003e94289b98a62397ee5e32fab0c \
+                    sha256  85123bf327404e68142b1eb2a8298b052e984ad5b12738549688371e6337c73a \
+                    size    32100
+
+python.versions     36 37 38 39
+
+if {${name} ne ${subport}} {
+    depends_build-append    port:py${python.version}-setuptools
+
+    livecheck.type  none
+}
