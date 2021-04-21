@@ -5,8 +5,8 @@ PortSystem          1.0
 PortGroup           compiler_blacklist_versions 1.0
 
 name                openssh
-version             8.5p1
-revision            2
+version             8.6p1
+revision            0
 categories          net
 platforms           darwin
 maintainers         nomaintainer
@@ -29,9 +29,9 @@ long_description    OpenSSH is a FREE version of the SSH protocol suite of \
 
 homepage            https://www.openbsd.org/openssh/
 
-checksums           rmd160  3dea81e18d9709cbff7bfe450197aefcc071a7bf \
-                    sha256  f52f3f41d429aa9918e38cf200af225ccdd8e66f052da572870c89737646ec25 \
-                    size    1779733
+checksums           rmd160  4c836ec10ca5e8b1b43c4e99b913837e70b4ce64 \
+                    sha256  c3e6e4da1621762c850d03b47eed1e48dff4cc9608ddeb547202a234df8ed7ae \
+                    size    1786328
 
 master_sites        openbsd:OpenSSH/portable \
                     ftp://ftp.cise.ufl.edu/pub/mirrors/openssh/portable/ \
