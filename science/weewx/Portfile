@@ -25,7 +25,7 @@ variant python37 conflicts python36 python38 python39 description {Use Python 3.
 variant python38 conflicts python36 python37 python39 description {Use Python 3.8} {}
 variant python39 conflicts python36 python37 python38 description {Use Python 3.9} {}
 
-if {![variant_isset python37] && ![variant_isset python39]} {
+if {![variant_isset python37] && ![variant_isset python38] && ![variant_isset python39]} {
     default_variants +python39
 }
 
