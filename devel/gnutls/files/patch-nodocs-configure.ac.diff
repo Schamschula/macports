@@ -1,0 +1,45 @@
+--- configure.ac.orig	2020-09-04 01:37:27.000000000 -0500
++++ configure.ac	2021-04-24 13:06:43.000000000 -0500
+@@ -332,24 +332,24 @@
+ 	AC_DEFINE([FUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION], 1, [Enable fuzzer target -not for production])
+ fi
+ 
+-dnl
+-dnl check for gtk-doc
+-dnl
+-m4_ifdef([GTK_DOC_CHECK], [
+-GTK_DOC_CHECK([1.14],[--flavour no-tmpl])
+-],[
+-AM_CONDITIONAL([ENABLE_GTK_DOC], false)
+-])
+-# needed for some older versions of gtk-doc
+-m4_ifdef([GTK_DOC_USE_LIBTOOL], [], [
+-AM_CONDITIONAL([GTK_DOC_USE_LIBTOOL], false)
+-])
+-
+-AM_GNU_GETTEXT([external])
+-AM_GNU_GETTEXT_VERSION([0.19])
+-m4_ifdef([AM_GNU_GETTEXT_REQUIRE_VERSION],[
+-AM_GNU_GETTEXT_REQUIRE_VERSION([0.19])
+-])
++# dnl
++# dnl check for gtk-doc
++# dnl
++# m4_ifdef([GTK_DOC_CHECK], [
++# GTK_DOC_CHECK([1.14],[--flavour no-tmpl])
++# ],[
++# AM_CONDITIONAL([ENABLE_GTK_DOC], false)
++# ])
++# # needed for some older versions of gtk-doc
++# m4_ifdef([GTK_DOC_USE_LIBTOOL], [], [
++# AM_CONDITIONAL([GTK_DOC_USE_LIBTOOL], false)
++# ])
++# 
++# AM_GNU_GETTEXT([external])
++# AM_GNU_GETTEXT_VERSION([0.19])
++# m4_ifdef([AM_GNU_GETTEXT_REQUIRE_VERSION],[
++# AM_GNU_GETTEXT_REQUIRE_VERSION([0.19])
++# ])
+ 
+ AC_C_BIGENDIAN
+ 

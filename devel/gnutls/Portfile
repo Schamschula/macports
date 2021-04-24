@@ -71,10 +71,6 @@ post-patch {
     reinplace {/^#/d} {*}[glob ${worksrcpath}/lib/accelerated/x86/macosx/*.s]
 }
 
-# use autoreconf to update glibtool to correctly handle -std
-use_autoreconf  yes
-autoreconf.args -fvi
-
 configure.args  --disable-guile \
                 --disable-silent-rules \
                 --disable-libdane \
@@ -142,7 +138,10 @@ variant guile description {Build guile bindings} {
     configure.args-replace  --disable-guile --enable-guile
 }
 
-if {[variant_isset universal]} {
+if {![info exists universal_possible]} {
+    set universal_possible [expr {${os.universal_supported} && [llength ${configure.universal_archs}] >= 2}]
+}
+if {${universal_possible} && [variant_isset universal]} {
     set merger_host(x86_64) x86_64-apple-${os.platform}${os.major}
     set merger_host(i386) i686-apple-${os.platform}${os.major}
     set merger_configure_args(x86_64) --build=x86_64-apple-${os.platform}${os.major}
