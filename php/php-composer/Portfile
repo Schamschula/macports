@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                php-composer
-version             2.0.13
+version             2.0.14
 revision            0
 categories          php
 license             MIT
@@ -21,24 +21,16 @@ checksums           installer \
                     sha256  0b9feb83e12e76edcad301c5d3e0a4fdde08bccc597c5e75d979d9bd8ab5c3c4 \
                     size    276215 
 
-set php_branch      73
+set php_branch      80
 
-variant php71 conflicts php72 php73 php74description {Use Python 7.1} {
-    set php_branch  71
-}
-
-variant php72 conflicts php71 php73 php74 description {Use Python 7.2} {
-    set php_branch  72
-}
-
-variant php73 conflicts php71 php72 php74 description {Use Python 7.3} {}
-
-variant php74 conflicts php71 php72 php73 description {Use Python 7.4} {
+variant php74 conflicts php80 description {Use Python 7.4} {
     set php_branch  74
 }
 
-if {![variant_isset php71] && ![variant_isset php72] && ![variant_isset php73] && ![variant_isset php74]} {
-    default_variants +php73
+variant php80 conflicts php74 description {Use Python 8.0} {}
+
+if {![variant_isset php74] && ![variant_isset php80]} {
+    default_variants +php80
 }
 
 depends_lib         port:php${php_branch} \
