@@ -37,7 +37,7 @@ if {${os.platform} eq "darwin"} {
     } else {
         PortGroup           github 1.0
 
-        # Check https://github.com/owncloud/client/tags
+        # Check https://download.owncloud.com/desktop/ownCloud/stable/
         # to find the build_id in the source tarball:
         # ownCloud-${version}.${build_id}.tar.xz
         github.setup        owncloud client 2.7.6 v
