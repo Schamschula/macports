@@ -95,9 +95,8 @@ variant dane description {Build libdane using unbound libraries} {
 }
 
 if {${os.platform} eq "darwin" && ${os.major} > 19 && ${os.arch} eq "arm"} {
-puts "here!"
     depends_build-append    port:libtool
-    
+
     use_autoreconf          yes
     autoreconf.args         --install --verbose --force
 
