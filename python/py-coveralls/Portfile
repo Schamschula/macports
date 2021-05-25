@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-coveralls
-version             3.0.1
+version             3.1.0
 revision            0
 
 license             MIT
@@ -16,11 +16,11 @@ long_description    {*}${description} This package provides seamless integration
 platforms           darwin
 worksrcdir          coveralls-python-${version}
 
-python.versions     27 37 38 39
+python.versions     37 38 39
 
-checksums           rmd160  288cad690cef0d0ecb30b8b85d49552c6dcdd099 \
-                    sha256  cbb942ae5ef3d2b55388cb5b43e93a269544911535f1e750e1c656aef019ce60 \
-                    size    16886
+checksums           rmd160  8d3d80d36205ee5478d5fa0474bc54d35618a60a \
+                    sha256  9b3236e086627340bf2c95f89f757d093cbed43d17179d3f4fb568c347e7d29a \
+                    size    17191
 
 if {${name} ne ${subport}} {
     depends_lib-append  \
