@@ -1,0 +1,43 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-agentpy
+version             0.1.0
+revision            0
+categories-append   science
+license             BSD
+maintainers         {mps @Schamschula} openmaintainer
+description         AgentPy is an open-source library for the development and analysis \
+                    of agent-based models in Python. 
+long_description    {*}${description} The framework integrates the tasks of model \
+                    design, interactive simulations, numerical experiments, and data \
+                    analysis within a single environment, and is optimized for \
+                    interactive computing with IPython and Jupyter.
+platforms           darwin
+homepage            https://agentpy.readthedocs.io/en/latest/
+
+checksums           rmd160  e16f5ae22977d178d1a625aa55debb1c58d961ca \
+                    sha256  a4bc50a6595a8ab4bd657e9b48e3ec621dfdec5f2794a7159acb042eb9d97c01 \
+                    size    41997
+
+python.versions     37 38 39
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                    port:py${python.version}-pip \
+                    port:py${python.version}-pytest-runner \
+                    port:py${python.version}-setuptools \
+                    port:py${python.version}-wheel
+
+    depends_lib-append \
+                    port:py${python.version}-matplotlib \
+                    port:py${python.version}-networkx \
+                    port:py${python.version}-numpy \
+                    port:py${python.version}-pandas \
+                    port:py${python.version}-salib \
+                    port:py${python.version}-scipy
+
+    livecheck.type  none
+}
