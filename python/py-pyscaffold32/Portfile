@@ -1,0 +1,31 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-pyscaffold32
+python.rootname     PyScaffold
+version             3.2.2
+revision            0
+categories-append   devel
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         PyScaffold is the tool of choice for bootstrapping high quality Python packages
+long_description    {*}${description}, ready to be shared on PyPI and installable via pip.
+platforms           darwin
+homepage            https://github.com/pyscaffold/pyscaffold/
+
+checksums           rmd160  8ca5a1c4a12f113d523a2f30d76340e73c6e854f \
+                    sha256  931679218ecdf64b0cabcfcda426a15595fc87b7ec0afc27d133dc821190c10e \
+                    size    385751
+
+python.versions     37 38 39
+
+if {${name} ne ${subport}} {
+     depends_build-append \
+                    port:py${python.version}-setuptools
+
+    livecheck.type  none
+}
+
+livecheck.type  none
