@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-build
-version             0.3.1.post1
+version             0.4.0
 revision            0
 categories-append   devel
 license             MIT
@@ -14,9 +14,9 @@ long_description    {*}${description}
 platforms           darwin
 homepage            https://github.com/pypa/build
 
-checksums           rmd160  a63505b032b003e94289b98a62397ee5e32fab0c \
-                    sha256  85123bf327404e68142b1eb2a8298b052e984ad5b12738549688371e6337c73a \
-                    size    32100
+checksums           rmd160  89a91d06906029a8037cf00884f8c09a78fc67f5 \
+                    sha256  b798f3f490c779fa88c99816ebee97ab636acd6630b1d91c8cf8eb8a4d922a19 \
+                    size    13997
 
 python.versions     36 37 38 39
 
