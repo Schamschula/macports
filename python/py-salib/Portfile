@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-salib
 python.rootname     SALib
-version             1.4.0.1
+version             1.4.0.2
 revision            0
 categories          python
 license             MIT
@@ -16,9 +16,9 @@ long_description    {*}${description} Useful in systems modeling to calculate th
 platforms           darwin
 homepage            http://salib.github.io/SALib/
 
-checksums           rmd160  a91da851686ba3a28ba53fa1bf82ca85779dc623 \
-                    sha256  dbf6e865af9f3be82a79cf64889ed66d6d3b6803f0c22a242a112876789d49e7 \
-                    size    904469
+checksums           rmd160  26809a695e8576e92731e7cb02c02d994ad5b4c1 \
+                    sha256  8c56cd76ba6432174688e47e55e2507988320922b5a14ccc03c26727d7b3b952 \
+                    size    904706
 
 python.versions     37 38 39
 
