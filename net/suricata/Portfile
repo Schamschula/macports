@@ -245,7 +245,7 @@ variant nss description { nss/md5 checksums support } {
 
 default_variants       +debug +geoip 
 if {![variant_isset python37] && ![variant_isset python38] && ![variant_isset python39]} {
-    default_variants   +python38
+    default_variants   +python39
 }
 
 startupitem.create      yes
