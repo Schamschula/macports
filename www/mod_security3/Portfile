@@ -5,7 +5,7 @@ PortGroup           github 1.0
 
 name                mod_security3
 set name_package    modsecurity
-github.setup        SpiderLabs ${name_package} 3.0.4 v
+github.setup        SpiderLabs ${name_package} 3.0.5 v
 revision            0
 categories          www security
 license             Apache-2
@@ -21,9 +21,9 @@ homepage            https://github.com/SpiderLabs/ModSecurity
 github.tarball_from releases
 distname            ${name_package}-v${version}
 
-checksums           rmd160  f3041d21a98d051b1cc51867fd734edbcd33ffea \
-                    sha256  b4231177dd80b4e076b228e57d498670113b69d445bab86db25f65346c24db22 \
-                    size    2806291
+checksums           rmd160  5d06e6bc0d52a7b7abfbd54bdaa102cd4cadda8a \
+                    sha256  751bf95a7a8d39c440d0c26ec1f73961550ca2eb2ac9e2e7a56dce2dd7b959e9 \
+                    size    3485840
 
 depends_build       port:pkgconfig
 
@@ -33,11 +33,9 @@ depends_lib         port:curl \
                     port:libmaxminddb \
                     port:libxml2 \
                     port:lua \
-                    port:luarocks \
+                    port:lua-luarocks \
                     port:ssdeep \
                     port:yajl
-
-patchfiles          patch-configure.diff
 
 configure.args      --with-geoip=${prefix} \
                     --with-pcre=${prefix}/bin/pcre-config \
