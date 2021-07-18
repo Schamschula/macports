@@ -1,0 +1,11 @@
+--- configure.orig	2021-07-18 06:43:22.000000000 -0500
++++ configure	2021-07-18 06:55:38.000000000 -0500
+@@ -23901,6 +23901,8 @@
+      cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+ 
++#include <string.h>
++
+ int
+ main (void)
+ {
