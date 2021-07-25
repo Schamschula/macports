@@ -1,0 +1,17 @@
+ telnet/telnet.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/telnet/telnet.c b/telnet/telnet.c
+index 297ae0e4..9f8c871f 100644
+--- telnet/telnet.c
++++ telnet/telnet.c
+@@ -1010,7 +1010,7 @@ suboption (void)
+           * protocol must remain unsevered.  Check that DP fits in
+           * full within TEMP.  Otherwise report buffer error.
+           */
+-         if (strlen (dp) > sizeof (temp) - 4 - 2)
++         if (strlen (dp) >= sizeof (temp) - 4 - 2)
+            {
+              printf ("lm_will: not enough room in buffer\n");
+              break;
+--
