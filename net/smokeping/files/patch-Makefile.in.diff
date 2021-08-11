@@ -1,0 +1,11 @@
+--- Makefile.in.orig	2021-08-10 07:35:57.000000000 -0500
++++ Makefile.in	2021-08-11 05:57:58.000000000 -0500
+@@ -310,7 +310,7 @@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+ AUTOMAKE_OPTIONS = foreign
+-SUBDIRS = lib thirdparty bin doc etc htdocs
++SUBDIRS = lib bin doc etc htdocs
+ EXTRA_DIST = COPYRIGHT CHANGES CONTRIBUTORS LICENSE cpanfile VERSION
+ all: all-recursive
+ 
