@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-salib
 python.rootname     SALib
-version             1.4.0.2
+version             1.4.4
 revision            0
 categories          python
 license             MIT
@@ -16,16 +16,16 @@ long_description    {*}${description} Useful in systems modeling to calculate th
 platforms           darwin
 homepage            http://salib.github.io/SALib/
 
-checksums           rmd160  26809a695e8576e92731e7cb02c02d994ad5b4c1 \
-                    sha256  8c56cd76ba6432174688e47e55e2507988320922b5a14ccc03c26727d7b3b952 \
-                    size    904706
+checksums           rmd160  3d5cd86ec2ac4109305c187e5be76f194bf68679 \
+                    sha256  50a6459088700f55261a683752818530d14ede30cece2c324ac94d4b9e288b6d \
+                    size    905148
 
 python.versions     37 38 39
 
 if {${name} ne ${subport}} {
     depends_build-append \
                     port:py${python.version}-pip \
-                    port:py${python.version}-setuptools \
+                    port:py${python.version}-setuptools_scm \
                     port:py${python.version}-wheel
 
     depends_lib-append \
