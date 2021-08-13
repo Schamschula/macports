@@ -1,0 +1,32 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem 1.0
+PortGroup           github 1.0
+
+github.setup        wofr06 lesspipe 1.88
+revision            0
+categories          textproc
+license             GPL-2
+maintainers         nomaintainer
+supported_archs     noarch
+platforms           darwin
+
+description         lesspipe is an input filter for the pager less.
+long_description    lesspipe.sh is an input filter for the pager less as \
+            described in its man page. The script runs under a ksh compliant \
+            shell (ksh, bash, zsh) and allows to view files with binary content, \
+            compressed files, archives and files contained in archives. A large \
+            and growing number of formats are supported both as plain and \
+            compressed files using compress, gzip, bzip2 or zip.
+
+checksums           rmd160  2cdb976249fe80a2e7c98da5b5046da43105a5c9 \
+                    sha256  80dd331556b60a42ae97afa53d2c328af66b5b1e627e0b1757f7e1981081088c \
+                    size    121093
+
+configure.args      --yes --shell=/bin/bash
+build               {}
+destroot.destdir    PREFIX=${destroot}${prefix}
+notes "
+    To use $name, set this in your .bash_profile:
+    export LESSOPEN='| ${prefix}/bin/lesspipe.sh %s'
+"
