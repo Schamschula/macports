@@ -28,3 +28,6 @@ depends_lib-append  port:byacc \
                     port:libdnet
 
 patchfiles          patch-CMakeLists.txt.diff
+
+github.livecheck.regex \
+                    (\[0-9.\]+)
