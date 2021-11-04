@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-coveralls
-version             3.2.0
+version             3.3.0
 revision            0
 
 license             MIT
@@ -18,9 +18,9 @@ worksrcdir          coveralls-python-${version}
 
 python.versions     37 38 39
 
-checksums           rmd160  03946c340fc77aa5f2a4f69b1e4da103f0231192 \
-                    sha256  15a987d9df877fff44cd81948c5806ffb6eafb757b3443f737888358e96156ee \
-                    size    17422
+checksums           rmd160  1d00d6a5cbc2395ad5feca188b9edc859ce8e5aa \
+                    sha256  4508b8f18344b421a736a276b813daddfdbbe45928c3f878fa72bf54442ea641 \
+                    size    17775
 
 if {${name} ne ${subport}} {
     depends_lib-append  \
