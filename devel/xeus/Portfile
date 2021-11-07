@@ -21,8 +21,9 @@ checksums               rmd160  1b4f4a6647442a95abf6fb0ed728400f287fc03e \
                         sha256  0cd79052321c7941847c1122c4a62f195646a06f88960309dea494c478d16521 \
                         size    9056984
 
-compiler.cxx_standard   2014
-compiler.blacklist-append {clang < 900}
+compiler.cxx_standard   2017
+configure.cc            macports-clang-11
+configure.cxx           macports-clang++-11
 
 depends_build-append    port:pkgconfig \
                         port:cctools
