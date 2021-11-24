@@ -5,7 +5,7 @@ PortGroup           github 1.0
 PortGroup           legacysupport 1.0
 
 github.setup        nghttp2 nghttp2 1.46.0 v
-revision            1
+revision            0
 categories          www
 platforms           darwin
 maintainers         {mps @Schamschula} openmaintainer
@@ -47,12 +47,15 @@ if {${subport} eq ${name}} {
 }
 
 subport nghttp2-tools {
+    incr revision
     description         Tools for nghttp2, an implementation of HTTP/2 in C.
     long_description    HTTP/2 client, server and proxy tools, as well as a \
                         load test and benchmarking tool for HTTP/2.
 
     configure.args-replace \
                         --enable-lib-only --enable-app
+    configure.args-append \
+                        --disable-examples
 
     depends_lib         port:c-ares \
                         port:jansson \
