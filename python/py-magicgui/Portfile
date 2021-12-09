@@ -27,6 +27,7 @@ if {${name} ne ${subport}} {
     depends_lib-append  \
                     port:py${python.version}-docstring_parser \
                     port:py${python.version}-psygnal \
+                    port:py${python.version}-pyqt5 \
                     port:py${python.version}-qtpy \
                     port:py${python.version}-typing_extensions
 
