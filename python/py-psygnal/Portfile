@@ -25,7 +25,7 @@ if {${name} ne ${subport}} {
     depends_build-append \
                     port:py${python.version}-setuptools_scm
 
-        depends_lib-append  \
+    depends_lib-append  \
                     port:py${python.version}-typing_extensions
 
     livecheck.type  none
