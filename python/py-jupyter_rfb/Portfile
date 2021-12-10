@@ -1,0 +1,33 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-jupyter_rfb
+version             0.3.1
+revision            0
+categories          python
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         Remote Frame Buffer for Jupyter
+long_description    {*}${description} 
+platforms           darwin
+homepage            https://github.com/vispy/jupyter_rfb
+
+python.versions     37 38 39 310
+
+checksums           rmd160  2fc9b3bae0a8affd3216637f382ad5e98f7b1fc9 \
+                    sha256  5ed5c2f50b8e1bb7e52bd8a9269b19af2c9bc5108219b5161e77f214c787d314 \
+                    size    229983
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                    port:py${python.version}-setuptools
+
+    depends_lib-append  \
+                    port:py${python.version}-ipywidgets \
+                    port:py${python.version}-jupyter_packaging \
+                    port:py${python.version}-numpy
+
+    livecheck.type  none
+}
