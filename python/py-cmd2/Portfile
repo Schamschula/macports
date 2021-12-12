@@ -14,8 +14,7 @@ description         Tool for building interactive command line applications in P
 long_description    {*}${description}
 homepage            https://github.com/python-cmd2/cmd2
 
-checksums           md5     be2920f3669bc66d135fde86410276c4 \
-                    rmd160  8f15ccfc87a3b094b68682da668e1562ce819cf5 \
+checksums           rmd160  8f15ccfc87a3b094b68682da668e1562ce819cf5 \
                     sha256  750d7eb04d55c3bc2a413e191bc177856f388102de47d11f2210a35266543640 \
                     size    675880
 
