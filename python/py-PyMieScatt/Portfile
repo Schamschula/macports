@@ -14,9 +14,9 @@ description         A collection of forward and inverse Mie solving routines bas
 long_description    {*}${description}
 homepage            http://air.eece.wustl.edu/people/ben-sumlin/
 
-checksums           md5     43abd28aa0736c252255e1f15dc8f1c0 \
-                    rmd160  67ca6ee3249cd3dc97e528046ce8b1bba35e9e33 \
-                    sha256  e628096cc0f3560f8170e0280df1d3196731e12bb55be214defc763c46666568
+checksums           rmd160  67ca6ee3249cd3dc97e528046ce8b1bba35e9e33 \
+                    sha256  e628096cc0f3560f8170e0280df1d3196731e12bb55be214defc763c46666568 \
+                    size    14727
 
 python.versions     38 39 310
 
