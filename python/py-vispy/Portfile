@@ -26,6 +26,7 @@ checksums           rmd160  b016846fdb7c36c9b7e9419e6eb19b10ccb81351 \
 if {${name} ne ${subport}} {
     depends_build-append \
                     port:py${python.version}-cython \
+                    port:py${python.version}-pythran \
                     port:py${python.version}-setuptools_scm \
                     port:py${python.version}-setuptools_scm_git_archive
 
@@ -33,7 +34,8 @@ if {${name} ne ${subport}} {
                     port:py${python.version}-freetype \
                     port:py${python.version}-hsluv \
                     port:py${python.version}-kiwisolver \
-                    port:py${python.version}-numpy
+                    port:py${python.version}-numpy \
+                    port:py${python.version}-pyqt5
 
     livecheck.type  none
 }
