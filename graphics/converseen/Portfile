@@ -5,7 +5,7 @@ PortGroup           cmake 1.0
 PortGroup           github 1.0
 PortGroup           qt5 1.0
 
-github.setup        Faster3ck converseen 0.9.9.2 v
+github.setup        Faster3ck converseen 0.9.9.3 v
 revision            0
 categories          graphics
 license             GPL-3
@@ -16,9 +16,9 @@ long_description    {*}${description} Thanks to the Magick++ image libraries it 
                     more than 100 image formats.
 platforms           darwin
 
-checksums           rmd160  54dae86304a293a58c15c8af63d5a6f93ce8e764 \
-                    sha256  a23c3b166f11b8fd78d0b47427898fd0fd210e60dc14c862475163dfd36264ed \
-                    size    281848
+checksums           rmd160  b3fc087b2cec355616f0c4d04d5851c6cc34f611 \
+                    sha256  e8026465d3fad3828e3f05ec2024b0b63319c7d34ead8ae93d695e25120d5142 \
+                    size    288205
 
 depends_lib-append  port:ImageMagick \
                     port:qt5-qttools
