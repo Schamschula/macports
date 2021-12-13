@@ -10,7 +10,7 @@ categories          python
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
 description         A Python implementation of HSLuv (revision 4).
-long_description    {*}${description} 
+long_description    {*}${description}
 platforms           darwin
 homepage            https://github.com/hsluv/hsluv-python
 
