@@ -26,3 +26,17 @@ depends_lib-append  port:ImageMagick \
 post-patch {
     reinplace "s|/usr/share|\${CMAKE_INSTALL_PREFIX}/share|g" ${worksrcpath}/CMakeLists.txt
 }
+
+post-destroot {
+    # create stub App
+    set appdir ${destroot}${applications_dir}/Converseen.app
+    xinstall -d ${appdir}/Contents/MacOS
+    xinstall -d ${appdir}/Contents/Resources
+
+    xinstall -m 644 ${filespath}/Info.plist ${appdir}/Contents/
+    xinstall -m 644 ${filespath}/Converseen.icns ${appdir}/Contents/Resources/
+    xinstall -m 755 ${filespath}/Converseen ${appdir}/Contents/MacOS
+
+    reinplace -W ${appdir}/Contents "s,@@VERSION@@,${version},g" Info.plist
+    reinplace -W ${appdir}/Contents/MacOS "s,@@PREFIX@@,${prefix},g" Converseen
+}
