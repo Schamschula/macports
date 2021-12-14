@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+##
+#	recli
+#	1.0.0
+#	2021-12-14
+##
+
+XCV=$(/usr/bin/xcodebuild -version | grep Xcode | awk '{print $1}')
+touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
+sudo softwareupdate -i "Command Line Tools for Xcode-$XCV"
+rm /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
