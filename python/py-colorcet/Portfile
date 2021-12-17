@@ -26,5 +26,10 @@ if {${name} ne ${subport}} {
                     port:py${python.version}-pyct \
                     port:py${python.version}-setuptools
 
+    if {${python.version} < 38} {
+        depends_lib-append \
+                   port:${python.version}-importlib_metadata
+    }
+
     livecheck.type  none
 }
