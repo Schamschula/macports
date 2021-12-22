@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-agentpy
-version             0.1.4
+version             0.1.5
 revision            0
 categories-append   science
 license             BSD
@@ -18,9 +18,9 @@ long_description    {*}${description} The framework integrates the tasks of mode
 platforms           darwin
 homepage            https://agentpy.readthedocs.io/en/latest/
 
-checksums           rmd160  a2ff729d9563d35cbd68c9e7fad088ec1c71a805 \
-                    sha256  e73299102b2c2061a0256e435b861b5f2a11c01f84a002f8096d956b0f8dbaaa \
-                    size    43438
+checksums           rmd160  2ab4faa1c00e5778ceca9f0543490b43cadf8f53 \
+                    sha256  690b82436dfcb614a20d4b112781b5240957ae56d13f3da6380d21882af97d13 \
+                    size    44336
 
 python.versions     37 38 39
 
