@@ -5,11 +5,12 @@ PortGroup           cmake 1.0
 
 name                dfc
 version             3.1.1
+revision            1
 categories          sysutils
 license             permissive
 maintainers         {mps @Schamschula} openmaintainer
 description         dfc displays file system space usage using graphs and colors.
-long_description    ${description} In some ways, it is a modernized version of df as \
+long_description    {*}${description} In some ways, it is a modernized version of df as \
                     it is able to use colors, draw graphs and export its output to \
                     different formats such as CSV or HTML.
 platforms           darwin
@@ -17,9 +18,12 @@ homepage            https://projects.gw-computing.net/projects/dfc/
 master_sites        https://projects.gw-computing.net/attachments/download/615/
 
 checksums           rmd160  2caa55133f5757aaf42e82245dde35051e47a6e4 \
-                    sha256  962466e77407dd5be715a41ffc50a54fce758a78831546f03a6bb282e8692e54
+                    sha256  962466e77407dd5be715a41ffc50a54fce758a78831546f03a6bb282e8692e54 \
+                    size    52709
 
-depends_lib         port:gettext \
+depends_build       port:gettext
+
+depends_lib         port:gettext-runtime \
                     port:libiconv
 
 livecheck.type      regex
