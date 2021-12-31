@@ -1,0 +1,39 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-nndescent
+python.rootname     pynndescent
+version             0.5.5
+revision            0
+categories          python
+license             BSD
+maintainers         {mps @Schamschula} openmaintainer
+description         PyNNDescent is a Python nearest neighbor descent for approximate \
+                    nearest neighbors.
+long_description    {*}${description} It provides a python implementation of Nearest \
+                    Neighbor Descent for k-neighbor-graph construction and approximate \
+                    nearest neighbor search.
+platforms           darwin
+homepage            https://github.com/lmcinnes/pynndescent
+
+python.versions     37 38 39
+
+checksums           rmd160  a45565b73eda1832e5c3a138b3f80c1c7fffb2b9 \
+                    sha256  7a7df8412b19cfb3596060faf5a8c5d0bf5b3bd504f8efd900fc4e3918c6f882 \
+                    size    1133188
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                    port:py${python.version}-setuptools
+
+    depends_lib-append  \
+                    port:py${python.version}-joblib \
+                    port:py${python.version}-llvmlite \
+                    port:py${python.version}-numba \
+                    port:py${python.version}-scikit-learn \
+                    port:py${python.version}-scipy
+
+    livecheck.type  none
+}
