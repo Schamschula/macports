@@ -1,0 +1,36 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+
+github.setup        so-fancy diff-so-fancy 1.4.3 v
+revision            0
+categories          textproc
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         diff-so-fancy strives to make your diffs human readable instead of \
+                    machine readable.
+long_description    {*}${description} This helps improve code quality and helps you \
+                    spot defects faster.
+platforms           darwin
+homepage            https://github.com/so-fancy/diff-so-fancy/
+
+checksums           rmd160  091d7be3051671e09ccbafe581af9648d73ba96b \
+                    sha256  4ec7a15e1dda6feef6ee177876dcd78e172b695e6db3a88ff8b61948f486dd14 \
+                    size    51812
+
+depends_lib         port:perl5
+
+set perl.branch     5.30
+
+use_configure       no
+
+build               {}
+
+destroot {
+    xinstall -m 755 ${worksrcpath}/diff-so-fancy \
+        ${destroot}${prefix}/bin/
+    xinstall -d ${destroot}${prefix}/lib/perl5/${perl.branch}/
+    xinstall -m 755 {*}[glob ${worksrcpath}/lib/*] \
+        ${destroot}${prefix}/lib/perl5/${perl.branch}/
+}
