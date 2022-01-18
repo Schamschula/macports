@@ -45,10 +45,3 @@ cp ${prefix}/share/${subport}/kernel.json ~/Library/Jupyter/kernels/octave/
 
     livecheck.type  none
 }
-
-foreach {old new} {27 37 34 37 35 37 36 37} {
-    subport py${old}-${python.rootname} "
-        replaced_by py${new}-${python.rootname}
-        PortGroup obsolete 1.0
-    "
-}

@@ -20,18 +20,11 @@ checksums           rmd160  2c8162596523e11d29eaa59516fec06527380e6c \
                     sha256  8811a4497444495639ef000902f4c6e8a7e2c57da1d47a8a24bcc9083548b389 \
                     size    197302
 
-python.versions     27 36 37 38 39 310
+python.versions     27 38 39 310
 
 if {${name} ne ${subport}} {
     depends_lib-append  \
                     port:py${python.version}-notebook
 
     livecheck.type  none
-}
-
-foreach {old new} {34 36 35 36} {
-    subport py${old}-${python.rootname} "
-        replaced_by py${new}-${python.rootname}
-        PortGroup obsolete 1.0
-    "
 }
