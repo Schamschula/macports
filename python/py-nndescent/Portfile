@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-nndescent
 python.rootname     pynndescent
-version             0.5.5
+version             0.5.6
 revision            0
 categories          python
 license             BSD
@@ -15,14 +15,14 @@ description         PyNNDescent is a Python nearest neighbor descent for approxi
 long_description    {*}${description} It provides a python implementation of Nearest \
                     Neighbor Descent for k-neighbor-graph construction and approximate \
                     nearest neighbor search.
-platforms           darwin
 homepage            https://github.com/lmcinnes/pynndescent
 
+# Note the py310 subport cannot be built as py310-llvmlite is unsupported
 python.versions     37 38 39
 
-checksums           rmd160  a45565b73eda1832e5c3a138b3f80c1c7fffb2b9 \
-                    sha256  7a7df8412b19cfb3596060faf5a8c5d0bf5b3bd504f8efd900fc4e3918c6f882 \
-                    size    1133188
+checksums           rmd160  8e8e8cec714fc6c667dc21d22336558c39885c62 \
+                    sha256  61fb31885baac469d67933e2c7c935b6edebb06ee498e2f0f9dfc97c59d3725c \
+                    size    1135907
 
 if {${name} ne ${subport}} {
     depends_build-append \
