@@ -15,7 +15,7 @@ long_description    {*}${description} The framework integrates the tasks of mode
                     design, interactive simulations, numerical experiments, and data \
                     analysis within a single environment, and is optimized for \
                     interactive computing with IPython and Jupyter.
-platforms           darwin
+supported_archs     noarch
 homepage            https://agentpy.readthedocs.io/en/latest/
 
 checksums           rmd160  2ab4faa1c00e5778ceca9f0543490b43cadf8f53 \
