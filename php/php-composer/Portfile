@@ -11,7 +11,7 @@ maintainers         {mps @Schamschula} openmaintainer
 description         Composer is a tool for dependency management in PHP.
 long_description    ${description} It allows you to declare the libraries your project \
                     depends on and it will manage (install/update) them for you.
-platforms           darwin
+supported_archs     noarch
 homepage            https://getcomposer.org/
 master_sites        ${homepage}
 distfiles           installer
