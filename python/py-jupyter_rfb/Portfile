@@ -11,7 +11,7 @@ license             MIT
 maintainers         {mps @Schamschula} openmaintainer
 description         Remote Frame Buffer for Jupyter
 long_description    {*}${description} 
-platforms           darwin
+supported_archs     noarch
 homepage            https://github.com/vispy/jupyter_rfb
 
 python.versions     37 38 39 310
