@@ -1,0 +1,10 @@
+--- pyproject.toml.orig	2022-01-21 04:38:41.000000000 -0600
++++ pyproject.toml	2022-01-21 15:34:56.000000000 -0600
+@@ -29,7 +29,6 @@
+ dynamic = ["version"]
+ requires-python = ">=3.7"
+ dependencies = [
+-  "gmsh",
+   "meshio >= 4.3.2, <6",
+   "numpy >= 1.20.0",
+ ]
