@@ -12,6 +12,7 @@ maintainers         {mps @Schamschula} openmaintainer
 description         A collection of forward and inverse Mie solving routines based on \
                     Bohren and Huffman s Mie Theory derivations.
 long_description    {*}${description}
+supported_archs     noarch
 homepage            http://air.eece.wustl.edu/people/ben-sumlin/
 
 checksums           rmd160  67ca6ee3249cd3dc97e528046ce8b1bba35e9e33 \
