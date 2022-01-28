@@ -11,7 +11,7 @@ description         Fuzzy Finder implemented in Python. Matches partial string e
                     from a list of strings.
 long_description    {*}${description} Works similar to fuzzy finder in SublimeText and \
                     Vim's Ctrl-P plugin.
-platforms           darwin
+supported_archs     noarch
 
 python.versions     37 38 39 310
 
