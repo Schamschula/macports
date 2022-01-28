@@ -12,7 +12,7 @@ license             MIT
 maintainers         {mps @Schamschula} openmaintainer
 description         PyScaffold is the tool of choice for bootstrapping high quality Python packages
 long_description    {*}${description}, ready to be shared on PyPI and installable via pip.
-platforms           darwin
+supported_archs     noarch
 homepage            https://github.com/pyscaffold/pyscaffold/
 
 checksums           rmd160  8ca5a1c4a12f113d523a2f30d76340e73c6e854f \
