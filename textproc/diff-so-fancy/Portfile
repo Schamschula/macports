@@ -12,7 +12,7 @@ description         diff-so-fancy strives to make your diffs human readable inst
                     machine readable.
 long_description    {*}${description} This helps improve code quality and helps you \
                     spot defects faster.
-platforms           darwin
+supported_archs     noarch
 homepage            https://github.com/so-fancy/diff-so-fancy/
 
 checksums           rmd160  091d7be3051671e09ccbafe581af9648d73ba96b \
