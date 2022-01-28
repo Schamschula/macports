@@ -13,7 +13,7 @@ maintainers         {mps @Schamschula} openmaintainer
 description         Python implementations of commonly used sensitivity analysis methods. 
 long_description    {*}${description} Useful in systems modeling to calculate the effects \
                     of model inputs or exogenous factors on outputs of interest.
-platforms           darwin
+supported_archs     noarch
 homepage            http://salib.github.io/SALib/
 
 checksums           rmd160  258e0574fe5a50da1fa2fbfe13d8ca6f33168850 \
