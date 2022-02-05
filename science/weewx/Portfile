@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                weewx
-version             4.5.1
+version             4.6.0
 revision            0
 categories          science
 license             GPL-3
@@ -12,24 +12,25 @@ maintainers         {mps @Schamschula} openmaintainer
 description         WeeWX is a free, open source, software program, written in Python, \
                     which interacts with your weather station to produce graphs, \
                     reports, and HTML pages.
-long_description    ${description}
+long_description    {*}${description}
 platforms           darwin
 homepage            http://weewx.com
 master_sites        ${homepage}/downloads/released_versions/
 
-checksums           rmd160  d0221a02295d08ba94835614dc046de3b241902c \
-                    sha256  9650f9a4ce0f300a652d926820bc5b683a1826fd668c0e71413e88c772d7f056 \
-                    size    1624237
+checksums           rmd160  3c312e98c872157aa443287fafa8e672a6243f99 \
+                    sha256  859578be1df5270a1414eefdcc12df9c62dd9614ab112fb3f44fe5b2d44ef60e \
+                    size    1830307
 
-variant python37 conflicts python36 python38 python39 description {Use Python 3.7} {}
-variant python38 conflicts python36 python37 python39 description {Use Python 3.8} {}
-variant python39 conflicts python36 python37 python38 description {Use Python 3.9} {}
+variant python37 conflicts python36 python38 python39 python310 description {Use Python 3.7} {}
+variant python38 conflicts python36 python37 python39 python310 description {Use Python 3.8} {}
+variant python39 conflicts python36 python37 python38 python310 description {Use Python 3.9} {}
+variant python310 conflicts python36 python37 python38 python39 description {Use Python 3.10} {}
 
 if {![variant_isset python37] && ![variant_isset python38] && ![variant_isset python39]} {
-    default_variants +python39
+    default_variants +python310
 }
 
-foreach pv {39 38 37} {
+foreach pv {310 39 38 37} {
     if {[variant_isset python${pv}]} {
         python.default_version ${pv}
         break
@@ -42,7 +43,7 @@ depends_lib-append  port:py${python.version}-cheetah \
                     port:py${python.version}-Pillow \
                     port:py${python.version}-pyusb \
                     port:py${python.version}-setuptools \
-                    port:py${python.version}-serial
+                    port:py${python.version}-pyserial
 
 patchfiles          patch-setup.cfg.diff \
                     patch-setup.py.diff
