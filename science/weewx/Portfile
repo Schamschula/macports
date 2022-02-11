@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                weewx
-version             4.6.0
+version             4.6.1
 revision            0
 categories          science
 license             GPL-3
@@ -17,9 +17,9 @@ platforms           darwin
 homepage            http://weewx.com
 master_sites        ${homepage}/downloads/released_versions/
 
-checksums           rmd160  3c312e98c872157aa443287fafa8e672a6243f99 \
-                    sha256  859578be1df5270a1414eefdcc12df9c62dd9614ab112fb3f44fe5b2d44ef60e \
-                    size    1830307
+checksums           rmd160  5f1e6d34ccec174b738e3847867d932a9c84f653 \
+                    sha256  3ff91325bc382b3d373ee78d4c7514faca429594e41b6f5c80af74a9c0dc81f8 \
+                    size    1834972
 
 variant python37 conflicts python36 python38 python39 python310 description {Use Python 3.7} {}
 variant python38 conflicts python36 python37 python39 python310 description {Use Python 3.8} {}
