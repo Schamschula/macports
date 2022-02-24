@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 
 github.setup        so-fancy diff-so-fancy 1.4.3 v
-revision            0
+revision            1
 categories          textproc
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
@@ -21,7 +21,7 @@ checksums           rmd160  091d7be3051671e09ccbafe581af9648d73ba96b \
 
 depends_lib         port:perl5
 
-set perl.branch     5.30
+set perl.branch     5.34
 
 use_configure       no
 
