@@ -1,0 +1,40 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-arm_pyart
+version             1.11.6
+revision            0
+categories-append   science
+license             BSD
+maintainers         {mps @Schamschula} openmaintainer
+description         The Python ARM Radar Toolkit, Py-ART, is an open source Python module 
+long_description    {*}${description}containing a growing collection of weather radar \
+                    algorithms and utilities build on top of the Scientific Python stack.
+
+checksums           rmd160  b38abd5db30ec2c186616f84f4dd44c9ea275105 \
+                    sha256  b9443d7594ea06e5d199d3d4b5c04d0e80feaa93618dd6a203755e1145242b20 \
+                    size    10944721
+
+python.versions     37 38 39 310
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                    port:py${python.version}-setuptools
+
+    depends_lib-append  \
+                    port:py${python.version}-cartopy \
+                    port:py${python.version}-cvxopt \
+                    port:py${python.version}-gdal \
+                    port:py${python.version}-h5py \
+                    port:py${python.version}-matplotlib \
+                    port:py${python.version}-netcdf4 \
+                    port:py${python.version}-numpy \
+                    port:py${python.version}-scipy \
+                    port:py${python.version}-semver \
+                    port:py${python.version}-wradlib \
+                    port:py${python.version}-xarray
+
+    livecheck.type  none
+}
