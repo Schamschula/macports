@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                suricata
-version             6.0.4
+version             6.0.5
 revision            0
 categories          net security
 platforms           darwin
@@ -22,9 +22,9 @@ long_description    Suricata is a high performance Network IDS, IPS \
 homepage            https://suricata-ids.org/
 master_sites        https://www.openinfosecfoundation.org/download/
 
-checksums           rmd160  797865995cee2c3c2e93fcd66bd2b2a8a99977c6 \
-                    sha256  a8f197e33d1678689ebbf7bc1abe84934c465d22c504c47c2c7e9b74aa042d0d \
-                    size    32498036
+checksums           rmd160  c82b6215566e336090fa90eac03fe36c0166db28 \
+                    sha256  0d4197047c84ba070dfc6b1d9f9ee92f52a71403bfac0e29b2554bb21fe00754 \
+                    size    32605145
 
 destroot.target     install-full
 
@@ -72,7 +72,7 @@ configure.args      --enable-ipfw \
 ##    but http://pablo-secdev.blogspot.ca/2010/07/howto-setup-suricata-100-on-mac-os-x.html
 add_users suricata group=suricata home=${prefix}/var/db/suricata shell=/sbin/nologin realname=suricata\ user
 
-use_autoreconf        yes
+use_autoreconf      yes
 
 #compiler.blacklist   clang llvm-gcc-4.2 macports-llvm-gcc-4.2 apple-gcc-4.2 macports-clang macports-clang-3.3
 
@@ -85,7 +85,7 @@ configure.cflags-append "${configure.cflags} [get_canonical_archflags cc]"
 
 test.run            yes
 test.cmd            suricata
-test.args            -u -l /tmp
+test.args           -u -l /tmp
 
 notes "
 
@@ -195,22 +195,28 @@ variant debug description { enable debug, processing will be slower } {
     configure.args-append    --enable-debug --enable-profiling
 }
 
-variant python37 description { Python 3.7 bindings } conflicts python38 python39 {
+variant python37 description { Python 3.7 bindings } conflicts python38 python39 python310 {
     depends_build-append     port:python37  \
                              port:py37-yaml
     configure.python         ${prefix}/bin/python3.7
 }
 
-variant python38 description { Python 3.8 bindings } conflicts python37 python39 {
+variant python38 description { Python 3.8 bindings } conflicts python37 python39 python310 {
     depends_build-append     port:python38  \
                              port:py38-yaml
     configure.python         ${prefix}/bin/python3.8
 }
 
-variant python39 description { Python 3.9 bindings } conflicts python37 python38 {
+variant python39 description { Python 3.9 bindings } conflicts python37 python38 python310 {
     depends_build-append     port:python39  \
                              port:py39-yaml
     configure.python         ${prefix}/bin/python3.9
+}
+
+variant python310 description { Python 3.10 bindings } conflicts python37 python38 python39 {
+    depends_build-append     port:python310  \
+                             port:py310-yaml
+    configure.python         ${prefix}/bin/python3.10
 }
 
 variant prelude description { libprelude support } {
@@ -245,7 +251,7 @@ variant nss description { nss/md5 checksums support } {
 
 default_variants       +debug +geoip 
 if {![variant_isset python37] && ![variant_isset python38] && ![variant_isset python39]} {
-    default_variants   +python39
+    default_variants   +python310
 }
 
 startupitem.create      yes
