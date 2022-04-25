@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                weewx
-version             4.7.0
+version             4.8.0
 revision            0
 categories          science
 license             GPL-3
@@ -17,9 +17,9 @@ platforms           darwin
 homepage            http://weewx.com
 master_sites        ${homepage}/downloads/released_versions/
 
-checksums           rmd160  0e79f2f26c5c9fa8d171235a1abd1c174c935a93 \
-                    sha256  9bf31bcf5566db98db89cef210610de7e3a188fcb5178dbdd602320e2a19d5a2 \
-                    size    1839625
+checksums           rmd160  dac5c1f5f29b1fe18b7bbaf1e8482dc9bb232975 \
+                    sha256  6248c8071afcd03d22e7d5e5f3541bae7be834977717da0bcea56bb7e5d6808a \
+                    size    1853039
 
 variant python37 conflicts python36 python38 python39 python310 description {Use Python 3.7} {}
 variant python38 conflicts python36 python37 python39 python310 description {Use Python 3.8} {}
@@ -47,6 +47,10 @@ depends_lib-append  port:py${python.version}-cheetah \
 
 patchfiles          patch-setup.cfg.diff \
                     patch-setup.py.diff
+
+post-patch {
+    reinplace "s|%%PREFIX%%|${prefix}|g" ${worksrcpath}/setup.cfg
+}
 
 livecheck.type      regex
 livecheck.url       ${master_sites}
