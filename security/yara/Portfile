@@ -7,7 +7,7 @@ PortGroup               github 1.0
 PortGroup               legacysupport 1.0
 legacysupport.newest_darwin_requires_legacy 10
 
-github.setup            VirusTotal yara 4.2.0 v
+github.setup            VirusTotal yara 4.2.1 v
 revision                0
 
 categories              security
@@ -18,9 +18,9 @@ description             Malware identification and classification tool
 long_description        YARA is a tool aimed at helping malware researchers to identify \
                         and classify malware samples.
 
-checksums               rmd160  d5737ef59a8f28317ab28d21da1f4c5157ee4d01 \
-                        sha256  291b759b5b70b6f1357adf80a773cbfe178db0515ff7ba8472ea6ce4a83ddda0 \
-                        size    1284731
+checksums               rmd160  ec6ea32b0e8608d4397dcea6f5f96f119ea351f0 \
+                        sha256  d9e1a7de883a0d316a17db5f4cb7992daf4800423c47cc9fea9cb71cf6ec744b \
+                        size    1286207
 
 if {${subport} eq ${name}} {
     depends_build-append \
@@ -35,22 +35,16 @@ if {${subport} eq ${name}} {
                         port:pcre \
                         port:protobuf-c
 
+    patchfiles          no-opt-local-or-usr-local.patch \
+                        use-CPPFLAGS.patch
+
     pre-configure {
-        reinplace "s|/usr/local/opt/openssl/include|${prefix}/include/openssl|" ${worksrcpath}/configure.ac
-        reinplace "s|/usr/local/opt/openssl/lib|${prefix}/lib|" ${worksrcpath}/configure.ac
         system -W ${worksrcpath} "./bootstrap.sh"
     }
-    # If previous yara is installed, this build will fail since
-    # /opt/local/include is before ./libyara/include
-    # so swap CPPFLAGS and CFLAGS
-    # Remove this upon the next release after verifying it is not needed.
-    post-configure {
-            reinplace "s|\$(CPPFLAGS) \$(AM_CFLAGS) \$(CFLAGS)|\$(CFLAGS) \$(AM_CFLAGS) \$(CPPFLAGS)|" ${worksrcpath}/Makefile
-            reinplace "s|\$(DEFAULT_INCLUDES) \$(INCLUDES) \$(AM_CPPFLAGS) \$(CPPFLAGS)|\$(DEFAULT_INCLUDES) \$(INCLUDES) \$(AM_CPPFLAGS) \$(CFLAGS)|" ${worksrcpath}/Makefile
-            reinplace "s|\t\$(AM_CFLAGS) \$(CFLAGS)|\t\$(AM_CFLAGS) \$(CPPFLAGS)|" ${worksrcpath}/Makefile
-    }
 
+    # https://github.com/VirusTotal/yara/issues/1686
     configure.cflags-append -std=gnu99
+
     configure.args-append   --with-crypto \
                             --disable-silent-rules \
                             --disable-dependency-tracking \
