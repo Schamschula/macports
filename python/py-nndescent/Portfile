@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-nndescent
 python.rootname     pynndescent
-version             0.5.6
+version             0.5.7
 revision            0
 categories          python
 license             BSD
@@ -18,18 +18,19 @@ long_description    {*}${description} It provides a python implementation of Nea
 supported_archs     noarch
 homepage            https://github.com/lmcinnes/pynndescent
 
-# Note the py310 subport cannot be built as py310-llvmlite is unsupported
+# Note the py310 subport cannot be built as py310-numba is unsupported
 python.versions     37 38 39
 
-checksums           rmd160  8e8e8cec714fc6c667dc21d22336558c39885c62 \
-                    sha256  61fb31885baac469d67933e2c7c935b6edebb06ee498e2f0f9dfc97c59d3725c \
-                    size    1135907
+checksums           rmd160  76dd02384a88667ae2465c2a9f807ab06291b871 \
+                    sha256  ecb395255fa36a748b5870b4ba0300ea0f7da8b1964864b8edd62577a84dfd7d \
+                    size    1136439
 
 if {${name} ne ${subport}} {
     depends_build-append \
                     port:py${python.version}-setuptools
 
     depends_lib-append  \
+                    port:py${python.version}-importlib-metadata \
                     port:py${python.version}-joblib \
                     port:py${python.version}-llvmlite \
                     port:py${python.version}-numba \
