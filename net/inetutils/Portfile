@@ -30,6 +30,8 @@ configure.args          --infodir=${prefix}/share/info \
                         --disable-servers
 
 variant client description {Enable all clients (with g prefix)} {
+    # see https://trac.macports.org/ticket/62454
+    # and https://lists.gnu.org/archive/html/bug-inetutils/2022-02/msg00001.html
     patchfiles          patch-telnet-telnet.c.diff
 
     post-patch {
