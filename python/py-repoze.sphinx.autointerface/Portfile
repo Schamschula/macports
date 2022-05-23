@@ -13,10 +13,9 @@ description         An extension for the Sphinx documentation system to allow ge
                     of API documentation by introspection of zope.interface instances in \
                     code.
 long_description    {*}${description}
-platforms           darwin
 homepage            https://pypi.org/project/repoze.sphinx.autointerface/
 
-python.versions     27 36 37 38 39 310
+python.versions     37 38 39 310
 
 checksums           rmd160  18eff039b0e87506d2bdd05ff9a81c450c6e70f0 \
                     sha256  8ef0383276ab722efb1e4a6523726262058dfd82615ccf7e5004aee3fe8ecc23 \
