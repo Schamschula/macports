@@ -151,6 +151,10 @@ post-patch {
     reinplace "s|magic-file: /usr/share/file/magic|magic-file: ${prefix}/share/misc/magic|g" ${worksrcpath}/suricata.yaml.in
 }
 
+destroot.keepdirs ${destroot}${prefix}/etc/${name} \
+    ${destroot}${prefix}/var/log/${name} \
+    ${destroot}${prefix}/etc/${name}/rules
+
 post-destroot {
     xinstall -d ${destroot}${prefix}/share/examples/${name}
     xinstall ${worksrcpath}/suricata.yaml ${destroot}${prefix}/share/examples/${name}/
@@ -168,9 +172,6 @@ post-destroot {
         xinstall ${worksrcpath}/rules/${f} ${destroot}${prefix}/etc/suricata/rules/${name}
     }
     xinstall ${worksrcpath}/threshold.config ${destroot}${prefix}/etc/suricata/threshold.config
-    destroot.keepdirs ${destroot}${prefix}/etc/${name} \
-        ${destroot}${prefix}/var/log/${name} \
-        ${destroot}${prefix}/etc/${name}/rules
 
     xinstall -d ${destroot}${prefix}/Library/LaunchDaemons/
     copy ${filespath}/org.macports.oinkmaster-suricata.plist ${destroot}${prefix}/Library/LaunchDaemons/

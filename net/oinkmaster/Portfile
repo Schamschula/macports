@@ -5,24 +5,30 @@ PortSystem          1.0
 
 name                oinkmaster
 version             2.0
+revision            1
 categories          net
 license             BSD
 maintainers         gmail.com:mschamschula openmaintainer
 description         Oinkmaster is a script that will help you update and manage your \
                     Snort rules.
-long_description    ${description}
+long_description    {*}${description}
 platforms           darwin
 homepage            http://oinkmaster.sourceforge.net/
 master_sites        sourceforge
 
 checksums           rmd160  a3292cfc2e6b175008a7172be5809ca6e2fc85b7 \
-                    sha256  3d52f0426aa7c81b122cef22b80d708d8bb8337537e48754a065804f46c46162
+                    sha256  3d52f0426aa7c81b122cef22b80d708d8bb8337537e48754a065804f46c46162 \
+                    size    80111
+
+depends_lib         port:wget
 
 patchfiles          patch-oinkmaster.pl.diff
 
 use_configure       no
 
 build               {}
+
+add_users oinkmaster group=oinkmaster home=${prefix}/var/db/oinkmaster shell=/sbin/nologin realname=oinkmaster\ user
 
 destroot {
    xinstall -m 755 ${worksrcpath}/oinkmaster.pl ${destroot}${prefix}/bin
