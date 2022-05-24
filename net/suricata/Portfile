@@ -42,6 +42,7 @@ depends_build       port:autoconf \
 depends_lib         port:cargo \
                     port:jansson \
                     port:libhtp \
+                    port:libiconv \
                     port:libnet11 \
                     port:libpcap \
                     port:libmagic \
@@ -54,7 +55,9 @@ depends_lib         port:cargo \
                     port:pcre \
                     port:pkgconfig
 
-configure.env       AC_PROG_LIBTOOL=${prefix}/bin/glibtool 
+configure.env       AC_PROG_LIBTOOL=${prefix}/bin/glibtool \
+                    LDFLAGS=-L${prefix}/lib \
+                    LIBS=-liconv
 
 configure.args      --enable-ipfw \
                     --enable-gccprotect \
@@ -98,7 +101,8 @@ You need add extra rules, eventually using oinkmaster:
 https://redmine.openinfosecfoundation.org/projects/suricata/wiki/Rule_Management_with_Oinkmaster
 ex: $ sudo -u oinkmaster ${prefix}/bin/oinkmaster.pl -o ${prefix}/etc/${name}/rules -C ${prefix}/etc/oinkmaster-${name}.conf
 The corresponding oinkmaster config is in the examples directory and
-have been copied to ${prefix}/etc if not existing.
+have been copied to ${prefix}/etc if not existing. 
+Note: ${prefix}/etc/${name}/rules is not writable by oinkmaster, see (4)
 
 or suricata-update:
 $ sudo ${prefix}/bin/suricata-update --suricata ${prefix}/bin/suricata \
@@ -169,7 +173,7 @@ post-destroot {
     xinstall -d ${destroot}${prefix}/etc/${name}/rules
     ## putting in the rules, emergingthreat set has them
     foreach f { decoder-events.rules dns-events.rules http-events.rules stream-events.rules files.rules smtp-events.rules } {
-        xinstall ${worksrcpath}/rules/${f} ${destroot}${prefix}/etc/suricata/rules/${name}
+        xinstall ${worksrcpath}/rules/${f} ${destroot}${prefix}/etc/suricata/rules/
     }
     xinstall ${worksrcpath}/threshold.config ${destroot}${prefix}/etc/suricata/threshold.config
 
