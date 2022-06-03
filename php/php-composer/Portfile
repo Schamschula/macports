@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                php-composer
-version             2.3.5
+version             2.3.6
 revision            0
 categories          php
 license             MIT
@@ -26,9 +26,9 @@ variant php80 conflicts php74 php81 php82 description {Use php 8.0} {}
 variant php81 conflicts php74 php80 php82 description {Use php 8.1} {}
 variant php82 conflicts php74 php80 php81 description {Use php 8.2} {}
 
-if {![variant_isset php74] && ![variant_isset php81]
+if {![variant_isset php74] && ![variant_isset php80]
         && ![variant_isset php82]} {
-    default_variants +php80
+    default_variants +php81
 }
 
 foreach pv {74 80 81 82} {
