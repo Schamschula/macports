@@ -32,13 +32,13 @@ variant python310 conflicts python38 python39 description {Use Python 3.10} {}
 
 set python.branch 3.9
 
-if {![variant_isset python38] && ![variant_isset python39] && ![variant_isset python310]} {
-    default_variants +python39
+if {![variant_isset python38] && ![variant_isset python39]} {
+    default_variants +python310
 }
 
 foreach pv {310 39 38} {
     if {[variant_isset python${pv}]} {
-        set python_branch "[string index ${pv} 0].[string range ${pv} 1 end]"
+        set python.branch "[string index ${pv} 0].[string range ${pv} 1 end]"
         depends_build-append \
                     port:python${pv}
 
@@ -54,7 +54,7 @@ depends_build-append \
 compiler.blacklist-append {clang < 900}
 
 configure.args-append \
-                    -DENABLE_TESTING=Off \
+                    -DENABLE_TESTING=OFF \
                     -DPERL_EXECUTABLE=${prefix}/bin/perl \
                     -DMBEDTLS_PYTHON_EXECUTABLE:FILEPATH=${prefix}/bin/python${python.branch} \
                     -DUSE_SHARED_MBEDTLS_LIBRARY=ON \
