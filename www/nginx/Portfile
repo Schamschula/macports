@@ -9,6 +9,8 @@ categories          www mail
 license             BSD
 maintainers         {mps @Schamschula} openmaintainer
 
+conflicts           nginx-devel
+
 description         High-performance HTTP(S) server, HTTP(S) reverse proxy and IMAP/POP3 \
                     proxy server
 long_description    Nginx ("engine x") is an HTTP and reverse proxy server, a mail proxy \
@@ -55,7 +57,6 @@ set auto_activate_confs {nginx.conf mime.types fastcgi.conf}
 
 # portfile-scoped vars for variant routines to re-def and use in port-stages (post-extract, pre-patch, etc)
 set nginx_lua_mod_dirname      ""
-set nginx_rtmp_mod_dirname     ""
 set nginx_upload_mod_dirname   ""
 
 # for aforementioned re-defs of portfile-scoped vars in variant routines
@@ -360,16 +361,6 @@ variant rtmp description {Enable Ngx RTMP module (https://github.com/arut/nginx-
                             size    519934
 
     configure.args-append   --add-module=${workpath}/${rtmp_distname}
-
-    nginx_set_portfile_var  nginx_rtmp_mod_dirname    "${rtmp_distname}"
-
-    # patch routine balks on file names with "../", but rel-paths in patchfiles start from $worksrcpath
-    pre-patch {
-        ln -s   "${workpath}/${nginx_rtmp_mod_dirname}" "${worksrcpath}/nginx_rtmp_module.tmp"
-    }
-    post-patch {
-        file delete   "${worksrcpath}/nginx_rtmp_module.tmp"
-    }
 }
 
 variant http_push description {Enable Ngx HTTP Push module (https://github.com/slact/nchan)} {
@@ -472,4 +463,4 @@ variant vod description {Add MP4 repackeging for HLS, DASH, HDS, HSS using nginx
 
 livecheck.type      regexm
 livecheck.url       ${homepage}
-livecheck.regex     {nginx-(\d+\.\d+\.\d+)</a>\s+mainline}
+livecheck.regex     {nginx-(\d+\.\d+\.\d+)</a>\s+stable}
