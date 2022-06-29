@@ -11,6 +11,7 @@ license             MIT
 maintainers         {mps @Schamschula} openmaintainer
 description         an open source library for weather radar data processing.
 long_description    {*}${description}
+supported_archs     noarch
 
 checksums           rmd160  7c0f612ca12c0bd5af34e0606dc3f363f717ae02 \
                     sha256  0beaace4031543dc292f3cdee3de15ea038c67d49e04aeac027acf7f80ca3b6a \
