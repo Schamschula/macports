@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                php-composer
-version             2.3.7
+version             2.3.8
 revision            0
 categories          php
 license             MIT
