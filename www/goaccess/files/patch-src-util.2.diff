@@ -1,0 +1,14 @@
+diff --git a/src/util.c b/src/util.c
+index c60d072b4..17b73bd9c 100644
+--- src/util.c
++++ src/util.c
+@@ -32,8 +32,8 @@
+ #define _LARGEFILE64_SOURCE
+ #define _FILE_OFFSET_BITS 64
+ 
+-#define _XOPEN_SOURCE     700
+ #define _GNU_SOURCE
++#define _BSD_SOURCE
+ 
+ #include <arpa/inet.h>
+ #include <ctype.h>
