@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                suricata
-version             6.0.5
+version             6.0.6
 revision            0
 categories          net security
 platforms           darwin
@@ -22,14 +22,15 @@ long_description    Suricata is a high performance Network IDS, IPS \
 homepage            https://suricata-ids.org/
 master_sites        https://www.openinfosecfoundation.org/download/
 
-checksums           rmd160  c82b6215566e336090fa90eac03fe36c0166db28 \
-                    sha256  0d4197047c84ba070dfc6b1d9f9ee92f52a71403bfac0e29b2554bb21fe00754 \
-                    size    32605145
+checksums           rmd160  744db422b7c18002fc423730d9d61a7dbf21bcdc \
+                    sha256  00173634fa76aee636e38a90b1c02616c903e42173107d47b4114960b5fbe839 \
+                    size    32651139
 
 destroot.target     install-full
 
 ## Got both strlcpy/strlcat errors and "error: unknown type name 'json_t'"
 patchfiles          patch-Makefile.am.diff \
+                    patch-doc-userguide-conf.py.diff \
                     patch-src-output-json.h-4.0.diff \
                     patch-src-output-json-alert.h.diff \
                     patch-src-util-profiling-rules.c.diff
