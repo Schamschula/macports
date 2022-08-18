@@ -5,7 +5,7 @@ PortGroup           makefile 1.0
 
 name                giflib5
 version             5.2.1
-revision            2
+revision            3
 set major           [lindex [split ${version} .] 0]
 categories          graphics
 maintainers         {mps @Schamschula} openmaintainer
@@ -26,10 +26,6 @@ checksums           rmd160  bc4be3ddaef877e4fd546b1240fe94dec8ef3e27 \
 set docdir ${prefix}/share/doc/${name}
 
 patchfiles          patch-Makefile.diff
-
-post-patch {
-    reinplace "s|%PREFIX%|${prefix}|" ${worksrcpath}/Makefile
-}
 
 use_configure       no
 
