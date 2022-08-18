@@ -27,6 +27,10 @@ set docdir ${prefix}/share/doc/${name}
 
 patchfiles          patch-Makefile.diff
 
+post-patch {
+    reinplace "s|%PREFIX%|${prefix}|" ${worksrcpath}/Makefile
+}
+
 use_configure       no
 
 use_parallel_build  yes

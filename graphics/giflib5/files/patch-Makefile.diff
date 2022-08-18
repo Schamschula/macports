@@ -1,5 +1,5 @@
 --- Makefile.orig	2019-06-24 11:08:57.000000000 -0500
-+++ Makefile	2022-08-18 08:39:57.000000000 -0500
++++ Makefile	2022-08-18 12:53:24.000000000 -0500
 @@ -14,11 +14,11 @@
  TAR = tar
  INSTALL = install
@@ -9,7 +9,7 @@
 -INCDIR = $(PREFIX)/include
 -LIBDIR = $(PREFIX)/lib
 -MANDIR = $(PREFIX)/share/man
-+PREFIX = /opt/local
++PREFIX = %PREFIX%
 +BINDIR = $(PREFIX)/bin/giflib5/bin
 +INCDIR = $(PREFIX)/include/giflib5
 +LIBDIR = $(PREFIX)/lib/giflib5/lib
