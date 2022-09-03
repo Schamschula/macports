@@ -1,11 +1,20 @@
 --- buildScripts/parser_data.py.orig	2012-09-19 07:58:20.000000000 -0500
-+++ buildScripts/parser_data.py	2019-10-10 15:48:08.000000000 -0500
++++ buildScripts/parser_data.py	2022-09-03 15:28:33.000000000 -0500
 @@ -139,7 +139,7 @@
        if   (parts[0]=="%p"): varcount += 2 # Position vectors require 2 or 3 slots
        elif (parts[0]=="%P"): varcount += 3
        else                 : varcount += 1 # Varcount keeps track of the slot number to place the next variable in
 -    elif (parts[0] in ["%p","%P"]): print "Danger in command %s: sharing position variable name with other variables of different lengths"%directive
-+    elif (parts[0] in ["%p","%P"]): print "Danger in command %s: sharing position variable name with other variables of different lengths %directive"
++    elif (parts[0] in ["%p","%P"]): print ("Danger in command %s: sharing position variable name with other variables of different lengths %directive")
      outnum = varnames[varname]
      parts.append("%s"%outnum) # parts[4] = slot number
      if word.startswith("]:"):
+@@ -155,7 +155,7 @@
+   for i,j in varnames.iteritems():
+    if '%' not in directive:
+     key = "PARSE_%s_%s%s"%(directive,setoption,sanitize(i))
+-    if (key in includeKeys) and (includeKeys[key]!=j): print "Repetition of key %s"%key
++    if (key in includeKeys) and (includeKeys[key]!=j): print ("Repetition of key %s"%key)
+     includeKeys[key] = j
+     f_h.write("#define %s %d\n"%(key,j)) # Write #defines to convert variable names into slot numbers
+ 
