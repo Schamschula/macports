@@ -5,7 +5,7 @@ PortGroup           github 1.0
 
 name                mod_security3
 set name_package    modsecurity
-github.setup        SpiderLabs ${name_package} 3.0.7 v
+github.setup        SpiderLabs ${name_package} 3.0.8 v
 revision            0
 categories          www security
 license             Apache-2
@@ -21,9 +21,9 @@ homepage            https://github.com/SpiderLabs/ModSecurity
 github.tarball_from releases
 distname            ${name_package}-v${version}
 
-checksums           rmd160  1e488dbe74d12366a47b2746188230ce7b3ce1a6 \
-                    sha256  cfd8b7e7e6a0e9ca4e19b9adeb07594ba75eba16a66da5e9b0974c0117c21a34 \
-                    size    3333372
+checksums           rmd160  45ed1d78f6c298b1e3696d1be5c5be2d3c99944e \
+                    sha256  e241c89b3cd7e58a863d0d0d6b9b8ba4d33ffb0f51171044c258c62e3e7956c7 \
+                    size    3336288
 
 depends_build       port:pkgconfig
 
