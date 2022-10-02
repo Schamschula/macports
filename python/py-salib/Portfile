@@ -4,8 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-salib
-python.rootname     SALib
-version             1.4.5
+version             1.4.6
 revision            0
 categories          python
 license             MIT
@@ -16,24 +15,21 @@ long_description    {*}${description} Useful in systems modeling to calculate th
 supported_archs     noarch
 homepage            http://salib.github.io/SALib/
 
-checksums           rmd160  258e0574fe5a50da1fa2fbfe13d8ca6f33168850 \
-                    sha256  cf396176e30ded57ad67d0d154f917689f8f73ef5cc1dcd38d4796f43610d925 \
-                    size    907661
+checksums           rmd160  785c640f6e989ef3b4313c62fe363f2c1e413b27 \
+                    sha256  14337239f1e92960e8f53774c27b1d072253790b57edbbebd290057a5eeb3858 \
+                    size    708158
 
-python.versions     37 38 39
+python.versions     37 38 39 310
 
 if {${name} ne ${subport}} {
-    depends_build-append \
-                    port:py${python.version}-pip \
-                    port:py${python.version}-setuptools_scm \
-                    port:py${python.version}-wheel
+    python.pep517   yes
+    python.pep517_backend \
+                    hatchling
 
     depends_lib-append \
                     port:py${python.version}-matplotlib \
+                    port:py${python.version}-multiprocess \
                     port:py${python.version}-numpy \
-                    port:py${python.version}-pyobjc \
-                    port:py${python.version}-pyscaffold32 \
+                    port:py${python.version}-pandas \
                     port:py${python.version}-scipy
-
-    livecheck.type  none
 }
