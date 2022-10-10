@@ -7,14 +7,14 @@ PortGroup       conflicts_build 1.0
 set using_muniversal_PG false
 if {${os.platform} eq "darwin" && ${os.major} < 18} {
 
-	set using_muniversal_PG true
-	PortGroup muniversal 1.0
+    set using_muniversal_PG true
+    PortGroup muniversal 1.0
 
-	merger_must_run_binaries yes
+    merger_must_run_binaries yes
 }
 
 name            libgpg-error
-version         1.45
+version         1.46
 revision        0
 categories      devel
 license         LGPL-2.1+
@@ -31,9 +31,9 @@ master_sites    gnupg
 
 use_bzip2       yes
 
-checksums       rmd160  074680bf2152e5778d0c8231c9bf9e26e3f7c309 \
-                sha256  570f8ee4fb4bff7b7495cff920c275002aea2147e9a1d220c068213267f80a26 \
-                size    1015954
+checksums       rmd160  7e80cbe7c44a9bbedbe5875408546ba1a5bb099f \
+                sha256  b7e11a64246bbe5ef37748de43b245abd72cfcd53c9ae5e7fc5ca59f1c81268d \
+                size    1014291
 
 depends_build   port:gettext
 
@@ -48,9 +48,15 @@ platform darwin 8 {
     configure.cppflags-append -D__DARWIN_UNIX03
 }
 
-if {![info exists universal_possible]} {
-    set universal_possible [expr {${os.universal_supported} && [llength ${configure.universal_archs}] >= 2}]
+platform darwin 10 {
+    # Rosetta misdetects the arch, which creates a problem for dependent libgcrypt.
+    # *** The config script "/opt/local/bin/gpgrt-config --libdir=/opt/local/lib gpg-error" was
+    # *** built for x86_64-apple-darwin10.8.0 and thus may not match the used host powerpc-apple-darwin10.
+    if {${build_arch} eq "ppc"} {
+        configure.args-append --build=powerpc-apple-darwin${os.major}
+    }
 }
+
 if {${universal_possible} && [variant_isset universal] && ${using_muniversal_PG}} {
     # muniversal's *.h merger does not handle \-continued lines properly
     patchfiles-append           patch-gen-posix-lock-obj_c.diff
