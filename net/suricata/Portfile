@@ -4,7 +4,7 @@ PortSystem          1.0
 
 name                suricata
 version             6.0.8
-revision            0
+revision            1
 categories          net security
 platforms           darwin
 maintainers         {mps @Schamschula} openmaintainer
@@ -43,7 +43,7 @@ depends_lib         port:cargo \
                     port:jansson \
                     port:libhtp \
                     port:libiconv \
-                    port:libnet11 \
+                    port:libnet \
                     port:libpcap \
                     port:libmagic \
                     port:libmaxminddb \
