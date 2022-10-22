@@ -5,7 +5,7 @@ PortGroup           active_variants 1.1
 PortGroup           python 1.0
 
 name                HyperKitty
-version             1.3.5
+version             1.3.6
 revision            0
 categories          www
 license             GPL-3
@@ -17,19 +17,20 @@ platforms           darwin
 homepage            https://pypi.org/project/HyperKitty/
 master_sites        pypi:h/hyperkitty
 
-checksums           rmd160  bdfc101a1d4962b40afcec758e2dec7c2decc961 \
-                    sha256  8269222bca481dfb9b6dbc4d766fc3e8bda8ef6d85a6dc5880835874850e9f86 \
-                    size    2488492
+checksums           rmd160  4cf6f51dc2a3fd427c5d887b998124e9347bc02c \
+                    sha256  3b0f60853b46439cd0734519cc8a241e9320d28312f1b8c635f62cb64697cd52 \
+                    size    2727613
 
-variant python37 conflicts python27 python36 python38 python39 description {Use Python 3.7} {}
-variant python38 conflicts python27 python36 python37 python39 description {Use Python 3.8} {}
-variant python39 conflicts python27 python36 python37 python38 description {Use Python 3.9} {}
+variant python37 conflicts python36 python38 python39 python310 description {Use Python 3.7} {}
+variant python38 conflicts python36 python37 python39 python310 description {Use Python 3.8} {}
+variant python39 conflicts python36 python37 python38 python310 description {Use Python 3.9} {}
+variant python310 conflicts python36 python37 python38 python39 description {Use Python 3.10} {}
 
-if {![variant_isset python37] && ![variant_isset python38]} {
-    default_variants +python39
+if {![variant_isset python37] && ![variant_isset python38] && ![variant_isset python39]} {
+    default_variants +python310
 }
 
-foreach pv {39 38 37} {
+foreach pv {310 39 38 37} {
     if {[variant_isset python${pv}]} {
         python.default_version ${pv}
         break
