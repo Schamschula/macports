@@ -1,15 +1,15 @@
---- setup.cfg.orig	2022-04-21 19:33:58.000000000 -0500
-+++ setup.cfg	2022-04-25 07:30:33.000000000 -0500
+--- setup.cfg.orig	2022-10-24 16:09:03.000000000 -0500
++++ setup.cfg	2022-10-24 18:29:49.000000000 -0500
 @@ -1,9 +1,9 @@
  [install]
 -home = /home/weewx
 -prefix = 
--exec-prefix = 
+-exec_prefix = 
 -install_lib = %(home)s/bin
 -install_scripts = %(home)s/bin
 +#home = /home/weewx
 +prefix = %%PREFIX%%
-+exec-prefix = %(prefix)s/bin
++exec_prefix = %(prefix)s/bin
 +install_lib = %(prefix)s/bin
 +install_scripts = %(prefix)s/bin
  
