@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 set real_name       mailman
 name                ${real_name}3
-version             3.3.5
+version             3.3.6
 revision            0
 categories-append   mail
 
@@ -26,21 +26,22 @@ distfiles           ${real_name}-${version}${extract.suffix}
 
 conflicts           mailman
 
-checksums           rmd160  6a2c70de727ee0037785dae720f5784a06a0007d \
-                    sha256  9fb38d9b516d9fdeb9c9f961a7630330cda46c490b91defc94b2c16683eeaf8a \
-                    size    1771305
+checksums           rmd160  8c60abec7ff70e834037a61e4642501afb515195 \
+                    sha256  0d2ece475c020ad9d063d70f3637c86a31df0d48a0148f8ed6c8b9481e8e5d63 \
+                    size    1628026
 
 worksrcdir          ${real_name}-${version}
 
-variant python37 conflicts python27 python36 python38 python39 description {Use Python 3.7} {}
-variant python38 conflicts python27 python36 python37 python39 description {Use Python 3.8} {}
-variant python39 conflicts python27 python36 python37 python38 description {Use Python 3.9} {}
+variant python37 conflicts python36 python38 python39 python310 description {Use Python 3.7} {}
+variant python38 conflicts python36 python37 python39 python310 description {Use Python 3.8} {}
+variant python39 conflicts python36 python37 python38 python310 description {Use Python 3.9} {}
+variant python310 conflicts python36 python37 python38 python39 description {Use Python 3.10} {}
 
-if {![variant_isset python37] && ![variant_isset python38]} {
-    default_variants +python39
+if {![variant_isset python37] && ![variant_isset python38] && ![variant_isset python39]} {
+    default_variants +python310
 }
 
-foreach pv {39 38 37} {
+foreach pv {310 39 38 37} {
     if {[variant_isset python${pv}]} {
         python.default_version ${pv}
         break
