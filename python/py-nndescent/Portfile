@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-nndescent
 python.rootname     pynndescent
-version             0.5.7
+version             0.5.8
 revision            0
 categories          python
 license             BSD
@@ -16,14 +16,14 @@ long_description    {*}${description} It provides a python implementation of Nea
                     Neighbor Descent for k-neighbor-graph construction and approximate \
                     nearest neighbor search.
 supported_archs     noarch
+platforms           {darwin any}
 homepage            https://github.com/lmcinnes/pynndescent
 
-# Note the py310 subport cannot be built as py310-numba is unsupported
-python.versions     37 38 39
+python.versions     37 38 39 310
 
-checksums           rmd160  76dd02384a88667ae2465c2a9f807ab06291b871 \
-                    sha256  ecb395255fa36a748b5870b4ba0300ea0f7da8b1964864b8edd62577a84dfd7d \
-                    size    1136439
+checksums           rmd160  915719fdeb8f6263184135e47740bf411e7449cf \
+                    sha256  a7c552569bf604a101fd54bba1d27c12389e065945dee3a6777a518c63a46f2b \
+                    size    1138925
 
 if {${name} ne ${subport}} {
     depends_build-append \
@@ -36,6 +36,4 @@ if {${name} ne ${subport}} {
                     port:py${python.version}-numba \
                     port:py${python.version}-scikit-learn \
                     port:py${python.version}-scipy
-
-    livecheck.type  none
 }
