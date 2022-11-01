@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           github 1.0
 
-github.setup        lukas2511 dehydrated 0.7.0 v
+github.setup        lukas2511 dehydrated 0.7.1 v
 categories          security
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
@@ -14,9 +14,9 @@ long_description    This is a client for signing certificates with an ACME-serve
                     relatively simple bash-script.
 platforms           darwin
 
-checksums           rmd160  2074c91222e6b396ba8be91af124038cf073817a \
-                    sha256  33e3edc0015ecc1ef739075e306773ce4f05f56227dcd5d9cef498dbda044ac3 \
-                    size    86597
+checksums           rmd160  6820138d13dfc7a124bc3b5f8ae04bb43ba4fb74 \
+                    sha256  3a27ab237bb2b889596e49edea0a137fde67b253158cd12045b053bed8fa0ca6 \
+                    size    120592
 
 use_configure       no
 build               {}
