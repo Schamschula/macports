@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           github 1.0
 
-github.setup        OISF libhtp 0.5.41
+github.setup        OISF libhtp 0.5.42
 revision            0
 categories          www
 license             Permissive
@@ -13,8 +13,8 @@ description         LibHTP is a security-aware parser for the HTTP protocol and 
 long_description    {*}${description}
 platforms           darwin
 
-checksums           rmd160  968755e782ceae0bd2ce344a59a8b3dcf0c831e5 \
-                    sha256  4ba98b61d97035bfbe761f81adb4ad36e960d2a1116c4f1503be0dd64a4ffa47 \
-                    size    500170
+checksums           rmd160  9b4d7fbd650b087cf9888db30c3c4a9392f625d5 \
+                    sha256  e9a480d9ab9d69e4ba198ea6d57a2f0455ba003c42aa82a2fd95c0d3aad3d3b0 \
+                    size    500529
 
 use_autoreconf      yes
