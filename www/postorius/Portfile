@@ -13,7 +13,8 @@ maintainers         {mps @Schamschula} openmaintainer
 description         The Postorius Django app provides a web user interface to access \
                     GNU Mailman.
 long_description    {*}${description}
-platforms           darwin
+supported_archs     noarch
+platforms           {darwin any}
 homepage            https://pypi.org/project/postorius/
 master_sites        pypi:p/postorius
 
