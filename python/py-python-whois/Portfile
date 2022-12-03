@@ -11,7 +11,8 @@ maintainers         {mps @Schamschula} openmaintainer
 description         A simple importable Python module which will produce parsed WHOIS \
                     data for a given domain.
 long_description    {*}${description}
-platforms           darwin
+supported_archs     noarch
+platforms           {darwin any}
 
 python.versions     37 38 39 310
 
