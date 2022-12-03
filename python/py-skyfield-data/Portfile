@@ -5,12 +5,14 @@ PortGroup           python 1.0
 
 name                py-skyfield-data
 version             4.0.0
-revision            0
+revision            1
 categories          python
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
 description         Data files for py-skyfield
 long_description    {*}${description}
+supported_archs     noarch
+platforms           {darwin any}
 homepage            https://github.com/brunobord/skyfield-data
 
 checksums           rmd160  6cf301af2cebe80931fddfa96d373376d7ffabe0 \
@@ -30,6 +32,6 @@ if {${name} ne ${subport}} {
 Use the loader class to load a local copy of the bsp files. For example
 
 from skyfield.api import Loader
-load = Loader('/opt/local/Library/Frameworks/Python.framework/Versions/${python.branch}/lib/python${python.branch}/site-packages/skyfield_data/data')
+load = Loader('${frameworks_dir}/Python.framework/Versions/${python.branch}/lib/python${python.branch}/site-packages/skyfield_data/data')
     "
 }
