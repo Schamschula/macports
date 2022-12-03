@@ -19,7 +19,8 @@ long_description    Mailman is free software for managing electronic \
                     administer their lists. Mailman supports built-in \
                     archiving, automatic bounce processing, content \
                     filtering, digest delivery, spam filters, and more.
-platforms           darwin
+supported_archs     noarch
+platforms           {darwin any}
 homepage            http://www.list.org/
 master_sites        pypi:m/mailman
 distfiles           ${real_name}-${version}${extract.suffix}
