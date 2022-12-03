@@ -13,7 +13,8 @@ description         WeeWX is a free, open source, software program, written in P
                     which interacts with your weather station to produce graphs, \
                     reports, and HTML pages.
 long_description    {*}${description}
-platforms           darwin
+supported_archs     noarch
+platforms           {darwin any}
 homepage            http://weewx.com
 master_sites        ${homepage}/downloads/released_versions/
 
