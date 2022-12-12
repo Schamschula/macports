@@ -81,14 +81,14 @@ platform darwin {
 
         distname    texshopsource[strsed ${version} {/\.//}]
         worksrcdir  ${distname}
-        
+
         post-patch {
             if {${os.major} < 17} {
                 reinplace "s|#define HIGHSIERRAORHIGHER|// #define HIGHSIERRAORHIGHER|g" ${worksrcpath}/Sources/globals.h
             }
             if {${os.major} < 18} {
                 reinplace "s|#define MOJAVEORHIGHER|// #define MOJAVEORHIGHER|g" ${worksrcpath}/Sources/globals.h
-            }           
+            }
         }
 
         livecheck.type  none
