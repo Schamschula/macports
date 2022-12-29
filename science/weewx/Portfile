@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                weewx
 version             4.9.1
-revision            0
+revision            1
 categories          science
 license             GPL-3
 maintainers         {mps @Schamschula} openmaintainer
@@ -44,7 +44,7 @@ depends_lib-append  port:py${python.version}-cheetah \
                     port:py${python.version}-Pillow \
                     port:py${python.version}-pyusb \
                     port:py${python.version}-setuptools \
-                    port:py${python.version}-pyserial
+                    port:py${python.version}-serial
 
 patchfiles          patch-setup.cfg.diff \
                     patch-setup.py.diff
