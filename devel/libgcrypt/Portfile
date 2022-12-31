@@ -7,7 +7,7 @@ PortGroup       muniversal 1.0
 
 name            libgcrypt
 version         1.10.1
-revision        0
+revision        1
 categories      devel security
 # libs are LGPL, executables and docs are GPL
 license         {GPL-2+ LGPL-2.1+}
@@ -36,7 +36,7 @@ configure.args  --disable-asm
 configure.cflags-append "-std=gnu89"
 
 # Some versions of gcc fail to build this for i386 including:
-#     gcc-4.0 from Xcode 3.1.6 (5493) -- Note that gcc-4.0 from Xcode 2.5 (5370) works 
+#     gcc-4.0 from Xcode 3.1.6 (5493) -- Note that gcc-4.0 from Xcode 2.5 (5370) works
 #     gcc-4.2 from Xcode 3.1.6 (5577)
 #     gcc-4.2 from Xcode 3.2.6 (5666.3)
 # rijndael.c: In function 'do_aesni_ctr':
@@ -47,6 +47,13 @@ if {${build_arch} eq "i386" || ([variant_isset universal] && [lsearch ${configur
         compiler.blacklist-append gcc-4.0
     }
     compiler.blacklist-append gcc-4.2
+}
+
+platform darwin 10 {
+    # Rosetta misdetects the arch: warning: `-no-install' is ignored for x86_64-apple-darwin10.8.0
+    if {${build_arch} eq "ppc"} {
+        configure.args-append --build=powerpc-apple-darwin${os.major}
+    }
 }
 
 if {[string match "*clang*" ${configure.compiler}]} {
@@ -62,6 +69,24 @@ use_parallel_build  yes
 post-patch {
     if {[variant_exists universal] && [variant_isset universal]} {
         reinplace "s/@LIBGCRYPT_CONFIG_HOST@/${os.arch}-apple-darwin${os.major}/" ${worksrcpath}/src/libgcrypt-config.in
+    }
+}
+
+# strip host= from pkgconfig file https://trac.macports.org/ticket/63635
+# could be added to muniversal PG but Ryan asked that it remain in each Port needing it
+# so that upstream could be notified and fix it properly
+post-build {
+    if {[variant_exists universal] && [variant_isset universal]} {
+        set dirs {}
+        foreach arch ${universal_archs_to_use} {
+            lappend dirs ${worksrcpath}-${arch}
+        }
+    } else {
+        set dirs ${worksrcpath}
+    }
+    foreach dir ${dirs} {
+        # Remove architecture-specific differences to allow merging.
+        reinplace -E {s|host=[^ ]+||g}               ${dir}/src/libgcrypt.pc
     }
 }
 
