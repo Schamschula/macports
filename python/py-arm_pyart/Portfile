@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-arm_pyart
-version             1.14.1
+version             1.14.2
 revision            0
 categories-append   science
 license             BSD
