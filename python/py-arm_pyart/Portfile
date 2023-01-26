@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-arm_pyart
-version             1.14.3
+version             1.14.4
 revision            0
 categories-append   science
 license             BSD
@@ -13,9 +13,9 @@ description         The Python ARM Radar Toolkit, Py-ART, is an open source Pyth
 long_description    {*}${description} containing a growing collection of weather radar \
                     algorithms and utilities build on top of the Scientific Python stack.
 
-checksums           rmd160  37ba5a0e3f838340ff3000d34a2ee9508f50c6a6 \
-                    sha256  62b3f38163b8fb14b8db8ecf48e21efc33a4650556a7569201cf2299bcbbd098 \
-                    size    53616408
+checksums           rmd160  5ef325a9e8e737a48690016adcb9816bb5025c3d \
+                    sha256  f67092150b91302a507200d8c8ee3c6b81cc1568d29a68919e1a2f4a5febdb92 \
+                    size    53767924
 
 python.versions     37 38 39 310
 
