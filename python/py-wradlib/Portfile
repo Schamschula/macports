@@ -18,7 +18,7 @@ checksums           rmd160  7c0f612ca12c0bd5af34e0606dc3f363f717ae02 \
                     sha256  0beaace4031543dc292f3cdee3de15ea038c67d49e04aeac027acf7f80ca3b6a \
                     size    261820
 
-python.versions     37 38 39 310
+python.versions     37 38 39 310 311
 
 if {${name} ne ${subport}} {
     depends_build-append \
@@ -31,6 +31,4 @@ if {${name} ne ${subport}} {
                     port:py${python.version}-scipy \
                     port:py${python.version}-semver \
                     port:py${python.version}-xarray
-
-    livecheck.type  none
 }
