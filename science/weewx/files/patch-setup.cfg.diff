@@ -1,17 +1,17 @@
---- setup.cfg.orig	2022-10-24 16:09:03.000000000 -0500
-+++ setup.cfg	2022-10-24 18:29:49.000000000 -0500
-@@ -1,9 +1,9 @@
+--- setup.cfg.orig	2022-10-24 15:14:21.000000000 -0500
++++ setup.cfg	2023-01-30 05:50:40.000000000 -0600
+@@ -6,9 +6,9 @@
+ # windows: c:\Users\weewx
+ 
  [install]
 -home = /home/weewx
--prefix = 
--exec_prefix = 
++#home = /home/weewx
+ 
+-prefix =
+-exec_prefix =
 -install_lib = %(home)s/bin
 -install_scripts = %(home)s/bin
-+#home = /home/weewx
 +prefix = %%PREFIX%%
 +exec_prefix = %(prefix)s/bin
 +install_lib = %(prefix)s/bin
 +install_scripts = %(prefix)s/bin
- 
- [egg_info]
- tag_build = 

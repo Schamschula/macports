@@ -4,8 +4,8 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                weewx
-version             4.9.1
-revision            1
+version             4.10.0
+revision            0
 categories          science
 license             GPL-3
 maintainers         {mps @Schamschula} openmaintainer
@@ -18,20 +18,20 @@ platforms           {darwin any}
 homepage            http://weewx.com
 master_sites        ${homepage}/downloads/released_versions/
 
-checksums           rmd160  3db52b304a41d5c61dcf680ae61dd0f0e6ba7f77 \
-                    sha256  a5b4f8410b15ee4827f53272acb6daa91fb605c558f6ae1c9c5541aebdae14c7 \
-                    size    1863858
+checksums           rmd160  1d0b85928431a45617816d697e845e62bb7abebe \
+                    sha256  ee084e7eb5cce4279dba9e30568ef72e8014ef22dd5f5311129477f9b9db6f0a \
+                    size    1856549
 
-variant python37 conflicts python36 python38 python39 python310 description {Use Python 3.7} {}
-variant python38 conflicts python36 python37 python39 python310 description {Use Python 3.8} {}
-variant python39 conflicts python36 python37 python38 python310 description {Use Python 3.9} {}
-variant python310 conflicts python36 python37 python38 python39 description {Use Python 3.10} {}
+variant python38 conflicts python39 python310 python311 description {Use Python 3.8} {}
+variant python39 conflicts python38 python310 python311 description {Use Python 3.9} {}
+variant python310 conflicts python38 python39 python311 description {Use Python 3.10} {}
+variant python311 conflicts python38 python39 python310 description {Use Python 3.11   } {}
 
-if {![variant_isset python37] && ![variant_isset python38] && ![variant_isset python39]} {
-    default_variants +python310
+if {![variant_isset python38] && ![variant_isset python39] && ![variant_isset python310]} {
+    default_variants +python311
 }
 
-foreach pv {310 39 38 37} {
+foreach pv {311 310 39 38} {
     if {[variant_isset python${pv}]} {
         python.default_version ${pv}
         break
