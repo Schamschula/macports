@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                suricata
-version             6.0.9
+version             6.0.10
 revision            0
 categories          net security
 platforms           darwin
@@ -22,9 +22,9 @@ long_description    Suricata is a high performance Network IDS, IPS \
 homepage            https://suricata-ids.org/
 master_sites        https://www.openinfosecfoundation.org/download/
 
-checksums           rmd160  e71becf0776dff055007b2534c09dacbcb321dc1 \
-                    sha256  3225edcbd0277545b7128df7b71652e6816f3b4978347d2f4fe297d55ed070e8 \
-                    size    27352128
+checksums           rmd160  f6ab70a26a718feab7c5464dcd2b619e4f320304 \
+                    sha256  59bfd1bf5d9c1596226fa4815bf76643ce59698866c107a26269c481f125c4d7 \
+                    size    27374715
 
 destroot.target     install-full
 
