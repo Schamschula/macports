@@ -1,0 +1,29 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-vcrpy
+version             4.2.1
+revision            0
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         This is a Python version of Ruby's VCR library.
+long_description    {*}${description}
+
+checksums           rmd160  b2360d9ff90901a5e12749315d44dc1f241baf57 \
+                    sha256  7cd3e81a2c492e01c281f180bcc2a86b520b173d2b656cb5d89d99475423e013 \
+                    size    78895
+
+python.versions     38 39 310 311
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                    port:py${python.version}-setuptools
+
+    depends_lib-append  \
+                    port:py${python.version}-six \
+                    port:py${python.version}-wrapt \
+                    port:py${python.version}-yaml \
+                    port:py${python.version}-yarl
+}
