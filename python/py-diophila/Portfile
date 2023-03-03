@@ -1,0 +1,28 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-diophila
+version             0.4.0
+revision            0
+license             BSD
+maintainers         {mps @Schamschula} openmaintainer
+description         Python API Wrapper for OpenAlex.
+long_description    {*}${description}
+
+checksums           rmd160  6f786f3f0f9657a8c24757f89eb6d3d9ab2bc7b6 \
+                    sha256  6fcc04c9d707a601ab6b447d6616de9e6fee118fdf4bc4d9e08bf6c4132704e3 \
+                    size    10971
+
+python.versions     38 39 310 311
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                    port:py${python.version}-pytest \
+                    port:py${python.version}-pytest-recording \
+                    port:py${python.version}-setuptools
+
+    depends_lib-append  \
+                    port:py${python.version}-requests
+}
