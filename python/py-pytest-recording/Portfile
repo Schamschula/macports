@@ -1,0 +1,27 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-pytest-recording
+version             0.12.2
+revision            0
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         A pytest plugin that records network interactions in your tests via VCR.py.
+long_description    {*}${description}
+
+checksums           rmd160  381aef40fbdeecbab8e19fe53b79842088839780 \
+                    sha256  7c8949c24e5546a699f8fbbff0c5d6896cd09463378ac3d3f1ebb110d2186847 \
+                    size    19198
+
+python.versions     38 39 310 311
+
+if {${name} ne ${subport}} {
+    python.pep517   yes
+
+    depends_lib-append  \
+                    port:py${python.version}-attrs \
+                    port:py${python.version}-pytest \
+                    port:py${python.version}-vcrpy
+}
