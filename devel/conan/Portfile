@@ -1,0 +1,54 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+PortGroup           python 1.0
+
+github.setup        conan-io conan 2.0.2
+revision            0
+categories          devel python
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         Decentralized, open-source (MIT), C/C++ package manager.
+long_description    {*}${description} 
+homepage            https://conan.io/
+
+checksums           rmd160  1ce07a670bffb3e14cd40881104477ee3ac346e7 \
+                    sha256  d17af5752d494e4c30532e24b84dcc7d56910cf98d1d3bee062c86768d3c3c3f \
+                    size    892790
+
+variant python38 conflicts python39 python310 python311 description {Build using Python 3.8} {}
+variant python39 conflicts python38 python310 python311 description {Build using Python 3.9} {}
+variant python310 conflicts python38 python39 python311 description {Build using Python 3.10} {}
+variant python311 conflicts python38 python39 python310 description {Build using Python 3.11} {}
+
+if {![variant_isset python38] && ![variant_isset python39] && ![variant_isset python310]} {
+    default_variants +python311
+}
+
+foreach pv {311 310 39 38} {
+    if {[variant_isset python${pv}]} {
+        set python.version ${pv}
+        set python.branch [string index ${python.version} 0].[string range ${python.version} 1 end]
+        break
+    }
+}
+
+depends_build-append \
+                    port:py${python.version}-setuptools
+
+depends_lib-append  \
+                    port:py${python.version}-colorama \
+                    port:py${python.version}-dateutil \
+                    port:py${python.version}-distro \
+                    port:py${python.version}-fasteners \
+                    port:py${python.version}-jinja2 \
+                    port:py${python.version}-patch-ng \
+                    port:py${python.version}-requests \
+                    port:py${python.version}-urllib3 \
+                    port:py${python.version}-yaml
+
+post-destroot {
+    ln ${destroot}${prefix}/Library/Frameworks/Python.framework/Versions/${python.branch}/bin/conan \
+        ${destroot}${prefix}/bin/conan
+}
