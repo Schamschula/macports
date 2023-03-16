@@ -52,14 +52,14 @@
  is_path_to_xsocket(const char *display, char *path, size_t pathlen)
  {
  	struct stat sbuf;
---- a/channels.h	2019-10-09 02:31:03.000000000 +0200
-+++ b/channels.h	2019-10-11 11:43:27.000000000 +0200
-@@ -321,6 +321,9 @@ int	 permitopen_port(const char *);
+--- a/channels.h.orig	2023-03-15 16:28:19.000000000 -0500
++++ b/channels.h	2023-03-16 05:46:14.000000000 -0500
+@@ -376,6 +376,9 @@
  /* x11 forwarding */
  
- void	 channel_set_x11_refuse_time(struct ssh *, u_int);
+ void	 channel_set_x11_refuse_time(struct ssh *, time_t);
 +#ifdef __APPLE__
-+int	 is_path_to_xsocket(const char *, char *, size_t);
++  int	 is_path_to_xsocket(const char *, char *, size_t);
 +#endif
  int	 x11_connect_display(struct ssh *);
  int	 x11_create_display_inet(struct ssh *, int, int, int, u_int *, int **);
