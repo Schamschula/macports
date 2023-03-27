@@ -1,8 +1,0 @@
---- src/makefile.slicot.orig	2022-01-16 08:17:03.000000000 -0600
-+++ src/makefile.slicot	2022-10-29 05:48:17.000000000 -0500
-@@ -129,4 +129,4 @@
- 	rm -f *.o
- 
- .f.o: 
--	$(FORTRAN) $(OPTS) -c $<
-+	$(FORTRAN) $(OPTS) -c
