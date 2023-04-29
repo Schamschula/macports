@@ -1,0 +1,14 @@
+--- setup.py.orig	2023-03-16 14:02:33.000000000 -0500
++++ setup.py	2023-04-29 15:30:00.000000000 -0500
+@@ -143,7 +143,10 @@
+         include_dirs=['3rdparty/openjpeg'],
+         libraries=['openjp2', 'lcms2'],
+     ),
+-    'jpeg8': ext(libraries=['jpeg']),
++    'jpeg8': ext(
++        include_dirs=['%PREFIX%/lib/libjpeg-turbo3/include'],
++        libraries=['jpeg'],
++    ),
+     'jpegls': ext(libraries=['charls']),
+     'jpegsof3': ext(
+         sources=['3rdparty/jpegsof3/jpegsof3.cpp'],
