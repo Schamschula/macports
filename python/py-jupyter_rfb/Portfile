@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-jupyter_rfb
-version             0.3.3
+version             0.4.1
 revision            0
 categories          python
 license             MIT
@@ -16,9 +16,9 @@ homepage            https://github.com/vispy/jupyter_rfb
 
 python.versions     38 39 310 311
 
-checksums           rmd160  3b84255742917ecb0e55871fa170b1bbeccd0560 \
-                    sha256  48de3fc13c7a012f586b6713fdef61858e925291775f2b287eb017e00e7fc17d \
-                    size    114890
+checksums           rmd160  fa25cf37e0db442a43e286740c519f0abdda3aac \
+                    sha256  1231417ed3bcb87a804c9e3b06a200696940c9349ec13f9ab08a507d4fd439cb \
+                    size    115061
 
 if {${name} ne ${subport}} {
     depends_build-append \
