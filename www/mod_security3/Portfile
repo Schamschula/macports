@@ -2,11 +2,12 @@
 
 PortSystem          1.0
 PortGroup           github 1.0
+PortGroup             lua 1.0
 
 name                mod_security3
 set name_package    modsecurity
 github.setup        SpiderLabs ${name_package} 3.0.9 v
-revision            0
+revision            1
 categories          www security
 license             Apache-2
 platforms           darwin
@@ -28,15 +29,17 @@ checksums           rmd160  6c14f9849521c5e757e22af3900d5d52e58576b6 \
 depends_build       port:pkgconfig
 
 depends_lib         port:curl \
-                    port:icu \
+                    path:lib/pkgconfig/icu-uc.pc:icu \
                     port:libgeoip \
                     port:libmaxminddb \
                     port:libxml2 \
-                    port:lua \
                     port:lua-luarocks \
                     port:pcre \
                     port:ssdeep \
                     port:yajl
+
+lua.version         5.3
+lua.finds_versioned yes
 
 configure.args      --with-geoip=${prefix} \
                     --with-pcre=${prefix}/bin/pcre-config \
