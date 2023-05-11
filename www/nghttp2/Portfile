@@ -36,7 +36,6 @@ if {${os.platform} eq "darwin" && ${os.major} < 16} {
                     1319.diff
 }
 
-
 use_autoreconf      yes
 configure.checks.implicit_function_declaration.whitelist-append strchr
 
