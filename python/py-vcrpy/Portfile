@@ -4,16 +4,16 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-vcrpy
-version             4.2.1
+version             4.3.0
 revision            0
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
 description         This is a Python version of Ruby's VCR library.
 long_description    {*}${description}
 
-checksums           rmd160  b2360d9ff90901a5e12749315d44dc1f241baf57 \
-                    sha256  7cd3e81a2c492e01c281f180bcc2a86b520b173d2b656cb5d89d99475423e013 \
-                    size    78895
+checksums           rmd160  f23493fa5d4a00b80b9075b8c14374c513a28a49 \
+                    sha256  49c270ce67e826dba027d83e20d25b67a5885487697e97bca6dbdf53d750a0ac \
+                    size    80891
 
 python.versions     38 39 310 311
 
