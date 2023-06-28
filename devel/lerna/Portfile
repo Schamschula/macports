@@ -1,0 +1,24 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           npm 1.0
+
+name                lerna
+version             7.1.1
+revision            0
+categories          devel
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         Lerna is a fast, modern build system for managing and publishing \
+                    multiple JavaScript/TypeScript packages from the same repository.
+long_description    {*}${description}
+
+homepage            https://lerna.js.org
+master_sites        https://registry.npmjs.org/lerna/-/
+
+checksums           rmd160  cfb710b6b8e446910ef8b6a79757be3adfc3e1ad \
+                    sha256  deda327b7608d9d518ae89d32fca556015055bcf6fe67efa1a64ad2e63a3c827 \
+                    size    1079722
+
+npm.nodejs_version  18
+npm.version         9
