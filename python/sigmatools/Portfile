@@ -45,5 +45,5 @@ build.dir           ${worksrcpath}/tools
 
 depends_lib-append  port:py${python.version}-misp \
                     port:py${python.version}-progressbar2 \
-                    port:py${python.version}-ruamel-yaml \
+                    port:py${python.version}-ruamel_yaml \
                     port:py${python.version}-yaml
