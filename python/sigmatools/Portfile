@@ -6,7 +6,7 @@ PortGroup           python 1.0
 
 github.setup        SigmaHQ sigma 0.22
 name                sigmatools
-revision            0
+revision            1
 categories-append   sysutils
 license             LGPL
 maintainers         {mps @Schamschula} openmaintainer
@@ -41,4 +41,7 @@ foreach pv {311 310 39 38} {
 
 build.dir           ${worksrcpath}/tools
 
-depends_lib-append  port:py${python.version}-yaml
+depends_lib-append  port:py${python.version}-misp \
+                    port:py${python.version}-progressbar2 \
+                    port:py${python.version}-ruamel-yaml \
+                    port:py${python.version}-yaml
