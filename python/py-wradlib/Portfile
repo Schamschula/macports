@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-wradlib
 version             1.13.0
-revision            0
+revision            1
 categories          python
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
@@ -30,5 +30,6 @@ if {${name} ne ${subport}} {
                     port:py${python.version}-numpy \
                     port:py${python.version}-scipy \
                     port:py${python.version}-semver \
-                    port:py${python.version}-xarray
+                    port:py${python.version}-xarray \
+                    port:py${python.version}-xmltodict
 }
