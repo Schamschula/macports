@@ -1,0 +1,28 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-ypy
+python.rootname     y_py
+version             0.6.0
+revision            0
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         Python bindings for the Y-CRDT built from yrs (Rust)
+long_description    {*}${description}
+homepage            https://github.com/y-crdt/ypy
+
+checksums           rmd160  3ce8816a48b4656fde8d625bfbfc4da03d5e24ce \
+                    sha256  46836169f7dc2957df8513cfe4bc2009175b3a473e630af421a8e75ee1c48f98 \
+                    size    52897
+
+python.versions     38 39 310 311
+
+patchfiles          patch-pyproject.toml.diff
+
+if {${name} ne ${subport}} {
+    python.pep517   yes
+    python.pep517_backend \
+                    maturin
+}
