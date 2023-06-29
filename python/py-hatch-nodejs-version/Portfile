@@ -1,0 +1,29 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-hatch-nodejs-version
+python.rootname     hatch_nodejs_version
+version             0.3.1
+revision            0
+license             MIT
+supported_archs     noarch
+platforms           {darwin any}
+maintainers         {mps @Schamschula} openmaintainer
+description         This package provides two Hatch plugins: version source plugin and \
+                    metadata hook plugin
+long_description    {*}${description}
+homepage            https://github.com/agoose77/hatch-nodejs-version
+
+checksums           rmd160  a11e7e91a636f72e0c3176879a47300819bdd334 \
+                    sha256  0e55fd713d92c5c1ccfee778efecaa780fd8bcd276d4ca7aff9f6791f6f76d9c \
+                    size    14347
+
+python.versions     38 39 310 311
+
+if {${name} ne ${subport}} {
+    python.pep517   yes
+    python.pep517_backend \
+                    hatch
+}
