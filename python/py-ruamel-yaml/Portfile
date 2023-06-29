@@ -1,0 +1,22 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-ruamel-yaml
+python.rootname     ruamel.yaml
+version             0.17.32
+revision            0
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         ruamel.yaml is a YAML 1.2 loader/dumper package for Python.
+long_description    {*}${description}
+homepage            https://sourceforge.net/p/ruamel-yaml/code/ci/default/tree/
+
+checksums           rmd160  58309f5892bf225d944df0e580ee1e0cb9943d68 \
+                    sha256  ec939063761914e14542972a5cba6d33c23b0859ab6342f61cf070cfc600efc2 \
+                    size    134455
+
+python.versions     38 39 310 311
+
+python.pep517       yes
