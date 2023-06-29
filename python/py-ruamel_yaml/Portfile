@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           python 1.0
 
-name                py-ruamel-yaml
+name                py-ruamel_yaml
 python.rootname     ruamel.yaml
 version             0.17.32
 revision            0
