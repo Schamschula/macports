@@ -1,0 +1,27 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-progressbar2
+version             4.2.0
+revision            0
+license             BSD
+maintainers         {mps @Schamschula} openmaintainer
+description         Text progress bar library for Python
+long_description    {*}${description}
+homepage            https://github.com/WoLpH/python-progressbar
+
+checksums           rmd160  186e4fa16ada93a94cabf8d7f9f782aa2ae9734d \
+                    sha256  1393922fcb64598944ad457569fbeb4b3ac189ef50b5adb9cef3284e87e394ce \
+                    size    650564
+
+python.versions     38 39 310 311
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                    port:py${python.version}-setuptools
+
+    depends_lib-append  \
+                    port:py${python.version}-utils
+}
