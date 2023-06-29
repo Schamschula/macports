@@ -1,0 +1,33 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-jupyter_server_ydoc
+version             0.8.0
+revision            0
+license             BSD
+supported_archs     noarch
+platforms           {darwin any}
+maintainers         {mps @Schamschula} openmaintainer
+description         Jupyter Server YDoc is a Jupyter Server Extension providing support \
+                    for Y documents.
+long_description    {*}${description}
+homepage            https://jupyter.org
+
+checksums           rmd160  436c24dd6d3ad66c07ca1747d4ce10a01fde5a1c \
+                    sha256  a6fe125091792d16c962cc3720c950c2b87fcc8c3ecf0c54c84e9a20b814526c \
+                    size    25769
+
+python.versions     38 39 310 311
+
+if {${name} ne ${subport}} {
+    python.pep517   yes
+    python.pep517_backend \
+                    hatch
+
+    depends_lib-append  \
+                    port:py${python.version}-jupyter_server_fileid \
+                    port:py${python.version}-jupyter_ydoc \
+                    port:py${python.version}-ypy-websocket
+}
