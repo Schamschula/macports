@@ -1,0 +1,30 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-misp
+python.rootname     pymisp
+version             2.4.172
+revision            0
+license             BSD
+maintainers         {mps @Schamschula} openmaintainer
+description         PyMISP is a Python library to access MISP platforms via their REST API.
+long_description    {*}${description} PyMISP allows you to fetch events, add or update \
+                    events/attributes, add or update samples or search for attributes.
+homepage            https://github.com/MISP/PyMISP
+
+checksums           rmd160  af0dfbc214df9483c65a5a25413530292ccb61d0 \
+                    sha256  d81d4a0f3b94c020320e61e43c4eab6eedf292df79b81ed39c50c9170782123c \
+                    size    381045
+
+python.versions     38 39 310 311
+
+if {${name} ne ${subport}} {
+    python.pep517   yes
+    python.pep517_backend \
+                    poetry
+
+    depends_build-append \
+                    port:py${python.version}-poetry-core
+}
