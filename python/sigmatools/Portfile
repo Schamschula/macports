@@ -9,6 +9,8 @@ name                sigmatools
 revision            1
 categories-append   sysutils
 license             LGPL
+supported_archs     noarch
+platforms           {darwin any}
 maintainers         {mps @Schamschula} openmaintainer
 description         Generic Signature Format for SIEM Systems
 long_description    Sigma is a generic and open signature format that allows you to \

@@ -8,6 +8,8 @@ python.rootname     pymisp
 version             2.4.172
 revision            0
 license             BSD
+supported_archs     noarch
+platforms           {darwin any}
 maintainers         {mps @Schamschula} openmaintainer
 description         PyMISP is a Python library to access MISP platforms via their REST API.
 long_description    {*}${description} PyMISP allows you to fetch events, add or update \

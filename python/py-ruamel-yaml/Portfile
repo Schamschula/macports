@@ -8,6 +8,8 @@ python.rootname     ruamel.yaml
 version             0.17.32
 revision            0
 license             MIT
+supported_archs     noarch
+platforms           {darwin any}
 maintainers         {mps @Schamschula} openmaintainer
 description         ruamel.yaml is a YAML 1.2 loader/dumper package for Python.
 long_description    {*}${description}
