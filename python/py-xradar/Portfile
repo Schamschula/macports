@@ -1,0 +1,26 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-xradar
+version             0.2.0
+revision            0
+license             MIT
+supported_archs     noarch
+platforms           {darwin any}
+maintainers         {mps @Schamschula} openmaintainer
+description         Xradar includes all the tools to get your weather radar into the xarray data model.
+long_description    {*}${description}
+homepage            https://github.com/openradar/xradar
+
+checksums           rmd160  c9f78ae383da46d99bf6d1d58312b1a35f946f77 \
+                    sha256  d5bf6bb3234b24ab4dae6dabf337df2d4f96090d65841006273d661d137ceadb \
+                    size    119223
+
+python.versions     39 310 311
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                    port:py${python.version}-setuptools_scm
+}
