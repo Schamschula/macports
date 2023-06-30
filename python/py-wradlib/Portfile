@@ -4,32 +4,33 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-wradlib
-version             1.13.0
-revision            1
+version             1.19.1
+revision            0
 categories          python
 license             MIT
+supported_archs     noarch
+platforms           {darwin any}
 maintainers         {mps @Schamschula} openmaintainer
 description         an open source library for weather radar data processing.
 long_description    {*}${description}
-supported_archs     noarch
-platforms           {darwin any}
+homepage            https://wradlib.org
 
-checksums           rmd160  7c0f612ca12c0bd5af34e0606dc3f363f717ae02 \
-                    sha256  0beaace4031543dc292f3cdee3de15ea038c67d49e04aeac027acf7f80ca3b6a \
-                    size    261820
+checksums           rmd160  bdb7dba7d9a9686a21d9dce08b6f93a32d40838d \
+                    sha256  52f551b5980492c5c545712449677d2c89e6bdd897b22bba89cdbad61986879f \
+                    size    246164
 
-python.versions     37 38 39 310 311
+python.versions     39 310 311
 
 if {${name} ne ${subport}} {
     depends_build-append \
-                    port:py${python.version}-setuptools
+                    port:py${python.version}-packaging \
+                    port:py${python.version}-setuptools_scm
 
     depends_lib-append  \
                     port:py${python.version}-deprecation \
                     port:py${python.version}-matplotlib \
                     port:py${python.version}-numpy \
                     port:py${python.version}-scipy \
-                    port:py${python.version}-semver \
                     port:py${python.version}-xarray \
-                    port:py${python.version}-xmltodict
+                    port:py${python.version}-xradar
 }
