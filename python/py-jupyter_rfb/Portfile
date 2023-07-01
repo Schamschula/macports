@@ -25,7 +25,15 @@ if {${name} ne ${subport}} {
                     port:py${python.version}-setuptools
 
     depends_lib-append  \
-                    port:py${python.version}-ipywidgets \
                     port:py${python.version}-jupyter_packaging \
+                    port:py${python.version}-jupyterlab_widgets \
                     port:py${python.version}-numpy
+
+    patchfiles      patch-js-package.json.diff \
+                    patch-pyproject.toml.diff
+
+    post-patch {
+        reinplace "s|%PV%|${python.branch}|g" \
+            ${worksrcpath}/js/package.json
+    }
 }

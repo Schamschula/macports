@@ -1,0 +1,13 @@
+--- js/package.json.orig	2023-02-20 05:47:49
++++ js/package.json	2023-06-30 16:39:28
+@@ -24,8 +24,8 @@
+     "prepublish": "yarn run clean && yarn run build:prod",
+     "build": "webpack --mode=development && yarn run build:labextension:dev",
+     "build:prod": "webpack --mode=production && yarn run build:labextension",
+-    "build:labextension": "jupyter labextension build .",
+-    "build:labextension:dev": "jupyter labextension build --development True .",
++    "build:labextension": "jupyter-%PV% labextension build .",
++    "build:labextension:dev": "jupyter-%PV% labextension build --development True .",
+     "watch": "webpack --watch --mode=development",
+     "test": "echo \"Error: no test specified\" && exit 1"
+   },
