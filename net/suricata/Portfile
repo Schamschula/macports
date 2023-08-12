@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                suricata
-version             6.0.13
+version             7.0.0
 revision            0
 categories          net security
 platforms           darwin
@@ -22,17 +22,16 @@ long_description    Suricata is a high performance Network IDS, IPS \
 homepage            https://suricata-ids.org/
 master_sites        https://www.openinfosecfoundation.org/download/
 
-checksums           rmd160  8b333b9fd5751418d9f86201cd45a5b9c97109cb \
-                    sha256  e09f2f800d0e0cd2f97f21c505950ccc3dbb9ce5cfe808df9567b6d849a31055 \
-                    size    27411308
+checksums           rmd160  3c928d96f1771f3e73459b9335f148b79a533a97 \
+                    sha256  7bcd1313118366451465dc3f8385a3f6aadd084ffe44dd257dda8105863bb769 \
+                    size    23426302
 
 destroot.target     install-full
 
 ## Got both strlcpy/strlcat errors and "error: unknown type name 'json_t'"
 patchfiles          patch-Makefile.am.diff \
                     patch-src-output-json.h-4.0.diff \
-                    patch-src-output-json-alert.h.diff \
-                    patch-src-util-profiling-rules.c.diff
+                    patch-src-output-json-alert.h.diff 
 
 ## https://redmine.openinfosecfoundation.org/projects/suricata/wiki/Mac_OS_X_106x
 ## FIXME! one deps resolves to libgcc-devel which can conflict w a lot of ports depending on libgcc
@@ -40,7 +39,6 @@ depends_build       port:autoconf \
                     port:automake
 
 depends_lib         port:cargo \
-                    port:jansson \
                     port:libhtp \
                     port:libiconv \
                     port:libnet \
