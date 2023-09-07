@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-ypy-websocket
 python.rootname     ypy_websocket
-version             0.12.2
+version             0.12.3
 revision            0
 license             MIT
 supported_archs     noarch
@@ -15,9 +15,9 @@ description         Ypy-websocket is an async WebSocket connector for Ypy.
 long_description    {*}${description}
 homepage            https://github.com/y-crdt/ypy-websocket
 
-checksums           rmd160  398a66d78430815ee64d6cb88abf62b3d16e2e29 \
-                    sha256  1d0f876e6a586248c54b52735798cc473e5800f8cd4acd050b5d5f20f2ef9bf6 \
-                    size    15348
+checksums           rmd160  158b2714910afca0714792c24939d100e410395e \
+                    sha256  787255b2973d1a561fe8bdd5d1668f09417ff3ac806836435e260e387b927a88 \
+                    size    17052
 
 python.versions     38 39 310 311
 
