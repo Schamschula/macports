@@ -3,8 +3,8 @@
 PortSystem          1.0
 
 name                gipfel
-version             0.4.0
-revision            5
+version             0.4.1
+revision            0
 categories          gis graphics
 license             GPL-3
 maintainers         mps openmaintainer
@@ -19,14 +19,12 @@ platforms           darwin
 homepage            http://flpsed.org/gipfel.html
 master_sites        http://flpsed.org/
 
-checksums           rmd160  34baf7241f4b18d119a5cc0300aa5912284c6de6 \
-                    sha256  30d155b436bdb03f6157d7279f4d342dd811ec85ed4adf1a2677ac3320d889ed \
-                    size    496685
+checksums           rmd160  36f2760a1480bb2b7876373903a9f013ae144c8f \
+                    sha256  a48a3e9b555749d04d82a016a0633203109ea561b03849827ff70b0c2119794d \
+                    size    530209
 
 depends_lib         port:fltk \
                     port:exiv2 \
                     port:gsl \
                     port:jpeg \
                     port:tiff
-
-patchfiles          patch-src-ImageMetaData.cxx.diff
