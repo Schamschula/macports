@@ -48,11 +48,11 @@ if {${name} ne ${subport}} {
     platform darwin {
         if {${os.major} < 13} {
             depends_build-replace \
-                    port:npm9 \
+                    port:npm10 \
                     port:npm8
 
             depends_run-replace \
-                    path:bin/node:nodejs18 \
+                    path:bin/node:nodejs20 \
                     path:bin/node:nodejs14
         }
     }
