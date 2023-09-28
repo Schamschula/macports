@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           python 1.0
 
-github.setup        conan-io conan 2.0.11
+github.setup        conan-io conan 2.0.12
 revision            0
 categories          devel python
 license             MIT
@@ -13,9 +13,9 @@ description         Decentralized, open-source (MIT), C/C++ package manager.
 long_description    {*}${description} 
 homepage            https://conan.io/
 
-checksums           rmd160  ce089aecd5149d836f5763140a0c331058e9323d \
-                    sha256  b0ec2060cb47faeb2462cfcfea64e928a91d799ed4dfe7b2ac6f7e7c7e216df6 \
-                    size    970091
+checksums           rmd160  457a7d05a7712f07ead856af2d1aa2760d8fd8d0 \
+                    sha256  94cbcaa74b008fd619cfe8834439e5822dcdde886edc84e1fde07dce391b55a1 \
+                    size    972376
 
 variant python38 conflicts python39 python310 python311 description {Build using Python 3.8} {}
 variant python39 conflicts python38 python310 python311 description {Build using Python 3.9} {}
