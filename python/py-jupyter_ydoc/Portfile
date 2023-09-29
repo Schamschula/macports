@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-jupyter_ydoc
-version             1.1.0
+version             1.1.1
 revision            0
 license             BSD
 maintainers         {mps @Schamschula} openmaintainer
@@ -13,9 +13,9 @@ description         jupyter_ydoc provides Ypy-based data structures for various 
 long_description    {*}${description}
 homepage            https://github.com/jupyter-server/jupyter_ydoc
 
-checksums           rmd160  fdac7f41d4412497bafa9ea928ea0e0a880429e1 \
-                    sha256  6e248c5688420c60a65e4e70d371c234dec2fc8643be829a483d49b128fe6ed6 \
-                    size    954305
+checksums           rmd160  2719abcb916582ef880644feaefadd50ca3dbb29 \
+                    sha256  00f8b33a6e7d55cbe12b91b87a6a86b673e2933d77c3a1261bba8b24753645dd \
+                    size    954389
 
 python.versions     38 39 310 311
 
