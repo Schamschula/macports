@@ -1,0 +1,26 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-hatch-requirements-txt
+python.rootname     hatch_requirements_txt
+version             0.4.0
+revision            0
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         Hatchling plugin to read project dependencies from requirements.txt
+long_description    {*}${description}
+homepage            https://github.com/repo-helper/hatch-requirements-txt
+
+checksums           rmd160  3b6739156c31beedc4afb63a8ce473b32ca476fd \
+                    sha256  800509946e85d9e56d73242fab223ec36db50372e870a04e2dd1fd9bad98455d \
+                    size    6439
+
+python.versions     38 39 310 311
+
+if {${name} ne ${subport}} {
+    python.pep517   yes
+    python.pep517_backend \
+                    hatch
+}
