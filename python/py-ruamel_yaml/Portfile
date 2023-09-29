@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-ruamel_yaml
 python.rootname     ruamel.yaml
-version             0.17.32
+version             0.17.33
 revision            0
 license             MIT
 supported_archs     noarch
@@ -15,9 +15,9 @@ description         ruamel.yaml is a YAML 1.2 loader/dumper package for Python.
 long_description    {*}${description}
 homepage            https://sourceforge.net/p/ruamel-yaml/code/ci/default/tree/
 
-checksums           rmd160  58309f5892bf225d944df0e580ee1e0cb9943d68 \
-                    sha256  ec939063761914e14542972a5cba6d33c23b0859ab6342f61cf070cfc600efc2 \
-                    size    134455
+checksums           rmd160  9b61e463debad564ee92683ca630f6c00c639d75 \
+                    sha256  5c56aa0bff2afceaa93bffbfc78b450b7dc1e01d5edb80b3a570695286ae62b1 \
+                    size    134943
 
 python.versions     38 39 310 311
 
