@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           python 1.0
 
-github.setup        certbot certbot 2.6.0 v
+github.setup        certbot certbot 2.7.1 v
 revision            0
 categories          security
 license             Apache-2
@@ -16,9 +16,9 @@ supported_archs     noarch
 platforms           {darwin any}
 homepage            https://certbot.eff.org/
 
-checksums           rmd160  eedc65fe561bc628cc46bf26ccbf93f13c85c16b \
-                    sha256  d25e78d3edf952177e77142b332f52481d537cd3646fe418575f30ee77f6e60a \
-                    size    1336178
+checksums           rmd160  6182584d34710121b3db4dd503d3d068aee32b56 \
+                    sha256  66f75c85df1817023feafe2746d4726f766e74996d2905e8d9549a093a2d7002 \
+                    size    1336279
 
 variant python37 conflicts python38 python39 python310 python311 description {Use Python 3.7} {}
 variant python38 conflicts python37 python39 python310 python311 description {Use Python 3.8} {}
@@ -94,8 +94,6 @@ subport ${name}-apache {
                         this plugin on the command line, simply include \"--apache\". \
                         https://certbot.eff.org/docs/using.html\#apache
     build.dir           ${worksrcpath}/${name}-apache
-    supported_archs     noarch
-    platforms           {darwin any}
 
     depends_lib-append  port:mod_perl2 \
                         port:py${python.version}-python-augeas
@@ -110,8 +108,6 @@ subport ${name}-nginx {
                         \"--nginx\" flag on the commandline. \
                         https://certbot.eff.org/docs/using.html\#nginx
     build.dir           ${worksrcpath}/${name}-nginx
-    supported_archs     noarch
-    platforms           {darwin any}
 
     depends_lib-append  port:py${python.version}-parsing
 
@@ -219,8 +215,6 @@ subport ${name}-dns-nsone {
                         TXT records using the NS1 API. \
                         https://certbot-dns-nsone.readthedocs.io/
     build.dir           ${worksrcpath}/${name}-dns-nsone
-    supported_archs     noarch
-    platforms           {darwin any}
     depends_lib-append  port:py${python.version}-dns-lexicon
 }
 
@@ -241,7 +235,6 @@ subport ${name}-dns-rfc2136 {
                         TXT records using RFC 2136 Dynamic Updates. \
                         https://certbot-dns-rfc2136.readthedocs.io/
     build.dir           ${worksrcpath}/${name}-dns-rfc2136
-    supported_archs     noarch
 }
 
 subport ${name}-dns-route53 {
@@ -251,7 +244,6 @@ subport ${name}-dns-route53 {
                         TXT records using the Amazon Web Services Route 53 API. \
                         https://certbot-dns-route53.readthedocs.io/
     build.dir           ${worksrcpath}/${name}-dns-route53
-    supported_archs     noarch
 }
 
 subport ${name}-dns-sakuracloud {
