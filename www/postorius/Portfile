@@ -5,7 +5,7 @@ PortGroup           active_variants 1.1
 PortGroup           python 1.0
 
 name                postorius
-version             1.3.8
+version             1.3.10
 revision            0
 categories-append   www
 license             GPL-3
@@ -18,9 +18,9 @@ platforms           {darwin any}
 homepage            https://pypi.org/project/postorius/
 master_sites        pypi:p/postorius
 
-checksums           rmd160  06cf8b79d7d89e22cf27152cb3ff18e81f16fded \
-                    sha256  d664adf8f571df15090dce49c2b0a62a244d203c1bb238db336162e52833ea1f \
-                    size    3222195
+checksums           rmd160  b751f8bfbc41624be585021e30dab3b005964b60 \
+                    sha256  1a66c8a8efb4dcb81b5312759d34ad5eb60ddedd8c7efcdb7984408a97d35b5a \
+                    size    3491545
 
 variant python38 conflicts python39 python310 python311 description {Use Python 3.8} {}
 variant python39 conflicts python38 python310 python311 description {Use Python 3.9} {}
