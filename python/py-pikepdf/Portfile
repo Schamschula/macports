@@ -6,7 +6,7 @@ PortGroup           python 1.0
 PortGroup           compiler_blacklist_versions 1.0
 
 name                py-pikepdf
-github.setup        pikepdf pikepdf 8.5.2 v
+github.setup        pikepdf pikepdf 8.5.3 v
 revision            0
 categories-append   graphics
 license             MPL-2
@@ -17,9 +17,9 @@ long_description    {*}${description}
 
 python.versions     37 38 39 310 311
 
-checksums           rmd160  5e14100a9c47b02a2bb06b9a9e11a21951ba7889 \
-                    sha256  02351f0252c184dadc630a3345ce1e99eaab33ae3f1a4bde4fe816e673a72f31 \
-                    size    2910599
+checksums           rmd160  4983c13df66c229ab84d787d37c0cf441a858dbc \
+                    sha256  eddd8ad319f0f45d2277a405b0bb73ea09f04d81741a3ac2beca435a56ec40f8 \
+                    size    2911279
 
 if {${name} ne ${subport}} {
     if {${python.version} == 37} {
@@ -29,9 +29,9 @@ if {${name} ne ${subport}} {
         # Stealth Update!
         dist_subdir ${name}/${version}_1
 
-        checksums   rmd160  038686b84614d58392cd8d90581fe1094d38118e \
-                    sha256  e11b9bf95cfd5fe2574cc30c5fc091940c65779582227ebb56bbfa51943c1744 \
-                    size    2906108
+        checksums   rmd160  4983c13df66c229ab84d787d37c0cf441a858dbc \
+                    sha256  eddd8ad319f0f45d2277a405b0bb73ea09f04d81741a3ac2beca435a56ec40f8 \
+                    size    2911279
     }
 
     depends_build-append \
