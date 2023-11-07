@@ -4,21 +4,21 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-jupyter_rfb
-version             0.4.1
+version             0.4.2
 revision            0
 categories          python
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
 description         Remote Frame Buffer for Jupyter
-long_description    {*}${description} 
+long_description    {*}${description}
 supported_archs     noarch
 homepage            https://github.com/vispy/jupyter_rfb
 
 python.versions     38 39 310 311
 
-checksums           rmd160  fa25cf37e0db442a43e286740c519f0abdda3aac \
-                    sha256  1231417ed3bcb87a804c9e3b06a200696940c9349ec13f9ab08a507d4fd439cb \
-                    size    115061
+checksums           rmd160  56a5935f6adf436396c6de97443a94ae3765fd80 \
+                    sha256  d18206a9b869dc9794818ece2b350312ee2780040f0fbeefb48cc99a6fcf673c \
+                    size    116020
 
 if {${name} ne ${subport}} {
     depends_build-append \
