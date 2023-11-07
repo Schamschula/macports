@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-jupyter_events
-version             0.8.0
+version             0.9.0
 revision            0
 license             BSD
 supported_archs     noarch
@@ -18,9 +18,9 @@ long_description    Jupyter Events enables Jupyter Python Applications (e.g. Jup
                     JupyterLab) can listen and respond to these events.
 homepage            https://github.com/jupyter/jupyter_events
 
-checksums           rmd160  fb124a24cebf219d2da91daa521c9091e54adf31 \
-                    sha256  fda08f0defce5e16930542ce60634ba48e010830d50073c3dfd235759cee77bf \
-                    size    60373
+checksums           rmd160  eba080a971cf3e3b31d1c726cce90ae8260683c7 \
+                    sha256  81ad2e4bc710881ec274d31c6c50669d71bbaa5dd9d01e600b56faa85700d399 \
+                    size    60502
 
 python.versions     38 39 310 311
 
