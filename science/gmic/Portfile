@@ -16,7 +16,7 @@ if {${subport} eq "gmic-gimp" || ${subport} eq "gmic-qt"} {
 }
 
 name                gmic
-version             3.3.1
+version             3.3.2
 revision            0
 license             CeCILL
 categories          science graphics
@@ -34,9 +34,12 @@ long_description    G'MIC stands for GREYC's Magic Image Converter. It is \
 homepage            https://gmic.eu
 master_sites        https://gmic.eu/files/source/
 
-checksums           rmd160  5a282e91b2225346513827a72194126a68c7ed1b \
-                    sha256  800326514c9ef5c75e4177b4f51398714fb8117b809181ef7fe7fe30515b3aa2 \
-                    size    18984954
+# stealth update; remove for next release
+dist_subdir         ${dist_subdir}/${version}_1
+
+checksums           rmd160  1dcc23a19c30758bb359e344231b6293a3004c4d \
+                    sha256  d95ead2339c552378cef2947e844d5ec247f3a8485471786395aee10f566f868 \
+                    size    18999452
 
 distfiles           ${name}_${version}${extract.suffix}
 
