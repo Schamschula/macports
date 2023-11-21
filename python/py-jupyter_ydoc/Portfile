@@ -11,6 +11,8 @@ maintainers         {mps @Schamschula} openmaintainer
 description         jupyter_ydoc provides Ypy-based data structures for various documents \
                     used in the Jupyter ecosystem.
 long_description    {*}${description}
+supported_archs     noarch
+platforms           {darwin any}
 homepage            https://github.com/jupyter-server/jupyter_ydoc
 
 checksums           rmd160  2719abcb916582ef880644feaefadd50ca3dbb29 \
