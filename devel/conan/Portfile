@@ -11,6 +11,8 @@ license             MIT
 maintainers         {mps @Schamschula} openmaintainer
 description         Decentralized, open-source (MIT), C/C++ package manager.
 long_description    {*}${description} 
+supported_archs     noarch
+platforms           {darwin any}
 homepage            https://conan.io/
 
 checksums           rmd160  12c7ee37e2e96a813ad99f3707003eddfaf2d9f1 \
