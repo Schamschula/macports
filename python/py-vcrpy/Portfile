@@ -10,7 +10,8 @@ license             MIT
 maintainers         {mps @Schamschula} openmaintainer
 description         This is a Python version of Ruby's VCR library.
 long_description    {*}${description}
-
+supported_archs     noarch
+platforms           {darwin any}
 homepage            https://github.com/kevin1024/vcrpy
 
 checksums           rmd160  352eddb10b06a9eef937f040adefa9b0f99a8cc3 \
