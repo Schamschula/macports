@@ -11,6 +11,8 @@ license             MIT
 maintainers         {mps @Schamschula} openmaintainer
 description         Build tool and bindings loader for node-gyp that supports prebuilds.
 long_description    {*}${description}
+supported_archs     noarch
+platforms           {darwin any}
 homepage            https://github.com/prebuild/node-gyp-build
 
 checksums           rmd160  4aec35e5f98637f554e26212f8e4dd8aa89a8b36 \
