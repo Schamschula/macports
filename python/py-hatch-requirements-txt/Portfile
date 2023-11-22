@@ -11,6 +11,8 @@ license             MIT
 maintainers         {mps @Schamschula} openmaintainer
 description         Hatchling plugin to read project dependencies from requirements.txt
 long_description    {*}${description}
+supported_archs     noarch
+platforms           {darwin any}
 homepage            https://github.com/repo-helper/hatch-requirements-txt
 
 checksums           rmd160  3b6739156c31beedc4afb63a8ce473b32ca476fd \
