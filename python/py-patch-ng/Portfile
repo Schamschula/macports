@@ -1,0 +1,26 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-patch-ng
+version             1.17.4
+revision            0
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         Library to parse and apply unified diffs.
+long_description    {*}${description}
+supported_archs     noarch
+platforms           {darwin any}
+homepage            https://github.com/conan-io/python-patch-ng
+
+checksums           rmd160  b84dd11c0f1339a9c779ff19ec9936f96d59b560 \
+                    sha256  627abc5bd723c8b481e96849b9734b10065426224d4d22cd44137004ac0d4ace \
+                    size    17395
+
+python.versions     38 39 310 311
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                    port:py${python.version}-setuptools
+}
