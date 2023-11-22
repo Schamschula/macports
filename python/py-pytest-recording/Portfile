@@ -11,6 +11,9 @@ license             MIT
 maintainers         {mps @Schamschula} openmaintainer
 description         A pytest plugin that records network interactions in your tests via VCR.py.
 long_description    {*}${description}
+supported_archs     noarch
+platforms           {darwin any}
+homepage            https://github.com/kiwicom/pytest-recording
 
 checksums           rmd160  ee98d69fa0deec8a4255a5c77e6dfc5002d67867 \
                     sha256  b24b707af843341457d9d340328f361eceb0efe980e388341941b4fada3745ca \
