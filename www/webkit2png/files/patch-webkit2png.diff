@@ -1,0 +1,86 @@
+--- webkit2png.orig	2022-11-27 10:50:25.000000000 -0600
++++ webkit2png	2022-11-27 11:14:30.000000000 -0600
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!@PREFIX@/bin/python
+ 
+ # webkit2png - makes screenshots of web pages
+ # http://www.paulhammond.org/webkit2png
+@@ -38,7 +38,7 @@
+     import Quartz
+     import objc
+ except ImportError:
+-    print "Cannot find pyobjc library files.  Are you sure it is installed?"
++    print ("Cannot find pyobjc library files.  Are you sure it is installed?")
+     sys.exit()
+ 
+ 
+@@ -81,13 +81,13 @@
+     def webView_didFailLoadWithError_forFrame_(self, webview, error, frame):
+         if error.code() == Foundation.NSURLErrorCancelled:
+             return
+-        print " ... something went wrong: "+error.localizedDescription()
++        print (" ... something went wrong: "+error.localizedDescription())
+         self.getURL(webview)
+ 
+     def webView_didFailProvisionalLoadWithError_forFrame_(self, webview, error, frame):
+         if error.code() == Foundation.NSURLErrorCancelled:
+             return
+-        print " ... something went wrong: "+error.localizedDescription()
++        print (" ... something went wrong: "+error.localizedDescription())
+         self.getURL(webview)
+ 
+     def makeFilename(self, URL, options):
+@@ -98,7 +98,7 @@
+             try:
+                 import md5
+             except ImportError:
+-                print "--md5 requires python md5 library"
++                print ("--md5 requires python md5 library")
+                 AppKit.NSApplication.sharedApplication().terminate_(None)
+             filename = md5.new(URL).hexdigest()
+         else:
+@@ -161,14 +161,14 @@
+         if self.options.ignore_ssl_check:
+             Foundation.NSURLRequest.setAllowsAnyHTTPSCertificate_forHost_(objc.YES, nsurl.host())
+ 
+-        print "Fetching", nsurl, "..."
++        print ("Fetching", nsurl, "...")
+         self.resetWebview(webview)
+         scriptobject = webview.windowScriptObject()
+         scriptobject.setValue_forKey_(Webkit2PngScriptBridge.alloc().init(), 'webkit2png')
+ 
+         webview.mainFrame().loadRequest_(Foundation.NSURLRequest.requestWithURL_(nsurl))
+         if not webview.mainFrame().provisionalDataSource():
+-            print " ... not a proper url?"
++            print (" ... not a proper url?")
+             self.getURL(webview)
+ 
+     def resetWebview(self, webview):
+@@ -240,7 +240,7 @@
+             el = doc.querySelector_(self.options.selector)
+ 
+             if not el:
+-                print " ... no element matching %s found?" % self.options.selector
++                print (" ... no element matching %s found?" % self.options.selector)
+                 self.getURL(webview)
+                 return
+ 
+@@ -261,7 +261,7 @@
+ 
+         self.saveImages(bitmapdata, filename, self.options)
+ 
+-        print " ... done"
++        print (" ... done")
+         self.getURL(webview)
+ 
+ 
+@@ -388,7 +388,7 @@
+         return
+     if options.filename:
+         if len(args) != 1 or args[0] == "-":
+-            print "--filename option requires exactly one url"
++            print ("--filename option requires exactly one url")
+             return
+ 
+     # deprecated options
