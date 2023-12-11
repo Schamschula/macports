@@ -47,6 +47,7 @@ depends_lib         port:curl \
                     path:lib/libavcodec.dylib:ffmpeg \
                     port:fftw-3 \
                     port:GraphicsMagick \
+                    port:ilmbase \
                     port:imath \
                     port:libheif \
                     path:include/turbojpeg.h:libjpeg-turbo \
