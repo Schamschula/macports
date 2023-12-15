@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-misp
 python.rootname     pymisp
-version             2.4.179
+version             2.4.182
 revision            0
 license             BSD
 supported_archs     noarch
@@ -16,9 +16,9 @@ long_description    {*}${description} PyMISP allows you to fetch events, add or 
                     events/attributes, add or update samples or search for attributes.
 homepage            https://github.com/MISP/PyMISP
 
-checksums           rmd160  9f2f2b7693ab5c707b693912992195734bbdce3d \
-                    sha256  1b676a769dc8415e9393426a13148a9b89bc83a00e1cd9a229f9d98c863e36a5 \
-                    size    398069
+checksums           rmd160  246ebef2787e24c53faf2e829740ee6610b9e9d3 \
+                    sha256  888e848494e04148c8ff5887f04154a2b40f3065c53d93f9cec65f7ca7171362 \
+                    size    398425
 
 python.versions     38 39 310 311
 
