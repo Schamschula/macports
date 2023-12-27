@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-jupyter_server_terminals
-version             0.5.0
+version             0.5.1
 revision            0
 license             BSD
 supported_archs     noarch
@@ -14,9 +14,9 @@ description         Jupyter Server Terminals is a Jupyter Server Extension provi
 long_description    {*}${description}
 homepage            https://github.com/jupyter-server/jupyter_server_terminals
 
-checksums           rmd160  da6d110599a6ed499a61d215a24b17418640a804 \
-                    sha256  ebcd68c9afbf98a480a533e6f3266354336e645536953b7abcc7bdeebc0154a3 \
-                    size    30616
+checksums           rmd160  6fabac8961108682af625bb5bb22708197548648 \
+                    sha256  16d3be9cf48be6a1f943f3a6c93c033be259cf4779184c66421709cf63dccfea \
+                    size    30742
 
 python.versions     38 39 310 311
 
