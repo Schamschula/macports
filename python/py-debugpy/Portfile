@@ -1,0 +1,32 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim: fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-debugpy
+version             1.8.0
+revision            0
+categories-append   devel
+license             MIT
+
+python.versions     38 39 310 311
+
+maintainers         {stromnov @stromnov} openmaintainer
+
+description         Implementation of the Debug Adapter Protocol
+long_description    {*}${description}
+
+homepage            https://aka.ms/debugpy
+
+checksums           rmd160  fa422d9b2db473c7bbc04b40906202cbcc86007a \
+                    sha256  12af2c55b419521e33d5fb21bd022df0b5eb267c3e178f1d374a63a2a6bdccd0 \
+                    size    4824504
+
+if {${name} ne ${subport}} {
+    python.pep517       yes
+
+    use_zip             yes
+
+    depends_build-append \
+                        port:py${python.version}-cython
+}
