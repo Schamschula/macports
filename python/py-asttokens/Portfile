@@ -1,0 +1,33 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim: fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-asttokens
+version             2.4.1
+revision            0
+categories-append   devel
+license             Apache-2
+supported_archs     noarch
+platforms           {darwin any}
+
+python.versions     38 39 310 311 312
+python.pep517       yes
+
+maintainers         {stromnov @stromnov} openmaintainer
+
+description         The asttokens module annotates Python abstract syntax trees (ASTs).
+long_description    {*}${description}
+
+homepage            https://github.com/gristlabs/asttokens
+
+checksums           rmd160  91202d4da29b5b0f9bc935704ba569fe0d5f76b2 \
+                    sha256  b03869718ba9a6eb027e134bfdf69f38a236d681c83c160d510768af11254ba0 \
+                    size    62284
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                        port:py${python.version}-setuptools_scm
+
+    depends_lib-append  port:py${python.version}-six
+}
