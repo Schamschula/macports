@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-jupyter_server_fileid
 version             0.9.1
-revision            0
+revision            1
 license             BSD
 supported_archs     noarch
 platforms           {darwin any}
@@ -18,11 +18,12 @@ checksums           rmd160  ef695b6bcc8085bf531dce75d18f823f4903e83f \
                     sha256  7486bca3acf9bbaab7ce5127f9f64d2df58f5d2de377609fb833291a7217a6a2 \
                     size    54279
 
-python.versions     38 39 310 311
+python.versions     38 39 310 311 312
 
 if {${name} ne ${subport}} {
-    depends_build-append \
-                    port:py${python.version}-setuptools
+    python.pep517   yes
+    python.pep517_backend \
+                    hatch
 
     depends_lib-append  \
                     port:py${python.version}-jupyter_events \
