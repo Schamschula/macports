@@ -1,0 +1,47 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim: fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-jupyter_server
+version             2.12.1
+revision            0
+categories-append   devel
+license             BSD
+supported_archs     noarch
+platforms           {darwin any}
+
+python.versions     37 38 39 310 311
+
+maintainers         {stromnov @stromnov} openmaintainer
+
+description         The Jupyter Server provides the backend for Jupyter web applications.
+long_description    {*}${description}
+
+homepage            https://jupyter.org/
+
+checksums           rmd160  22601fa121a25f31c8a91d6f34fa3488b681c3e1 \
+                    sha256  dc77b7dcc5fc0547acba2b2844f01798008667201eea27c6319ff9257d700a6d \
+                    size    713271
+
+if {${name} ne ${subport}} {
+    python.pep517           yes
+    python.pep517_backend   hatch
+
+    depends_lib-append  port:py${python.version}-anyio \
+                        port:py${python.version}-argon2-cffi \
+                        port:py${python.version}-ipython_genutils \
+                        port:py${python.version}-jinja2 \
+                        port:py${python.version}-jupyter_client \
+                        port:py${python.version}-jupyter_core \
+                        port:py${python.version}-jupyter_events \
+                        port:py${python.version}-jupyter_server_terminals \
+                        port:py${python.version}-nbconvert \
+                        port:py${python.version}-nbformat \
+                        port:py${python.version}-prometheus_client \
+                        port:py${python.version}-send2trash \
+                        port:py${python.version}-terminado \
+                        port:py${python.version}-tornado \
+                        port:py${python.version}-traitlets \
+                        port:py${python.version}-zmq
+}
