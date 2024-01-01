@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-hatch-fancy-pypi-readme
-version             23.2.0
+version             24.1.0
 revision            0
 categories-append   devel
 license             MIT
