@@ -1,0 +1,74 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim: fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-jupyterlab
+version             4.0.10
+revision            0
+categories-append   devel
+license             BSD
+supported_archs     noarch
+platforms           {darwin any}
+
+python.versions     38 39 310 311
+
+maintainers         {stromnov @stromnov} openmaintainer
+
+description         Next-generation web-based notebook environment for \
+                    interactive computing.
+long_description    JupyterLab enables you to work with documents and \
+                    activities such as Jupyter notebooks, text editors, \
+                    terminals, and custom components in a flexible, \
+                    integrated, and extensible manner.
+
+homepage            https://jupyter.org/
+
+checksums           rmd160  ad78b19c470033882a9d27b1a92dd8896d9f539b \
+                    sha256  46177eb8ede70dc73be922ac99f8ef943bdc2dfbc6a31b353c4bde848a35dee1 \
+                    size    18347775
+
+if {${name} ne ${subport}} {
+    python.pep517   yes
+    python.pep517_backend \
+                    hatch
+
+    depends_build-append \
+                    port:py${python.version}-jupyter_packaging
+
+    depends_lib-append \
+                    port:py${python.version}-httpx \
+                    port:py${python.version}-ipykernel \
+                    port:py${python.version}-jinja2 \
+                    port:py${python.version}-jupyter-lsp \
+                    port:py${python.version}-jupyter_core \
+                    port:py${python.version}-jupyterlab_server \
+                    port:py${python.version}-jupyter_server \
+                    port:py${python.version}-notebook_shim \
+                    port:py${python.version}-packaging \
+                    port:py${python.version}-tornado \
+                    port:py${python.version}-traitlets
+
+    if {${python.version} < 311} {
+        depends_lib-append \
+                    port:py${python.version}-tomli
+    }
+
+    if {${python.version} < 310} {
+        depends_lib-append \
+                    port:py${python.version}-importlib-metadata
+    }
+
+    if {${python.version} < 39} {
+        depends_lib-append \
+                    port:py${python.version}-importlib-resources
+    }
+
+#     post-patch {
+#         # relax package requirements
+#         reinplace "s|jupyter_packaging~=0.7.3|jupyter_packaging|" ${worksrcpath}/setup.py
+#         reinplace "s|jupyterlab_server~=2.3|jupyterlab_server|" ${worksrcpath}/setup.py
+#         reinplace "s|jupyter_server~=1.4|jupyter_server|" ${worksrcpath}/setup.py
+#         reinplace "s|nbclassic~=0.2|nbclassic|" ${worksrcpath}/setup.py
+#     }
+}
