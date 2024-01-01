@@ -32,6 +32,8 @@ checksums           rmd160  24e98871a0006d0191e0b75e2d9bab76894a5726 \
 
 if {${name} ne ${subport}} {
     python.pep517       yes
+    python.pep517_backend \
+                        hatch
 
     depends_run-append  port:pygments_select
 
