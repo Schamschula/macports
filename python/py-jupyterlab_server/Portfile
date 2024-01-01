@@ -1,0 +1,39 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim: fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-jupyterlab_server
+version             2.25.2
+revision            0
+categories-append   devel
+license             BSD
+supported_archs     noarch
+platforms           {darwin any}
+
+python.versions     38 39 310 311
+
+maintainers         {stromnov @stromnov} openmaintainer
+
+description         This package is used to launch an application built using JupyterLab.
+long_description    {*}${description}
+
+homepage            https://jupyter.org/
+
+checksums           rmd160  5545976c2568a5c26a73435ca7b7046045eb0e8a \
+                    sha256  bd0ec7a99ebcedc8bcff939ef86e52c378e44c2707e053fcd81d046ce979ee63 \
+                    size    74028
+
+if {${name} ne ${subport}} {
+    python.pep517       yes
+    python.pep517_backend \
+                        hatch
+
+    depends_lib-append  port:py${python.version}-babel \
+                        port:py${python.version}-jinja2 \
+                        port:py${python.version}-json5 \
+                        port:py${python.version}-jsonschema \
+                        port:py${python.version}-jupyter_server \
+                        port:py${python.version}-packaging \
+                        port:py${python.version}-requests
+}
