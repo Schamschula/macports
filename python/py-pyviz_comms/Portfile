@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-pyviz_comms
-version             2.3.2
+version             3.0.0
 revision            0
 categories-append   devel
 license             BSD
@@ -17,21 +17,21 @@ supported_archs     noarch
 platforms           {darwin any}
 homepage            https://github.com/holoviz/pyviz_comms
 
-checksums           rmd160  cf263048fcb1dc9eada8a724bc91997e843915bc \
-                    sha256  542a10fed8242d3a9d468ed0a14d6a2537e589c3f8a7986c79c374591254d6b4 \
-                    size    51347
+checksums           rmd160  69a1d5d12fae3da6b907743ca5ffccec3b8742a7 \
+                    sha256  f4ca91e4157a64e3abed7cc249e60b9a8d2532f8832f1cb075914d19337d2ba6 \
+                    size    194326
 
 python.versions     38 39 310 311 312
 
 if {${name} ne ${subport}} {
     python.pep517   yes
+    python.pep517_backend \
+                    hatch
 
     depends_build-append \
                     port:git \
-                    port:py${python.version}-jupyter_packaging
+                    port:py${python.version}-hatch-nodejs-version
 
     depends_lib-append  \
-                    port:py${python.version}-numpy \
-                    port:py${python.version}-param \
-                    port:py${python.version}-pyobjc
+                    port:py${python.version}-jupyterlab
 }
