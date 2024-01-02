@@ -11,9 +11,9 @@ license             MIT
 supported_archs     noarch
 platforms           {darwin any}
 
-python.versions     38 39 310 311 312
+python.versions     37 38 39 310 311 312
 
-maintainers         nomaintainer
+maintainers         {mps @Schamschula} openmaintainer
 
 description         a Hatch metadata plugin for projects' PyPI landing page
 long_description    {*}${description}
@@ -21,9 +21,9 @@ long_description    {*}${description}
 homepage            https://github.com/hynek/hatch-fancy-pypi-readme
 distname            hatch_fancy_pypi_readme-${version}
 
-checksums           rmd160  205e12aad2cfdcc96173b8f14998e05ece87ce39 \
-                    sha256  2762b31de2c78572f87d82986910ff46b89834d3743fa5fcdefc1d215ab21b24 \
-                    size    28592
+checksums           rmd160  fc3f0fc0216a5470a127f77940fba23a3b29dfb6 \
+                    sha256  44dd239f1a779b9dcf8ebc9401a611fd7f7e3e14578dcf22c265dfaf7c1514b8 \
+                    size    28683
 
 if {${name} ne ${subport}} {
     python.pep517   yes
