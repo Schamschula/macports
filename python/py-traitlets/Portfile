@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-traitlets
-version             5.14.0
+version             5.14.1
 revision            0
 categories-append   devel
 license             BSD
@@ -20,9 +20,9 @@ long_description    {*}${description}
 
 homepage            https://github.com/ipython/traitlets
 
-checksums           rmd160  73941f98cd1a5ab39afba1faa34495c0d0fd3663 \
-                    sha256  fcdaa8ac49c04dfa0ed3ee3384ef6dfdb5d6f3741502be247279407679296772 \
-                    size    160561
+checksums           rmd160  e9b30468619efc2b8732e5246c83ed13fb03c1af \
+                    sha256  8585105b371a04b8316a43d5ce29c098575c2e477850b62b848b964f1444527e \
+                    size    161107
 
 if {${name} ne ${subport}} {
     python.pep517       yes
