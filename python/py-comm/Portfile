@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-comm
-version             0.2.0
+version             0.2.1
 revision            0
 categories-append   devel
 license             BSD
@@ -20,9 +20,9 @@ long_description    {*}${description}
 
 homepage            https://github.com/ipython/comm
 
-checksums           rmd160  0114766616aa60464bb12bc7c2b50a249fbb995c \
-                    sha256  a517ea2ca28931c7007a7a99c562a0fa5883cfb48963140cf642c41c948498be \
-                    size    5788
+checksums           rmd160  0d3576bd1f877d01b0f17d3c78a8487e98652701 \
+                    sha256  0bc91edae1344d39d3661dcbc36937181fdaddb304790458f8b044dbc064b89a \
+                    size    6210
 
 if {${name} ne ${subport}} {
     python.pep517       yes
