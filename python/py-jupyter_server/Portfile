@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-jupyter_server
-version             2.12.1
+version             2.12.2
 revision            0
 categories-append   devel
 license             BSD
@@ -20,9 +20,9 @@ long_description    {*}${description}
 
 homepage            https://jupyter.org/
 
-checksums           rmd160  22601fa121a25f31c8a91d6f34fa3488b681c3e1 \
-                    sha256  dc77b7dcc5fc0547acba2b2844f01798008667201eea27c6319ff9257d700a6d \
-                    size    713271
+checksums           rmd160  94b3e6de00cbba40cc853029525950a21a6d46a4 \
+                    sha256  5eae86be15224b5375cdec0c3542ce72ff20f7a25297a2a8166a250bb455a519 \
+                    size    713700
 
 if {${name} ne ${subport}} {
     python.pep517           yes
