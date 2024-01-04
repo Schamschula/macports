@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-jupyter_core
-version             5.6.1
+version             5.7.0
 revision            0
 license             BSD
 supported_archs     noarch
@@ -19,9 +19,9 @@ long_description    {*}${description}
 
 homepage            https://jupyter.org
 
-checksums           rmd160  5939745836f83f7ee5abfb0577feac23627c1484 \
-                    sha256  5139be639404f7f80f3db6f687f47b8a8ec97286b4fa063c984024720e7224dc \
-                    size    86268
+checksums           rmd160  6aaaca2c1da7c23d210d6faba2e8d2deba840c21 \
+                    sha256  cb8d3ed92144d2463a3c5664fdd686a3f0c1442ea45df8babb1c1a9e6333fe03 \
+                    size    87053
 
 if {${name} ne ${subport}} {
     python.pep517       yes
