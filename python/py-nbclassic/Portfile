@@ -1,0 +1,33 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim: fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-nbclassic
+version             1.0.0
+revision            0
+categories-append   devel
+license             BSD
+supported_archs     noarch
+platforms           {darwin any}
+
+python.versions     37 38 39 310 311
+
+maintainers         {stromnov @stromnov} openmaintainer
+
+description         NBClassic runs the Jupyter Notebook frontend on the Jupyter Server backend.
+long_description    {*}${description}
+
+homepage            https://jupyter.org/
+
+checksums           rmd160  804311fd13d6c41dafdd5481b6acc0f3e58c0010 \
+                    sha256  0ae11eb2319455d805596bf320336cda9554b41d99ab9a3c31bf8180bffa30e3 \
+                    size    20201455
+
+if {${name} ne ${subport}} {
+    python.pep517       yes
+
+    depends_lib-append  port:py${python.version}-babel \
+                        port:py${python.version}-jupyter_server \
+                        port:py${python.version}-notebook
+}
