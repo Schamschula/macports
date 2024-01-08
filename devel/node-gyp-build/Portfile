@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           npm 1.0
 
-github.setup        prebuild node-gyp-build 4.7.1 v
+github.setup        prebuild node-gyp-build 4.8.0 v
 revision            0
 categories          devel
 license             MIT
@@ -15,9 +15,9 @@ supported_archs     noarch
 platforms           {darwin any}
 homepage            https://github.com/prebuild/node-gyp-build
 
-checksums           rmd160  e3d06766bbb33ae94f7d80fd1ff6c1bb440aaa1d \
-                    sha256  90fa676f91832bfe054f4258d4feffae75e9a451aa0b16614d2f7c8a197dcc02 \
-                    size    6670
+checksums           rmd160  5764eee26efc076cfcd00bc3b85373aadea9c9de \
+                    sha256  0ad9edd7290f9ecdc45b1092a596561abe23b3c9ee14731bce7631d84f3e539f \
+                    size    6680
 
 npm.nodejs_version  20
 npm.version         10
