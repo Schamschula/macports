@@ -5,7 +5,7 @@ PortGroup           python 1.0
 PortGroup           select 1.0
 
 name                py-ipython
-version             8.19.0
+version             8.20.0
 revision            0
 categories-append   devel science
 license             BSD
@@ -21,9 +21,9 @@ long_description    {*}${description}
 
 homepage            https://ipython.org/
 
-checksums           rmd160  28cdbe79d19c0d83553dce5e71151900d65035e5 \
-                    sha256  ac4da4ecf0042fb4e0ce57c60430c2db3c719fa8bdf92f8631d6bd8a5785d1f0 \
-                    size    5487746
+checksums           rmd160  6c7d3f134851f43e5029e40d298f6d0d7b1c2205 \
+                    sha256  2f21bd3fc1d51550c89ee3944ae04bbc7bc79e129ea0937da6e6c68bfdbf117a \
+                    size    5488416
 
 if {${name} ne ${subport}} {
     python.pep517       yes
@@ -46,9 +46,9 @@ if {${name} ne ${subport}} {
         version             8.12.2
         revision            0
         distname            ${python.rootname}-${version}
-        checksums           rmd160  daa3d063bff985b885c55c8e9847d22524f7def6 \
-                            sha256  c7b80eb7f5a855a88efc971fda506ff7a91c280b42cdae26643e0f601ea281ea \
-                            size    5466964
+        checksums           rmd160  6c7d3f134851f43e5029e40d298f6d0d7b1c2205 \
+                            sha256  2f21bd3fc1d51550c89ee3944ae04bbc7bc79e129ea0937da6e6c68bfdbf117a \
+                            size    5488416
     }
 
     select.entries      [list ipython py${python.version}-ipython py${python.version}-ipython] \
