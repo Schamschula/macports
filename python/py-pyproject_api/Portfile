@@ -1,0 +1,36 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-pyproject_api
+version             1.6.1
+revision            0
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         API to interact with the python pyproject.toml based projects
+long_description    {*}${description}
+homepage            https://github.com/tox-dev/pyproject-api
+
+checksums           rmd160  98a8de9aab328887fec3cedf08a6494c4b24b7ce \
+                    sha256  1817dc018adc0d1ff9ca1ed8c60e1623d5aaca40814b953af14a9cf9a5cae538 \
+                    size    22507
+
+python.versions     38 39 310 311 312
+
+if {${name} ne ${subport}} {
+    python.pep517       yes
+    python.pep517_backend \
+                        hatch
+
+    depends_build-append \
+                    port:py${python.version}-hatch-vcs
+
+    depends_lib-append  \
+                    port:py${python.version}-packaging
+
+    if {${python.version} < 311} {
+        depends_lib-append \
+                    port:py${python.version}-tomli
+    }
+}
