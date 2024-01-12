@@ -8,6 +8,8 @@ python.rootname     arabic_reshaper
 version             3.0.0
 revision            0
 license             MIT
+supported_archs     noarch
+platforms           {darwin any}
 maintainers         {mps @Schamschula} openmaintainer
 description         Reconstruct Arabic sentences to be used in applications that don't \
                     support Arabic script.
