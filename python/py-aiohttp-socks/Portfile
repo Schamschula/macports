@@ -8,6 +8,8 @@ python.rootname     aiohttp_socks
 version             0.8.4
 revision            0
 license             Apache-2
+supported_archs     noarch
+platforms           {darwin any}
 maintainers         {mps @Schamschula} openmaintainer
 description         The aiohttp-socks package provides a proxy connector for aiohttp.
 long_description    {*}${description} Supports SOCKS4(a), SOCKS5(h), HTTP (tunneling) as \
