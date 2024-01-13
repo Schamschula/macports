@@ -7,6 +7,8 @@ name                py-requests-futures
 version             1.0.1
 revision            0
 license             Apache-2
+supported_archs     noarch
+platforms           {darwin any}
 maintainers         {mps @Schamschula} openmaintainer
 description         Small add-on for the python requests http library.
 long_description    {*}${description} Makes use of python 3.2's concurrent.futures or the backport for prior versions of python.
