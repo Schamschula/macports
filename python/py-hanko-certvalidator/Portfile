@@ -8,6 +8,8 @@ python.rootname     pyhanko-certvalidator
 version             0.26.3
 revision            0
 license             MIT
+supported_archs     noarch
+platforms           {darwin any}
 maintainers         {mps @Schamschula} openmaintainer
 description         This library started as a fork of wbond/certvalidator with patches \
                     for pyHanko, but has since diverged considerably from its parent \
