@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-pyviz_comms
-version             3.0.0
+version             3.0.1
 revision            0
 categories-append   devel
 license             BSD
@@ -17,9 +17,9 @@ supported_archs     noarch
 platforms           {darwin any}
 homepage            https://github.com/holoviz/pyviz_comms
 
-checksums           rmd160  69a1d5d12fae3da6b907743ca5ffccec3b8742a7 \
-                    sha256  f4ca91e4157a64e3abed7cc249e60b9a8d2532f8832f1cb075914d19337d2ba6 \
-                    size    194326
+checksums           rmd160  9200a472da4922b4c9e7c1aa6081e9a69af692a3 \
+                    sha256  427c33a5a81780db9b9e757f0675f65ea2292d9a642a2d291cfb5cae6cd46991 \
+                    size    195282
 
 python.versions     38 39 310 311 312
 
