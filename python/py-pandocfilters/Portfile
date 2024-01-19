@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-pandocfilters
-version             1.5.0
+version             1.5.1
 revision            0
 categories-append   textproc
 platforms           {darwin any}
@@ -20,9 +20,9 @@ long_description    {*}${description}
 
 homepage            https://github.com/jgm/pandocfilters
 
-checksums           rmd160  f4e1fe76256fb5cb9e3dc9c54e02948ad1e864e5 \
-                    sha256  0b679503337d233b4339a817bfc8c50064e2eff681314376a47cb582305a7a38 \
-                    size    8405
+checksums           rmd160  589d8c8806219675ed0d8d79836be15d26c53d7f \
+                    sha256  002b4a555ee4ebc03f8b66307e287fa492e4a77b4ea14d3f934328297bb4939e \
+                    size    8454
 
 if {${name} ne ${subport}} {
     livecheck.type      none
