@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-jupyterlab
-version             4.0.10
+version             4.0.11
 revision            0
 categories-append   devel
 license             BSD
@@ -24,9 +24,9 @@ long_description    JupyterLab enables you to work with documents and \
 
 homepage            https://jupyter.org/
 
-checksums           rmd160  ad78b19c470033882a9d27b1a92dd8896d9f539b \
-                    sha256  46177eb8ede70dc73be922ac99f8ef943bdc2dfbc6a31b353c4bde848a35dee1 \
-                    size    18347775
+checksums           rmd160  9eaedeae30b698c8481697af05e0027d9a404ebd \
+                    sha256  d1aec24712566bc25a36229788242778e498ca4088028e2f9aa156b8b7fdc8fc \
+                    size    18348142
 
 if {${name} ne ${subport}} {
     python.pep517   yes
