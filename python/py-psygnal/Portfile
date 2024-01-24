@@ -6,15 +6,16 @@ PortGroup           python 1.0
 name                py-psygnal
 version             0.9.5
 revision            0
-categories          python
 license             BSD
+platforms           {darwin any}
+supported_archs     noarch
 maintainers         {mps @Schamschula} openmaintainer
 description         Pure python implementation of Qt-style Signals
 long_description    {*}${description}, with (optional) signature and type checking, and \
                     support for threading.
 homepage            https://github.com/tlambert03/psygnal
 
-python.versions     38 39 310 311
+python.versions     38 39 310 311 312
 
 checksums           rmd160  cbf7be49333b7ba8eb52eb394a79700bd78be87f \
                     sha256  4956ea6c36a75f7fc457558935b67dd8be2594661b4d08eeb3357d69c509c55f \
