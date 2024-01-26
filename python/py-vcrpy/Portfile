@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-vcrpy
-version             6.0.0
+version             6.0.1
 revision            0
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
@@ -14,9 +14,9 @@ supported_archs     noarch
 platforms           {darwin any}
 homepage            https://github.com/kevin1024/vcrpy
 
-checksums           rmd160  0ae97b7545152b9051f1af364e039b90942195a9 \
-                    sha256  04fc36b53981b32680d7a860bf4ceca0fbe9948349b2ac7ffd4d8f7324b77006 \
-                    size    84733
+checksums           rmd160  42b610e2e8031ac9a4d43f3946044e52d8c70136 \
+                    sha256  9e023fee7f892baa0bbda2f7da7c8ac51165c1c6e38ff8688683a12a4bde9278 \
+                    size    84836
 
 python.versions     38 39 310 311 312
 
