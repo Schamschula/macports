@@ -5,7 +5,7 @@ PortGroup           python 1.0
 PortGroup           select 1.0
 
 name                py-ipython
-version             8.20.0
+version             8.21.0
 revision            0
 categories-append   devel science
 license             BSD
@@ -21,9 +21,9 @@ long_description    {*}${description}
 
 homepage            https://ipython.org/
 
-checksums           rmd160  6c7d3f134851f43e5029e40d298f6d0d7b1c2205 \
-                    sha256  2f21bd3fc1d51550c89ee3944ae04bbc7bc79e129ea0937da6e6c68bfdbf117a \
-                    size    5488416
+checksums           rmd160  e119b7b313587830181ed3566e33ba6ba6889e1d \
+                    sha256  48fbc236fbe0e138b88773fa0437751f14c3645fb483f1d4c5dee58b37e5ce73 \
+                    size    5490331
 
 if {${name} ne ${subport}} {
     python.pep517       yes
