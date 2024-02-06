@@ -1,0 +1,20 @@
+--- src/configure.orig	2018-06-18 09:57:54
++++ src/configure	2024-01-30 16:52:13
+@@ -3137,7 +3137,7 @@
+ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+ 
+-#include "ov-scalar.h"
++#include "octave-8.4.0/octave/ov-scalar.h"
+ main()
+ {
+   octave_scalar x (1.234);
+@@ -3159,7 +3159,7 @@
+ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+ 
+-#include "ov-scalar.h"
++#include "octave-8.4.0/octave/ov-scalar.h"
+ #include "ovl.h"
+ #include "parse.h"
+ main()
