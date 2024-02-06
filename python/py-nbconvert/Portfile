@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-nbconvert
-version             7.14.2
+version             7.15.0
 revision            0
 categories-append   textproc
 license             BSD
@@ -45,9 +45,9 @@ distfiles           ${main_distfile}:main \
                     ${dark_distfile}:dark
 
 checksums           ${main_distfile} \
-                    rmd160  ff3e200769d28d5ba2f446ba221238dcd5f0be15 \
-                    sha256  a7f8808fd4e082431673ac538400218dd45efd076fbeb07cc6e5aa5a3a4e949e \
-                    size    852202 \
+                    rmd160  2b1e14e046fc7ac633b6ba2611702922205555ba \
+                    sha256  ff3f54a1a5e1e024beb9fde8946d05b6d0bf68cd14b5f2f9dc5b545c8bc71055 \
+                    size    853363 \
                     ${style_distfile} \
                     rmd160  05b48b82351654a627bb3a7815bd3808cacdc431 \
                     sha256  5865a609f4437b0464bc121cd567b619074e540a0515a3b82f222f764eb51e01 \
