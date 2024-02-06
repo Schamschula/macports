@@ -1,15 +1,12 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:et:sw=4:ts=4:sts=4
 
 PortSystem          1.0
-PortGroup           github 1.0
 PortGroup           octave 1.0
 
-set pkg_name        doc
-version             0.5.2
-revision            0
-github.setup        gnu-octave pkg-octave-${pkg_name} ${version} release-
-octave.setup        ${pkg_name} ${version}
-license             GPL-3
+octave.setup        github gnu-octave pkg-octave-doc 0.5.3 release-
+octave.module       doc
+revision            1
+license             GPL-3+
 maintainers         {mps @Schamschula} openmaintainer
 description         Create a function reference from Octave help texts (docstrings) \
                     from single functions or all functions in a package, which can be \
@@ -22,9 +19,12 @@ long_description    {*}${description} The generated pages follow the template of
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  f1d076bfc242b2fa14f384ec112e1c5b9cdaec53 \
-                    sha256  b93fc619113187879af77c578305ba213f7df869c2458b7a47c39ac5eba824c6 \
-                    size    155365
+# Remove when updating to the next version
+dist_subdir         ${name}/${version}_${revision}
+
+checksums           rmd160  465b619f80320fd185a176ffb0bc2205b430af7d \
+                    sha256  b08cd7f172d4209ccc4618c254e7106caa33733167b0788d8e3169b21ffc3a03 \
+                    size    156286
 
 depends_lib         port:git \
                     port:texi2html
