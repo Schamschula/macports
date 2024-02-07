@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-jsonschema
-version             4.20.0
+version             4.21.1
 revision            0
 categories-append   devel
 license             MIT
@@ -22,9 +22,9 @@ long_description    {*}${description}
 
 homepage            https://github.com/python-jsonschema/jsonschema
 
-checksums           rmd160  d3809a9d155cf5842885e9b5615911097edf39b6 \
-                    sha256  4f614fd46d8d61258610998997743ec5492a648b33cf478c1ddc23ed4598a5fa \
-                    size    320243
+checksums           rmd160  09d7c7f8504b54fbf4aac3a7c48726df90f377d3 \
+                    sha256  85727c00279f5fa6bedbe6238d2aa6403bedd8b4864ab11207d07df3cc1b2ee5 \
+                    size    321491
 
 if {${name} ne ${subport}} {
     python.pep517   yes
