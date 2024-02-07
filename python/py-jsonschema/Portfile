@@ -1,0 +1,61 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-jsonschema
+version             4.20.0
+revision            0
+categories-append   devel
+license             MIT
+supported_archs     noarch
+platforms           {darwin any}
+
+python.versions     38 39 310 311 312
+python.pep517       yes
+python.pep517_backend hatch
+
+maintainers         {stromnov @stromnov} openmaintainer
+
+description         An implementation of JSON Schema validation for Python.
+long_description    {*}${description}
+
+homepage            https://github.com/python-jsonschema/jsonschema
+
+checksums           rmd160  d3809a9d155cf5842885e9b5615911097edf39b6 \
+                    sha256  4f614fd46d8d61258610998997743ec5492a648b33cf478c1ddc23ed4598a5fa \
+                    size    320243
+
+if {${name} ne ${subport}} {
+    python.pep517   yes
+    python.pep517_backend \
+                    hatch
+
+    depends_build-append \
+                        port:py${python.version}-hatch-vcs \
+                        port:py${python.version}-hatch-fancy-pypi-readme
+
+    # CLI depends on pkg_resources.py from setuptools
+    depends_lib-append  port:py${python.version}-attrs \
+                        port:py${python.version}-jsonschema-specifications \
+                        port:py${python.version}-referencing \
+                        port:py${python.version}-rpds-py
+
+   if {${python.version} < 39} {
+        depends_lib-append  port:py${python.version}-importlib-resources \
+                            port:py${python.version}-pkgutil_resolve_name
+    }
+
+    variant format_nongpl description {Build format-nongpl needed for py-jupyterlab_pygments} {
+        depends_lib-append  port:py${python.version}-fqdn \
+                            port:py${python.version}-idna \
+                            port:py${python.version}-isoduration \
+                            port:py${python.version}-jsonpointer \
+                            port:py${python.version}-rfc3339-validator \
+                            port:py${python.version}-rfc3986-validator \
+                            port:py${python.version}-uri-template \
+                            port:py${python.version}-webcolors
+    }
+
+    livecheck.type      none
+}
