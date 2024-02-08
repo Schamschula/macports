@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-ipykernel
-version             6.29.1
+version             6.29.2
 revision            0
 categories-append   devel
 license             BSD
@@ -20,9 +20,9 @@ long_description    {*}${description}
 
 homepage            https://ipython.org/
 
-checksums           rmd160  82185ca7738329a3cb5af314c619eddac864f3a8 \
-                    sha256  1547352b32da95a2761011a8dac2af930c26a0703dfa07690d16b7d74dac0ba1 \
-                    size    161082
+checksums           rmd160  57d1d5081cdc0b0198af0afb27c6e3ab586f268f \
+                    sha256  3bade28004e3ff624ed57974948116670604ac5f676d12339693f3142176d3f0 \
+                    size    161175
 
 if {${name} ne ${subport}} {
     python.pep517       yes
