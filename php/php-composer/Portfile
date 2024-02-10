@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                php-composer
-version             2.7.0
+version             2.7.1
 revision            0
 categories          php
 license             MIT
@@ -21,14 +21,15 @@ checksums           installer \
                     sha256  f0b0b57181bb740bab692ab66567a51480b99ebde864f2fe9d21f77f558fa690 \
                     size    58140 
 
-variant php81 conflicts php74 php80 php82 description {Use php 8.1} {}
-variant php82 conflicts php74 php80 php81 description {Use php 8.2} {}
+variant php81 conflicts php82 php83 description {Use php 8.1} {}
+variant php82 conflicts php81 php83 description {Use php 8.2} {}
+variant php83 conflicts php81 php82 description {Use php 8.3} {}
 
-if {![variant_isset php82]} {
+if {![variant_isset php82] && ![variant_isset php83]} {
     default_variants +php81
 }
 
-foreach pv {81 82} {
+foreach pv {81 82 83} {
     if {[variant_isset php${pv}]} {
         set php_branch ${pv}
         break
