@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 PortGroup           github 1.0
 
-github.setup        dpranke pyjson5 0.9.14 v
+github.setup        dpranke pyjson5 0.9.17 v
 revision            0
 name                py-json5
 
@@ -19,9 +19,9 @@ long_description \
   ${description}. JSON5 extends the JSON data interchange format to make it \
   slightly more usable as a configuration language.
 
-checksums           rmd160  0ba2c73b37d4a1830fb69f23e267fde95fb99373 \
-                    sha256  b174b2b9598e0bdd76b2721118fedafa22faf2ba62fd788ae2d392d7a9cfae97 \
-                    size    111709
+checksums           rmd160  677ab8f8146a3ba1735758d1e2cd3b89028f049c \
+                    sha256  064206daad71ae4ffac41a88a8390564afd60bac42723c820d31df4e692ee194 \
+                    size    112178
 
 if {${subport} ne ${name}} {
     python.pep517   yes
