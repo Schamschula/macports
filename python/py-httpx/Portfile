@@ -5,7 +5,7 @@ PortGroup           python 1.0
 PortGroup           select 1.0
 
 name                py-httpx
-version             0.26.0
+version             0.27.0
 revision            0
 platforms           {darwin any}
 license             BSD
@@ -17,9 +17,9 @@ long_description    {*}${description}
 supported_archs     noarch
 homepage            https://github.com/encode/httpx
 
-checksums           rmd160  6225fd4c0a6f575a298c55885e891947f78973ad \
-                    sha256  451b55c30d5185ea6b23c2c793abf9bb237d2a7dfb901ced6ff69ad37ec1dfaf \
-                    size    125671
+checksums           rmd160  8305340ac344ee9fa777306bb4ecf035fa76dd34 \
+                    sha256  a0cb88a46f32dc874e04ee956e4c2764aba2aa228f650b06788ba6bda2962ab5 \
+                    size    126413
 
 python.versions     38 39 310 311 312
 
