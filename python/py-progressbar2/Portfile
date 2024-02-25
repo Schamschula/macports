@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-progressbar2
-version             4.3.2
+version             4.4.1
 revision            0
 license             BSD
 supported_archs     noarch
@@ -14,9 +14,9 @@ description         Text progress bar library for Python
 long_description    {*}${description}
 homepage            https://github.com/WoLpH/python-progressbar
 
-checksums           rmd160  b64cb56078873ff64e525b2565a487e4ebeed650 \
-                    sha256  c37e6e1b4e57ab43f95c3d0e8d90061bec140e4fed56b8343183db3aa1e19a52 \
-                    size    92504
+checksums           rmd160  569d78d301ef290625736c4d94be03506cc26131 \
+                    sha256  97d323ba03ad3d017a4d047fd0b2d3e733c5a360c07f87d269f96641c3de729f \
+                    size    101229
 
 python.versions     38 39 310 311 312
 
