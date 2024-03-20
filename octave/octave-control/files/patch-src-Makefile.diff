@@ -1,0 +1,11 @@
+--- src/Makefile.orig	2024-01-03 14:57:08
++++ src/Makefile	2024-03-19 16:31:02
+@@ -11,7 +11,7 @@
+ ifndef FLIBS
+ FLIBS := $(shell $(MKOCTFILE) -p FLIBS)
+ endif
+-LDFLAGS := $(shell $(MKOCTFILE) -p LDFLAGS) $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
++LDFLAGS := $(shell $(MKOCTFILE) -p LDFLAGS) -L%PREFIX%/lib/octave/9.x.x $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
+ 
+ SC_SRC  := slicot/src
+ 

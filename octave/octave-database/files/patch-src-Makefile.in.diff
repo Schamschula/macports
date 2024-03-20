@@ -1,0 +1,11 @@
+--- src/Makefile.in.orig	2019-03-21 10:22:28
++++ src/Makefile.in	2024-03-19 19:01:39
+@@ -44,7 +44,7 @@
+ 
+ CANONICAL_HOST_TYPE := $(shell $(OCTAVE_CONFIG) -p CANONICAL_HOST_TYPE))
+ 
+-EXTRALIBS = 
++EXTRALIBS = $(LDFLAGS)
+ ifneq (,$(findstring mingw,$(CANONICAL_HOST_TYPE)))
+   EXTRALIBS = -lws2_32
+ endif
