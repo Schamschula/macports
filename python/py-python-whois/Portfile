@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-python-whois
-version             0.8.0
+version             0.9.0
 revision            0
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
@@ -14,11 +14,11 @@ long_description    {*}${description}
 supported_archs     noarch
 platforms           {darwin any}
 
-python.versions     37 38 39 310
+python.versions     38 39 310 311 312
 
-checksums           rmd160  c26ef96277a32189cc489d29dd17e16745bc2ebf \
-                    sha256  dd336d3517eace2a7689406db7bb96ada3c5e74327423151aeee3e64225f6220 \
-                    size    109647
+checksums           rmd160  6c92f945e873bb60997cb821c690d2e76ea0fe76 \
+                    sha256  74714734c8efc8a823ee2232a4d4c1207f7389401a3a745603d42adf3e52e621 \
+                    size    114321
 
 if {${name} ne ${subport}} {
     depends_lib-append  \
