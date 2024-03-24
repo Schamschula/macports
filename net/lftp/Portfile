@@ -7,7 +7,6 @@ name                lftp
 version             4.9.2
 revision            5
 categories          net
-platforms           darwin
 maintainers         {mps @Schamschula} openmaintainer
 license             GPL-3+
 
@@ -52,6 +51,9 @@ patchfiles          patch-m4-needtrio.m4.diff \
 # see https://trac.macports.org/ticket/61005
 patchfiles-append   patch-src-lftp.ssl.cc.diff
 
+compiler.blacklist-append \
+                    *gcc-4.0 *gcc-4.2
+
 use_autoconf        yes
 use_automake        yes
 
@@ -88,7 +90,7 @@ post-destroot {
 
 variant tls description {Use GnuTLS instead of OpenSSL} {
     depends_build-append    port:pkgconfig
-    depends_lib-replace     path:lib/libssl.dylib:openssl port:gnutls
+    depends_lib-replace     path:lib/libssl.dylib:openssl path:lib/pkgconfig/gnutls.pc:gnutls
 
     configure.args-replace  --with-openssl --without-openssl
     configure.args-replace  --without-gnutls --with-gnutls
