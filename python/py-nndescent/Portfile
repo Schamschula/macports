@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-nndescent
 python.rootname     pynndescent
-version             0.5.11
+version             0.5.12
 revision            0
 categories          python
 license             BSD
@@ -21,9 +21,9 @@ homepage            https://github.com/lmcinnes/pynndescent
 
 python.versions     38 39 310 311
 
-checksums           rmd160  87cc1d3b19c1e568ec247e8c243bcf4ed2a742a8 \
-                    sha256  6f44ced9d5a9da2c87d9b2fff30bb5308540c0657605e4d5cde7ed3275bbad50 \
-                    size    2974577
+checksums           rmd160  37080b24aa4eb0f06e5cf71caac749c64b7e5597 \
+                    sha256  0736291fcbbedfd5e0a3a280f71a63f8eb2f8bd9670d4c0b51ac1b4d081adf70 \
+                    size    2975875
 
 if {${name} ne ${subport}} {
     depends_build-append \
