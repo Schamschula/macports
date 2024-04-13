@@ -7,7 +7,7 @@ PortGroup           select 1.0
 name                py-abipy
 version             0.9.6
 revision            0
-license             
+license             GPL-2
 maintainers         {mps @Schamschula} openmaintainer
 description         AbiPy is a python library to analyze the results produced by Abinit, \
                     an open-source program for the ab-initio calculations of the \
