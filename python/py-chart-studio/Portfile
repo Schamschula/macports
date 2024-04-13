@@ -1,0 +1,27 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-chart-studio
+version             1.1.0
+revision            0
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         plotly.py is an interactive, open-source, and browser-based \
+                    graphing library for Python 
+long_description    {*}${description} Built on top of plotly.js, plotly.py is a \
+                    high-level, declarative charting library. plotly.js ships with \
+                    over 30 chart types, including scientific charts, 3D graphs, \
+                    statistical charts, SVG maps, financial charts, and more.
+homepage            https://plotly.com/python/
+
+checksums           rmd160  4529467c21b222d71d02c72df0fbc4b42e129ca1 \
+                    sha256  a17283b62470306d77060b200f13f9749c807dd15613c113d36f8d057f5c7019 \
+                    size    51680
+
+python.versions     38 39 310 311 312
+
+if {${name} ne ${subport}} {
+    python.pep517   yes
+}
