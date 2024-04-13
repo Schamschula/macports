@@ -148,15 +148,12 @@ variant libxml2 description {Build with support for libxml2} {
     configure.args-append   --with-libxml2
 }
 
-variant threads description {Build with support for OpenMP threads} {
-    configure.args-append   --enable-openmp
-    configure.fcflags-append -fopenmp
-}
-
 # add support for gsl, yaml?
 
 variant scalapack description {Build with ScaLAPACK for parallel linear algebra} {
     depends_lib-append      port:scalapack
+
+    configure.args-append   LINALG_LDFLAGS="-ld_classic"
 
     if {![mpi_variant_isset]} {
         ui_error "+scalapack requires an MPI variant. Choose +mpich, +mpich_devel, +openmpi, or +openmpi_devel."
@@ -164,6 +161,11 @@ variant scalapack description {Build with ScaLAPACK for parallel linear algebra}
     }
     
     mpi.enforce_variant     scalapack
+}
+
+variant threads description {Build with support for OpenMP threads} {
+    configure.args-append   --enable-openmp
+    configure.fcflags-append -fopenmp
 }
 
 variant tutorials description {Install tutorials} {
