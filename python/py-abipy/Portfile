@@ -1,0 +1,55 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+PortGroup           select 1.0
+
+name                py-abipy
+version             0.9.6
+revision            0
+license             
+maintainers         {mps @Schamschula} openmaintainer
+description         AbiPy is a python library to analyze the results produced by Abinit, \
+                    an open-source program for the ab-initio calculations of the \
+                    physical properties of materials within Density Functional \
+                    Theory and Many-Body perturbation theory.
+long_description    {*}${description}
+homepage            https://github.com/abinit/abipy
+
+checksums           rmd160  db719a30eac57984f404e06ac099aec73fcd55ca \
+                    sha256  dc34c9179b9e53649353b30c1b37f0a36f5ea681fc541d60cafb3f4cf176cddf \
+                    size    16201927
+
+python.versions     38 39 310 311 312
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                    port:py${python.version}-setuptools
+
+    depends_lib-append  \
+                    port:py${python.version}-apscheduler \
+                    port:py${python.version}-chart-studio \
+                    port:py${python.version}-click \
+                    port:py${python.version}-ipython \
+                    port:py${python.version}-matplotlib \
+                    port:py${python.version}-monty \
+                    port:py${python.version}-netcdf4 \
+                    port:py${python.version}-numpy \
+                    port:py${python.version}-pandas \
+                    port:py${python.version}-plotly \
+                    port:py${python.version}-pydispatcher \
+                    port:py${python.version}-pymatgen \
+                    port:py${python.version}-ruamel-yaml \
+                    port:py${python.version}-scipy \
+                    port:py${python.version}-seaborn \
+                    port:py${python.version}-sympy \
+                    port:py${python.version}-tabulate \
+                    port:py${python.version}-tqdm \
+                    port:py${python.version}-yaml
+
+    depends_run-append \
+                    port:abipy_select
+
+    select.group    abipy
+    select.file     ${filespath}/py${python.version}-abipy
+}

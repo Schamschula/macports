@@ -1,0 +1,15 @@
+${prefix}/bin/abiopen.py-3.11
+${prefix}/bin/abicomp.py-3.11
+${prefix}/bin/abiprof.py-3.11
+${prefix}/bin/abidoc.py-3.11
+${prefix}/bin/abistruct.py-3.11
+${prefix}/bin/oncv.py-3.11
+${prefix}/bin/abigui.py-3.11
+${prefix}/bin/abidb.py-3.11
+${prefix}/bin/abiml.py-3.11
+${prefix}/bin/abicheck.py-3.11
+${prefix}/bin/abiw.py-3.11
+${prefix}/bin/abips.py-3.11
+${prefix}/bin/abiview.py-3.11
+${prefix}/bin/abinp.py-3.11
+${prefix}/bin/abirun.py-3.11

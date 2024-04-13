@@ -1,0 +1,15 @@
+bin/abiopen.py-3.12
+bin/abicomp.py-3.12
+bin/abiprof.py-3.12
+bin/abidoc.py-3.12
+bin/abistruct.py-3.12
+bin/oncv.py-3.12
+bin/abigui.py-3.12
+bin/abidb.py-3.12
+bin/abiml.py-3.12
+bin/abicheck.py-3.12
+bin/abiw.py-3.12
+bin/abips.py-3.12
+bin/abiview.py-3.12
+bin/abinp.py-3.12
+bin/abirun.py-3.12
