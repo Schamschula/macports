@@ -1,0 +1,42 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-apscheduler
+python.rootname     APScheduler
+version             3.0.4
+revision            0
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         Advanced Python Scheduler (APScheduler) is a task scheduler and task \
+                    queue system for Python.
+long_description    {*}${description} It can be used solely as a job queuing system if \
+                    you have no need for task scheduling. It scales both up and down, \
+                    and is suitable for both trivial, single-process use cases as well \
+                    as large deployments spanning multiple nodes. Multiple schedulers \
+                    and workers can be deployed to use a shared data store to provide \
+                    both a degree of high availability and horizontal scaling.
+homepage            https://github.com/agronholm/apscheduler
+
+checksums           rmd160  ac2dd0f8eb81ede6776bc5e79c8aed3c119322ec \
+                    sha256  8b9b39e102ad2a003fb8299f306adc225e7f1062af8ea819bb61a1cd8c8552d2 \
+                    size    75229
+
+python.versions     38 39 310 311 312
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                    port:py${python.version}-setuptools_scm
+
+    depends_lib-append  \
+                    port:py${python.version}-anyio \
+                    port:py${python.version}-attrs \
+                    port:py${python.version}-tenacity \
+                    port:py${python.version}-tzlocal
+                    
+    if {${python.version} < 311} {
+        depends_lib-append \
+                    port:py${python.version}-typing_extensions
+    }
+}
