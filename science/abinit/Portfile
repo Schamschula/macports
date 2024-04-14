@@ -5,13 +5,12 @@ PortGroup           mpi 1.0
 PortGroup           linear_algebra 1.0
 
 name                abinit
-version             9.10.5
+version             10.0.3
 revision            0
 categories          science
 platforms           darwin
 license             GPL-3
-maintainers         {gmail.com:cram5431 @mtorrent} \
-                    openmaintainer
+maintainers         {mps @Schamschula} openmaintainer
 
 description         Full-featured atomic-scale first-principles simulation software
 
@@ -32,9 +31,9 @@ long_description    ABINIT is a package whose main program allows one to find th
 homepage            https://www.abinit.org
 master_sites        ${homepage}/sites/default/files/packages
 
-checksums           rmd160  ce3479f44c3f5d7fa2a03f81c33bdd3b92d76d1c \
-                    sha256  a9e0f0e058baa6088ea93d26ada369ccf0fe52dc9d4a865b1c38c20620148cd5 \
-                    size    127955684
+checksums           rmd160  65149caaf4b7295b528b6ee363e2ed27832c0e1c \
+                    sha256  8cd8d255fbd2cd0f88743a546aa35c23562e66b424fa27da0aba77b375b39d95 \
+                    size    129392248
 
 compilers.choose    cc cxx fc
 compilers.allow_arguments_mismatch yes
