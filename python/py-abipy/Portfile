@@ -5,7 +5,7 @@ PortGroup           python 1.0
 PortGroup           select 1.0
 
 name                py-abipy
-version             0.9.6
+version             0.9.7
 revision            0
 license             GPL-2
 maintainers         {mps @Schamschula} openmaintainer
@@ -16,9 +16,9 @@ description         AbiPy is a python library to analyze the results produced by
 long_description    {*}${description}
 homepage            https://github.com/abinit/abipy
 
-checksums           rmd160  db719a30eac57984f404e06ac099aec73fcd55ca \
-                    sha256  dc34c9179b9e53649353b30c1b37f0a36f5ea681fc541d60cafb3f4cf176cddf \
-                    size    16201927
+checksums           rmd160  bcf2eccf0b79d53f899b0cdc0b0dea4d6562519e \
+                    sha256  297976d4044ac2735e8d23b0aa88ed4a175897e37cc006198672c050f47c46e5 \
+                    size    15112303
 
 python.versions     38 39 310 311 312
 
@@ -52,4 +52,23 @@ if {${name} ne ${subport}} {
 
     select.group    abipy
     select.file     ${filespath}/py${python.version}-abipy
+
+notes "
+Please read the following if you are about to use AbiPy for the first time:
+
+AbiPy needs to know about the cluster/computer you are running on.
+This information is provided via two Yaml configuration files: manager.yml and scheduler.yml.
+These files must be located either in ~/.abinit/abipy or in the working directory in which you execute the flow.
+Examples are provided in abipy/data/managers.
+See also the HTML page:
+
+    http://abinit.github.io/abipy/workflows/manager_examples.html
+
+TIPS:
+
+    1) Issue `rehash` in the shell if the AbiPy scripts cannot be found after the installation
+    2) Use `abicheck.py --with-flow` to validate the final configuration before running large calculations.
+
+Have fun!
+"
 }
