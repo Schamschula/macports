@@ -4,8 +4,8 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-jupyter_server_fileid
-version             0.9.1
-revision            1
+version             0.9.2
+revision            0
 license             BSD
 supported_archs     noarch
 platforms           {darwin any}
@@ -14,9 +14,9 @@ description         A Jupyter Server extension providing an implementation of th
 long_description    {*}${description}
 homepage            https://github.com/jupyter-server/jupyter_server_fileid
 
-checksums           rmd160  ef695b6bcc8085bf531dce75d18f823f4903e83f \
-                    sha256  7486bca3acf9bbaab7ce5127f9f64d2df58f5d2de377609fb833291a7217a6a2 \
-                    size    54279
+checksums           rmd160  a7d65b235b93256f1c086e5bf0037560f34f3464 \
+                    sha256  ffb11460ca5f8567644f6120b25613fca8e3f3048b38d14c6e3fe1902f314a9b \
+                    size    54737
 
 python.versions     38 39 310 311 312
 
