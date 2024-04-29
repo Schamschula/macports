@@ -4,21 +4,24 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-python-whois
-version             0.9.3
+python.rootname     python_whois
+version             0.9.4
 revision            0
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
 description         A simple importable Python module which will produce parsed WHOIS \
                     data for a given domain.
 long_description    {*}${description}
+homepage            https://github.com/richardpenman/whois
+
 supported_archs     noarch
 platforms           {darwin any}
 
 python.versions     38 39 310 311 312
 
-checksums           rmd160  d73787f9c0c3e28165dc653dc6fe8e829e5bb050 \
-                    sha256  8dda2c70c0f89f0f8fc48a42370789332bfff679b5fa462048884151d26ca3ce \
-                    size    110577
+checksums           rmd160  506de8a498e84fa08b65be0abb0aba42e42b7f00 \
+                    sha256  77bc7347bf815d65ccd196711c29837652f07585aedad3c3c04dd885651fd7a7 \
+                    size    110584
 
 if {${name} ne ${subport}} {
     depends_lib-append  \
