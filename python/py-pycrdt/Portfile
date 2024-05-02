@@ -1,10 +1,11 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
 
 PortSystem          1.0
+PortGroup           github 1.0
 PortGroup           python 1.0
 
+github.setup        jupyter-server pycrdt 0.8.20 v
 name                py-pycrdt
-version             0.8.19
 revision            0
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
@@ -12,9 +13,9 @@ description         CRDTs based on Yrs.
 long_description    {*}${description}
 homepage            https://github.com/jupyter-server/pycrdt
 
-checksums           rmd160  4e6a09f0e71897cf66ada67ceb4418e0fe44341a \
-                    sha256  1a3f9e8e03de6ef800e34763cd2ca8b01b3c90ec7423a352d551a51004a73d29 \
-                    size    29365
+checksums           rmd160  bbdf39d6258babcc859f3c1e3512dbfd7ebd0b5e \
+                    sha256  71c6c43fef5bf3667f800022afe4be2364797535318787a3a7211cc84d047aaa \
+                    size    24872
 
 python.versions     38 39 310 311 312
 
