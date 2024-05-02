@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-pymatgen
-version             2024.4.13
+version             2024.5.1
 revision            0
 
 categories-append   science
@@ -19,9 +19,9 @@ long_description \
 
 homepage            https://pymatgen.org/
 
-checksums           rmd160  e707b5a725a665808c9288f911dc04d24fecf5eb \
-                    sha256  98b32455121fc6d80f29b49e945448ab709c5520b88a76b90eb707155c6cec02 \
-                    size    7195321
+checksums           rmd160  165ccdf00eb41c0fc9f06e7443f6275a11b96e96 \
+                    sha256  dc5c1e342e7013e70cc5ef3d857fd67147c09c44af42e25c4fddaa4d89979c49 \
+                    size    3008278
 
 python.versions     38 39 310 311 312
 
