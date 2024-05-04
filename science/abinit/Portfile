@@ -5,7 +5,7 @@ PortGroup           mpi 1.0
 PortGroup           linear_algebra 1.0
 
 name                abinit
-version             10.0.3
+version             10.0.5
 revision            0
 categories          science
 platforms           darwin
@@ -31,9 +31,9 @@ long_description    ABINIT is a package whose main program allows one to find th
 homepage            https://www.abinit.org
 master_sites        ${homepage}/sites/default/files/packages
 
-checksums           rmd160  65149caaf4b7295b528b6ee363e2ed27832c0e1c \
-                    sha256  8cd8d255fbd2cd0f88743a546aa35c23562e66b424fa27da0aba77b375b39d95 \
-                    size    129392248
+checksums           rmd160  2349ba0f652b9c4e1b5e04dbd26a4bd33c9c0cad \
+                    sha256  07fed4df03ae32178933373b990bbda4431ea836fc7bebec05b17e4267bb7f4e \
+                    size    129411511
 
 compilers.choose    cc cxx fc
 compilers.allow_arguments_mismatch yes
