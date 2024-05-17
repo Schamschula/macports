@@ -6,11 +6,12 @@ PortGroup           linear_algebra 1.0
 
 name                abinit
 version             10.0.5
-revision            0
+revision            1
 categories          science
 platforms           darwin
 license             GPL-3
-maintainers         {mps @Schamschula} openmaintainer
+maintainers         {gmail.com:cram5431 @mtorrent} \
+                    openmaintainer
 
 description         Full-featured atomic-scale first-principles simulation software
 
@@ -44,9 +45,9 @@ configure.args-append  --enable-gw-dpc
 configure.fcflags-append  -ffree-line-length-none
 configure.optflags  -O3
 
-depends_lib-append      port:libxc4 port:hdf5 port:szip
-compilers.enforce_fortran libxc4 hdf5
-configure.args-append   --with-libxc="${prefix}" --with-hdf5="${prefix}"
+depends_lib-append      port:libxc6 port:hdf5 port:szip
+compilers.enforce_fortran libxc6 hdf5
+configure.args-append   --with-libxc="${prefix}/libexec/libxc6" --with-hdf5="${prefix}"
 mpi.enforce_variant hdf5
 
 depends_lib-append      port:netcdf-fortran
@@ -55,14 +56,6 @@ configure.args-append   --with-netcdf="${prefix}" --with-netcdf-fortran="${prefi
 # check compatibility with MPI? not needed
 
 use_parallel_build  yes
-
-# we need to specify the real path to python-config, configure ignores the symlink
-set python.version  312
-depends_lib-append  port:python${python.version}
-set python.branch   [string index ${python.version} 0].[string range ${python.version} 1 end]
-configure.args-append \
-                    PYTHON=${prefix}/bin/python${python.branch} \
-                    PYTHON_CONFIG=${frameworks_dir}/Python.framework/Versions/${python.branch}/bin/python${python.branch}-config
 
 # We do not need to use ABINIT's own approach to parallel builds, which only is relevant if
 # the "fallbacks" are used, namely if we asked for libxc, wannier90, etc. support
