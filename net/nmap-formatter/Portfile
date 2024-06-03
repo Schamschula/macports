@@ -1,0 +1,23 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           golang 1.0
+
+go.setup            github.com/vdjagilev/nmap-formatter 3.0.0 v
+revision            0
+categories          net
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         A tool that allows you to convert NMAP XML output to html/csv/json/markdown/dot/sqlite.
+long_description    {*}${description}
+
+checksums           rmd160  59e48a6c60039bf41a8142c21bcd8c93ac77d030 \
+                    sha256  07bc846cba6b44d9c4f893c6daa638c647eef46bcea3aca79bcdab28d7116317 \
+                    size    252258
+
+# Allow Go to fetch deps at build time
+go.offline_build    no
+
+destroot {
+    xinstall -m 0755 ${worksrcpath}/${name} ${destroot}${prefix}/bin/
+}
