@@ -17,7 +17,7 @@ checksums           rmd160  3ce8816a48b4656fde8d625bfbfc4da03d5e24ce \
                     sha256  46836169f7dc2957df8513cfe4bc2009175b3a473e630af421a8e75ee1c48f98 \
                     size    52897
 
-python.versions     38 39 310 311
+python.versions     38 39 310 311 312
 
 patchfiles          patch-pyproject.toml.diff
 
