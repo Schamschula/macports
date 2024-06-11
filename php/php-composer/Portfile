@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                php-composer
-version             2.7.6
+version             2.7.7
 revision            0
 categories          php
 license             MIT
@@ -17,16 +17,16 @@ master_sites        ${homepage}
 distfiles           installer
 
 checksums           installer \
-                    rmd160  0c6a03b82d919e3e82603bcb53faae1647acc648 \
-                    sha256  f0b0b57181bb740bab692ab66567a51480b99ebde864f2fe9d21f77f558fa690 \
-                    size    58140 
+                    rmd160  8fc870f3aa02d7ae70e22317ca75f7327ce79480 \
+                    sha256  8586e7c8ce2839946a253a9ca3284e525245c1f82d8bd1e221cef88a59d00a75 \
+                    size    58444
 
 variant php81 conflicts php82 php83 description {Use php 8.1} {}
 variant php82 conflicts php81 php83 description {Use php 8.2} {}
 variant php83 conflicts php81 php82 description {Use php 8.3} {}
 
 if {![variant_isset php82] && ![variant_isset php83]} {
-    default_variants +php81
+    default_variants +php83
 }
 
 foreach pv {81 82 83} {
