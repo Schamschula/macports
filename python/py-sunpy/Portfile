@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-sunpy
-version             5.1.3
+version             5.1.4
 revision            0
 categories          python
 license             BSD
@@ -18,9 +18,9 @@ homepage            https://sunpy.org
 
 python.versions     38 39 310 311 312
 
-checksums           rmd160  e26bf6cd12ec32486777c3bac3bfe684c668ac88 \
-                    sha256  90968f50a7ad15cb71dd21638b37aeb67560312bb210573c5197aed15e5b172f \
-                    size    3662809
+checksums           rmd160  86ec39763384eba2ed3b95fedbcf443628e835d2 \
+                    sha256  cbeb70d48f82eb00c5949bce6d6ace862b2baf2402797ba5930172442b808130 \
+                    size    3662938
 
 if {${name} ne ${subport}} {
     depends_build-append \
