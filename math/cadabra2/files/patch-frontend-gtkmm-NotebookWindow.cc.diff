@@ -1,0 +1,236 @@
+--- frontend/gtkmm/NotebookWindow.cc.orig	2024-06-14 12:56:30
++++ frontend/gtkmm/NotebookWindow.cc	2024-06-15 18:07:32
+@@ -92,13 +92,13 @@
+ 	// For MicroTeX
+ 	Pango::init();
+ 	std::vector<std::string> font_paths;
+-//	font_paths.push_back(install_prefix()+"/share/cadabra2/microtex/newcm/");	
+-	font_paths.push_back(install_prefix()+"/share/cadabra2/microtex/lm-math/");	
++//	font_paths.push_back(install_prefix()+"/share/cadabra2/microtex/newcm/");
++	font_paths.push_back(install_prefix()+"/share/cadabra2/microtex/lm-math/");
+ //	font_paths.push_back(install_prefix()+"/share/cadabra2/microtex/xits/");
+-//	font_paths.push_back(install_prefix()+"/share/cadabra2/microtex/cm/");	
++//	font_paths.push_back(install_prefix()+"/share/cadabra2/microtex/cm/");
+ 
+ 	// Need to re-convert fonts setting the correct
+-	
++
+ 	auto auto_init = microtex::InitFontSenseAuto();
+ 	auto_init.search_paths=font_paths;
+ 	microtex::Init init = auto_init;
+@@ -109,7 +109,7 @@
+ 	// a list of all fonts with their standard names:
+ 	//
+ 	// https://usemodify.com/fonts/computer-modern/
+-	
++
+ 	const microtex::FontSrcFile font_rm
+ 		= microtex::FontSrcFile(install_prefix()+"/share/cadabra2/microtex/cm/cmunrm.clm1",
+ 										install_prefix()+"/share/cadabra2/microtex/cm/cmunrm.otf");
+@@ -135,7 +135,7 @@
+ 	microtex::MicroTeX::addFont(font_bf,    "Computer Modern");
+ 	microtex::MicroTeX::addFont(font_it,    "Computer Modern");
+ 	microtex::MicroTeX::addFont(font_it_bf, "Computer Modern");
+-	
++
+ 	microtex::MicroTeX::setDefaultMainFont("Computer Modern");
+ 	microtex::PlatformFactory::registerFactory("gtk", std::make_unique<microtex::PlatformFactory_cairo>());
+ 	microtex::PlatformFactory::activate("gtk");
+@@ -149,7 +149,7 @@
+ 	// for(const auto& n: microtex::MicroTeX::mainFontFamilies()) {
+ 	// 	std::cerr << "   " << n << std::endl;
+ 	// 	}
+-	
++
+ #ifndef __APPLE__
+ 	if(ds) {
+ 		settings->signal_changed().connect(
+@@ -202,33 +202,33 @@
+ 	actiongroup->add_action( "EditFind",              sigc::mem_fun(*this, &NotebookWindow::on_edit_find) );
+ 	actiongroup->add_action( "EditFindNext",          sigc::mem_fun(*this, &NotebookWindow::on_search_text_changed) );
+ 	actiongroup->add_action( "EditMakeCellTeX",       sigc::mem_fun(*this, &NotebookWindow::on_edit_cell_is_latex) );
+-	actiongroup->add_action( "EditMakeCellPython",    sigc::mem_fun(*this, &NotebookWindow::on_edit_cell_is_python) );	
+-	actiongroup->add_action( "EditIgnoreCellOnImport",sigc::mem_fun(*this, &NotebookWindow::on_ignore_cell_on_import) );	
++	actiongroup->add_action( "EditMakeCellPython",    sigc::mem_fun(*this, &NotebookWindow::on_edit_cell_is_python) );
++	actiongroup->add_action( "EditIgnoreCellOnImport",sigc::mem_fun(*this, &NotebookWindow::on_ignore_cell_on_import) );
+ 
+ 	// View menu actions.
+ 	actiongroup->add_action( "ViewSplit",             sigc::mem_fun(*this, &NotebookWindow::on_view_split) );
+-	actiongroup->add_action( "ViewClose",             sigc::mem_fun(*this, &NotebookWindow::on_view_close) );		
++	actiongroup->add_action( "ViewClose",             sigc::mem_fun(*this, &NotebookWindow::on_view_close) );
+ 	action_fontsize  = actiongroup->add_action_radio_integer( "FontSize",
+ 																				 sigc::mem_fun(*this, &NotebookWindow::on_prefs_font_size),
+-																				 prefs.font_step );	
++																				 prefs.font_step );
+ 	action_highlight = actiongroup->add_action_radio_integer( "HighlightSyntax",
+ 																				 sigc::mem_fun(*this, &NotebookWindow::on_prefs_highlight_syntax),
+-																				 prefs.highlight );	
++																				 prefs.highlight );
+ 	action_microtex = actiongroup->add_action_radio_integer( "MicroTeX",
+ 																				 sigc::mem_fun(*this, &NotebookWindow::on_prefs_microtex),
+-																				 prefs.microtex );	
+-	actiongroup->add_action( "HighlightChoose",       sigc::mem_fun(*this, &NotebookWindow::on_prefs_choose_colours) );		
+-	actiongroup->add_action( "ViewUseDefaultSettings",sigc::mem_fun(*this, &NotebookWindow::on_prefs_use_defaults) );		
++																				 prefs.microtex );
++	actiongroup->add_action( "HighlightChoose",       sigc::mem_fun(*this, &NotebookWindow::on_prefs_choose_colours) );
++	actiongroup->add_action( "ViewUseDefaultSettings",sigc::mem_fun(*this, &NotebookWindow::on_prefs_use_defaults) );
+ 
+ 	// Evaluate menu actions.
+ 	actiongroup->add_action( "EvaluateCell",          sigc::mem_fun(*this, &NotebookWindow::on_run_cell) );
+-	actiongroup->add_action( "EvaluateAll",           sigc::mem_fun(*this, &NotebookWindow::on_run_runall) );		
+-	actiongroup->add_action( "EvaluateToCursor",      sigc::mem_fun(*this, &NotebookWindow::on_run_runtocursor) );		
++	actiongroup->add_action( "EvaluateAll",           sigc::mem_fun(*this, &NotebookWindow::on_run_runall) );
++	actiongroup->add_action( "EvaluateToCursor",      sigc::mem_fun(*this, &NotebookWindow::on_run_runtocursor) );
+ 	action_stop = actiongroup->add_action( "EvaluateStop",  sigc::mem_fun(*this, &NotebookWindow::on_run_stop) );
+ 
+ 	// Kernel menu actions.
+-	actiongroup->add_action( "KernelRestart",         sigc::mem_fun(*this, &NotebookWindow::on_kernel_restart) );			
+-	
++	actiongroup->add_action( "KernelRestart",         sigc::mem_fun(*this, &NotebookWindow::on_kernel_restart) );
++
+ 	// Tools menu actions.
+ 	actiongroup->add_action( "CompareFile",           sigc::mem_fun(*this, &NotebookWindow::compare_to_file) );
+ 	actiongroup->add_action( "CompareGitLatest",      sigc::mem_fun(*this, &NotebookWindow::compare_git_latest) );
+@@ -237,8 +237,8 @@
+ 	actiongroup->add_action( "CompareGitSelect",      sigc::mem_fun(*this, &NotebookWindow::select_git_path) );
+ 	action_console = actiongroup->add_action_radio_integer( "Console", sigc::mem_fun(*this, &NotebookWindow::on_prefs_set_cv), 0 );
+ 	actiongroup->add_action( "ToolsOptions",          sigc::mem_fun(*this, &NotebookWindow::on_tools_options) );
+-	actiongroup->add_action( "ToolsClearCache",       sigc::mem_fun(*this, &NotebookWindow::on_tools_clear_cache) );	
+-	
++	actiongroup->add_action( "ToolsClearCache",       sigc::mem_fun(*this, &NotebookWindow::on_tools_clear_cache) );
++
+    // Help menu actions.
+ 	actiongroup->add_action( "HelpAbout",             sigc::mem_fun(*this, &NotebookWindow::on_help_about) );
+ 	actiongroup->add_action( "HelpContext",           sigc::mem_fun(*this, &NotebookWindow::on_help) );
+@@ -603,7 +603,7 @@
+ 		Glib::RefPtr<Gdk::Pixbuf> pb = Gdk::Pixbuf::create_from_stream_at_scale(str, 50/scale, 50/scale, true);
+ 		return pb;
+ 		};
+-	
++
+ 	// Setup the toolbar and buttons in it.
+ 	if(!read_only) {
+ 		toolbar.set_size_request(-1, 70/display_scale);
+@@ -631,7 +631,7 @@
+ 		tool_open.set_tooltip_text("Open notebook...");
+ 		tool_save.set_tooltip_text("Save notebook");
+ 		tool_save_as.set_tooltip_text("Save notebook as...");
+-	
++
+ 		topbox.pack_start(toolbar, Gtk::PACK_SHRINK);
+ 		toolbar.pack_start(tool_open, Gtk::PACK_SHRINK);
+ 		toolbar.pack_start(tool_save, Gtk::PACK_SHRINK);
+@@ -644,7 +644,7 @@
+ 		kernel_spinner.set_size_request(50/display_scale, 50/display_scale);
+ 		kernel_spinner.set_margin_end(10/display_scale);
+ 		}
+-	
++
+ 	// Normally we would use 'set_action_name' to associate the
+ 	// buttons to actions already defined, but gtkmm-3.24 has
+ 	// a TODO item "derive from and implement Actionable". So
+@@ -655,8 +655,8 @@
+ 	tool_run.signal_clicked().connect(sigc::mem_fun(*this, &NotebookWindow::on_run_runall));
+ 	tool_stop.signal_clicked().connect(sigc::mem_fun(*this, &NotebookWindow::on_run_stop));
+ 	tool_restart.signal_clicked().connect(sigc::mem_fun(*this, &NotebookWindow::on_kernel_restart));
+-	
+-//	
++
++//
+ //	Gtk::Widget *toolbar=0;
+ //	uimanager->get_widget("/ToolBar", toolbar);
+ //	topbox.pack_start(*toolbar, Gtk::PACK_SHRINK);
+@@ -949,7 +949,7 @@
+ 	{
+ 	// Disable menu items and toolbar items by simply disabling
+ 	// the action.
+-	
++
+ 	action_stop->set_enabled(s);
+ 	}
+ 
+@@ -1002,7 +1002,7 @@
+ 	if(prefs.microtex==false) {
+ 		if(tex_error_string!="")
+ 			return;
+-		
++
+ 		// Run TeX on a separate thread; it'll take a while and
+ 		// we don't want to block the UI thread.
+ 		// FIXME: join properly when exiting the program, otherwise
+@@ -1014,10 +1014,10 @@
+ 						engine.invalidate_all();
+ 						engine.set_geometry(tex_need_width-2*30);
+ 						}
+-					
++
+ 					engine.convert_all();
+ 					dispatch_refresh.emit();
+-					
++
+ 					{  std::lock_guard<std::recursive_mutex> guard(tex_need_width_mutex);
+ 						if(tex_need_width-2*30 == engine.get_geometry()) {
+ 							tex_running=false;
+@@ -1035,14 +1035,14 @@
+ 				dispatch_tex_error.emit();
+ 				}
+ 			};
+-		
++
+ 		std::lock_guard<std::recursive_mutex> guard(tex_need_width_mutex);
+ 		tex_running=true;
+-		
++
+ 		// Join any thread which may still exist.
+ 		if(tex_thread)
+ 			tex_thread->join();
+-		
++
+ 		tex_thread = std::make_unique<std::thread>( tex_code );
+ 		}
+ 	else {
+@@ -1494,7 +1494,7 @@
+ 			}
+ 		else if(it->cell_type==DataCell::CellType::image_svg) {
+ 			vc.imagebox->set_image_from_svg(it->textbuf);
+-			vc.imagebox->queue_draw();			
++			vc.imagebox->queue_draw();
+ 			}
+ 		}
+ 
+@@ -2006,7 +2006,7 @@
+ 		case(Gtk::RESPONSE_OK): {
+ 			std::string ipynb_name = dialog.get_filename();
+ 			std::string out = JSON_serialise(doc);
+-			auto json=nlohmann::json::parse(out);
++			nlohmann::json json=nlohmann::json::parse(out);
+ 			auto ipynb = cnb2ipynb(json);
+ 			std::ofstream file(ipynb_name);
+ 			file << ipynb.dump(3) << std::endl;
+@@ -2810,7 +2810,7 @@
+ 	prefs.font_step=num;
+ 	action_fontsize->set_state(Glib::Variant<int>::create(num));
+ 	prefs.save();
+-	
++
+ 	engine.set_font_size(12+(num*2));
+ 	load_css();
+ 
+@@ -2842,7 +2842,7 @@
+ 	prefs.highlight = on;
+ 	prefs.save();
+ 	action_highlight->set_state(Glib::Variant<int>::create(on));
+-	
++
+ 	for (auto& canvas : canvasses) {
+ 		for (auto& visualcell : canvas->visualcells) {
+ 			// Need to be careful to only try and do this on latex or
+@@ -2881,7 +2881,7 @@
+ 	md.set_transient_for(*this);
+ 	md.set_type_hint(Gdk::WINDOW_TYPE_HINT_DIALOG);
+ 	md.run();
+-	
++
+ // 	for (auto& canvas : canvasses) {
+ // 		for (auto& visualcell : canvas->visualcells) {
+ // 			// Need to be careful to only try and do this on latex or
