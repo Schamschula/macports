@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-tifffile
-version             2024.5.22
+version             2024.6.18
 revision            0
 license             BSD
 maintainers         {mps @Schamschula} openmaintainer
@@ -15,11 +15,11 @@ long_description    {*}${description} Read image and metadata from TIFF-like fil
                     bioimaging.
 supported_archs     noarch
 platforms           {darwin any}
-homepage            https://www.lfd.uci.edu/~gohlke/
+homepage            https://www.cgohlke.com/
 
-checksums           rmd160  df2a38a4d46511ad1961395cb740be406f9a3e14 \
-                    sha256  3a105801d1b86d55692a98812a170c39d3f0447aeacb1d94635d38077cb328c4 \
-                    size    360476
+checksums           rmd160  d45c54606d8e64559f71511945dd2d219bd6325b \
+                    sha256  57e0d2a034bcb6287ea3155d8716508dfac86443a257f6502b57ee7f8a33b3b6 \
+                    size    361437
 
 python.versions     38 39 310 311 312
 
