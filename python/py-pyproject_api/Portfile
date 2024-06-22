@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-pyproject_api
-version             1.6.1
+version             1.7.1
 revision            0
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
@@ -12,9 +12,9 @@ description         API to interact with the python pyproject.toml based project
 long_description    {*}${description}
 homepage            https://github.com/tox-dev/pyproject-api
 
-checksums           rmd160  98a8de9aab328887fec3cedf08a6494c4b24b7ce \
-                    sha256  1817dc018adc0d1ff9ca1ed8c60e1623d5aaca40814b953af14a9cf9a5cae538 \
-                    size    22507
+checksums           rmd160  03fb75eed2db6c137c0db03d5b0167579d1caddf \
+                    sha256  7ebc6cd10710f89f4cf2a2731710a98abce37ebff19427116ff2174c9236a827 \
+                    size    22271
 
 python.versions     38 39 310 311 312
 
