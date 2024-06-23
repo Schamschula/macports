@@ -10,12 +10,13 @@ license             BSD
 maintainers         {mps @Schamschula} openmaintainer
 description         Python API Wrapper for OpenAlex.
 long_description    {*}${description}
+homepage            https://github.com/smierz/diophila
 
 checksums           rmd160  6f786f3f0f9657a8c24757f89eb6d3d9ab2bc7b6 \
                     sha256  6fcc04c9d707a601ab6b447d6616de9e6fee118fdf4bc4d9e08bf6c4132704e3 \
                     size    10971
 
-python.versions     38 39 310 311
+python.versions     38 39 310 311 312
 
 if {${name} ne ${subport}} {
     depends_build-append \
