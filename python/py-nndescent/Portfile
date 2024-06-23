@@ -19,7 +19,7 @@ supported_archs     noarch
 platforms           {darwin any}
 homepage            https://github.com/lmcinnes/pynndescent
 
-python.versions     38 39 310 311
+python.versions     38 39 310 311 312
 
 checksums           rmd160  37080b24aa4eb0f06e5cf71caac749c64b7e5597 \
                     sha256  0736291fcbbedfd5e0a3a280f71a63f8eb2f8bd9670d4c0b51ac1b4d081adf70 \
