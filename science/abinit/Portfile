@@ -5,8 +5,8 @@ PortGroup           mpi 1.0
 PortGroup           linear_algebra 1.0
 
 name                abinit
-version             10.0.5
-revision            1
+version             10.0.7
+revision            0
 categories          science
 platforms           darwin
 license             GPL-3
@@ -32,9 +32,9 @@ long_description    ABINIT is a package whose main program allows one to find th
 homepage            https://www.abinit.org
 master_sites        ${homepage}/sites/default/files/packages
 
-checksums           rmd160  2349ba0f652b9c4e1b5e04dbd26a4bd33c9c0cad \
-                    sha256  07fed4df03ae32178933373b990bbda4431ea836fc7bebec05b17e4267bb7f4e \
-                    size    129411511
+checksums           rmd160  4fa44d8b1fa7fa05ac6cb37c22dfd7378ae85fd6 \
+                    sha256  a9fc044b33861b7defd50fafd19a73eb6f225e18ae30b23bc731d9c8009c881c \
+                    size    129623463
 
 compilers.choose    cc cxx fc
 compilers.allow_arguments_mismatch yes
@@ -61,6 +61,12 @@ use_parallel_build  yes
 # the "fallbacks" are used, namely if we asked for libxc, wannier90, etc. support
 # but did not provide the libraries. That situation should never happen for this port.
 #build.target        multi multi_nprocs=4
+
+# clean up distname
+post-extract {
+    delete  ${worksrcpath}
+    move    {*}[glob ${workpath}/${name}-*] ${worksrcpath}
+}
 
 pre-configure {
 # enable LibPAW, PFFT?
