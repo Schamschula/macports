@@ -1,0 +1,31 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-sigma-cli
+python.rootname     sigma_cli
+version             1.0.3
+revision            0
+license             LGPL-2.1+
+maintainers         {mps @Schamschula} openmaintainer
+description         Sigma Command Line Interface (conversion, check etc.) based on pySigma
+long_description    {*}${description}
+homepage            https://github.com/SigmaHQ/sigma-cli
+
+checksums           rmd160  aa0b8f0cbf3a936909ce2e097e8e6abff02b6e25 \
+                    sha256  6274a43b710f1af95b6e769efca7586a7392d0b847ef4ec9fe0064bd867a4c8d \
+                    size    14945
+
+python.versions     38 39 310 311 312
+
+if {${name} ne ${subport}} {
+    python.pep517   yes
+    python.pep517_backend \
+                    poetry
+
+    depends_lib-append  \
+                    port:py${python.version}-click \
+                    port:py${python.version}-prettytable \
+                    port:py${python.version}-pysigma
+}
