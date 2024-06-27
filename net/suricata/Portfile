@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                suricata
-version             7.0.5
+version             7.0.6
 revision            0
 categories          net security
 platforms           darwin
@@ -22,9 +22,9 @@ long_description    Suricata is a high performance Network IDS, IPS \
 homepage            https://suricata-ids.org/
 master_sites        https://www.openinfosecfoundation.org/download/
 
-checksums           rmd160  78e7be17644917db966546fcfb181e07dba59e9d \
-                    sha256  1ffb568158f265c08554464bfb854e6568ef683bf03312923b51f28c50790a4e \
-                    size    23612189
+checksums           rmd160  7ed408017cbbf5e393faf0dc7293c67920beada0 \
+                    sha256  21824f7ff12087c0c9b9de207199a75a9c31b03036688c7cb9c178f0a3b57f8d \
+                    size    23644184
 
 destroot.target     install-full
 
@@ -198,28 +198,34 @@ variant debug description { enable debug, processing will be slower } {
     configure.args-append    --enable-debug --enable-profiling
 }
 
-variant python38 description { Python 3.8 bindings } conflicts python39 python310 python311 {
+variant python38 description { Python 3.8 bindings } conflicts python39 python310 python311 python312 {
     depends_build-append     port:python38  \
                              port:py38-yaml
     configure.python         ${prefix}/bin/python3.8
 }
 
-variant python39 description { Python 3.9 bindings } conflicts python38 python310 python311 {
+variant python39 description { Python 3.9 bindings } conflicts python38 python310 python311 python312 {
     depends_build-append     port:python39  \
                              port:py39-yaml
     configure.python         ${prefix}/bin/python3.9
 }
 
-variant python310 description { Python 3.10 bindings } conflicts python38 python39 python311 {
+variant python310 description { Python 3.10 bindings } conflicts python38 python39 python311 python312 {
     depends_build-append     port:python310  \
                              port:py310-yaml
     configure.python         ${prefix}/bin/python3.10
 }
 
-variant python311 description { Python 3.11 bindings } conflicts python38 python39 python310 {
+variant python311 description { Python 3.11 bindings } conflicts python38 python39 python310 python312 {
     depends_build-append     port:python311  \
                              port:py311-yaml
     configure.python         ${prefix}/bin/python3.11
+}
+
+variant python312 description { Python 3.12 bindings } conflicts python38 python39 python310 python311 {
+    depends_build-append     port:python312  \
+                             port:py312-yaml
+    configure.python         ${prefix}/bin/python3.12
 }
 
 variant prelude description { libprelude support } {
@@ -253,8 +259,8 @@ variant nss description { nss/md5 checksums support } {
 }
 
 default_variants       +debug +geoip 
-if {![variant_isset python38] && ![variant_isset python39] && ![variant_isset python310]} {
-    default_variants   +python311
+if {![variant_isset python38] && ![variant_isset python39] && ![variant_isset python310] && ![variant_isset python311]} {
+    default_variants   +python312
 }
 
 startupitem.create      yes
