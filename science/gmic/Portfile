@@ -4,6 +4,10 @@ PortSystem          1.0
 
 PortGroup           compiler_blacklist_versions 1.0
 PortGroup           conflicts_build 1.0
+PortGroup           legacysupport 1.1
+
+# CImg.h: error: 'strnlen' was not declared in this scope; did you mean 'strlen'?
+legacysupport.newest_darwin_requires_legacy 10
 
 if {${subport} eq "gmic-gimp" || ${subport} eq "gmic-qt"} {
     PortGroup       cmake           1.1
@@ -17,7 +21,7 @@ if {${subport} eq "gmic-gimp" || ${subport} eq "gmic-qt"} {
 
 name                gmic
 version             3.4.0
-revision            0
+revision            1
 license             CeCILL
 categories          science graphics
 maintainers         {mps @Schamschula} openmaintainer
@@ -34,9 +38,12 @@ long_description    G'MIC stands for GREYC's Magic Image Converter. It is \
 homepage            https://gmic.eu
 master_sites        https://gmic.eu/files/source/
 
-checksums           rmd160  28dbfb4e75dcc3de3b7b933ab2c44a9081c80bae \
-                    sha256  4fc0c79eed360c4f804d8110d7955bc8e0db9a14fba9483fe494f02c3640be69 \
-                    size    18001069
+# stealth update
+dist_subdir         ${name}/${version}_${revision}
+
+checksums           rmd160  0e9737eb464cbb4f1f16465fc58a9e5be5752f98 \
+                    sha256  df6f087af3db935d5788f7fa20c4fc46a426991919db91853b0db1c9e7cd792a \
+                    size    18020463
 
 distfiles           ${name}_${version}${extract.suffix}
 
@@ -121,6 +128,11 @@ if {${subport} eq ${name}} {
     build.args-append           NO_STDLIB=Yes \
                                 OPT_CFLAGS=""
 
+    if {${os.platform} eq "darwin" && ${os.major} < 11} {
+        build.args-replace      OPT_CFLAGS="" OPT_CFLAGS="-I${prefix}/include/LegacySupport"
+        build.args-append       OPT_LIBS="-L${prefix}/lib -lMacportsLegacySupport"
+    }
+
     post-destroot {
         delete ${destroot}${prefix}/include/gmic_libc.h
         delete ${destroot}/plug-ins
@@ -172,6 +184,11 @@ if {${subport} eq ${name}} {
                                 OPT_CFLAGS="" \
                                 SOVERSION=${soversion}
 
+    if {${os.platform} eq "darwin" && ${os.major} < 11} {
+        build.args-replace      OPT_CFLAGS="" OPT_CFLAGS="-I${prefix}/include/LegacySupport"
+        build.args-append       OPT_LIBS="-L${prefix}/lib -lMacportsLegacySupport"
+    }
+
     destroot {
         xinstall -m 0644 ${worksrcpath}/src/gmic_libc.h                 ${destroot}${prefix}/include
         xinstall -m 0644 ${worksrcpath}/src/libcgmic.a                  ${destroot}${prefix}/lib
@@ -214,6 +231,11 @@ if {${subport} eq ${name}} {
     build.args-append           NO_STDLIB=Yes \
                                 OPT_CFLAGS="" \
                                 SOVERSION=${soversion}
+
+    if {${os.platform} eq "darwin" && ${os.major} < 11} {
+        build.args-replace      OPT_CFLAGS="" OPT_CFLAGS="-I${prefix}/include/LegacySupport"
+        build.args-append       OPT_LIBS="-L${prefix}/lib -lMacportsLegacySupport"
+    }
 
     destroot {
         xinstall -m 0644 ${worksrcpath}/src/gmic.h                      ${destroot}${prefix}/include
