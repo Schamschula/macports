@@ -6,7 +6,7 @@ PortGroup           compiler_blacklist_versions 1.0
 
 name                openssh
 version             9.7p1
-revision            0
+revision            2
 categories          net
 maintainers         {@artkiver gmail.com:artkiver} openmaintainer
 license             BSD
@@ -48,13 +48,15 @@ if {${name} eq ${subport}} {
         depends_build-append port:cctools
     }
 
-    patch.pre_args      -p1
+    patch.pre_args-replace  -p0 -p1
     patchfiles          launchd.patch \
                         agent.patch \
                         pam.patch \
                         patch-sandbox-darwin.c-apple-sandbox-named-external.diff \
                         patch-sshd.c-apple-sandbox-named-external.diff \
                         macports-config.patch \
+
+    patchfiles-append   patch-CVE-2024-6387.diff
 
     # We need a couple of patches
     # - pam.patch
