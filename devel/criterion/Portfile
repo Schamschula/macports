@@ -1,0 +1,27 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem              1.0
+#PortGroup               cmake 1.1
+PortGroup               github 1.0
+PortGroup               meson 1.0
+
+github.setup            Snaipe Criterion 2.4.2 v
+name                    criterion
+revision                0
+categories              devel
+license                 MIT
+maintainers             {mps @Schamschula} openmaintainer
+description             Criterion is a dead-simple, non-intrusive unit testing framework \
+                        for C and C++.
+long_description        {*}${description}
+
+checksums               rmd160  d66b2f0496e1abac477870d35f5b0c9a005e59b2 \
+                        sha256  572034b488759bddbe78d1276047e509dc5cf587ce7b13386b065f5184cb3adf \
+                        size    874799
+
+depends_build-append    port:cmake \
+                        port:ninja \
+                        port:pkgconfig
+
+depends_lib-append      port:libffi \
+                        port:libgit2
