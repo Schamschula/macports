@@ -1,0 +1,20 @@
+--- CMakeLists.txt.orig	2024-04-19 17:03:36
++++ CMakeLists.txt	2024-07-17 18:41:42
+@@ -35,7 +35,7 @@
+   set(SYSLOG_NG_ENABLE_CPP ${ENABLE_CPP})
+ endif()
+ 
+-set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules ${PROJECT_SOURCE_DIR}/cmake/)
++set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules ${PROJECT_SOURCE_DIR}/cmake/ /opt/local/share/ECM/find-modules)
+ set(CMAKE_POSITION_INDEPENDENT_CODE 1)
+ set(BISON_FLAGS "-Wno-other -Werror=conflicts-sr -Werror=conflicts-rr -Wcounterexamples")
+ set(BISON_BUILT_SOURCE_CFLAGS "-Wno-unused-but-set-variable")
+@@ -330,7 +330,7 @@
+ endif ()
+ 
+ MESSAGE(STATUS "Detected pythonlib version: ${PYTHONLIBS_VERSION_STRING}")
+-include(python_build_venv)
++# include(python_build_venv)
+ 
+ include(openssl_functions)
+ openssl_set_defines()

@@ -1,0 +1,11 @@
+--- lib/CMakeLists.txt.orig	2024-04-19 17:03:36
++++ lib/CMakeLists.txt	2024-07-17 18:32:13
+@@ -404,7 +404,7 @@
+     PROPERTIES VERSION ${SYSLOG_NG_VERSION}
+     SOVERSION ${SYSLOG_NG_VERSION})
+ 
+-gperf_generate(severity-aliases.table ${CMAKE_CURRENT_BINARY_DIR}/severity-aliases.h syslog-ng)
++ecm_gperf_generate(severity-aliases.table ${CMAKE_CURRENT_BINARY_DIR}/severity-aliases.h syslog-ng)
+ 
+ if (${IVYKIS_INTERNAL})
+    add_dependencies(syslog-ng IVYKIS)
