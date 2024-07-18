@@ -48,10 +48,12 @@ configure.args      -DBUILD_TESTING=OFF \
                     -DENABLE_AFSNMP=OFF \
                     -DENABLE_AFSMTP=OFF \
                     -DENABLE_CPP=OFF \
+                    -DENABLE_EBPF=OFF \
                     -DENABLE_EXAMPLE_MODULES=OFF \
                     -DENABLE_GEOIP2=OFF \
                     -DENABLE_JAVA=OFF \
                     -DENABLE_JAVA_MODULES=OFF \
+                    -DENABLE_KAFKA=OFF \
                     -DENABLE_MONGODB=OFF \
                     -DENABLE_MQTT=OFF \
                     -DENABLE_PACCT=OFF \
@@ -63,12 +65,6 @@ variant geoip2 description {compile with geoip2 support} {
     depends_lib-append      port:libmaxminddb
     configure.args-replace  -DENABLE_GEOIP2=OFF \
                             -DENABLE_GEOIP2=ON
-}
-
-variant mongodb description {compile with mongodb support} {
-    depends_lib-append      port:mongodb
-    configure.args-replace  -DENABLE_MONGODB=OFF \
-                            -DENABLE_MONGODB=ON
 }
 
 post-destroot {
