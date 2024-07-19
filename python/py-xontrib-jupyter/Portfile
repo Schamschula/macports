@@ -1,0 +1,33 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-xontrib-jupyter
+python.rootname     xontrib_jupyter
+version             0.3.2
+revision            0
+license             BSD
+platforms           {darwin any}
+supported_archs     noarch
+maintainers         {mps @Schamschula} openmaintainer
+description         Xonsh kernel for Jupyter Notebook and Jupyter Lab allows to execute \
+                    xonsh shell commands in a notebook cell.
+long_description    {*}${description}
+homepage            https://github.com/xonsh/xontrib-jupyter
+
+checksums           rmd160  ec32239140f2043db208cf802a87ab4998604f2b \
+                    sha256  392de424e5691b2be74d92b49232e1b510441c615a00ae114b3fa77c84fd942e \
+                    size    52289
+
+python.versions     39 310 311 312
+
+if {${name} ne ${subport}} {
+    python.pep517   yes
+    python.pep517_backend \
+                    poetry
+
+    depends_build-append \
+                    port:py${python.version}-jupyter_client \
+                    port:xonsh
+}
