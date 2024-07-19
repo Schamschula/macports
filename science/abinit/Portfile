@@ -1,12 +1,12 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
 
 PortSystem          1.0
-PortGroup           mpi 1.0
+PortGroup           github 1.0
 PortGroup           linear_algebra 1.0
+PortGroup           mpi 1.0
 
-name                abinit
-version             10.0.7
-revision            0
+github.setup        abinit abinit 10.0.7
+revision            1
 categories          science
 platforms           darwin
 license             GPL-3
@@ -30,16 +30,20 @@ long_description    ABINIT is a package whose main program allows one to find th
                     ABINIT is a project that favours development and collaboration.
 
 homepage            https://www.abinit.org
-master_sites        ${homepage}/sites/default/files/packages
 
-checksums           rmd160  4fa44d8b1fa7fa05ac6cb37c22dfd7378ae85fd6 \
-                    sha256  a9fc044b33861b7defd50fafd19a73eb6f225e18ae30b23bc731d9c8009c881c \
-                    size    129623463
+checksums           rmd160  25ed2d51d97b05c966a7e17e18eec8ca97596e6b \
+                    sha256  0ff842a820088cc6fb1adfd71979d5fbca64fe6dfd9473916bc82c010ab6d042 \
+                    size    132710977
 
 compilers.choose    cc cxx fc
 compilers.allow_arguments_mismatch yes
 # g95 is no longer supported by abinit
 mpi.setup           default require_fortran -g95
+
+# note Xcode m4 is too old. Use MacPorts m4 (link to gm4)
+pre-configure {
+   exec cd ${worksrcpath} && ./autogen.sh
+}
 
 configure.args-append  --enable-gw-dpc
 configure.fcflags-append  -ffree-line-length-none
@@ -61,12 +65,6 @@ use_parallel_build  yes
 # the "fallbacks" are used, namely if we asked for libxc, wannier90, etc. support
 # but did not provide the libraries. That situation should never happen for this port.
 #build.target        multi multi_nprocs=4
-
-# clean up distname
-post-extract {
-    delete  ${worksrcpath}
-    move    {*}[glob ${workpath}/${name}-*] ${worksrcpath}
-}
 
 pre-configure {
 # enable LibPAW, PFFT?
