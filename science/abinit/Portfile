@@ -196,6 +196,5 @@ variant wannier90 description {Build with support for Wannier90} {
 #    test.target-append       atompaw
 #}
  
-livecheck.type      regex
-livecheck.url       ${homepage}/packages
-livecheck.regex     ABINIT v (\[0-9.\]+)
+livecheck.url       ${github.homepage}/releases
+livecheck.regex     tree/(\[0-9.\]+)
