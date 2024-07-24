@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           cmake 1.1
 PortGroup           github 1.0
 
-github.setup        syslog-ng syslog-ng 4.7.1 syslog-ng-
+github.setup        syslog-ng syslog-ng 4.8.0 syslog-ng-
 categories          sysutils
 license             {GPL-2+ OpenSSLException}
 maintainers         nomaintainer
@@ -20,9 +20,9 @@ homepage            https://www.syslog-ng.com/
 
 github.tarball_from releases
 
-checksums           rmd160  10c32e374baa448ee1c5856681d58dccda2283c1 \
-                    sha256  5477189a2d12325aa4faebfcf59f5bdd9084234732f0c3ec16dd253847dacf1c \
-                    size    6877191
+checksums           rmd160  c061795717db3a4c36dfdcde22c2bc0382058465 \
+                    sha256  f2035546af5fcc0c03a8d03f5f0e929ce19131a428d611c982a5fea608a5d9d6 \
+                    size    6934068
 
 depends_build       port:criterion \
                     port:kde-extra-cmake-modules \
