@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-spglib
-version             2.4.0
+version             2.5.0
 revision            0
 
 categories-append   science
@@ -16,9 +16,9 @@ long_description    {*}${description}
 
 homepage            https://spglib.readthedocs.io
 
-checksums           rmd160  c34893c3d45d54232d09348894664e244385b2fa \
-                    sha256  6e63f9ee61b70f153a22d3b550b183da531f890475917fce203bad4597aac243 \
-                    size    2819047
+checksums           rmd160  e7357d9ef93967f707cef2c48da6024bfa065fd3 \
+                    sha256  f8bb638897be91b9dbd4c085d9fde1f69048f5949e20f3832cb9438e57418d4b \
+                    size    2822241
 
 python.versions     38 39 310 311 312
 
