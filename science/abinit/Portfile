@@ -31,9 +31,9 @@ long_description    ABINIT is a package whose main program allows one to find th
 
 homepage            https://www.abinit.org
 
-checksums           rmd160  25ed2d51d97b05c966a7e17e18eec8ca97596e6b \
-                    sha256  0ff842a820088cc6fb1adfd71979d5fbca64fe6dfd9473916bc82c010ab6d042 \
-                    size    132710977
+checksums           rmd160  4fa44d8b1fa7fa05ac6cb37c22dfd7378ae85fd6 \
+                    sha256  a9fc044b33861b7defd50fafd19a73eb6f225e18ae30b23bc731d9c8009c881c \
+                    size    129623463
 
 compilers.choose    cc cxx fc
 compilers.allow_arguments_mismatch yes
