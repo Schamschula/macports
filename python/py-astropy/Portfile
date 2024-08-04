@@ -5,12 +5,12 @@ PortGroup           compiler_blacklist_versions 1.0
 PortGroup           python 1.0
 
 name                py-astropy
-version             6.1.1
+version             6.1.2
 revision            0
 
-checksums           rmd160  47485a30144a2f7a419eb38623e51bf2e3c0f908 \
-                    sha256  e5c6f45d911c30acb8d556c7f8ed994aec71b108e61eee5067f00af1e4e36138 \
-                    size    7050022
+checksums           rmd160  65ca50a6ec6d7639c339ad6b7de841bd80a88b56 \
+                    sha256  a2103d4e24e90389a820cfcdaaf4ca2d1ab22e5fd72978d147ff5cace54f1d3a \
+                    size    7055575
 
 maintainers         {mps @Schamschula} openmaintainer
 categories-append   science
