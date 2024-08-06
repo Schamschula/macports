@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-xradar
-version             0.5.1
+version             0.6.0
 revision            0
 license             MIT
 supported_archs     noarch
@@ -14,9 +14,9 @@ description         Xradar includes all the tools to get your weather radar into
 long_description    {*}${description}
 homepage            https://github.com/openradar/xradar
 
-checksums           rmd160  55e4c535fe29d0f93304602e325b08a5708b276e \
-                    sha256  b71021164b005f3270afd2079b8ed831a01ed43accbb7fc42c79e31a342546c5 \
-                    size    154529
+checksums           rmd160  81cc7c318e6d4a02002f4be93e3cd5a9fbccefa9 \
+                    sha256  30d5037653f8adf42b45e646f0c7fed3aff23cd14b00fc0fc789d002d6cc7e52 \
+                    size    575700
 
 python.versions     39 310 311 312
 
