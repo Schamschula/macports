@@ -47,9 +47,9 @@ if {${name} ne ${subport}} {
         python.rootname netCDF4
         version         1.5.3
         revision        8
-        checksums       rmd160  7e3112f0083e4f5b08ccae01ba2eb58f7dd17b72 \
-                        sha256  37d557e36654889d7020192bfb56f9d5f93894cb32997eb837ae586c538fd7b6 \
-                        size    827773
+        checksums       rmd160  b855fcb0cc51bf349824ada5129feab9f3911728 \
+                        sha256  2a3ca855848f4bbf07fac366da77a681fcead18c0a8813d91d46302f562dc3be \
+                        size    790343
     }
 
     depends_build-append \
