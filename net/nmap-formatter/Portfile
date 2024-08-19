@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/vdjagilev/nmap-formatter 3.0.1 v
+go.setup            github.com/vdjagilev/nmap-formatter 3.0.2 v
 revision            0
 categories          net
 license             MIT
@@ -11,9 +11,9 @@ maintainers         {mps @Schamschula} openmaintainer
 description         A tool that allows you to convert NMAP XML output to html/csv/json/markdown/dot/sqlite.
 long_description    {*}${description}
 
-checksums           rmd160  00e350754d7501ab7542830aeb738ae73fbf2052 \
-                    sha256  2cf7fb27056741373378d1a5b6d3763e36401ef321da63f7b44f676888c5ac0a \
-                    size    252256
+checksums           rmd160  14d856e264e458c4fa6b37a39fd8d56b699e7b8e \
+                    sha256  f2b278fab86aec1f6a888058590148ccce35521a4f6412f534c1d49e474f65aa \
+                    size    252255
 
 # Allow Go to fetch deps at build time
 go.offline_build    no
