@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-salib
-version             1.5.0
+version             1.5.1
 revision            0
 categories          python
 license             MIT
@@ -15,9 +15,9 @@ long_description    {*}${description} Useful in systems modeling to calculate th
 supported_archs     noarch
 homepage            http://salib.github.io/SALib/
 
-checksums           rmd160  0471a0cd94bd58b3ff53b1babedb0e74c74159a5 \
-                    sha256  04367cbe7f63c5206ec0d793b80477bb4d61d50c0b8c76db1844fe8709f7a39c \
-                    size    724998
+checksums           rmd160  e9e09fedf0b1f133208ad3ef9910128b35b45384 \
+                    sha256  e4a9c319b8dd02995a8dc983f57c452cb7e5b6dbd43e7b7856c90cb6a332bb5f \
+                    size    725018
 
 python.versions     37 38 39 310 311 312
 
