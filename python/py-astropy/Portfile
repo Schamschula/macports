@@ -81,7 +81,9 @@ if {${name} ne ${subport}} {
                     port:py${python.version}-typing_extensions \
                     port:py${python.version}-tz
        }
-    }
+ 
+       patchfiles  patch-pyproject.toml.6.1.diff
+   }
 
     if {${python.version} == 38} {
         version     5.2.2
