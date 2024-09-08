@@ -42,12 +42,17 @@ if {${name} ne ${subport}} {
                     size    3612301
     } else {
         python.pep517   yes
+
+        patchfiles  patch-pyproject.toml.diff
     }
 
-    variant asdf {
-        depends_lib-append \
-                    port:py${python.version}-asdf \
-                    port:py${python.version}-asdf-astropy
+    # Note:
+    # the asdf variant requires py311-obspy which is missing dependencies.
+    if {${python.version} < 311} {
+        variant asdf {
+            depends_lib-append \
+                        port:py${python.version}-pyasdf
+        }
     }
 
     variant dask {
