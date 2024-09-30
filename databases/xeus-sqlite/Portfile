@@ -48,6 +48,9 @@ depends_lib-append      port:nlohmann-json \
                         port:xvega \
                         port:xvega-bindings
 
+# xeus-sqlite PR that fixes https://github.com/jupyter-xeus/xeus-sqlite/issues/141
+patchfiles              143.diff
+
 configure.args-append   -DCMAKE_PREFIX_PATH:PATH=${prefix}/lib/pkgconfig \
                         -Dcppzmq_DIR=${prefix}/share/cmake/cppzmq \
                         -Dnlohmann_json_DIR=${prefix}/share/cmake/nlohmann_json \
