@@ -4,8 +4,8 @@ PortSystem          1.0
 PortGroup           cmake 1.0
 
 name                mathgl
-version             8.0.1
-revision            4
+version             8.0.2
+revision            0
 categories          math
 license             GPL-3
 maintainers         {mps @Schamschula} openmaintainer
@@ -18,9 +18,9 @@ platforms           darwin
 homepage            http://mathgl.sourceforge.net/
 master_sites        sourceforge
 
-checksums           rmd160  f00e3b8ac0973eeef89a5509110845692094824d \
-                    sha256  ca84bf9480c39ed3112e920c16ce3d8f2898698f62896f3a57714128622a55aa \
-                    size    23979834
+checksums           rmd160  8dc9d1906107555277f6410938262c079abd2384 \
+                    sha256  71660995684a6b0a2823f678f6c438ababa474a115246cdf5f9b0b460abfcac1 \
+                    size    242178749
 
 depends_build-append \
                     port:gettext
