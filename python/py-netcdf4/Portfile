@@ -5,7 +5,7 @@ PortGroup           python 1.0
 PortGroup           mpi 1.0
 
 name                py-netcdf4
-version             1.7.1.post2
+version             1.7.2
 revision            0
 
 categories-append   science
@@ -23,9 +23,9 @@ long_description    netCDF version 4 has many features not found in \
 
 homepage            https://unidata.github.io/netcdf4-python/
 
-checksums           rmd160  7e3112f0083e4f5b08ccae01ba2eb58f7dd17b72 \
-                    sha256  37d557e36654889d7020192bfb56f9d5f93894cb32997eb837ae586c538fd7b6 \
-                    size    827773
+checksums           rmd160  1465d546f8fb95bffa306b05b5628bab3d4b7cd2 \
+                    sha256  a4c6375540b19989896136943abb6d44850ff6f1fa7d3f063253b1ad3f8b7fce \
+                    size    835064
 
 # Note: H5public.h (hdf5) needs to be edited: <mpi.h> -> <mpich-mp/mpi.h>
 mpi.enforce_variant netcdf
