@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-patch-ng
-version             1.18.0
+version             1.18.1
 revision            0
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
@@ -14,11 +14,11 @@ supported_archs     noarch
 platforms           {darwin any}
 homepage            https://github.com/conan-io/python-patch-ng
 
-checksums           rmd160  44bb632f57ffa3f605a0a18e78099fda3c1bd185 \
-                    sha256  da067628d6d5fd9dc5a55eab37951d46bd95661b7219fab364b711366abcc690 \
-                    size    17790
+checksums           rmd160  fbf996d749f7f25773270e0f730c9c7d30f74546 \
+                    sha256  52fd46ee46f6c8667692682c1fd7134edc65a2d2d084ebec1d295a6087fc0291 \
+                    size    17913
 
-python.versions     38 39 310 311 312
+python.versions     39 310 311 312 313
 
 if {${name} ne ${subport}} {
     depends_build-append \
