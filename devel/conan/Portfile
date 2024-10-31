@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           python 1.0
 
-github.setup        conan-io conan 2.9.0
+github.setup        conan-io conan 2.9.1
 revision            0
 categories          devel python
 license             MIT
@@ -15,17 +15,16 @@ supported_archs     noarch
 platforms           {darwin any}
 homepage            https://conan.io/
 
-checksums           rmd160  ea0d987377e44561faa1696a0114b41a2b3b86af \
-                    sha256  e09233957b0fad5f34b6959080a637922086958d3a1a4f43fda632a458943811 \
-                    size    1153502
+checksums           rmd160  9fc3a0222dfb6d74379ee908dc65c4ef9d87aee4 \
+                    sha256  8fae3c71de19c13ed1455ad6f0cefe2a203f3b4c5e8fc81ed98fb9fcc021faf5 \
+                    size    1154185
 
-variant python38 conflicts python39 python310 python311 python312 description {Build using Python 3.8} {}
-variant python39 conflicts python38 python310 python311 python312 description {Build using Python 3.9} {}
-variant python310 conflicts python38 python39 python311 python312 description {Build using Python 3.10} {}
-variant python311 conflicts python38 python39 python310 python312 description {Build using Python 3.11} {}
-variant python312 conflicts python38 python39 python310 python311 description {Build using Python 3.12} {}
+variant python39 conflicts python310 python311 python312 description {Build using Python 3.9} {}
+variant python310 conflicts python39 python311 python312 description {Build using Python 3.10} {}
+variant python311 conflicts python39 python310 python312 description {Build using Python 3.11} {}
+variant python312 conflicts python39 python310 python311 description {Build using Python 3.12} {}
 
-if {![variant_isset python38] && ![variant_isset python39] && ![variant_isset python310] && ![variant_isset python312]} {
+if {![variant_isset python39] && ![variant_isset python310] && ![variant_isset python312]} {
     default_variants +python312
 }
 
