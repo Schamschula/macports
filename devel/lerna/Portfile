@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           npm 1.0
 
 name                lerna
-version             8.1.8
+version             8.1.9
 revision            0
 categories          devel
 license             MIT
@@ -16,9 +16,9 @@ long_description    {*}${description}
 homepage            https://lerna.js.org
 master_sites        https://registry.npmjs.org/lerna/-/
 
-checksums           rmd160  c121f5bea926ab3f43fb4a5038cea1fd3702fa0c \
-                    sha256  f2404d1e5596ee7a6af9906bdd1b6365423ec16e75f55737336870be2a41b0b0 \
-                    size    1815258
+checksums           rmd160  97190d48f24a8c0e1187e8237e0c3f1f41e9b561 \
+                    sha256  46ceaeb4be5db0bda1faba4ec236edc04c94e6945d6805877b17ce9b5f28e810 \
+                    size    1815869
 
 npm.nodejs_version  22
 npm.version         10
