@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-wradlib
-version             2.2.0
+version             2.3.0
 revision            0
 categories          python
 license             MIT
@@ -15,9 +15,9 @@ description         an open source library for weather radar data processing.
 long_description    {*}${description}
 homepage            https://wradlib.org
 
-checksums           rmd160  9165b0708a326bfcde3fa7bb7fe3e70496a03d11 \
-                    sha256  ab8162de5dfdc146203d6f2a4f0e776e628125757c6d940758e85e098604982f \
-                    size    415240
+checksums           rmd160  aaec244c759a06048417e6f70a8f1469fe2a83fd \
+                    sha256  c609266edb7beae4ef7d315b119863bf66d94dce2533f62a321d7307773a5797 \
+                    size    415294
 
 python.versions     39 310 311 312
 
