@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-python-whois
 python.rootname     python_whois
-version             0.9.4
+version             0.9.5
 revision            0
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
@@ -17,13 +17,8 @@ homepage            https://github.com/richardpenman/whois
 supported_archs     noarch
 platforms           {darwin any}
 
-python.versions     38 39 310 311 312
+python.versions     39 310 311 312 313
 
-checksums           rmd160  506de8a498e84fa08b65be0abb0aba42e42b7f00 \
-                    sha256  77bc7347bf815d65ccd196711c29837652f07585aedad3c3c04dd885651fd7a7 \
-                    size    110584
-
-if {${name} ne ${subport}} {
-    depends_lib-append  \
-                    port:py${python.version}-setuptools
-}
+checksums           rmd160  7a9ebacc2d225818a29e26ead940e587af0dc9e5 \
+                    sha256  18968c21484752fcc4b9a5f0af477ef6b8dc2e8bb7f1bd5c33831499c0dd41ca \
+                    size    111201
