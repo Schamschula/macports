@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-jupyter_ydoc
-version             3.0.1
+version             3.0.2
 revision            0
 license             BSD
 maintainers         {mps @Schamschula} openmaintainer
@@ -15,9 +15,9 @@ supported_archs     noarch
 platforms           {darwin any}
 homepage            https://github.com/jupyter-server/jupyter_ydoc
 
-checksums           rmd160  fffe8abb5441cc9cdde1e908f08ce43efe0a756d \
-                    sha256  cedae9f3ee0a77288317f21bb81848ed61674d1ba468b0c396c160a264a2106b \
-                    size    956752
+checksums           rmd160  dc9f906915e58d581d63e13e2c96adf2e6567933 \
+                    sha256  d5f1d5bc3ec9579e587469496cd33d6f2a69e18e74329e130c231410ba1c31d0 \
+                    size    956836
 
 python.versions     39 310 311 312
 
