@@ -1,0 +1,54 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-eventlet
+version             0.38.0
+revision            0
+
+categories-append   devel
+license             MIT
+supported_archs     noarch
+platforms           {darwin any}
+maintainers         nomaintainer
+
+description         Highly concurrent networking library
+long_description    Eventlet is a networking library written in \
+                    Python. It achieves high scalability by using \
+                    non-blocking io while at the same time \
+                    retaining high programmer usability by using \
+                    coroutines to make the non-blocking io \
+                    operations appear blocking at the source code \
+                    level.
+
+homepage            https://eventlet.net/
+
+checksums           rmd160  6147d576c10465a157a9b0c39f8401a0cc37cb08 \
+                    sha256  a5df970a2431526e4973bd5810bb8c41aa4da18baa531aa18799302c24e19510 \
+                    size    559783
+
+python.versions     39 310 311 312 313
+
+if {${name} ne ${subport}} {
+    python.pep517_backend \
+                    hatch
+
+    depends_build-append \
+                    port:py${python.version}-hatch-vcs
+
+    depends_lib-append \
+                    port:py${python.version}-dnspython \
+                    port:py${python.version}-greenlet
+
+    post-destroot {
+        xinstall -d ${destroot}${prefix}/share/doc/${subport}
+        xinstall -m 0644 -W ${worksrcpath} AUTHORS LICENSE NEWS \
+           README.rst ${destroot}${prefix}/share/doc/${subport}
+    }
+
+    test.run        yes
+    python.test_framework nose
+    # The normal testing has too many missing deps
+    test.cmd        nosetests-${python.branch} tests/timer_test.py
+}
