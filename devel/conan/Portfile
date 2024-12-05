@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           python 1.0
 
-github.setup        conan-io conan 2.10.0
+github.setup        conan-io conan 2.10.1
 revision            0
 categories          devel python
 license             MIT
@@ -15,20 +15,20 @@ supported_archs     noarch
 platforms           {darwin any}
 homepage            https://conan.io/
 
-checksums           rmd160  2f0657b480b445ceec83e0e2fc2cc6adccdbc405 \
-                    sha256  7c976906affc443c1c2a8cc6695cb311eb48b7f3a5d2349bbcce4031faf09c8c \
-                    size    1171853
+checksums           rmd160  b3725ceca4ca1b3395cd4f80207b36e532283dbe \
+                    sha256  85c678bd0988fe9713f72e31e07023904915141816130990eca08e991b25db40 \
+                    size    1172142
 
-variant python39 conflicts python310 python311 python312 description {Build using Python 3.9} {}
-variant python310 conflicts python39 python311 python312 description {Build using Python 3.10} {}
-variant python311 conflicts python39 python310 python312 description {Build using Python 3.11} {}
-variant python312 conflicts python39 python310 python311 description {Build using Python 3.12} {}
+variant python310 conflicts python311 python312 python313 description {Build using Python 3.10} {}
+variant python311 conflicts python310 python312 python313 description {Build using Python 3.11} {}
+variant python312 conflicts python310 python311 python313 description {Build using Python 3.12} {}
+variant python313 conflicts python310 python311 python312 description {Build using Python 3.13} {}
 
-if {![variant_isset python39] && ![variant_isset python310] && ![variant_isset python312]} {
+if {![variant_isset python310] && ![variant_isset python311] && ![variant_isset python313]} {
     default_variants +python312
 }
 
-foreach pv {312 311 310 39 38} {
+foreach pv {313 312 311 310} {
     if {[variant_isset python${pv}]} {
         set python.version ${pv}
         set python.branch [string index ${python.version} 0].[string range ${python.version} 1 end]
@@ -42,7 +42,6 @@ depends_build-append \
                     port:py${python.version}-setuptools
 
 depends_lib-append  \
-                    port:py${python.version}-colorama \
                     port:py${python.version}-dateutil \
                     port:py${python.version}-distro \
                     port:py${python.version}-fasteners \
