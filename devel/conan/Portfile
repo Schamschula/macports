@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           python 1.0
 
-github.setup        conan-io conan 2.10.1
+github.setup        conan-io conan 2.10.2
 revision            0
 categories          devel python
 license             MIT
@@ -15,9 +15,9 @@ supported_archs     noarch
 platforms           {darwin any}
 homepage            https://conan.io/
 
-checksums           rmd160  b3725ceca4ca1b3395cd4f80207b36e532283dbe \
-                    sha256  85c678bd0988fe9713f72e31e07023904915141816130990eca08e991b25db40 \
-                    size    1172142
+checksums           rmd160  f3f762a6b2fb46904149cab4aa17623a68059c60 \
+                    sha256  d0f38baba7d56ee81714a329ccffbe5c2071383240a6f1a9284f33bf2c9f0336 \
+                    size    1172224
 
 variant python310 conflicts python311 python312 python313 description {Build using Python 3.10} {}
 variant python311 conflicts python310 python312 python313 description {Build using Python 3.11} {}
