@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-arm_pyart
-version             1.19.3
+version             1.19.4
 revision            0
 categories-append   science
 license             BSD
@@ -14,9 +14,9 @@ long_description    {*}${description} containing a growing collection of weather
                     algorithms and utilities build on top of the Scientific Python stack.
 homepage            https://github.com/ARM-DOE/pyart
 
-checksums           rmd160  490d72164f6c2f52b21b220f67308a783abd3908 \
-                    sha256  ad041354248c7d3cd879a8edfba15a96749eb8e5f18f9374b3371be553e0ace5 \
-                    size    66100600
+checksums           rmd160  e1ceded3afbd8288dc7112e7d817c42200e335bc \
+                    sha256  b904652916d0dab4ee0b547961e900c5f6a845fdc5675f229bbef201a1de8372 \
+                    size    66104062
 
 python.versions     39 310 311 312
 
