@@ -5,8 +5,8 @@ PortGroup           github 1.0
 PortGroup           linear_algebra 1.0
 PortGroup           mpi 1.0
 
-github.setup        abinit abinit 10.0.7
-revision            1
+github.setup        abinit abinit 10.2.5
+revision            0
 categories          science
 platforms           darwin
 license             GPL-3
@@ -31,18 +31,23 @@ long_description    ABINIT is a package whose main program allows one to find th
 
 homepage            https://www.abinit.org
 
-checksums           rmd160  4fa44d8b1fa7fa05ac6cb37c22dfd7378ae85fd6 \
-                    sha256  a9fc044b33861b7defd50fafd19a73eb6f225e18ae30b23bc731d9c8009c881c \
-                    size    129623463
+checksums           rmd160  ca5606d991abb0641aa067e54752d3c9806b5761 \
+                    sha256  d644ddc1af6eada764550f0b5932df1e4b7448d67fa10d025e845f7f13f18756 \
+                    size    141013471
 
 compilers.choose    cc cxx fc
 compilers.allow_arguments_mismatch yes
 # g95 is no longer supported by abinit
 mpi.setup           default require_fortran -g95
 
-# note Xcode m4 is too old. Use MacPorts m4 (link to gm4)
-pre-configure {
-   exec cd ${worksrcpath} && ./autogen.sh
+# note Xcode m4 is too old. Use MacPorts GNU m4
+depends_build       port:m4
+patchfiles          patch-config-scripts-makemake.diff
+
+# fix path to makemake
+patchfiles-append   patch-autogen.sh.diff
+post-patch {
+    reinplace "s|%%WORKSRCPATH%%|${worksrcpath}|g" ${worksrcpath}/autogen.sh
 }
 
 configure.args-append  --enable-gw-dpc
@@ -67,8 +72,10 @@ use_parallel_build  yes
 #build.target        multi multi_nprocs=4
 
 pre-configure {
-# enable LibPAW, PFFT?
+    # generate build environment
+    #exec ${worksrcpath}/autogen.sh
 
+    # enable LibPAW, PFFT?
     if { [variant_isset atlas] } {
         set linalg-flavor   atlas
     } elseif { [variant_isset openblas] } {
@@ -81,6 +88,8 @@ pre-configure {
     }
     configure.args-append   --with-linalg-flavor="${linalg-flavor}" LINALG_LIBS="${linalglib}"
 }
+
+configure.cmd        ${worksrcpath}/autogen.sh && ./configure
 
 # install binaries and pkgconfig but not the very large number of test files
 destroot.target   install-exec install-data-local
