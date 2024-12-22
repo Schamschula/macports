@@ -6,7 +6,7 @@ PortGroup           linear_algebra 1.0
 PortGroup           mpi 1.0
 
 github.setup        abinit abinit 10.2.5
-revision            0
+revision            1
 categories          science
 platforms           darwin
 license             GPL-3
@@ -89,6 +89,8 @@ pre-configure {
     configure.args-append   --with-linalg-flavor="${linalg-flavor}" LINALG_LIBS="${linalglib}"
 }
 
+# The GitHub tarball no longer provide the autotools files
+# We need to generate them first by running autogen.sh
 configure.cmd        ${worksrcpath}/autogen.sh && ./configure
 
 # install binaries and pkgconfig but not the very large number of test files
