@@ -7,7 +7,7 @@ PortGroup           conflicts_build 1.0
 PortGroup           github 1.0
 PortGroup           legacysupport 1.1
 
-github.setup        kpeeters cadabra2 2.5.8
+github.setup        kpeeters cadabra2 2.5.10
 revision            0
 
 categories          math
@@ -26,9 +26,9 @@ long_description    Cadabra is a computer algebra system for the \
 
 homepage            https://cadabra.science/index.html
 
-checksums           rmd160  bcf3fe76f7b8624473fceb59c02a18611d449b7e \
-                    sha256  ec8e3990a1d9ca56133af629e5b0288ec260003e6a222f7cd09e4917448e7c1c \
-                    size    32491416
+checksums           rmd160  266449fba51a302cc04f1e4b2f793b04a8833f93 \
+                    sha256  a90067c69887b1fcddf9912ebcb77479b793c1d0626db5d56476f3d32ec96208 \
+                    size    32510256
 
 # cadabra2-gtk(12276) malloc: *** error for object 0x365c034: Non-aligned pointer being freed
 # legacysupport is only used for wrappers with libstdc++ builds.
@@ -63,7 +63,8 @@ depends_lib-append  port:adwaita-icon-theme \
 # cadabra2 uses its own bundled version of nlohmann/json.hpp
 conflicts_build     nlohmann-json
 
-configure.args      -DENABLE_MATHEMATICA=OFF \
+configure.args-append \
+                    -DENABLE_MATHEMATICA=OFF \
                     -DPYBIND11_PYTHON_VERSION=${python.branch} \
                     -DSQLITE3_INCLUDE_DIR=${prefix}/include
 
@@ -74,7 +75,7 @@ post-destroot {
 
 post-activate {
     system "${prefix}/bin/texhash"
-    system "gtk-update-icon-cache-3.0 ${prefix}/share/icons/hicolor"
+    system "gtk-update-icon-cache ${prefix}/share/icons/hicolor"
 }
 
 variant texmacs description {install TeXmacs front end} {
