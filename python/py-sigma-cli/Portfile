@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-sigma-cli
 python.rootname     sigma_cli
-version             1.0.4
+version             1.0.5
 revision            0
 license             LGPL-2.1+
 maintainers         {mps @Schamschula} openmaintainer
@@ -13,14 +13,13 @@ description         Sigma Command Line Interface (conversion, check etc.) based 
 long_description    {*}${description}
 homepage            https://github.com/SigmaHQ/sigma-cli
 
-checksums           rmd160  d377bf23dfbc70b60ab47c5f99e69b6336027d35 \
-                    sha256  30db40f7b6ea1cff8da5c03668ee37326fa371fa343129455741a6b8b68d81b2 \
-                    size    15010
+checksums           rmd160  af37e3e71d0da46e1a700474560916f9d3399ca4 \
+                    sha256  7720244026fabf5bbd1ba37ae67b9cc1dc9d61a79320562d55e2228409b159e7 \
+                    size    15924
 
-python.versions     38 39 310 311 312
+python.versions     39 310 311 312 313
 
 if {${name} ne ${subport}} {
-    python.pep517   yes
     python.pep517_backend \
                     poetry
 
