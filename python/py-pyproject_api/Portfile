@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-pyproject_api
-version             1.8.0
+version             1.9.0
 revision            0
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
@@ -12,14 +12,13 @@ description         API to interact with the python pyproject.toml based project
 long_description    {*}${description}
 homepage            https://github.com/tox-dev/pyproject-api
 
-checksums           rmd160  c54b6bc375a6f0a7d3131521324e924722ed452a \
-                    sha256  77b8049f2feb5d33eefcc21b57f1e279636277a8ac8ad6b5871037b243778496 \
-                    size    22340
+checksums           rmd160  30fceee296fcf3411be99dbae5a7b2a35757b364 \
+                    sha256  7e8a9854b2dfb49454fae421cb86af43efbb2b2454e5646ffb7623540321ae6e \
+                    size    22714
 
-python.versions     38 39 310 311 312
+python.versions     39 310 311 312 313
 
 if {${name} ne ${subport}} {
-    python.pep517       yes
     python.pep517_backend \
                         hatch
 
