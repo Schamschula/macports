@@ -53,7 +53,6 @@ CFLAGS.core = @SH_CFLAGS@
 LDFLAGS.shlib = @SH_LDFLAGS@
 LDFLAGS.zlib = @LDFLAGS_ZLIB@
 LDFLAGS.math = @LDFLAGS_MATH@
-LDFLAGS.rpath = @LDFLAGS_RPATH@
 LDFLAGS.pthread = @LDFLAGS_PTHREAD@
 LDFLAGS.dlopen = @LDFLAGS_DLOPEN@
 LDFLAGS.readline = @LDFLAGS_READLINE@
@@ -120,7 +119,7 @@ LDFLAGS.libsqlite3.os-specific = @LDFLAGS_MAC_CVERSION@
 # os-specific: see https://sqlite.org/forum/forumpost/9dfd5b8fd525a5d7
 
 LDFLAGS.libsqlite3 = \
-  $(LDFLAGS.rpath) $(LDFLAGS.pthread) \
+  $(LDFLAGS.pthread) \
   $(LDFLAGS.math) $(LDFLAGS.dlopen) \
   $(LDFLAGS.zlib) $(LDFLAGS.icu) \
   $(LDFLAGS.configure)
