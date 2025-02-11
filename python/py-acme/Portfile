@@ -6,7 +6,9 @@ PortGroup           python 1.0
 
 name                py-acme
 github.setup        certbot certbot 3.1.0 v
-revision            1
+# Change github.tarball_from to 'releases' or 'archive' next update
+github.tarball_from tarball
+revision            0
 categories-append   security
 license             Apache-2
 maintainers         {mps @Schamschula} openmaintainer
@@ -24,10 +26,6 @@ checksums           rmd160  ad2beedda9d9d643661d3e6469979087ce5cbbc6 \
                     size    2299909
 
 if {${name} ne ${subport}} {
-    post-extract {
-        move [glob ${workpath}/certbot-*] ${workpath}/certbot-${version}
-    }
-
     build.dir       ${worksrcpath}/acme
 
     depends_build-append \
