@@ -1,0 +1,12 @@
+--- src/josepy/json_util.py.orig	1969-12-31 18:00:00
++++ src/josepy/json_util.py	2025-02-10 19:15:13
+@@ -55,7 +55,8 @@
+ 
+ 
+ class Field:
+-    """JSON object field.
++    """
++    JSON object field.
+ 
+     :class:`Field` is meant to be used together with
+     :class:`JSONObjectWithFields`.
