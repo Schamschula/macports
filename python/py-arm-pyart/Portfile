@@ -3,8 +3,9 @@
 PortSystem          1.0
 PortGroup           python 1.0
 
-name                py-arm_pyart
-version             1.19.5
+name                py-arm-pyart
+python.rootname     arm_pyart
+version             2.0.0
 revision            0
 categories-append   science
 license             BSD
@@ -14,26 +15,31 @@ long_description    {*}${description} containing a growing collection of weather
                     algorithms and utilities build on top of the Scientific Python stack.
 homepage            https://github.com/ARM-DOE/pyart
 
-checksums           rmd160  848e390f615e3fa377b635f7fd0a9b7216f5a774 \
-                    sha256  0b69e9d562f4464ef5c24324be585c999e8df0926bf0b25e34ea85f74c939d42 \
-                    size    66104230
+checksums           rmd160  0ebc0a5c5f6b210cb46226c71ebe3dd63899c09f \
+                    sha256  64134189b7891f6258319bdadbffe540deb72b96182866784e5487635a8a8f3d \
+                    size    66071878
 
-python.versions     39 310 311 312
+python.versions     39 310 311 312 313
 
 if {${name} ne ${subport}} {
     depends_build-append \
-                    port:py${python.version}-setuptools
+                    port:py${python.version}-setuptools_scm
 
     depends_lib-append  \
                     port:py${python.version}-cartopy \
-                    port:py${python.version}-cvxopt \
-                    port:py${python.version}-gdal \
-                    port:py${python.version}-h5py \
+                    port:py${python.version}-cftime \
+                    port:py${python.version}-cython \
+                    port:py${python.version}-fsspec \
                     port:py${python.version}-matplotlib \
                     port:py${python.version}-netcdf4 \
+                    port:py${python.version}-mda-xdrlib \
                     port:py${python.version}-numpy \
+                    port:py${python.version}-open-radar-data \
+                    port:py${python.version}-pandas \
+                    port:py${python.version}-pint \
+                    port:py${python.version}-pooch \
+                    port:py${python.version}-s3fs \
                     port:py${python.version}-scipy \
-                    port:py${python.version}-semver \
-                    port:py${python.version}-wradlib \
-                    port:py${python.version}-xarray
+                    port:py${python.version}-xarray \
+                    port:py${python.version}-xradar
 }
