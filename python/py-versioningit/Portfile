@@ -1,0 +1,37 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-versioningit
+version             3.1.2
+revision            0
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         Versioning It with your Version In Git
+long_description    {*}${description}
+homepage            https://github.com/jwodder/versioningit
+
+checksums           rmd160  8819538c76f088d7cf036b71d8bf9531f02d78a6 \
+                    sha256  4db83ed99f56b07d83940bee3445ca46ca120d13b6b304cdb5fb44e5aa4edec0 \
+                    size    213047
+
+python.versions     39 310 311 312 313
+
+if {${name} ne ${subport}} {
+    python.pep517_backend \
+                    hatch
+
+    depends_lib-append  \
+                    port:py${python.version}-packaging
+
+    if {${python.version} < 310} {
+        depends_lib-append  \
+                    port:py${python.version}-importlib-metadata
+    }
+
+    if {${python.version} < 311} {
+        depends_lib-append  \
+                    port:py${python.version}-tomli
+    }
+}
