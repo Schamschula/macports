@@ -6,7 +6,7 @@ PortGroup           python 1.0
 name                py-misp
 python.rootname     pymisp
 version             2.5.7.1
-revision            0
+revision            1
 license             BSD
 supported_archs     noarch
 platforms           {darwin any}
@@ -28,4 +28,10 @@ if {${name} ne ${subport}} {
 
     depends_build-append \
                     port:py${python.version}-poetry-core
+
+
+    post-destroot {
+        move ${destroot}${python.libdir}/site-packages/examples \
+            ${destroot}${python.libdir}/site-packages/pymisp/examples
+    }
 }
