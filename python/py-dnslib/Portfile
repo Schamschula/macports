@@ -1,0 +1,19 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-dnslib
+version             0.9.25
+revision            0
+license             BSD-2
+maintainers         {mps @Schamschula} openmaintainer
+description         A library to encode/decode DNS wire-format packets.
+long_description    {*}${description} 
+homepage            https://github.com/paulc/dnslib
+
+checksums           rmd160  be7e421735c97436278b1c4aa510c0684e1f9c87 \
+                    sha256  687df2086e28086cb32b947dafa4c0a4e613f1429baa3be61d8b94e69418b4ef \
+                    size    82156
+
+python.versions     39 310 311 312 313
