@@ -1,0 +1,28 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-bbpb
+version             1.4.1
+revision            0
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         Blackbox Protobuf is a set of tools for working with encoded \
+                    Protocol Buffers (protobuf) without the matching protobuf definition.
+long_description    {*}${description} 
+homepage            https://github.com/nccgroup/blackboxprotobuf
+
+checksums           rmd160  610e7a0a35cc4d32c977042d527aa64d0f370ecd \
+                    sha256  049eeb1f15dc09ebb13b0d7316a9fd9d03435b6b0d7141ce1556445376d33eb2 \
+                    size    37072
+
+python.versions     39 310 311 312 313
+
+if {${name} ne ${subport}} {
+    python.pep517_backend \
+                    poetry
+
+    depends_lib-append  \
+                    port:py${python.version}-six
+}
