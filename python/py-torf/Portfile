@@ -1,0 +1,25 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-torf
+version             4.3.0
+revision            0
+license             GPL-3+
+maintainers         {mps @Schamschula} openmaintainer
+description         torf provides a Torrent and a Magnet class.
+long_description    {*}${description} torf-cli and torf-gui provide user interfaces for \
+                    torf.
+homepage            https://github.com/rndusr/torf
+
+checksums           rmd160  dba1d1edc43514aaed5d8fb001ba30272d0771b9 \
+                    sha256  6d2a87268dbd41ef5039faf11cbf805575fe17c9d1dff2eb0e42fec6879f2eff \
+                    size    107454
+
+python.versions     39 310 311 312 313
+
+if {${name} ne ${subport}} {
+    depends_lib-append  \
+                    port:py${python.version}-flatbencode
+}
