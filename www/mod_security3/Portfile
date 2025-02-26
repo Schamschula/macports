@@ -6,7 +6,7 @@ PortGroup           lua 1.0
 
 name                mod_security3
 set name_package    modsecurity
-github.setup        SpiderLabs ${name_package} 3.0.13 v
+github.setup        SpiderLabs ${name_package} 3.0.14 v
 revision            0
 categories          www security
 license             Apache-2
@@ -22,9 +22,9 @@ homepage            https://github.com/SpiderLabs/ModSecurity
 github.tarball_from releases
 distname            ${name_package}-v${version}
 
-checksums           rmd160  5fadda1bd6d464efd93029741378e51070bec87c \
-                    sha256  86b4881164a161b822a49df3501e83b254323206906134bdc34a6f3338f4d3f2 \
-                    size    9677566
+checksums           rmd160  69edb5a65f103901cd54a7b86b2ee776acc4c5a4 \
+                    sha256  f7599057b35e67ab61764265daddf9ab03c35cee1e55527547afb073ce8f04e8 \
+                    size    9755566
 
 depends_build       port:pkgconfig
 
