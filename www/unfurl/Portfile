@@ -46,7 +46,7 @@ depends_lib-append  port:py${python.version}-aniso8601 \
                     port:py${python.version}-country \
                     port:py${python.version}-flask \
                     port:py${python.version}-flask-cors \
-                    port:py${python.version}-py-flask-restx \
+                    port:py${python.version}-flask-restx \
                     port:py${python.version}-netaddr \
                     port:py${python.version}-networkx \
                     port:py${python.version}-protobuf3 \
