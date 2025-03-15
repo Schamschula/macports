@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-bbpb
-version             1.4.1
+version             1.4.2
 revision            0
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
@@ -13,9 +13,9 @@ description         Blackbox Protobuf is a set of tools for working with encoded
 long_description    {*}${description} 
 homepage            https://github.com/nccgroup/blackboxprotobuf
 
-checksums           rmd160  610e7a0a35cc4d32c977042d527aa64d0f370ecd \
-                    sha256  049eeb1f15dc09ebb13b0d7316a9fd9d03435b6b0d7141ce1556445376d33eb2 \
-                    size    37072
+checksums           rmd160  059103cd88c6ff53f359e40a308153715e33ee0a \
+                    sha256  03446991bc500cfc9dd2049e6cc9489979e157c5ecb793e27936ab3d579d3496 \
+                    size    36339
 
 python.versions     39 310 311 312 313
 
