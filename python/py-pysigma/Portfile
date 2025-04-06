@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-pysigma
-version             0.11.19
+version             0.11.20
 revision            0
 license             LGPL-2.1
 maintainers         {mps @Schamschula} openmaintainer
@@ -12,9 +12,9 @@ description         Sigma rule processing and conversion tools
 long_description    {*}${description}
 homepage            https://github.com/SigmaHQ/pySigma
 
-checksums           rmd160  15ff86ff27f6bfc1b549ce38afadaf8caf7cb311 \
-                    sha256  075df35e56f2128491f8ad501cc063d88d282879d37b50213fc6b5008fac8625 \
-                    size    132626
+checksums           rmd160  f6653a6fb79c0ca91494949562e5565ccc77580b \
+                    sha256  0c0ab750a053e8fc73d17bddcaec12939aa115dfd9d854c72bcfecec1b39ccd4 \
+                    size    133521
 
 python.versions     39 310 311 312 313
 
