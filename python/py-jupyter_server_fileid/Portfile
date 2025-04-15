@@ -18,7 +18,7 @@ checksums           rmd160  6e2b96164f64dac1e7e365f77bf2a5a3a0cbcdd7 \
                     sha256  521608bb87f606a8637fcbdce2f3d24a8b3cc89d2eef61751cb40e468d4e54be \
                     size    54959
 
-python.versions     38 39 310 311 312
+python.versions     38 39 310 311 312 313
 
 if {${name} ne ${subport}} {
     python.pep517   yes
