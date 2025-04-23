@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-jupyter_server_ydoc
-version             2.0.1
+version             2.0.2
 revision            0
 license             BSD
 supported_archs     noarch
@@ -15,9 +15,9 @@ description         Jupyter Server YDoc is a Jupyter Server Extension providing 
 long_description    {*}${description}
 homepage            https://jupyter.org
 
-checksums           rmd160  652b8f2213109e4378a0610fe96dae35e6fb39b8 \
-                    sha256  f4fda7f43d0752453e96621f7e7883eed0091146deed0ee38c2fe5f82c69b3f5 \
-                    size    26684
+checksums           rmd160  19b74635545ce6b3c9c66baf3563b3e0e0dc18cc \
+                    sha256  22ee72e7bc9e2d9fde9882092d176ac8ca7101fb078f6fef4cb72a8129510928 \
+                    size    26756
 
 python.versions     39 310 311 312 313
 
