@@ -19,11 +19,9 @@ checksums           rmd160  2e6091cb201fc0759868a3546d92b7e45f273c61 \
                     sha256  dd018421a956ecc45f112c051b1e323b40d029879b1062853df45b05c6098310 \
                     size    26228
 
-python.versions     38 39 310 311 312
+python.versions     38 39 310 311 312 313
 
 if {${name} ne ${subport}} {
-    python.pep517   yes
-
     depends_lib-append  \
                     port:py${python.version}-attrs \
                     port:py${python.version}-pytest \
