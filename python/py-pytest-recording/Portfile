@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-pytest-recording
 python.rootname     pytest_recording
-version             0.13.2
+version             0.13.3
 revision            0
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
@@ -15,9 +15,9 @@ supported_archs     noarch
 platforms           {darwin any}
 homepage            https://github.com/kiwicom/pytest-recording
 
-checksums           rmd160  815ab9e35ae98ccc0594078cf82454ce0ed8ed8a \
-                    sha256  000c3babbb466681457fd65b723427c1779a0c6c17d9e381c3142a701e124877 \
-                    size    25270
+checksums           rmd160  2e6091cb201fc0759868a3546d92b7e45f273c61 \
+                    sha256  dd018421a956ecc45f112c051b1e323b40d029879b1062853df45b05c6098310 \
+                    size    26228
 
 python.versions     38 39 310 311 312
 
