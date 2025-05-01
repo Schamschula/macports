@@ -1,0 +1,34 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-numpydoc
+version             1.8.0
+revision            0
+
+supported_archs     noarch
+platforms           {darwin any}
+license             BSD
+maintainers         nomaintainer
+
+description         Sphinx extension to support docstrings in Numpy format
+long_description    Numpydoc inserts a hook into Sphinx’s autodoc \
+                    that converts docstrings following the Numpy/Scipy format \
+                    to a form palatable to Sphinx.
+
+homepage            https://github.com/numpy/numpydoc
+
+checksums           rmd160  e2106afe0a5c67b02fc096d90340775528806afe \
+                    sha256  022390ab7464a44f8737f79f8b31ce1d3cfa4b4af79ccaa1aac5e8368db587fb \
+                    size    90445
+
+python.versions     39 310 311 312 313
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                        port:py${python.version}-sphinx \
+                        port:py${python.version}-jinja2
+
+    test.run            yes
+}
