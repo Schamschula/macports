@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-apscheduler
 version             3.11.0
-revision            0
+revision            1
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
 description         Advanced Python Scheduler (APScheduler) is a task scheduler and task \
@@ -16,13 +16,16 @@ long_description    {*}${description} It can be used solely as a job queuing sys
                     as large deployments spanning multiple nodes. Multiple schedulers \
                     and workers can be deployed to use a shared data store to provide \
                     both a degree of high availability and horizontal scaling.
+supported_archs     noarch
+platforms           {darwin any}
+
 homepage            https://github.com/agronholm/apscheduler
 
 checksums           rmd160  0974fa8ee8945a65203564e7f74d20e46f0c2f8b \
                     sha256  4c622d250b0955a65d5d0eb91c33e6d43fd879834bf541e0a18661ae60460133 \
                     size    107347
 
-python.versions     38 39 310 311 312
+python.versions     38 39 310 311 312 313
 
 if {${name} ne ${subport}} {
     depends_build-append \
