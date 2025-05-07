@@ -4,20 +4,21 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-jupyter_ydoc
-version             3.0.4
+version             3.0.5
 revision            0
 license             BSD
 maintainers         {mps @Schamschula} openmaintainer
 description         jupyter_ydoc provides Ypy-based data structures for various documents \
                     used in the Jupyter ecosystem.
 long_description    {*}${description}
-supported_archs     noarch
-platforms           {darwin any}
 homepage            https://github.com/jupyter-server/jupyter_ydoc
 
-checksums           rmd160  c3efc3299bf76b3093514bd3d9a09a2f7df5439c \
-                    sha256  0c38a6263eb243e240949b5770b113ac73e3fb7f86fdacc921ce231c6f30a41c \
-                    size    957104
+supported_archs     noarch
+platforms           {darwin any}
+
+checksums           rmd160  79d0144d26dc0ec8e9ecde0cf9e0207f71c72ab5 \
+                    sha256  12208841a1edfe8ee16b8be3e843d54090268498de2d2e783c33a5dd33c995ff \
+                    size    957157
 
 python.versions     39 310 311 312 313
 
