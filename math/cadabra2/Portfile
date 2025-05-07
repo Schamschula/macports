@@ -7,7 +7,8 @@ PortGroup           conflicts_build 1.0
 PortGroup           github 1.0
 PortGroup           legacysupport 1.1
 
-github.setup        kpeeters cadabra2 2.5.10
+github.setup        kpeeters cadabra2 2.5.12
+github.tarball_from archive
 revision            0
 
 categories          math
@@ -26,9 +27,9 @@ long_description    Cadabra is a computer algebra system for the \
 
 homepage            https://cadabra.science/index.html
 
-checksums           rmd160  266449fba51a302cc04f1e4b2f793b04a8833f93 \
-                    sha256  a90067c69887b1fcddf9912ebcb77479b793c1d0626db5d56476f3d32ec96208 \
-                    size    32510256
+checksums           rmd160  ed8d8dfdb99b8df152676a52c5d5f1ea75af0c46 \
+                    sha256  c61d818e171e776c4531e5b271d8c0530815ce1be523e3b2d72512d071ac68ff \
+                    size    33301916
 
 # cadabra2-gtk(12276) malloc: *** error for object 0x365c034: Non-aligned pointer being freed
 # legacysupport is only used for wrappers with libstdc++ builds.
@@ -43,6 +44,10 @@ set python.version  313
 
 set python.branch   [string index ${python.version} 0].[string range ${python.version} 1 end]
 set python.prefix   ${frameworks_dir}/Python.framework/Versions/${python.branch}
+
+# TODO: Do this automatically via Boost portgroup
+cmake.module_path-append \
+                    [boost::lib_dir]/cmake
 
 depends_build-append \
                     path:bin/pkg-config:pkgconfig \
@@ -63,8 +68,7 @@ depends_lib-append  port:adwaita-icon-theme \
 # cadabra2 uses its own bundled version of nlohmann/json.hpp
 conflicts_build     nlohmann-json
 
-configure.args-append \
-                    -DENABLE_MATHEMATICA=OFF \
+configure.args      -DENABLE_MATHEMATICA=OFF \
                     -DPYBIND11_PYTHON_VERSION=${python.branch} \
                     -DSQLITE3_INCLUDE_DIR=${prefix}/include
 
