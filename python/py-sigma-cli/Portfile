@@ -6,12 +6,15 @@ PortGroup           python 1.0
 name                py-sigma-cli
 python.rootname     sigma_cli
 version             1.0.6
-revision            0
+revision            1
 license             LGPL-2.1+
 maintainers         {mps @Schamschula} openmaintainer
 description         Sigma Command Line Interface (conversion, check etc.) based on pySigma
 long_description    {*}${description}
 homepage            https://github.com/SigmaHQ/sigma-cli
+
+supported_archs     noarch
+platforms           {darwin any}
 
 checksums           rmd160  1f45e802cc58f3ba5b56b4ea905c0d78082c1f0d \
                     sha256  5cd4471fcda44ea8e5671c81cc86bc685227107df57e128b75e125ee3d6d4123 \
