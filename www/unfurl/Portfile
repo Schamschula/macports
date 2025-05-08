@@ -6,7 +6,7 @@ PortGroup           python 1.0
 name                unfurl
 python.rootname     dfir_unfurl
 version             20250312
-revision            0
+revision            1
 categories          www
 license             Apache-2
 maintainers         {mps @Schamschula} openmaintainer
@@ -15,6 +15,9 @@ long_description    {*}${description} Unfurl takes a URL and expands ("unfurls")
                     into a directed graph, extracting every bit of information from \
                     the URL and exposing the obscured.
 homepage            https://github.com/obsidianforensics/unfurl
+
+supported_archs     noarch
+platforms           {darwin any}
 
 checksums           rmd160  e4f503da93c29ebd2ee0055146f9d53f71a8aa55 \
                     sha256  36f736966950c8fd6ce09219eefe933a22704037faec311ba9983505fc5ef87a \
