@@ -1,0 +1,15 @@
+bin/abiopen.py-3.13
+bin/abicomp.py-3.13
+bin/abiprof.py-3.13
+bin/abidoc.py-3.13
+bin/abistruct.py-3.13
+bin/oncv.py-3.13
+bin/abigui.py-3.13
+bin/abidb.py-3.13
+bin/abiml.py-3.13
+bin/abicheck.py-3.13
+bin/abiw.py-3.13
+bin/abips.py-3.13
+bin/abiview.py-3.13
+bin/abinp.py-3.13
+bin/abirun.py-3.13
