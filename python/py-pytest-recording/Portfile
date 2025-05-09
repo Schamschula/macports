@@ -5,19 +5,20 @@ PortGroup           python 1.0
 
 name                py-pytest-recording
 python.rootname     pytest_recording
-version             0.13.3
+version             0.13.4
 revision            0
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
 description         A pytest plugin that records network interactions in your tests via VCR.py.
 long_description    {*}${description}
-supported_archs     noarch
-platforms           {darwin any}
 homepage            https://github.com/kiwicom/pytest-recording
 
-checksums           rmd160  2e6091cb201fc0759868a3546d92b7e45f273c61 \
-                    sha256  dd018421a956ecc45f112c051b1e323b40d029879b1062853df45b05c6098310 \
-                    size    26228
+supported_archs     noarch
+platforms           {darwin any}
+
+checksums           rmd160  ee432c370eaf85a204c53e9d98cb2fce533b3b38 \
+                    sha256  568d64b2a85992eec4ae0a419c855d5fd96782c5fb016784d86f18053792768c \
+                    size    26576
 
 python.versions     38 39 310 311 312 313
 
