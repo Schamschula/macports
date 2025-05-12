@@ -26,11 +26,14 @@ checksums           rmd160  bcffb585534c504cd9fbf950c3802fda334d255a \
 
 use_autoreconf      yes
 
+set python.version  313
+set python.branch   [string index ${python.version} 0].[string range ${python.version} 1 end]
+
 depends_build-append \
-                    port:py313-docutils
+                    port:py${python.version}-docutils
 
 # we need to add the path to rst2man.py
-set path $::env(PATH):${frameworks_dir}/Python.framework/Versions/3.12/bin/
+set path $::env(PATH):${frameworks_dir}/Python.framework/Versions/${python.branch}/bin/
 configure.env-append \
                     PATH=${path}
 build.env-append    PATH=${path}
