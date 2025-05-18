@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           github 1.0
 
-github.setup        lukas2511 dehydrated 0.7.1 v
+github.setup        lukas2511 dehydrated 0.7.2 v
 categories          security
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
@@ -15,9 +15,9 @@ long_description    This is a client for signing certificates with an ACME-serve
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  6820138d13dfc7a124bc3b5f8ae04bb43ba4fb74 \
-                    sha256  3a27ab237bb2b889596e49edea0a137fde67b253158cd12045b053bed8fa0ca6 \
-                    size    120592
+checksums           rmd160  26d856332bb1d83f31057f05d0e0fc7f3a381b6d \
+                    sha256  7ea5a75bfcdf04bbb6ef88d03f89dec8101a2d3ea1dd467d8c42cbb0339ed5cb \
+                    size    120942
 
 use_configure       no
 build               {}
