@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           python 1.0
 
-github.setup        conan-io conan 2.16.1
+github.setup        conan-io conan 2.17.0
 github.tarball_from archive
 revision            0
 categories          devel python
@@ -16,17 +16,17 @@ supported_archs     noarch
 platforms           {darwin any}
 homepage            https://conan.io/
 
-checksums           rmd160  b15481fcc3ab9e3687842b45685b0120a6701998 \
-                    sha256  5c4b8ae76583e047250dd948e4855fd491b8238eb8963d5f08e6a3ec1cce3176 \
-                    size    1228261
+checksums           rmd160  00372229c4ceaa2d81aa05616f6e1e762e2204d7 \
+                    sha256  a0ca7a321a3bb7e0df9ee4729db62614aaf05ac962e8dd35d8f571d955a42e68 \
+                    size    1244474
 
 variant python310 conflicts python311 python312 python313 description {Build using Python 3.10} {}
 variant python311 conflicts python310 python312 python313 description {Build using Python 3.11} {}
 variant python312 conflicts python310 python311 python313 description {Build using Python 3.12} {}
 variant python313 conflicts python310 python311 python312 description {Build using Python 3.13} {}
 
-if {![variant_isset python310] && ![variant_isset python311] && ![variant_isset python313]} {
-    default_variants +python312
+if {![variant_isset python310] && ![variant_isset python311] && ![variant_isset python312]} {
+    default_variants +python313
 }
 
 foreach pv {313 312 311 310} {
@@ -36,8 +36,6 @@ foreach pv {313 312 311 310} {
         break
     }
 }
-
-python.pep517       yes
 
 depends_build-append \
                     port:py${python.version}-setuptools
