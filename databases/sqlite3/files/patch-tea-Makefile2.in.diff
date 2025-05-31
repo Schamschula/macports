@@ -1,0 +1,26 @@
+Index: tea/Makefile.in
+==================================================================
+--- Makefile.in
++++ Makefile.in
+@@ -372,14 +372,19 @@
+	fi
+	$(INSTALL.noexec) "@TEAISH_TM_TCL@" "$(install-core.tmdir)/$(tx.tm.tgt)"
+@endif
+install-test: install-core
+	@echo "Post-install test of [package require $(tx.name.pkg) $(tx.version)]..."; \
++	set xtra=""; \
++	if [ x != "x$(DESTDIR)" ]; then \
++		xtra='set ::auto_path [linsert $$::auto_path 0 [file normalize $(DESTDIR)$(TCLLIBDIR)/..]];'; \
++	fi; \
+	if echo \
+-		'set c 0; ' \
++		'set c 0; ' $$xtra \
+		'@TEAISH_POSTINST_PREREQUIRE@' \
+-		'if {[catch {package require $(tx.name.pkg) $(tx.version)}]} {incr c};' \
++		'if {[catch {package require $(tx.name.pkg) $(tx.version)} xc]} {incr c};' \
++		'if {$$c && "" ne $$xc} {puts $$xc; puts "auto_path=$$::auto_path"};' \
+		'exit $$c' \
+		| $(TCLSH) ; then \
+		echo "passed"; \
+	else \
+		echo "FAILED"; \

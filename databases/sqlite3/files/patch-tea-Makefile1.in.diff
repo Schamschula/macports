@@ -1,0 +1,10 @@
+--- Makefile.in.orig	2025-05-29 09:35:12
++++ Makefile.in	2025-05-29 19:04:18
+@@ -356,6 +356,7 @@
+ install-test: install-core
+ 	@echo "Post-install test of [package require $(tx.name.pkg) $(tx.version)]..."; \
+ 	if echo \
++		'lappend auto_path ${teaish.dir};' \
+ 		'set c 0; ' \
+ 		'@TEAISH_POSTINST_PREREQUIRE@' \
+ 		'if {[catch {package require $(tx.name.pkg) $(tx.version)}]} {incr c};' \
