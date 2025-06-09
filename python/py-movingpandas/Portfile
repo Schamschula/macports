@@ -1,0 +1,29 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-movingpandas
+version             0.22.3
+revision            0
+license             BSD
+maintainers         {mps @Schamschula} openmaintainer
+description         MovingPandas is a Python library for movement data exploration and \
+                    analysis.
+long_description    {*}${description} MovingPandas provides trajectory data structures \
+                    and functions for handling movement data based on Pandas, \
+                    GeoPandas, and HoloViz
+homepage            https://github.com/movingpandas/movingpandas
+
+checksums           rmd160  a5cc55558fabf5574bf5f00e3f3358b44ba9a590 \
+                    sha256  ed171d260444ed1a787b51a7c745805dc37fa4721487dd4766118a97d49b94f6 \
+                    size    75569
+
+python.versions     39 310 311 312 313
+
+if {${name} ne ${subport}} {
+    depends_lib-append  \
+                    port:py${python.version}-geopandas \
+                    port:py${python.version}-geopy \
+                    port:py${python.version}-matplotlib
+}
