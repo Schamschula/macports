@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-lonboard
-version             0.10.4
+version             0.11.0
 revision            0
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
@@ -13,9 +13,9 @@ description         A Python library for fast, interactive geospatial vector dat
 long_description    {*}${description}
 homepage            https://github.com/developmentseed/lonboard
 
-checksums           rmd160  7070a306edb79e136d9ef6612bc3885487e99cb8 \
-                    sha256  12164ce778fb1fd179b18da9841a2994e8477971b63a11b42bb147d9922b7074 \
-                    size    867160
+checksums           rmd160  b8e686bb2b198b8bb7a943da329c601c0da9b16e \
+                    sha256  03d69c63ad3bf7840f7c00f881bc0b532c6546a65f45def8aa3b85763607d076 \
+                    size    905119
 
 python.versions     39 310 311 312 313
 
