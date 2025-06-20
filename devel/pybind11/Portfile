@@ -4,12 +4,12 @@ PortSystem              1.0
 PortGroup               cmake  1.1
 PortGroup               github 1.0
 
-github.setup            pybind pybind11 3.0.0rc3 v
+github.setup            pybind pybind11 3.0.0rc4 v
 revision                0
 
-checksums               rmd160  13cac34a18a55e3f57d414daabf61125b68f3d28 \
-                        sha256  d34e195c5d0e576e23bbd55c71b73e888369d4937fbeec0ea0cf4e4ad2ec4fd3 \
-                        size    910739
+checksums               rmd160  152d2b1e2670435ee1c6350846beb5ff5e17bacc \
+                        sha256  c6d5d337697d7390d268ded56235fdfb925614be4139c2fb4671a7c2e8828c4b \
+                        size    915129
 github.tarball_from     archive
 
 categories              devel
