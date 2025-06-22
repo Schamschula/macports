@@ -13,12 +13,12 @@ maintainers             {michaelld @michaelld} openmaintainer
 description             The core utilities for the scientific library scipy for Python
 long_description        {*}${description}
 
-github.setup            numpy numpy 2.3.0 v
+github.setup            numpy numpy 2.3.1 v
 revision                0
 
-checksums               rmd160  4e1f694f8c3ab227d2781ba4f06e9c007a3d50e5 \
-                        sha256  581f87f9e9e9db2cba2141400e160e9dd644ee248788d6f90636eeb8fd9260a6 \
-                        size    20382813
+checksums               rmd160  b0c29f085cccb7d28fa81a9c3a37f5d78b033347 \
+                        sha256  1ec9ae20a4226da374362cca3c62cd753faf2f951440b0e3b98e93c235441d2b \
+                        size    20390372
 
 if {${name} ne ${subport}} {
     # the python PortGroup puts compiler names in build.env and destroot.env
