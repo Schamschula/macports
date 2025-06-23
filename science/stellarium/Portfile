@@ -5,7 +5,7 @@ PortGroup       github 1.0
 PortGroup       cmake 1.1
 PortGroup       qt6 1.0
 
-github.setup    Stellarium stellarium 25.1 v
+github.setup    Stellarium stellarium 25.2 v
 revision        0
 github.tarball_from \
                 releases
@@ -28,9 +28,9 @@ homepage        https://stellarium.org/
 
 conflicts       stellarium-qt4
 
-checksums       rmd160  2ac8b47a027df11814ee59d6e2ef858cc9805b00 \
-                sha256  2ecbc90f0bc7f1355e4d6497db2adc9119000d88eb18a3b4257ce249c4bea2f0 \
-                size    458829950
+checksums       rmd160  e35dfa27a9c0ead2de0cab9a12189043684b9061 \
+                sha256  afb43e95438aef5509afd6ba197daf30b52607cac16888332d9810ba12209486 \
+                size    462496852
 
 # builds as 64-bit only, according to its top-level CMakeLists.txt file
 universal_variant   no
@@ -100,7 +100,7 @@ if {[variant_isset RemoteControl]} {
     # specify the Python dependencies; these are checked for at configure,
     # then used for building, but not at runtime.
 
-    set pythons_versions_with_dot {3.7 3.8 3.9 3.10 3.11 3.12}
+    set pythons_versions_with_dot {3.9 3.10 3.11 3.12 3.13}
 
     set pythons_ports {}
     set pythons_versions_no_dot {}
@@ -117,8 +117,8 @@ if {[variant_isset RemoteControl]} {
         variant ${p} description "Build ${name} using Python ${v}" conflicts {*}${c} ""
     }
 
-    #default to Python 3.12
-    set selected_python_no_dot 312
+    #default to Python 3.13
+    set selected_python_no_dot 313
     foreach v ${pythons_versions_with_dot} {
         set s [string map {. {}} ${v}]
         if {[variant_isset python${s}]} {
