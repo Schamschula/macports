@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-versioningit
-version             3.2.0
+version             3.3.0
 revision            0
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
@@ -12,9 +12,9 @@ description         Versioning It with your Version In Git
 long_description    {*}${description}
 homepage            https://github.com/jwodder/versioningit
 
-checksums           rmd160  a67693bbb2a6b0d385a30d065a259920f1bba038 \
-                    sha256  4afb9559842d75962f9fb308898384a3b704e799240e6e89b74c2a49809af471 \
-                    size    217086
+checksums           rmd160  e862acb9bd5cfc43402b9feb9271aaa3d67d727d \
+                    sha256  b91ad7d73e73d21220e69540f20213f2b729a1f9b35c04e9e137eaf28d2214da \
+                    size    220280
 
 python.versions     39 310 311 312 313
 
