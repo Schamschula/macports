@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-jupyter_ydoc
-version             3.0.5
+version             3.1.0
 revision            0
 license             BSD
 maintainers         {mps @Schamschula} openmaintainer
@@ -16,9 +16,9 @@ homepage            https://github.com/jupyter-server/jupyter_ydoc
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  79d0144d26dc0ec8e9ecde0cf9e0207f71c72ab5 \
-                    sha256  12208841a1edfe8ee16b8be3e843d54090268498de2d2e783c33a5dd33c995ff \
-                    size    957157
+checksums           rmd160  f1e9c9240d06aa7b96c6412a025a4c20e1af2cf3 \
+                    sha256  23d8b3c34b52472371b5c177f849c2a97842b1c634ed7419ca8d744635e29dbc \
+                    size    957259
 
 python.versions     39 310 311 312 313
 
@@ -30,6 +30,7 @@ if {${name} ne ${subport}} {
                     port:py${python.version}-hatch-nodejs-version    
 
     depends_lib-append \
+                    port:nodejs24 \
                     port:py${python.version}-pycrdt
 
     if {${python.version} == 39} {
