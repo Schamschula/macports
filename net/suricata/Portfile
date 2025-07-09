@@ -67,6 +67,7 @@ configure.args      --enable-ipfw \
                     --enable-unittests \
                     --disable-geoip --disable-prelude --disable-unix-socket \
                     --disable-nss --disable-nspr \
+                    --disable-silent-rules \
                     --with-libhtp-includes=${prefix}/include \
                     --with-libhtp-libraries=${prefix}/lib \
                     --with-libjansson-includes=${prefix}/include \
