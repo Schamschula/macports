@@ -4,7 +4,8 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           python 1.0
 
-github.setup        y-crdt pycrdt 0.12.23
+github.setup        y-crdt pycrdt 0.12.25
+github.tarball_from archive
 name                py-pycrdt
 revision            0
 license             MIT
@@ -13,13 +14,26 @@ description         CRDTs based on Yrs.
 long_description    {*}${description}
 homepage            https://github.com/jupyter-server/pycrdt
 
-github.tarball_from archive
-
-checksums           rmd160  c7f5f68ec1ace774bc922bdd954d23fbfbf02479 \
-                    sha256  5f9a02d11ac0d9425acb78c893e81783935bb6df42aff5887c4309a0db7ba68b \
-                    size    70774
+checksums           rmd160  51e1057c15b9ac7e70e00fdebe7e907ca4080cda \
+                    sha256  16a006bba7cd2ff44d239c0d53ba42e4ce987266d878a422a82702bffae43583 \
+                    size    70874
 
 python.versions     39 310 311 312 313
 
 python.pep517_backend \
                     maturin
+
+if {${name} ne ${subport}} {
+    depends_lib-append \
+                    port:py${python.version}-anyio
+
+    if {${python.version} <= 310} {
+        depends_lib-append \
+                    port:py${python.version}-typing_extensions
+    }
+
+    if {${python.version} == 39} {
+        depends_lib-append \
+                    port:py${python.version}-importlib-metadata
+    }
+}
