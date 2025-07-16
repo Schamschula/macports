@@ -37,7 +37,8 @@ if {${name} ne ${subport}} {
                             sha256  72e6def53fb491f7f4e92692029d2e7bb5a0783314f20d80222735ff10a75758 \
                             size    138789
     } else {
-        depends_build-append    port:py${python.version}-scikit-build-core
+        depends_build-append \
+                            port:py${python.version}-scikit-build-core
     }
 
     livecheck.type      none
