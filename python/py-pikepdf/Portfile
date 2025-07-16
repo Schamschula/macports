@@ -13,7 +13,7 @@ maintainers         {mps @Schamschula} openmaintainer
 description         pikepdf is based on QPDF, a powerful PDF manipulation and repair \
                     library.
 long_description    {*}${description}
-homepage            
+homepage            https://github.com/pikepdf/pikepdf
 
 python.versions     39 310 311 312 313
 
