@@ -1,0 +1,10 @@
+--- src/core/acroform.cpp.orig	2025-07-14 09:39:04
++++ src/core/acroform.cpp	2025-07-15 17:52:34
+@@ -9,6 +9,7 @@
+ #include <qpdf/QPDFAcroFormDocumentHelper.hh>
+ 
+ #include <pybind11/pybind11.h>
++#include <pybind11/detail/struct_smart_holder.h>
+ #include <pybind11/stl.h>
+ 
+ #include "pikepdf.h"
