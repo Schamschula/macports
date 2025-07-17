@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-movingpandas
-version             0.22.3
+version             0.22.4
 revision            0
 license             BSD
 maintainers         {mps @Schamschula} openmaintainer
@@ -15,9 +15,9 @@ long_description    {*}${description} MovingPandas provides trajectory data stru
                     GeoPandas, and HoloViz
 homepage            https://github.com/movingpandas/movingpandas
 
-checksums           rmd160  a5cc55558fabf5574bf5f00e3f3358b44ba9a590 \
-                    sha256  ed171d260444ed1a787b51a7c745805dc37fa4721487dd4766118a97d49b94f6 \
-                    size    75569
+checksums           rmd160  f1a110631b1c6fa6489f55de2c5fab3cad777514 \
+                    sha256  2c4bb6f45f32ccd787d8a05397d5746f9d9207bf07b8cbfc36d49fc17e0824be \
+                    size    76001
 
 python.versions     39 310 311 312 313
 
