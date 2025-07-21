@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                wxWidgets-common
-version             3.3.0
+version             3.3.1
 revision            0
 
 categories          graphics devel
