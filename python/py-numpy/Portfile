@@ -13,12 +13,12 @@ maintainers             {michaelld @michaelld} openmaintainer
 description             The core utilities for the scientific library scipy for Python
 long_description        {*}${description}
 
-github.setup            numpy numpy 2.3.1 v
+github.setup            numpy numpy 2.3.2 v
 revision                0
 
-checksums               rmd160  b0c29f085cccb7d28fa81a9c3a37f5d78b033347 \
-                        sha256  1ec9ae20a4226da374362cca3c62cd753faf2f951440b0e3b98e93c235441d2b \
-                        size    20390372
+checksums               rmd160  daf76df8cfee22a2acf1becf85ab031393ff9d92 \
+                        sha256  e0486a11ec30cdecb53f184d496d1c6a20786c81e55e41640270130056f8ee48 \
+                        size    20489306
 
 if {${name} ne ${subport}} {
     # the python PortGroup puts compiler names in build.env and destroot.env
@@ -51,9 +51,9 @@ if {${name} ne ${subport}} {
     set PATCH_PY_EXT ""
     if {${python.version} == 27} {
         github.setup        numpy numpy 1.16.6 v
-        checksums           rmd160  cbb34cf0981ea142ff45722d05a9daad20a134ea \
-                            sha256  2dce87065d5de1a83485cfb3de5e4e793787890f5c1dcc3536a9cabf2e1620af \
-                            size    4691852
+        checksums           rmd160  daf76df8cfee22a2acf1becf85ab031393ff9d92 \
+                            sha256  e0486a11ec30cdecb53f184d496d1c6a20786c81e55e41640270130056f8ee48 \
+                            size    20489306
         revision            4
         set PATCH_PY_EXT    ".27"
         patchfiles-append   patch-cpu-detection.py.27.patch
@@ -61,9 +61,9 @@ if {${name} ne ${subport}} {
         livecheck.regex     {(1\.16(?:\.\d+)+)}
     } elseif {${python.version} == 37} {
         github.setup        numpy numpy 1.21.6 v
-        checksums           rmd160  e8824bb384025421d8c637f1671b7010c9a79471 \
-                            sha256  d4efc6491a1cdc00f9eca9bf2c1aa13671776f6941c7321ddf75b45c862f0c2c \
-                            size    9445717
+        checksums           rmd160  daf76df8cfee22a2acf1becf85ab031393ff9d92 \
+                            sha256  e0486a11ec30cdecb53f184d496d1c6a20786c81e55e41640270130056f8ee48 \
+                            size    20489306
         revision            1
         github.tarball_from releases
         set PATCH_PY_EXT    ".37"
@@ -71,9 +71,9 @@ if {${name} ne ${subport}} {
         python.pep517       no
     } elseif {${python.version} == 38} {
         github.setup        numpy numpy 1.24.1 v
-        checksums           rmd160  dd2df59cb48926eb460143f617a552b8009af11d \
-                            sha256  2386da9a471cc00a1f47845e27d916d5ec5346ae9696e01a8a34760858fe9dd2 \
-                            size    10903184
+        checksums           rmd160  daf76df8cfee22a2acf1becf85ab031393ff9d92 \
+                            sha256  e0486a11ec30cdecb53f184d496d1c6a20786c81e55e41640270130056f8ee48 \
+                            size    20489306
         revision            1
         github.tarball_from releases
         set PATCH_PY_EXT    ".38"
