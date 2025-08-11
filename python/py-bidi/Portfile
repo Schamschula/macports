@@ -1,0 +1,28 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-bidi
+python.rootname     python_bidi
+version             0.6.6
+revision            1
+license             GPL-3
+maintainers         nomaintainer
+description         Pure python implementation of the BiDi layout algorithm
+long_description    {*}${description}
+homepage            https://github.com/MeirKriheli/python-bidi
+
+supported_archs     noarch
+platforms           {darwin any}
+
+checksums           rmd160  a9c8ca625f108dd3485888323467d6486195e49c \
+                    sha256  07db4c7da502593bd6e39c07b3a38733704070de0cbf92a7b7277b7be8867dd9 \
+                    size    45102
+
+python.versions     39 310 311 312 313
+
+if {${name} ne ${subport}} {
+    python.pep517_backend \
+                    maturin
+}
