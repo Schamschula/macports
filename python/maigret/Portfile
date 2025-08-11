@@ -1,0 +1,104 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+PortGroup           python 1.0
+
+github.setup        soxoj maigret 0.5.0 v
+github.tarball_from archive
+revision            0
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         Maigret collects a dossier on a person by username only, checking \
+                    for accounts on a huge number of sites and gathering all the \
+                    available information from web pages.
+long_description    {*}${description} No API keys required. Maigret is an easy-to-use \
+                    and powerful fork of Sherlock.
+
+supported_archs     noarch
+platforms           {darwin any}
+
+checksums           rmd160  be88dbbcd778117e5dc3aa121542f16147ac11e1 \
+                    sha256  aa8cf7fbe9cfcd65be4ee8033f49d363fa403cf0309bdae1605e31d31f432098 \
+                    size    2429351
+
+variant python39 conflicts python310 python311 python312 python313 description {Build using Python 3.9} {}
+variant python310 conflicts python39 python311 python312 python313 description {Build using Python 3.10} {}
+variant python311 conflicts python39 python310 python312 python313 description {Build using Python 3.11} {}
+variant python312 conflicts python39 python310 python311 python313 description {Build using Python 3.12} {}
+variant python313 conflicts python39 python310 python311 python312 description {Build using Python 3.13} {}
+
+if {![variant_isset python39] && ![variant_isset python310] && ![variant_isset python311] && ![variant_isset python312] } {
+    default_variants +python313
+}
+
+foreach pv {313 312 311 310 39} {
+    if {[variant_isset python${pv}]} {
+        set python.version ${pv}
+        set python.branch [string index ${python.version} 0].[string range ${python.version} 1 end]
+        break
+    }
+}
+
+depends_build-append \
+                    port:py${python.version}-setuptools
+
+depends_lib-append  \
+                    port:py${python.version}-aiodns \
+                    port:py${python.version}-aiohttp \
+                    port:py${python.version}-aiohttp-socks \
+                    port:py${python.version}-arabic-reshaper \
+                    port:py${python.version}-async-timeout \
+                    port:py${python.version}-attrs \
+                    port:py${python.version}-bidi \
+                    port:py${python.version}-certifi \
+                    port:py${python.version}-chardet \
+                    port:py${python.version}-cloudscraper \
+                    port:py${python.version}-colorama \
+                    port:py${python.version}-country \
+                    port:py${python.version}-future \
+                    port:py${python.version}-html5lib \
+                    port:py${python.version}-idna \
+                    port:py${python.version}-jinja2 \
+                    port:py${python.version}-lxml \
+                    port:py${python.version}-markupsafe \
+                    port:py${python.version}-mock \
+                    port:py${python.version}-multidict \
+                    port:py${python.version}-networkx \
+                    port:py${python.version}-pypdf \
+                    port:py${python.version}-requests \
+                    port:py${python.version}-requests-futures \
+                    port:py${python.version}-reportlab \
+                    port:py${python.version}-socid-extractor \
+                    port:py${python.version}-six \
+                    port:py${python.version}-socks \
+                    port:py${python.version}-soupsieve \
+                    port:py${python.version}-stem \
+                    port:py${python.version}-torrequest \
+                    port:py${python.version}-tqdm \
+                    port:py${python.version}-typing_extensions \
+                    port:py${python.version}-webencodings \
+                    port:py${python.version}-xhtml2pdf \
+                    port:py${python.version}-xmind \
+                    port:py${python.version}-yarl
+
+post-patch {
+    move ${worksrcpath}/tests ${worksrcpath}/${name}/tests
+    move ${worksrcpath}/utils ${worksrcpath}/${name}/utils
+}
+
+post-destroot {
+    ln -s ${python.prefix}/bin/${name} ${destroot}/${prefix}/bin
+
+    xinstall -d ${destroot}${prefix}/var/${name}
+    move ${destroot}${python.prefix}/lib/python${python.branch}/site-packages/${name}/resources/data.json \
+        ${destroot}${prefix}/var/${name}/data.json.dist
+}
+
+post-activate {
+    if { [file exists ${prefix}/var/maigret/data.json] == 0 } {
+         xinstall -m 666 ${prefix}/var/${name}/data.json.dist ${prefix}/var/${name}/data.json
+         ln -s ${prefix}/var/maigret/data.json \
+             ${python.prefix}/lib/python${python.branch}/site-packages/${name}/resources/data.json
+    }
+}
