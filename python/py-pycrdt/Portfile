@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           python 1.0
 
-github.setup        y-crdt pycrdt 0.12.26
+github.setup        y-crdt pycrdt 0.12.27
 github.tarball_from archive
 name                py-pycrdt
 revision            0
@@ -14,9 +14,9 @@ description         CRDTs based on Yrs.
 long_description    {*}${description}
 homepage            https://github.com/jupyter-server/pycrdt
 
-checksums           rmd160  1e70115f68fb91e17c58d37d6162a0fa6341d4bd \
-                    sha256  ba4ff0697cbbdf4280c179ba9e37ec587c921e520395222f54bbf0b0b1b76a35 \
-                    size    70876
+checksums           rmd160  0c11eab0bafb95ad2eea26d78b4a093008109927 \
+                    sha256  6d2379c9db7d247272b1fb369c8bf597c517c313358b31f56bd29d1213c3658a \
+                    size    71330
 
 python.versions     39 310 311 312 313
 
