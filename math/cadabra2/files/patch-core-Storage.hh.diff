@@ -1,0 +1,65 @@
+--- core/Storage.hh.orig	2025-07-31 14:28:34
++++ core/Storage.hh	2025-08-14 10:21:41
+@@ -31,7 +31,7 @@
+ #include <assert.h>
+ #include <initializer_list>
+ #include <variant>
+-#include <memory_resource>
++#include <experimental/memory_resource>
+ 
+ #include "tree.hh"
+ #include "Multiplier.hh"
+@@ -40,7 +40,7 @@
+ 
+ 	class NTensor;
+ 	class NInterpolatingFunction;
+-	
++
+ 	typedef Multiplier              multiplier_t;
+ 	typedef std::set<std::string>   nset_t;
+ 	typedef std::set<multiplier_t>  rset_t;
+@@ -114,7 +114,7 @@
+ 			/// content in the `content` variable. Typical tree
+ 			/// simplifications cannot apply to non-standard nodes.
+ 			bool is_standard() const;
+-				
++
+ 			bool is_zero() const;
+ 			bool is_identity() const;
+ 			bool is_rational() const;
+@@ -154,7 +154,7 @@
+ 	void     flip_sign(rset_t::iterator&);
+ 	void     half(rset_t::iterator&);
+ 	void     set(rset_t::iterator&, multiplier_t);
+-	
++
+ 
+ 	///
+ 	/// Basic storage class for symbolic mathemematical expressions. The
+@@ -166,7 +166,7 @@
+ //	typedef tree<str_node, std::pmr::polymorphic_allocator<tree_node_<str_node>>> cdb_tree;
+ //	extern std::pmr::polymorphic_allocator<tree_node_<str_node>> alloc;
+ 	typedef tree<str_node, std::pmr::polymorphic_allocator<tree_node_<str_node>>> cdb_tree;
+-	
++
+ 	class Ex : public std::enable_shared_from_this<Ex>, public cdb_tree {
+ 		public:
+ 			Ex();
+@@ -188,7 +188,7 @@
+ 			explicit Ex(int, int);
+ 
+ 			Ex& operator=(Ex);
+-			
++
+ 			/// Keeping track of what algorithms have done to this expression.
+ 			/// After a reset_state (or at initialisation), the expression sits
+ 			/// in the 'checkpointed' state. When an algorithm acts, it can then
+@@ -220,7 +220,7 @@
+ 			///   ex.reset_state()
+ 			///   while ex.changed():
+ 			///      [block]
+-			
++
+ 			bool     changed_state();
+ 
+ 			/// Test if the expression is a rational number.
