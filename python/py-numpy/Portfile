@@ -106,17 +106,17 @@ if {${name} ne ${subport}} {
         depends_build-append  port:py${python.version}-cython-compat
         set compat_path [string replace ${python.pkgd} 0 [string length ${python.prefix}]-1 ${prefix}/lib/py${python.version}-cython-compat]
         build.env-append    PYTHONPATH=${compat_path}
+
+        if {[variant_isset atlas] || [variant_isset openblas]} {
+            # force LDFLAGS for correct linking of the modules
+            # for non-Apple GCC compilers
+            patchfiles-append   patch-numpy_linalg_setup.py${PATCH_PY_EXT}.diff
+        }
     }
 
     patchfiles-append       patch-numpy_tests_test_scripts.py${PATCH_PY_EXT}.diff \
                             patch-fcompiler_g95${PATCH_PY_EXT}.diff \
                             patch-arm64_min${PATCH_PY_EXT}.diff
-
-    if {[variant_isset atlas] || [variant_isset openblas]} {
-        # force LDFLAGS for correct linking of the modules
-        # for non-Apple GCC compilers
-        patchfiles-append   patch-numpy_linalg_setup.py${PATCH_PY_EXT}.diff
-    }
 
     compilers.setup         -clang -gcc44 -gcc45 \
                             -gcc46 -gcc47 -gcc48 -g95
