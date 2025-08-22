@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           python 1.0
 
-github.setup        kylebarron arro3 0.5.1 py-v
+github.setup        kylebarron arro3 0.6.0 py-v
 github.tarball_from archive
 
 name                py-arro3-core
@@ -16,9 +16,9 @@ description         A minimal Python library for Apache Arrow, binding to the Ru
 long_description    {*}${description}
 homepage            https://github.com/kylebarron/arro3
 
-checksums           rmd160  4ff79e1d56843b299b5b98f3f3f42d665d5366de \
-                    sha256  7baf4b62407cff38e3cb9f2bcedc2d394281f1c5fb1d92ec377f0d14acd5384a \
-                    size    192360
+checksums           rmd160  0291e11477bd81656e265aee46cb960c75101441 \
+                    sha256  c731ce1b0fb76f4d7278b0ce18d012ae48b5c5045b472da862f00d31cbaf8807 \
+                    size    202595
 
 python.versions     39 310 311 312 313
 
