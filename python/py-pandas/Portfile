@@ -1,0 +1,46 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim: fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-pandas
+version             2.3.2
+revision            0
+categories-append   science
+license             BSD
+
+python.versions     39 310 311 312 313
+python.pep517_backend   meson
+
+maintainers         {stromnov @stromnov} openmaintainer
+
+description         Powerful data structures for data analysis and statistics
+
+long_description    {*}${description}
+
+homepage            https://pandas.pydata.org
+
+checksums           rmd160  feb2fb2d3e5736b6d7cd80cda64be34fdb16d35a \
+                    sha256  ab7b58f8f82706890924ccdfb5f48002b83d2b5a3845976a9fb705d36c34dcdb \
+                    size    4488684
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                        port:py${python.version}-cython \
+                        port:py${python.version}-versioneer \
+                        port:py${python.version}-wheel
+
+    depends_lib-append  port:py${python.version}-numpy \
+                        port:py${python.version}-dateutil \
+                        port:py${python.version}-tz \
+                        port:py${python.version}-pytzdata
+
+    patchfiles-append   patch-pyproject.toml.diff
+
+    # error: static_assert failed "Overflow checking not detected; please try a newer compiler"
+    compiler.blacklist-append \
+                {clang < 800} *gcc-3.* *gcc-4.*
+
+    build.env-append    CYTHON=${prefix}/bin/cython-${python.branch}
+    build.env-append    PATH=${python.prefix}/bin:$::env(PATH)
+}
