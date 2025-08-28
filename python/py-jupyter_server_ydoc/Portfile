@@ -4,20 +4,21 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-jupyter_server_ydoc
-version             2.1.0
+version             2.1.1
 revision            0
 license             BSD
-supported_archs     noarch
-platforms           {darwin any}
 maintainers         {mps @Schamschula} openmaintainer
 description         Jupyter Server YDoc is a Jupyter Server Extension providing support \
                     for Y documents.
 long_description    {*}${description}
 homepage            https://jupyter.org
 
-checksums           rmd160  4affb50ee68da72e42f1dc9a54d13e4ca1565c08 \
-                    sha256  b526be684aa621ebfd972c18a54ca7c613c67f2d051cf52d7a26aa092f735a46 \
-                    size    27726
+supported_archs     noarch
+platforms           {darwin any}
+
+checksums           rmd160  7b0d677f123e860b1af7b01bc98ac68bbf829fa2 \
+                    sha256  2b0995cdc1d1ff9f46a38b00352c29c29d7b3c703038163a73e9cf0a72f9077b \
+                    size    27550
 
 python.versions     39 310 311 312 313
 
