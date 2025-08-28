@@ -3,7 +3,6 @@
 PortSystem          1.0
 PortGroup           compilers  1.0
 PortGroup           muniversal 1.0
-PortGroup           compiler_blacklist_versions 1.0
 PortGroup           legacysupport 1.1
 PortGroup           linear_algebra 1.0
 
@@ -266,6 +265,11 @@ depends_build-append \
     port:autoconf \
     port:automake \
     port:pkgconfig
+
+configure.env-append ACLOCAL=${prefix}/bin/aclocal
+configure.env-append AUTOCONF=${prefix}/bin/autoconf
+configure.env-append AUTOHEADER=${prefix}/bin/autoheader
+configure.env-append AUTOMAKE=${prefix}/bin/automake
 
 compilers.choose    fc f77 f90 cc cxx
 
