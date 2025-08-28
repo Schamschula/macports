@@ -1,0 +1,39 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-patsy
+version             1.0.1
+revision            0
+categories-append   math
+supported_archs     noarch
+platforms           {darwin any}
+license             BSD
+
+python.versions     39 310 311 312 313
+
+maintainers         {stromnov @stromnov} openmaintainer
+
+description         Python package for describing statistical models.
+
+long_description    A Python package for describing statistical models \
+                    and for building design matrices. It is closely inspired \
+                    by and compatible with the 'formula' mini-language used \
+                    in R and S.
+
+homepage            https://github.com/pydata/patsy
+
+checksums           rmd160  1211f3b53aab92ad0e7283bfc0697c2cefe7262d \
+                    sha256  e786a9391eec818c054e359b737bbce692f051aee4c661f4141cc88fb459c0c4 \
+                    size    396010
+
+if {${name} ne ${subport}} {
+    depends_lib-append \
+                    port:py${python.version}-numpy
+
+    test.run        yes
+
+    depends_test-append \
+                    port:py${python.version}-scipy
+}
