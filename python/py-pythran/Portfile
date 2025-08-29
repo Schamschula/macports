@@ -1,0 +1,40 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-pythran
+version             0.18.0
+revision            0
+
+categories-append   devel
+platforms           {darwin any}
+supported_archs     noarch
+license             BSD
+maintainers         {reneeotten @reneeotten} openmaintainer
+
+description         Ahead of Time compiler for numeric kernels
+long_description    {*}${description}
+
+homepage            https://github.com/serge-sans-paille/pythran
+
+checksums           rmd160  ce03b31a99b711c7498f0dfc82f97b9e518774ab \
+                    sha256  5c003e8cbedf6dbb68c2869c49fc110ce8b5e8982993078a4a819f1dadc4fc6a \
+                    size    2402895
+
+python.versions     39 310 311 312 313
+
+if {${name} ne ${subport}} {
+    depends_lib-append \
+                    port:py${python.version}-beniget \
+                    port:py${python.version}-gast \
+                    port:py${python.version}-numpy \
+                    port:py${python.version}-ply
+
+    post-destroot {
+        set docdir ${prefix}/share/doc/${subport}
+        xinstall -d ${destroot}${docdir}
+        xinstall -m 0644 -W ${worksrcpath} README.rst Changelog \
+            LICENSE ${destroot}${docdir}
+    }
+}
