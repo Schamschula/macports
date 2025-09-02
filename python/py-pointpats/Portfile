@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-pointpats
-version             2.5.1
+version             2.5.2
 revision            0
 
 categories-append   gis
@@ -21,9 +21,9 @@ long_description    The PySAL {*}${description} package is an open-source \
 
 homepage            https://pysal.org/pointpats/
 
-checksums           rmd160  fe3ee52c35a28b551a79e015a497f92e312294a9 \
-                    sha256  1eedb30a17e59746ed9ac68283f419dee5a07c17cd53ed2bc2dadba2b77973ff \
-                    size    4270216
+checksums           rmd160  b3db9384c6cb33e7a123ab0635f37e6e3006d8f6 \
+                    sha256  6be0be63c893b542d4b6b00609bb8378c38b58245c1cc53a95283500c3d4a663 \
+                    size    4472957
 
 python.versions     39 310 311 312 313
 
