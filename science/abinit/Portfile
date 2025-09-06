@@ -5,7 +5,7 @@ PortGroup           github 1.0
 PortGroup           linear_algebra 1.0
 PortGroup           mpi 1.0
 
-github.setup        abinit abinit 10.4.5
+github.setup        abinit abinit 10.4.7
 revision            0
 categories          science
 platforms           darwin
@@ -33,9 +33,9 @@ homepage            https://www.abinit.org
 
 github.tarball_from archive
 
-checksums           rmd160  2ac850bba98e2f0e16504802eb79a958a9dd5542 \
-                    sha256  ccb3af00603f574208b6d5bea6f857d7040be5748e7a93a689ffad84eb6a65ce \
-                    size    153582604
+checksums           rmd160  806a62c266e1e801f159842c841912ebbaa9bb9b \
+                    sha256  51f91d30f8fbadf7bcc36928406188b8810ea183fd2b1b406be563bd9fcdedb7 \
+                    size    154053477
 
 compilers.choose    cc cxx fc
 compilers.allow_arguments_mismatch yes
