@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-misp
 python.rootname     pymisp
-version             2.5.17.1
+version             2.5.17.2
 revision            0
 license             BSD
 maintainers         {mps @Schamschula} openmaintainer
@@ -17,16 +17,16 @@ homepage            https://github.com/MISP/PyMISP
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  02415f7cd687bfc41bc57dcba71e808072b5e0c3 \
-                    sha256  11e418e0d772d5542642698d60bc71dcb43863673a2c034fe19e08454cc6867c \
-                    size    1961121
+checksums           rmd160  e53f150f010a54b0b775d2789b1125705d2b95f1 \
+                    sha256  c09495ac46721d489fb3e2d6623a24249ad52b75fdeeb65e3df573f858f115fd \
+                    size    1963150
 
 python.versions     39 310 311 312 313
 
-if {${name} ne ${subport}} {
-    python.pep517_backend \
+python.pep517_backend \
                     poetry
 
+if {${name} ne ${subport}} {
     depends_build-append \
                     port:py${python.version}-poetry-core
 }
