@@ -20,7 +20,7 @@ PortGroup           mpiutil 1.0
 
 # make sure to keep in sync with mpi-doc
 name                mpich
-version             4.3.1
+version             4.3.2
 revision            0
 
 license             BSD
@@ -46,9 +46,9 @@ long_description    MPICH is a high-performance and widely portable\
 homepage            https://www.mpich.org/
 master_sites        ${homepage}static/downloads/${version}
 
-checksums           rmd160  7f672b6911531989b252b7a1077f96d8eb7c67f8 \
-                    sha256  acc11cb2bdc69678dc8bba747c24a28233c58596f81f03785bf2b7bb7a0ef7dc \
-                    size    37469641
+checksums           rmd160  b7e1a2b1e3914bad58bfb238339a64a5c42494c6 \
+                    sha256  47d774587a7156a53752218c811c852e70ac44db9c502dc3f399b4cb817e3818 \
+                    size    37697007
 
 # Disable livecheck for all subports; only enabled for main port, at end of portfile
 livecheck.type      none
