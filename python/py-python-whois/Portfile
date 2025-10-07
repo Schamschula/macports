@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-python-whois
 python.rootname     python_whois
-version             0.9.5
+version             0.9.6
 revision            0
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
@@ -19,6 +19,6 @@ platforms           {darwin any}
 
 python.versions     39 310 311 312 313
 
-checksums           rmd160  7a9ebacc2d225818a29e26ead940e587af0dc9e5 \
-                    sha256  18968c21484752fcc4b9a5f0af477ef6b8dc2e8bb7f1bd5c33831499c0dd41ca \
-                    size    111201
+checksums           rmd160  ab95b9ce37295481da32552b4094c28092266a64 \
+                    sha256  2e6de7b6d70e305a85f4859cd17781ee3f0da3a02a8e94f23cb4cdcd2e400bfa \
+                    size    125107
