@@ -4,23 +4,19 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-patch-ng
-version             1.18.1
+version             1.19.0
 revision            0
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
 description         Library to parse and apply unified diffs.
 long_description    {*}${description}
-supported_archs     noarch
-platforms           {darwin any}
 homepage            https://github.com/conan-io/python-patch-ng
 
-checksums           rmd160  fbf996d749f7f25773270e0f730c9c7d30f74546 \
-                    sha256  52fd46ee46f6c8667692682c1fd7134edc65a2d2d084ebec1d295a6087fc0291 \
-                    size    17913
+supported_archs     noarch
+platforms           {darwin any}
+
+checksums           rmd160  846acab454f912d0045d68d6dc2c1c57fb7ca552 \
+                    sha256  27484792f4ac1c15fe2f3e4cecf74bb9833d33b75c715b71d199f7e1e7d1f786 \
+                    size    18488
 
 python.versions     39 310 311 312 313
-
-if {${name} ne ${subport}} {
-    depends_build-append \
-                    port:py${python.version}-setuptools
-}
