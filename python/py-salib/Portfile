@@ -4,28 +4,29 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-salib
-version             1.5.1
+version             1.5.2
 revision            0
-categories          python
+categories-append   science
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
 description         Python implementations of commonly used sensitivity analysis methods. 
 long_description    {*}${description} Useful in systems modeling to calculate the effects \
                     of model inputs or exogenous factors on outputs of interest.
-supported_archs     noarch
 homepage            http://salib.github.io/SALib/
 
-checksums           rmd160  e9e09fedf0b1f133208ad3ef9910128b35b45384 \
-                    sha256  e4a9c319b8dd02995a8dc983f57c452cb7e5b6dbd43e7b7856c90cb6a332bb5f \
-                    size    725018
+supported_archs     noarch
+platforms           {darwin any}
 
-python.versions     37 38 39 310 311 312
+checksums           rmd160  9544540e080b86c2ea6c43fe1c3f5f731a99d1c7 \
+                    sha256  a8eeedc4e87cf070f7ef450b76cdecd120d1e5c602a9c35855ec7777591f949f \
+                    size    725859
 
-if {${name} ne ${subport}} {
-    python.pep517   yes
-    python.pep517_backend \
+python.versions     39 310 311 312 313
+
+python.pep517_backend \
                     hatchling
 
+if {${name} ne ${subport}} {
     depends_lib-append \
                     port:py${python.version}-matplotlib \
                     port:py${python.version}-multiprocess \
