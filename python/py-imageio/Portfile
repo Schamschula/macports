@@ -1,0 +1,31 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-imageio
+version             2.37.2
+revision            0
+
+categories-append   graphics
+license             BSD
+platforms           {darwin any}
+supported_archs     noarch
+
+python.versions     39 310 311 312 313
+
+maintainers         {stromnov @stromnov} openmaintainer
+
+description         Easy interface to read and write a wide range of image data.
+long_description    {*}${description}
+
+homepage            https://imageio.github.io/
+
+checksums           rmd160  cb2d735dcb837900372edd7edf389ed1d11dbbb7 \
+                    sha256  0212ef2727ac9caa5ca4b2c75ae89454312f440a756fcfc8ef1993e718f50f8a \
+                    size    389600
+
+if {${name} ne ${subport}} {
+    depends_lib-append  port:py${python.version}-numpy \
+                        port:py${python.version}-Pillow
+}
