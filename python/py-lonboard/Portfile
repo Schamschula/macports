@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-lonboard
-version             0.12.1
+version             0.13.0
 revision            0
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
@@ -13,11 +13,14 @@ description         A Python library for fast, interactive geospatial vector dat
 long_description    {*}${description}
 homepage            https://github.com/developmentseed/lonboard
 
-checksums           rmd160  08fc5d04e780967f51c1aaba1096bc1bb653e31b \
-                    sha256  2a4c07b38c0da6cd348df8133c3694815540f00fbf192104c6a4cecb3a6a5ea1 \
-                    size    907517
+checksums           rmd160  47fbc1bc966eb51a149ff2de118ad988ac153b7c \
+                    sha256  008d1479c79ddda1ff89f8c9d9a821c1cb99aeb3db49c169df1c56771ddb6522 \
+                    size    1038055
 
 python.versions     310 311 312 313
+
+python.pep517_backend \
+                    hatch
 
 if {${name} ne ${subport}} {
     depends_lib-append  \
@@ -28,12 +31,8 @@ if {${name} ne ${subport}} {
                     port:py${python.version}-ipywidgets \
                     port:py${python.version}-numpy \
                     port:py${python.version}-pyproj \
-                    port:py${python.version}-traitlets
-
-    if {${python.version} < 310} {
-        depends_lib-append  \
+                    port:py${python.version}-traitlets \
                     port:py${python.version}-typing_extensions
-    }
 
     variant cli description "Add cli support" {
         depends_lib-append  \
@@ -44,7 +43,8 @@ if {${name} ne ${subport}} {
 
     variant geopandas description "Add geopandas support" {
         depends_lib-append  \
-                    port:py${python.version}-geopandas
+                    port:py${python.version}-geopandas \
+                    port:py${python.version}-pyarrow
     }
     
     variant movingpandas description "Add movingpandas support" {
