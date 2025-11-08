@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           python 1.0
 
-github.setup        conan-io conan 2.22.1
+github.setup        conan-io conan 2.22.2
 github.tarball_from archive
 revision            0
 categories          devel python
@@ -12,13 +12,14 @@ license             MIT
 maintainers         {mps @Schamschula} openmaintainer
 description         Decentralized, open-source (MIT), C/C++ package manager.
 long_description    {*}${description} 
-supported_archs     noarch
-platforms           {darwin any}
 homepage            https://conan.io/
 
-checksums           rmd160  ce8c2520059fb4fa83647f36d9bb49aff47bb9ff \
-                    sha256  07825f3daea8ff81d77b481ad1231ebdc1915fadb84892b08667966c9e57c286 \
-                    size    1318962
+supported_archs     noarch
+platforms           {darwin any}
+
+checksums           rmd160  9846a703996c11ab67087512b9cc68c085b424d3 \
+                    sha256  6daa46ee1f4619c929e9e6377aa3b4e2cf01a96022f95bdd22ceae48d31e2a5a \
+                    size    1319588
 
 variant python310 conflicts python311 python312 python313 description {Build using Python 3.10} {}
 variant python311 conflicts python310 python312 python313 description {Build using Python 3.11} {}
