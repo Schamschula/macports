@@ -6,7 +6,7 @@ PortGroup       cmake 1.1
 PortGroup       qt6 1.0
 
 github.setup    Stellarium stellarium 25.3 v
-revision        0
+revision        1
 github.tarball_from \
                 releases
 
