@@ -3,7 +3,7 @@
 PortSystem              1.0
 
 name                    gpsd
-version                 3.26.1
+version                 3.27
 revision                0
 categories              net
 license                 BSD
@@ -23,20 +23,20 @@ long_description        GPSD is a service daemon that handles GPSes and other \
 homepage                https://gpsd.io
 
 master_sites            savannah
-checksums               rmd160  87855c1a2d9705d3863e0064de56750bc498c2b3 \
-                        sha256  dc7e465968c1540e61bc57c7586d6a57a0047212a014efdad348f907bc2e0990 \
-                        size    5909502
+checksums               rmd160  ead9c09e19ae5d2b92f91b5486146a5c83a29455 \
+                        sha256  6195292dd7910be68cb7018d45166283eaefd3f9db9773fcd6e9a78d49eac999 \
+                        size    5990617
+
 
 livecheck.type          regex
 livecheck.url           https://download.savannah.gnu.org/releases/gpsd/
 livecheck.regex         "${name}-(\\d+(?:\\.\\d+)*)${extract.suffix}"
 
 
-# GPSD requires Python 2.6, 2.7, or 3.2+.
-# We skip 2.6, 3.2 to 3.8, but keep 2.7 and 3.9+.
+# GPSD requires Python 2.7, or 3.10+.
 # Some variants may force a more restricted list.
 #
-set pythons_suffixes {27 39 310 311 312 313}
+set pythons_suffixes {27 310 311 312 313}
 
 set pythons_ports {}
 foreach s ${pythons_suffixes} {
@@ -55,8 +55,8 @@ foreach s ${pythons_suffixes} {
     variant ${p} description "Build ${name} to use Python ${v}" conflicts {*}${c} ""
 }
 
-# default to +python313
-set pyver_no_dot "313"
+# default to +python312
+set pyver_no_dot "312"
 foreach s ${pythons_suffixes} {
     if {[variant_isset python${s}]} {
         set pyver_no_dot ${s}
