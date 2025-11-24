@@ -32,9 +32,4 @@ if {${name} ne ${subport}} {
     depends_lib-append \
                     port:nodejs24 \
                     port:py${python.version}-pycrdt
-
-    if {${python.version} == 39} {
-        depends_lib-append \
-                    port:py${python.version}-importlib_metadata
-    }
 }
