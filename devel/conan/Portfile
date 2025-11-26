@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           python 1.0
 
-github.setup        conan-io conan 2.22.2
+github.setup        conan-io conan 2.23.0
 github.tarball_from archive
 revision            0
 categories          devel python
@@ -17,9 +17,9 @@ homepage            https://conan.io/
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  9846a703996c11ab67087512b9cc68c085b424d3 \
-                    sha256  6daa46ee1f4619c929e9e6377aa3b4e2cf01a96022f95bdd22ceae48d31e2a5a \
-                    size    1319588
+checksums           rmd160  a2f40860ea6bbdf22b90c01e62b20f9232689d9f \
+                    sha256  6f7d2c77a45342bf2edc02d7ef8d0decc5aa910e86b586f546c482205b010069 \
+                    size    1327667
 
 variant python310 conflicts python311 python312 python313 description {Build using Python 3.10} {}
 variant python311 conflicts python310 python312 python313 description {Build using Python 3.11} {}
@@ -37,9 +37,6 @@ foreach pv {313 312 311 310} {
         break
     }
 }
-
-depends_build-append \
-                    port:py${python.version}-setuptools
 
 depends_lib-append  \
                     port:py${python.version}-dateutil \
