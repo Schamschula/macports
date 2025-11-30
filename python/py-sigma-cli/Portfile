@@ -5,8 +5,8 @@ PortGroup           python 1.0
 
 name                py-sigma-cli
 python.rootname     sigma_cli
-version             1.0.6
-revision            1
+version             2.0.0
+revision            0
 license             LGPL-2.1+
 maintainers         {mps @Schamschula} openmaintainer
 description         Sigma Command Line Interface (conversion, check etc.) based on pySigma
@@ -16,18 +16,19 @@ homepage            https://github.com/SigmaHQ/sigma-cli
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  1f45e802cc58f3ba5b56b4ea905c0d78082c1f0d \
-                    sha256  5cd4471fcda44ea8e5671c81cc86bc685227107df57e128b75e125ee3d6d4123 \
-                    size    15913
+checksums           rmd160  07e28ed94bbe7583a158a662e16033272fc84757 \
+                    sha256  cd1de2e7cca39d5d45f3073e543d37594eed38b46b0276932755047cff44e6b3 \
+                    size    19437
 
-python.versions     39 310 311 312 313
+python.versions     310 311 312 313 314
 
-if {${name} ne ${subport}} {
-    python.pep517_backend \
+python.pep517_backend \
                     poetry
 
+if {${name} ne ${subport}} {
     depends_lib-append  \
                     port:py${python.version}-click \
+                    port:py${python.version}-colorama \
                     port:py${python.version}-prettytable \
                     port:py${python.version}-pysigma
 }
