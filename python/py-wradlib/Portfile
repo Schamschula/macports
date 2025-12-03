@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-wradlib
-version             2.5.0
+version             2.6.0
 revision            0
 
 categories-append   science          
@@ -17,9 +17,9 @@ homepage            https://wradlib.org
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  298a245fc153c0b717c99889bfcfbfd842d335cb \
-                    sha256  21e54878821f0eec0c30468cd2b28bc5d724f400f905c3940e66a64119891ba2 \
-                    size    428615
+checksums           rmd160  1cf4490189a3391fb5c250afe24aa87ab62a9418 \
+                    sha256  34e7a667ab8010ad3ba904f6ec38ec7e6b25d7e69d22b5f296b616f00fc2937c \
+                    size    539318
 
 python.versions     310 311 312 313
 
