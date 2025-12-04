@@ -6,6 +6,7 @@ PortGroup           python 1.0
 name                py-xradar
 version             0.10.0
 revision            0
+
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
 description         Xradar includes all the tools to get your weather radar into the xarray data model.
@@ -19,7 +20,7 @@ checksums           rmd160  cd18f3e05cbb9883321b90108143999f094fcdf1 \
                     sha256  5f36ac381a9c05087acb56fa9669e8bd3c7abe8ef80e7fc289e06d07fa08550b \
                     size    213103
 
-python.versions     39 310 311 312 313
+python.versions     310 311 312 313 314
 
 if {${name} ne ${subport}} {
     depends_build-append \
