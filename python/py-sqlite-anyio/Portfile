@@ -1,0 +1,29 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-sqlite-anyio
+python.rootname     sqlite_anyio
+version             0.2.3
+revision            0
+
+license             MIT
+maintainers         {mps @Schamschula} openmaintainer
+description         Asynchronous client for SQLite using AnyIO
+long_description    {*}${description}
+homepage            https://github.com/davidbrochart/sqlite-anyio?tab=readme-ov-file
+
+checksums           rmd160  71eec2909d820c990b842b405d624e4a69653c26 \
+                    sha256  12a8b0ececaa63d70d5cc5f91edbd932fc1eca9da70ebce2b31d3a199767b3d3 \
+                    size    5409
+
+python.versions     310 311 312 313 314
+
+python.pep517_backend \
+                    hatch
+
+if {${name} ne ${subport}} {
+    depends_lib-append  \
+                    port:py${python.version}-anyio
+}
