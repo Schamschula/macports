@@ -4,19 +4,23 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-pymispwarninglists
-version             1.6.1
+version             1.7.0
 revision            0
+
 license             BSD
 maintainers         {mps @Schamschula} openmaintainer
 description         Pythonic way to work with the warning lists.
 long_description    {*}${description}
 homepage            https://github.com/MISP/PyMISPWarningLists
 
-checksums           rmd160  d4491cb2eb41612b9c4e521eaa8538bc916a8b08 \
-                    sha256  6d45409924ee433ebb9affbbe0b70e3e4760b37a9ec841d2067efdcf047abae0 \
-                    size    19174290
+checksums           rmd160  dcb8769446ee4daf931ef15962442b811491e065 \
+                    sha256  b21326430a66c724ffc588f8860906a0fa67b6eae3cda3706e3042a08572c6d7 \
+                    size    19306478
 
-python.versions     39 310 311 312 313
+python.versions     39 310 311 312 313 314
+
+python.pep517_backend \
+                    poetry
 
 if {${name} ne ${subport}} {
     depends_lib-append  \
