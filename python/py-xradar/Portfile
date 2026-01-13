@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-xradar
-version             0.10.0
+version             0.11.0
 revision            0
 
 license             MIT
@@ -16,9 +16,9 @@ homepage            https://github.com/openradar/xradar
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  cd18f3e05cbb9883321b90108143999f094fcdf1 \
-                    sha256  5f36ac381a9c05087acb56fa9669e8bd3c7abe8ef80e7fc289e06d07fa08550b \
-                    size    213103
+checksums           rmd160  5e12b35be8a219164335d474003792621364115b \
+                    sha256  f61d6ab8977042ca08d1c956cfe23f8a495b7e702e859b79ef532641267192a9 \
+                    size    217713
 
 python.versions     310 311 312 313 314
 
