@@ -4,8 +4,9 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-torf
-version             4.3.0
+version             4.3.1
 revision            0
+
 license             GPL-3+
 maintainers         {mps @Schamschula} openmaintainer
 description         torf provides a Torrent and a Magnet class.
@@ -13,11 +14,11 @@ long_description    {*}${description} torf-cli and torf-gui provide user interfa
                     torf.
 homepage            https://github.com/rndusr/torf
 
-checksums           rmd160  dba1d1edc43514aaed5d8fb001ba30272d0771b9 \
-                    sha256  6d2a87268dbd41ef5039faf11cbf805575fe17c9d1dff2eb0e42fec6879f2eff \
-                    size    107454
+checksums           rmd160  ca1f54483c9915f9877699740c5496f730f7c991 \
+                    sha256  5c17656b2ad379122f2ec97a057398d1ec6a6bfce6f0b6f8ec0799b142493c5a \
+                    size    109185
 
-python.versions     39 310 311 312 313
+python.versions     310 311 312 313 314
 
 if {${name} ne ${subport}} {
     depends_lib-append  \
