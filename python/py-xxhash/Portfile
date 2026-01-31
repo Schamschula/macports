@@ -1,0 +1,40 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-xxhash
+version             3.6.0
+revision            0
+
+categories-append   devel
+platforms           darwin
+license             BSD
+maintainers         {mps @Schamschula} openmaintainer
+description         Python binding for xxHash
+long_description    {*}${description}
+homepage            https://github.com/ifduyue/python-xxhash
+
+checksums           rmd160  b95fcb5778b511597d101580729c9c55dd5c2a6c \
+                    sha256  f0162a78b13a0d7617b2845b90c763339d1f1d82bb04a4b07f4ab535cc5e05d6 \
+                    size    85160
+
+python.versions     310 311 312 313 314
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                    port:py${python.version}-setuptools_scm
+
+    depends_lib-append \
+                    port:xxhashlib
+
+    build.env-append \
+                    XXHASH_LINK_SO=1
+
+    pre-test {
+        # See https://docs.pytest.org/en/stable/pythonpath.html
+        delete ${test.dir}/${test.target}/__init__.py
+    }
+
+    test.run        yes
+}
