@@ -1,0 +1,11 @@
+--- backports/glew/src/glew.c.orig	2026-02-02 01:05:19
++++ backports/glew/src/glew.c	2026-02-02 07:29:59
+@@ -31,7 +31,7 @@
+ */
+ 
+ #ifndef GLEW_INCLUDE
+-#include <GL/glew.h>
++#include "../GL/glew.h"
+ #else
+ #include GLEW_INCLUDE
+ #endif
