@@ -1,14 +1,13 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
 
 PortSystem          1.0
-PortGroup           github 1.0
 PortGroup           python 1.0
 
-github.setup        kylebarron arro3 0.6.5 py-v
-github.tarball_from archive
-
 name                py-arro3-core
+python.rootname     arro3_core
+version             0.6.5
 revision            0
+
 license             Apache-2
 maintainers         {mps @Schamschula} openmaintainer
 description         A minimal Python library for Apache Arrow, binding to the Rust \
@@ -16,16 +15,11 @@ description         A minimal Python library for Apache Arrow, binding to the Ru
 long_description    {*}${description}
 homepage            https://github.com/kylebarron/arro3
 
-checksums           rmd160  6788240061b37ca600b125ca32beb2465f829093 \
-                    sha256  cdb9b0a6b17834310b197d064b0eafef27191dda0b342fca289b96325f0a354b \
-                    size    254732
+checksums           rmd160  26d3e78df13e10c0764b1304c58a8b376c721cb9 \
+                    sha256  768078887cd7ac82de4736f94bbd91f6d660f10779848bd5b019f511badd9d75 \
+                    size    107522
 
-python.versions     39 310 311 312 313 314
+python.versions     310 311 312 313 314
 
 python.pep517_backend \
                     maturin
-
-if {${name} ne ${subport}} {
-    configure.dir   ${worksrcpath}/arro3-core
-    build.dir       ${configure.dir}
-}
