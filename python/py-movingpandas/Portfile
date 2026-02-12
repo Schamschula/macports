@@ -6,6 +6,7 @@ PortGroup           python 1.0
 name                py-movingpandas
 version             0.22.4
 revision            0
+
 license             BSD
 maintainers         {mps @Schamschula} openmaintainer
 description         MovingPandas is a Python library for movement data exploration and \
@@ -19,7 +20,7 @@ checksums           rmd160  f1a110631b1c6fa6489f55de2c5fab3cad777514 \
                     sha256  2c4bb6f45f32ccd787d8a05397d5746f9d9207bf07b8cbfc36d49fc17e0824be \
                     size    76001
 
-python.versions     39 310 311 312 313
+python.versions     310 311 312 313 314
 
 if {${name} ne ${subport}} {
     depends_lib-append  \
