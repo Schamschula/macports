@@ -47,11 +47,11 @@ if {${name} ne ${subport}} {
                     port:py${python.version}-geopandas \
                     port:py${python.version}-pyarrow
     }
-    
+
     variant movingpandas description "Add movingpandas support" {
         depends_lib-append  \
                     port:py${python.version}-movingpandas
     }
-    
+
     default_variants +cli +geopandas +movingpandas
 }
