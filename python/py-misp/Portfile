@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-misp
 python.rootname     pymisp
-version             2.5.32.2
+version             2.5.32.3
 revision            0
 
 license             BSD
@@ -18,9 +18,9 @@ homepage            https://github.com/MISP/PyMISP
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  0cc8cc0f02a3a38718c1c067e1de4140027cfe64 \
-                    sha256  814fe2ca97a8f67c250dd84ea29031506a272b18cfacf7ca2206b1d157120079 \
-                    size    2044769
+checksums           rmd160  38d282442b52197e90a81ae6a828345a84b96b0e \
+                    sha256  bb30bbdc4d7c8c73a247ab39fb3da2ceb631dd190ccfb63bc66b77f54e155291 \
+                    size    2045816
 
 python.versions     310 311 312 313 314
 
