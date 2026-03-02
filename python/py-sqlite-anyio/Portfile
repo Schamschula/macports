@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-sqlite-anyio
 python.rootname     sqlite_anyio
-version             0.2.5
+version             0.2.8
 revision            0
 
 license             MIT
@@ -14,9 +14,9 @@ description         Asynchronous client for SQLite using AnyIO
 long_description    {*}${description}
 homepage            https://github.com/davidbrochart/sqlite-anyio?tab=readme-ov-file
 
-checksums           rmd160  1d483a32721a65fa61ee6549755bff8877c4752d \
-                    sha256  7e1bb604f41da329f58e45fe76b6542816af3b199be0f667d00457e7d43a9c98 \
-                    size    3316
+checksums           rmd160  c41d87091488f8c9a21e55a2d44c44640a248f4a \
+                    sha256  d68b51a18c01a7dfa9cedbc319871ce77ab3ed0822518fb32810bb465b52d761 \
+                    size    3271
 
 python.versions     310 311 312 313 314
 
