@@ -7,7 +7,8 @@ PortGroup           lua 1.0
 name                mod_security3
 set name_package    modsecurity
 github.setup        SpiderLabs ${name_package} 3.0.14 v
-revision            0
+revision            1
+
 categories          www security
 license             Apache-2
 platforms           darwin
