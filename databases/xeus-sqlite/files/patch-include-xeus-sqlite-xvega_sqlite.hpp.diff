@@ -1,0 +1,10 @@
+--- include/xeus-sqlite/xvega_sqlite.hpp.orig	2026-02-27 03:18:36
++++ include/xeus-sqlite/xvega_sqlite.hpp	2026-03-05 07:39:05
+@@ -13,6 +13,7 @@
+ #include <iterator>
+ #include <functional>
+ #include <map>
++#include <memory>
+ #include <string>
+ #include <utility>
+ #include <variant>
