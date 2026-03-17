@@ -4,28 +4,25 @@ PortSystem          1.0
 PortGroup           conflicts_build 1.0
 
 name                suricata
-version             8.0.3
+version             8.0.4
 revision            0
+
 categories          net security
-platforms           darwin
-maintainers         {mps @Schamschula} openmaintainer
 license             BSD
-
+maintainers         {mps @Schamschula} openmaintainer
 description         Open Source IDS / IPS / NSM engine
-
 long_description    Suricata is a high performance Network IDS, IPS \
                     and Network Security Monitoring engine. Open Source \
                     and owned by a community run non-profit foundation, \
                     the Open Information Security Foundation (OISF). \
                     Suricata is developed by the OISF and its supporting \
                     vendors.
-
 homepage            https://suricata.io
 master_sites        https://www.openinfosecfoundation.org/download/
 
-checksums           rmd160  08936e3b3d9f5a3a1b0a6f8c9f795f4c3af31c5a \
-                    sha256  3d9a7b803b97c11e060f3349b179beaafd6f96b8c8a95085d9fdc08c822817d9 \
-                    size    44297524
+checksums           rmd160  7de1a81bd7285dfea250b3ab2419f32c82cc1ed7 \
+                    sha256  81cee7bae69848a9751b2ce0867620eefa52b192e79c20b5eac897600b28b191 \
+                    size    44353651
 
 # https://redmine.openinfosecfoundation.org/issues/7804
 conflicts_build     lua
@@ -34,10 +31,9 @@ destroot.target     install-full
 
 ## Got both strlcpy/strlcat errors and "error: unknown type name 'json_t'"
 patchfiles          patch-Makefile.am.diff \
-                    patch-src-output-json.h-4.0.diff 
+                    patch-src-output-json.h-4.0.diff
 
 ## https://redmine.openinfosecfoundation.org/projects/suricata/wiki/Mac_OS_X_106x
-## FIXME! one deps resolves to libgcc-devel which can conflict w a lot of ports depending on libgcc
 depends_build       port:autoconf \
                     port:automake
 
@@ -56,6 +52,8 @@ depends_lib         port:cargo \
                     port:nss \
                     port:pcre \
                     port:pkgconfig
+
+depends_run         port:Oinkmaster
 
 configure.env       AC_PROG_LIBTOOL=${prefix}/bin/glibtool \
                     LDFLAGS=-L${prefix}/lib \
@@ -104,7 +102,7 @@ You need add extra rules, eventually using oinkmaster:
 https://redmine.openinfosecfoundation.org/projects/suricata/wiki/Rule_Management_with_Oinkmaster
 ex: $ sudo -u oinkmaster ${prefix}/bin/oinkmaster.pl -o ${prefix}/etc/${name}/rules -C ${prefix}/etc/oinkmaster-${name}.conf
 The corresponding oinkmaster config is in the examples directory and
-have been copied to ${prefix}/etc if not existing. 
+have been copied to ${prefix}/etc if not existing.
 Note: ${prefix}/etc/${name}/rules is not writable by oinkmaster, see (4)
 
 or suricata-update:
@@ -203,34 +201,34 @@ variant debug description { enable debug, processing will be slower } {
     configure.args-append    --enable-debug --enable-profiling
 }
 
-variant python39 description { Python 3.9 bindings } conflicts python310 python311 python312 python313 {
-    depends_build-append     port:python39  \
-                             port:py39-yaml
-    configure.python         ${prefix}/bin/python3.9
-}
-
-variant python310 description { Python 3.10 bindings } conflicts python39 python311 python312 python313 {
+variant python310 description { Python 3.10 bindings } conflicts python311 python312 python313 python314 {
     depends_build-append     port:python310  \
                              port:py310-yaml
     configure.python         ${prefix}/bin/python3.10
 }
 
-variant python311 description { Python 3.11 bindings } conflicts python39 python310 python312 python313 {
+variant python311 description { Python 3.11 bindings } conflicts python310 python312 python313 python314 {
     depends_build-append     port:python311  \
                              port:py311-yaml
     configure.python         ${prefix}/bin/python3.11
 }
 
-variant python312 description { Python 3.12 bindings } conflicts python39 python310 python311 python313 {
+variant python312 description { Python 3.12 bindings } conflicts python310 python311 python313 python314 {
     depends_build-append     port:python312  \
                              port:py312-yaml
     configure.python         ${prefix}/bin/python3.12
 }
 
-variant python313 description { Python 3.13 bindings } conflicts python39 python310 python311 python312 {
+variant python313 description { Python 3.13 bindings } conflicts python310 python311 python312 python314 {
     depends_build-append     port:python313  \
                              port:py313-yaml
     configure.python         ${prefix}/bin/python3.13
+}
+
+variant python314 description { Python 3.14 bindings } conflicts python310 python311 python312 python313 {
+    depends_build-append     port:python314  \
+                             port:py314-yaml
+    configure.python         ${prefix}/bin/python3.14
 }
 
 variant prelude description { libprelude support } {
@@ -263,9 +261,9 @@ variant nss description { nss/md5 checksums support } {
                              --with-libnspr-includes=${prefix}/include/nspr
 }
 
-default_variants       +debug +geoip 
-if {![variant_isset python38] && ![variant_isset python39] && ![variant_isset python310] && ![variant_isset python311]} {
-    default_variants   +python312
+default_variants       +debug +geoip
+if {![variant_isset python310] && ![variant_isset python311] && ![variant_isset python312] && ![variant_isset python313]} {
+    default_variants   +python314
 }
 
 startupitem.create      yes
@@ -275,4 +273,3 @@ startupitem.netchange   yes
 livecheck.type      regex
 livecheck.url       ${master_sites}
 livecheck.regex     ${name}-(\[0-9.\]+)${extract.suffix}
-
