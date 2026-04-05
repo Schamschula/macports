@@ -22,15 +22,20 @@ checksums           rmd160  d4d4371936071a9d965f752660b5ba8f4ddcadcc \
 
 compiler.require_fortran    yes
 
-depends_lib         port:gcc15
+depends_lib         port:gcc15 \
+                    port:metis
 
 patchfiles          patch-libraries-libmbwrap-kluwrap.h.diff \
                     patch-libraries-libmbwrap-umfpackwrap.h.diff
 
+# Fix build with metis
+# see: https://www.freelists.org/post/mbdyn-users/Successful-build-of-MBDyn-from-source-on-a-Mac
+patchfiles-append   patch-libraries-libmbwrap-metiswrap.cc.diff
+
 configure.args      --with-blas=blas \
                     --with-ginac=no \
                     --with-mpi=no \
-                    --with-metis=no
+                    --with-metis=yes
 
 # workaround for Type mismatch in argument 't' at (1); passed REAL(4) to INTEGER(4)
 # See FreeBSD Makefile
