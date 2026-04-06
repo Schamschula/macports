@@ -5,8 +5,9 @@ PortGroup           python 1.0
 
 name                unfurl
 python.rootname     dfir_unfurl
-version             20250810
+version             20260405
 revision            0
+
 categories          www
 license             Apache-2
 maintainers         {mps @Schamschula} openmaintainer
@@ -19,22 +20,22 @@ homepage            https://github.com/obsidianforensics/unfurl
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  550bce852fc747c3d3c33fc92a3d81948a06e43c \
-                    sha256  3291708446938cbf3983073a5fdb687d3facddfd6c4a7b2fbda4656c3b27a965 \
-                    size    12560095
+checksums           rmd160  af0fbb431c47030d5578bd38562ea92f3424b46b \
+                    sha256  e6a8b1011af9eb9e04760a4f07a0916191bd6b91c6ee2f3046b6d152e098d2d8 \
+                    size    12567376
 
-variant python39 conflicts python310 python311 python312 python313 description {Use Python 3.9} {}
-variant python310 conflicts python39 python311 python312 python313 description {Use Python 3.10} {}
-variant python311 conflicts python39 python310 python312 python313 description {Use Python 3.11} {}
-variant python312 conflicts python39 python310 python311 python313 description {Use Python 3.12} {}
-variant python313 conflicts python39 python310 python311 python312 description {Use Python 3.13} {}
+variant python310 conflicts python311 python312 python313 python314 description {Use Python 3.10} {}
+variant python311 conflicts python310 python312 python313 python314 description {Use Python 3.11} {}
+variant python312 conflicts python310 python311 python313 python314 description {Use Python 3.12} {}
+variant python313 conflicts python310 python311 python312 python314 description {Use Python 3.13} {}
+variant python314 conflicts python310 python311 python312 python313 description {Use Python 3.14} {}
 
-if {![variant_isset python39] && ![variant_isset python310] && \
-        ![variant_isset python311] && ![variant_isset python312]} {
-    default_variants +python313
+if {![variant_isset python310] && ![variant_isset python311] && \
+        ![variant_isset python312] && ![variant_isset python313]} {
+    default_variants +python314
 }
 
-foreach pv {313 312 311 310 39} {
+foreach pv {314 313 312 311 310} {
     if {[variant_isset python${pv}]} {
         python.default_version ${pv}
         break
