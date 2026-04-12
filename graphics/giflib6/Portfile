@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           makefile 1.0
 
 name                giflib6
-version             6.1.2
+version             6.1.3
 revision            0
 
 set major           [lindex [split ${version} .] 0]
@@ -19,9 +19,9 @@ description         GIF library using patented LZW algorithm
 long_description    GIF loading and saving shared library. \
                     Uses the LZW algorithm.
 
-checksums           rmd160  c3e2c10c2a2cad56d16082bb706a43b0ba76d6d3 \
-                    sha256  2421abb54f5906b14965d28a278fb49e1ec9fe5ebbc56244dd012383a973d5c0 \
-                    size    469032
+checksums           rmd160  d434e0e75ec04aa0cb2a73f9d6e0fcd251b54922 \
+                    sha256  b65b66b99f0424b93525f987386f22fc5efb9da2bfc92ad4a532249aaffbab0e \
+                    size    470579
 
 set docdir ${prefix}/share/doc/${name}
 
