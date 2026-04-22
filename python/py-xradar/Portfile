@@ -4,25 +4,39 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-xradar
-version             0.11.1
+version             0.12.0
 revision            0
 
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
-description         Xradar includes all the tools to get your weather radar into the xarray data model.
+description         Xradar includes all the tools to get your weather radar into the \
+                    xarray data model.
 long_description    {*}${description}
 homepage            https://github.com/openradar/xradar
 
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  2a58d5d5faefad41161ea6f79e24fef56e57bb4d \
-                    sha256  788e850305ca3fedd8e2fa566bdd220f122d3baea157a2d6a7f033153af451f7 \
-                    size    218128
+checksums           rmd160  c32db31a80e005b7cc6347e2a437c8e1c37c4fa1 \
+                    sha256  72fb38a91437ef66d0272c0ebad39496cc13c6a64c47a4a648e755cc9b4caa21 \
+                    size    245907
 
 python.versions     310 311 312 313 314
 
 if {${name} ne ${subport}} {
     depends_build-append \
                     port:py${python.version}-setuptools_scm
+
+    depends_lib-append \
+                    port:py${python.version}-cmweather \
+                    port:py${python.version}-dask \
+                    port:py${python.version}-h5netcdf \
+                    port:py${python.version}-h5py \
+                    port:py${python.version}-lat-lon-parser \
+                    port:py${python.version}-netCDF4 \
+                    port:py${python.version}-numpy \
+                    port:py${python.version}-pyproj \
+                    port:py${python.version}-scipy \
+                    port:py${python.version}-xarray \
+                    port:py${python.version}-xmltodict
 }
