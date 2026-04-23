@@ -5,7 +5,7 @@
  AC_SUBST([AR])
  
 -AC_PATH_PROGS([SPHINXBUILD], [sphinx-build])
-+AC_PATH_PROGS([SPHINXBUILD], [sphinx-build-3.12])
++AC_PATH_PROGS([SPHINXBUILD], [sphinx-build-%BRANCH%])
  AC_SUBST([SPHINXBUILD])
  AM_CONDITIONAL([HAVE_SPHINXBUILD], [ test "x$SPHINXBUILD" != "x" ])
  
