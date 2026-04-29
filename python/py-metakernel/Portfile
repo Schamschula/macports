@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           python 1.0
 
-github.setup        Calysto metakernel 1.0.3 v
+github.setup        Calysto metakernel 1.0.4 v
 github.tarball_from archive
 name                py-metakernel
 revision            0
@@ -21,9 +21,9 @@ homepage            https://github.com/Calysto/metakernel
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  5a1fe6c34490458f8d5b6724c9b3367b1d67106a \
-                    sha256  7d0d88c1dbd815f742b7ae47cf084b9aedf9b295cc66538fbd21dddf97939d82 \
-                    size    463237
+checksums           rmd160  13bd99a90d625a97d34a709533ec645d81c7bdb4 \
+                    sha256  c01676b68894f0f665a9c50231906b617a3b181de9bccfba161484330911c360 \
+                    size    463606
 
 python.versions     310 311 312 313 314
 
