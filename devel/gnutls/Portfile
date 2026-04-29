@@ -82,7 +82,6 @@ depends_lib-append \
 
 patchfiles-append \
                 implicit.patch \
-                patch-lib-crau-crau.h.diff \
                 patch-lib-system-certs.c.diff
 
 post-patch {
