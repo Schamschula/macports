@@ -1,0 +1,35 @@
+--- lib/crau/crau.h.orig	2026-04-29 09:33:25
++++ lib/crau/crau.h	2026-04-29 16:39:24
+@@ -260,8 +260,7 @@
+ #   endif
+ #  endif /* CRAU_MAYBE_UNUSED */
+ 
+-void crau_push_context(struct crau_context_stack_st *stack CRAU_MAYBE_UNUSED,
+-		       long context CRAU_MAYBE_UNUSED)
++void crau_push_context(struct crau_context_stack_st *stack CRAU_MAYBE_UNUSED, long context CRAU_MAYBE_UNUSED)
+ {
+ }
+ 
+@@ -277,19 +276,15 @@
+ 	return CRAU_ORPHANED_CONTEXT;
+ }
+ 
+-void crau_push_context_with_datav(struct crau_context_stack_st *stack CRAU_MAYBE_UNUSED,
+-				  long context CRAU_MAYBE_UNUSED,
+-				  va_list ap CRAU_MAYBE_UNUSED)
++void crau_push_context_with_datav(struct crau_context_stack_st *stack CRAU_MAYBE_UNUSED, long context CRAU_MAYBE_UNUSED, va_list ap CRAU_MAYBE_UNUSED)
+ {
+ }
+ 
+-void crau_push_context_with_data(struct crau_context_stack_st *stack CRAU_MAYBE_UNUSED,
+-				 long context CRAU_MAYBE_UNUSED, ...)
++void crau_push_context_with_data(struct crau_context_stack_st *stack CRAU_MAYBE_UNUSED, long context CRAU_MAYBE_UNUSED, ...)
+ {
+ }
+ 
+-void crau_datav(struct crau_context_stack_st *stack CRAU_MAYBE_UNUSED,
+-		va_list ap CRAU_MAYBE_UNUSED)
++void crau_datav(struct crau_context_stack_st *stack CRAU_MAYBE_UNUSED, va_list ap CRAU_MAYBE_UNUSED)
+ {
+ }
+ 
