@@ -103,39 +103,13 @@ configure.args-append \
                 --with-default-trust-store-pkcs11=pkcs11: \
                 ac_cv_prog_AWK=/usr/bin/awk
 
-subport ${name} {
-    # Note: configure script detects zstd, but flags it as missing anyway
-    # the guile variant is only available for gnutls
-    configure.args-append \
-                --without-brotli \
-                --disable-guile \
-                --without-zstd \
-
-    variant brotli description {Build brotli support} {
-        depends_lib-append \
-                port:brotli
-
-        configure.args-delete \
-                --without-brotli
-    }
-
-    variant guile description {Build guile-2.2 bindings} {
-    # there currently is a build issue with the guile variant
-    # the workaround is to first install guile w/o guile and then with +guile
-        depends_lib-append      port:guile-2.2
-        configure.args-replace  --disable-guile --enable-guile
-        # It should not be this hard :/
-        configure.env-append    guile_snarf=${prefix}/bin/guile-snarf-2.2
-        configure.env-append    GUILD=${prefix}/bin/guild-2.2
-        configure.env-append    GUILE=${prefix}/bin/guile-2.2
-        configure.env-append    GUILE_CONFIG=${prefix}/bin/guile-config-2.2
-        configure.env-append    GUILE_TOOLS=${prefix}/bin/guile-tools-2.2
-        configure.env-append    GUILE_EFFECTIVE_VERSION=2.2
-    }
-}
-
 # https://trac.macports.org/wiki/WimplicitFunctionDeclaration#strchr
 configure.checks.implicit_function_declaration.whitelist-append strchr
+
+# see: https://trac.macports.org/ticket/73942
+# and https://gitlab.com/gnutls/gnutls/-/work_items/1880
+compiler.blacklist-append {clang < 1600} {macports-clang-[1-9]} {macports-clang-1[1-6]}
+compiler.fallback-append clang-17
 
 compiler.thread_local_storage yes
 
