@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-uritools
-version             6.0.2
+version             6.1.0
 revision            0
 
 license             MIT
@@ -16,8 +16,8 @@ homepage            https://github.com/tkem/uritools/
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  be22cced07e2d03dcce1b4055a34e60f4f6ce359 \
-                    sha256  4d671c3b8ca230a5d47efa5f8a693f3d01531f38f4f523170299be734cc9851b \
-                    size    23199
+checksums           rmd160  36314f7baf4fcc6c443caf1245f0bbd9145e9d39 \
+                    sha256  be97e452528e7a42ef0a4df68364ddd77833e982c5bac5cdcfee15c81f65e96b \
+                    size    24777
 
 python.versions     310 311 312 313 314
