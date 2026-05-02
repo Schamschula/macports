@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-zarr
-version             3.1.6
+version             3.2.0
 revision            0
 
 license             MIT
@@ -14,9 +14,9 @@ description         Zarr is a Python package providing an implementation of comp
 long_description    {*}${description}
 homepage            https://github.com/zarr-developers/zarr-python
 
-checksums           rmd160  96a615babf22608ffd9de2bac1ea836f08bdc036 \
-                    sha256  d95e72cbea4b90e9a70679468b8266400331756232576ae2b43400ac5108d0eb \
-                    size    386531
+checksums           rmd160  58f70fd3a9c7b30d3b7090987c4b1ea2da5b79a8 \
+                    sha256  5867fa8dd7910541075531368c8eaa6f35957ab5413c68c168830e83948665ed \
+                    size    454948
 
 python.versions     310 311 312 313 314
 
@@ -29,6 +29,7 @@ if {${name} ne ${subport}} {
 
     depends_lib-append  \
                     port:py${python.version}-donfig \
+                    port:py${python.version}-google-crc32c \
                     port:py${python.version}-numpy \
                     port:py${python.version}-numcodecs \
                     port:py${python.version}-typing_extensions
