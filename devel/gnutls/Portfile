@@ -9,7 +9,7 @@ PortGroup       muniversal 1.0
 
 name            gnutls
 version         3.8.13
-revision        0
+revision        1
 
 categories      devel security
 # yes, some of the libs are GPL only
@@ -66,7 +66,7 @@ conflicts_build autogen
 
 depends_build-append \
                 port:gettext \
-                port:pkgconfig
+                path:bin/pkg-config:pkgconfig
 
 depends_lib-append \
                 port:brotli \
@@ -81,6 +81,7 @@ depends_lib-append \
                 port:zstd
 
 patchfiles-append \
+                CRAU_MAYBE_UNUSED.patch \
                 implicit.patch \
                 patch-lib-system-certs.c.diff
 
@@ -105,11 +106,6 @@ configure.args-append \
 
 # https://trac.macports.org/wiki/WimplicitFunctionDeclaration#strchr
 configure.checks.implicit_function_declaration.whitelist-append strchr
-
-# see: https://trac.macports.org/ticket/73942
-# and https://gitlab.com/gnutls/gnutls/-/work_items/1880
-compiler.blacklist-append {clang < 1600} {macports-clang-[1-9]} {macports-clang-1[1-6]}
-compiler.fallback-append clang-17
 
 compiler.thread_local_storage yes
 
