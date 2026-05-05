@@ -7,7 +7,7 @@ PortGroup               github 1.0
 PortGroup               legacysupport 1.0
 legacysupport.newest_darwin_requires_legacy 10
 
-github.setup            VirusTotal yara 4.5.5 v
+github.setup            VirusTotal yara 4.5.6 v
 github.tarball_from     archive
 revision                0
 
@@ -19,9 +19,9 @@ description             Malware identification and classification tool
 long_description        YARA is a tool aimed at helping malware researchers to identify \
                         and classify malware samples.
 
-checksums               rmd160  794028a6bf10dc7c38b1c5b0fa5d504142671aeb \
-                        sha256  d38e30fd9c1e1c7921d1c4568262d94f5c2d6b5da139fe49572a43ffbc5c53f6 \
-                        size    2202497
+checksums               rmd160  9580887f924e785c580f39631f13b2758463f0d9 \
+                        sha256  6d6889b9eda324aad9e261b0a70ce4b3f381382c3d16dea2d5fd441969c1deef \
+                        size    2203150
 
 if {${subport} eq ${name}} {
     depends_build-append \
@@ -70,6 +70,7 @@ foreach b ${python.branches} {
         github.setup            VirusTotal yara-python 4.5.5 v
         github.tarball_from     archive
         revision                0
+
         categories              security python
         description             ${name} bindings for python ${python.branch}
         long_description        Malware identification and classification tool. \
