@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-hanko
 python.rootname     pyhanko
-version             0.35.0
+version             0.35.1
 revision            0
 
 license             MIT
@@ -17,9 +17,9 @@ homepage            https://github.com/MatthiasValvekens/pyHanko
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  094f1c1b5d90a187aa3e614be9c5d80e26f0ef68 \
-                    sha256  dd2c38dc541cb3580b1c4a455649413e0ddc274e9fec3b77bd2b958f22fac9cd \
-                    size    7672920
+checksums           rmd160  554d204b59c1dfd25b81201cec441bc585e2d306 \
+                    sha256  a6319f6f3753bee92ec0e9b91f638d37c58f8e49d494ef2c2a1f5bcf614707a6 \
+                    size    7674200
 
 python.versions     310 311 312 313 314
 
