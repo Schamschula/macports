@@ -4,8 +4,9 @@ PortSystem  1.0
 PortGroup           muniversal 1.0
 
 name                nspr
-version             4.38.2
+version             4.39
 revision            0
+
 categories          devel
 maintainers         nomaintainer
 license             {MPL-1.1 GPL-2+ LGPL-2.1+}
@@ -16,9 +17,9 @@ long_description    {*}${description}
 homepage            https://www.mozilla.org/projects/nspr
 master_sites        https://ftp.mozilla.org/pub/nspr/releases/v${version}/src/
 
-checksums           rmd160  8f783467df36d783a0d794e7220c441e5db1b61e \
-                    sha256  e4092faeab77bdc9b32db1113e4215948ee768e26c4666db3b5a60b35f2c9105 \
-                    size    1025394
+checksums           rmd160  ba55a6362137757084d14f6084e9a1df46655635 \
+                    sha256  bbd02ee87a55676063a63e5bc819e0227de2666b47307b2a0134414cdf42368e \
+                    size    1014093
 
 worksrcdir          ${worksrcdir}/nspr
 
