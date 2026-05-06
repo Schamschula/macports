@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-hanko-certvalidator
 python.rootname     pyhanko_certvalidator
-version             0.31.0
+version             0.31.1
 revision            0
 
 license             MIT
@@ -18,9 +18,9 @@ homepage            https://github.com/MatthiasValvekens/pyHanko/tree/master/pkg
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  7089dc222aa38c28b95d7d9662552f55dadcdd0c \
-                    sha256  1c283497904c436a14779ceddb46bb8ef3650bd97e89ce853af02969a84fae3b \
-                    size    584372
+checksums           rmd160  e9a5298b27a2e09c162b4344ee448a5e98347878 \
+                    sha256  b7abc5672878994a050cf70a19b8247891aa30c9e6507eea77a6b10c7dbc1e50 \
+                    size    584700
 
 python.versions     310 311 312 313 314
 
