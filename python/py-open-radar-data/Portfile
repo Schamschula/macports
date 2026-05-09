@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-open-radar-data
 python.rootname     open_radar_data
-version             0.7.0
+version             0.8.0
 revision            0
 
 license             MIT
@@ -17,9 +17,9 @@ homepage            https://github.com/openradar/open-radar-data
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  137b030700a02df552b7cbc49ae879272cd1b850 \
-                    sha256  6276c68c8b4823a9482cc05dd589adcfd49f3f1391ad581adec9b2d51e4aaf70 \
-                    size    17577
+checksums           rmd160  ab1cfe774d0b8a20aa4e7e8e108573686533739e \
+                    sha256  8bbc0886b8eaa4ec63edc50b9ff7ffac5ddfd839217bb504a7ac9e65e052afec \
+                    size    17603
 
 python.versions     310 311 312 313 314
 
