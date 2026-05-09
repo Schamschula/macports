@@ -5,8 +5,9 @@ PortGroup           python 1.0
 PortGroup           select 1.0
 
 name                py-abipy
-version             0.9.8
-revision            1
+version             1.0.0
+revision            0
+
 license             GPL-2
 maintainers         {mps @Schamschula} openmaintainer
 description         AbiPy is a python library to analyze the results produced by Abinit, \
@@ -19,11 +20,11 @@ homepage            https://github.com/abinit/abipy
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  3dea7d565018bc56cf4207b74efb48f200513591 \
-                    sha256  d55599b2b8a8ae44910066a37a8fad67c0d076d104ad46059ab96c7d5f8351da \
-                    size    15154797
+checksums           rmd160  9051bdf1dd30d4b076efeb527a2bf729ded3ffd9 \
+                    sha256  60a416fa1535fd759432082cdf685bb0e97e0c322b7cfb7d0de61a62b402872f \
+                    size    91882900
 
-python.versions     39 310 311 312 313
+python.versions     310 311 312 313
 
 if {${name} ne ${subport}} {
     depends_lib-append  \
