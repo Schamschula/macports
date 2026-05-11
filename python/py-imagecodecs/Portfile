@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-imagecodecs
 epoch               1
-version             2026.3.6
+version             2026.5.10
 revision            0
 
 categories-append   graphics
@@ -17,9 +17,9 @@ long_description    {*}${description}
 
 homepage            https://github.com/cgohlke/imagecodecs/
 
-checksums           rmd160  f0eb45e8fba6b7901cac87d54db0a8464e0ab43a \
-                    sha256  471b8a4d1b3843cbf7179b45f7d7261f0c0b28809efc1ca6c47822477b143b85 \
-                    size    9565259
+checksums           rmd160  e2dff2fe2a6d7314aae023a8a935bc112c7257d6 \
+                    sha256  1c0c46860f35e4637c2df70ebe8aa15141f6c4202a698e63757a4d7917a85acc \
+                    size    9707764
 
 python.versions     310 311 312 313 314
 
@@ -48,6 +48,8 @@ if {${name} ne ${subport}} {
                     port:webp \
                     port:zopfli \
                     port:zstd
+
+    patchfiles      patch-setup.py.diff
 
     post-patch {
         reinplace "s|%PREFIX%|${prefix}|g" ${worksrcpath}/setup.py
