@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           python 1.0
 
-github.setup        xonsh xonsh 0.23.5
+github.setup        xonsh xonsh 0.23.6
 github.tarball_from archive
 revision            0
 
@@ -23,9 +23,9 @@ long_description    {*}${description} \
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  75df0912516b2b57b8b9d321335c249088c0e413 \
-                    sha256  4b4103c8d6e65dcd61cfc71aff9eb95c5b7d1b9c2d21c333a0bb764f81f6e6f5 \
-                    size    6239754
+checksums           rmd160  0c9a89cd477f52249215592d2befe45137ff1821 \
+                    sha256  73d636195adb030b25f349e9c12566991cdc15c614171977c5dfce92d820d3fd \
+                    size    6256181
 
 variant python310 conflicts python311 python312 python313 python314 description {Use Python 3.10} {}
 variant python311 conflicts python310 python312 python313 python314 description {Use Python 3.11} {}
