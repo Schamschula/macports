@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-jupyter_server_ydoc
-version             2.3.0
+version             2.4.0
 revision            0
 
 license             BSD
@@ -17,9 +17,9 @@ homepage            https://github.com/jupyterlab/jupyter-collaboration/tree/mai
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  dc68ee20715fc6bb8add8c70672bf00b1d4aad00 \
-                    sha256  36f311491e9f289f461fcdf26afb9b72cdf0eac3ceed0c0cbc8ec43afc8efebc \
-                    size    32103
+checksums           rmd160  d7aae185f7b953c8d12b45217e9e1259eb9ffa83 \
+                    sha256  74631f47a55d9dadf7dc918d78a083feaecc6c36af4d2fcdf26c0ee36bf70372 \
+                    size    33271
 
 python.versions     310 311 312 313 314
 
