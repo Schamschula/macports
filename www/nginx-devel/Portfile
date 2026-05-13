@@ -4,7 +4,7 @@ PortSystem          1.0
 
 name                nginx-devel
 set propername      nginx
-version             1.30.0
+version             1.31.0
 revision            0
 
 categories          www mail
@@ -23,9 +23,9 @@ master_sites        https://nginx.org/download:nginx
 
 distfiles           ${propername}-${version}${extract.suffix}:nginx
 checksums           ${propername}-${version}${extract.suffix} \
-                    rmd160  30e6f56e4f3fbdb6791e2707a76b71653b3e7346 \
-                    sha256  058188c64bf22baecaa72b809a6318a4f9ba623889c554feab03f7cb853ab31b \
-                    size    1324188
+                    rmd160  b1909b620f2ea324d5556e047e3afdf1cccba155 \
+                    sha256  6d5b00d45393af2e4e7c52a442d2a198f0ccbc7678ed062a46f403edd833ebaa \
+                    size    1337335
 
 depends_lib         port:pcre2 \
                     port:zlib
