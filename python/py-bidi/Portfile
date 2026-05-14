@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-bidi
 python.rootname     python_bidi
-version             0.6.9
+version             0.6.10
 revision            0
 
 license             GPL-3
@@ -17,9 +17,9 @@ homepage            https://github.com/MeirKriheli/python-bidi
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  06f733c40ec2dfe8c6adc6d4b7dbcbe8bef59b34 \
-                    sha256  001c1769893fd859216b0dc39dd4679c7260bf292c3637b727a928402a254322 \
-                    size    57902
+checksums           rmd160  8eac1e7d8f5a1b2fc3c907bb67850b2656e3c8bb \
+                    sha256  a7853e894f723675489ac49aa4b52dc8eac87d7a67b5940631c8c9d2aab46f90 \
+                    size    58172
 
 python.versions     310 311 312 313 314
 
