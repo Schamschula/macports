@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-pikepdf
-version             10.5.1
+version             10.6.0
 revision            0
 
 categories-append   graphics
@@ -17,15 +17,18 @@ homepage            https://github.com/pikepdf/pikepdf
 
 python.versions     310 311 312 313 314
 
-checksums           rmd160  b620469511c2a379748284446aa2ecf356fc8c39 \
-                    sha256  ffa6c7d0b77deb3af9735e0b0cae177c897431e10d342bb171b62e5527a622b7 \
-                    size    4582470
+checksums           rmd160  6a1b97ba08061a435cc0dee319cf0e9884efbb63 \
+                    sha256  172611c32ab0a6097cfbccb397847b8e84d3f7bc7d32d5fc2f50e7e61f164725 \
+                    size    23670594
+
+python.pep517_backend \
+                    scikit
 
 if {${name} ne ${subport}} {
     # Explicitly call for py-trove-classifiers
     # See: https://trac.macports.org/ticket/73559
     depends_build-append \
-                    port:py${python.version}-setuptools_scm \
+                    port:py${python.version}-nanobind \
                     port:py${python.version}-trove-classifiers
 
     depends_lib-append  \
@@ -33,7 +36,6 @@ if {${name} ne ${subport}} {
                     port:py${python.version}-lxml \
                     port:py${python.version}-packaging \
                     port:py${python.version}-Pillow \
-                    port:py${python.version}-pybind11 \
                     port:qpdf
 
     compiler.cxx_standard \
