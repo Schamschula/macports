@@ -6,7 +6,7 @@ PortGroup           legacysupport 1.1
 PortGroup           texlive 1.0
 
 name                asymptote
-version             3.10
+version             3.11
 revision            0
 
 categories          graphics
@@ -29,9 +29,9 @@ set python.bin      ${prefix}/bin/python${python.branch}
 master_sites        sourceforge:project/${name}/${version}/
 extract.suffix      .src.tgz
 
-checksums           rmd160  ab2ad2b25c7bf11ae8592800eb63903e14efd65e \
-                    sha256  d27be8fef250d5dc338602bf723e1d09e8cd1e85c199ab4c80743089fd8cd2c7 \
-                    size    26724037
+checksums           rmd160  f1c52cac4349770ab93c63349171c9cdd9443460 \
+                    sha256  537e9f22621bf84f09ee0d44dc455c4ea91ba193830f1d7624a07d4710d7e7d1 \
+                    size    27368439
 
 # FileNotFoundError: [Errno 2] No such file or directory: 'ccache /opt/local/bin/g++-mp-14'
 configure.ccache    no
