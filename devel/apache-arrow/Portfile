@@ -61,17 +61,13 @@ if {${subport} eq ${name}} {
         set llvm_prefix ${prefix}/libexec/llvm-${llvm_version}
         set llvm_bin    ${llvm_prefix}/bin
 
-        cmake.module_path-append \
-                        ${llvm_prefix}/lib/cmake/llvm
+        cmake.prefix_path-append \
+                        ${llvm_prefix}
         depends_lib-append \
                         port:llvm-${llvm_version}
         configure.args-append \
                         -DLLVM_ROOT:PATH=${llvm_prefix}
     }
-
-    cmake.module_path-append \
-                        ${prefix}/lib/cmake/grpc/modules \
-                        ${prefix}/libexec/boost/${boost.version}/lib/cmake/Boost-${boost.version}.0
 
     depends_build-append \
                         port:pkgconfig
@@ -246,7 +242,8 @@ if {[string match "py*" ${subport}]} {
 
     depends_build-append \
                     port:bash \
-                    port:cctools 
+                    port:cctools \
+                    port:py${python.version}-setuptools_scm
 
     depends_lib-append \
                     port:apache-arrow \
@@ -263,9 +260,6 @@ if {[string match "py*" ${subport}]} {
                     port:py${python.version}-pytest \
                     port:py${python.version}-pytest-lazy-fixture \
                     port:py${python.version}-tz
-
-    # the build must link against its own libraries
-    cmake.install_rpath
 
     use_configure   yes
 
@@ -291,8 +285,8 @@ if {[string match "py*" ${subport}]} {
                     ninja install"
     }
 
-    cmake.module_path-prepend \
-                    ${configure_destdir}${prefix}/lib/cmake
+    cmake.prefix_path-prepend \
+                    ${configure_destdir}${prefix}
 
     compiler.library_path \
                     "${configure_destdir}${prefix}/lib:${prefix}/lib"
