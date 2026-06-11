@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-pycrdt
-version             0.13.1
+version             0.14.0
 revision            0
 
 license             MIT
@@ -13,9 +13,9 @@ description         CRDTs based on Yrs.
 long_description    {*}${description}
 homepage            https://github.com/jupyter-server/pycrdt
 
-checksums           rmd160  40c0a6b9221d27bc55174d476f3d6d6d52e8e925 \
-                    sha256  3d888fc5dafe17d6f53a1430c5342cd58f0f704cafb6ff3f565e597c50d99934 \
-                    size    85504
+checksums           rmd160  6bbd3911b488c1b398f8b7506e407d3cea477681 \
+                    sha256  eb4c58526eeccf1d8c583767714e9459dd0e60f5686793df9b9d12731f5c5639 \
+                    size    85724
 
 python.versions     311 312 313 314
 
