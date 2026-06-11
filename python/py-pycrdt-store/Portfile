@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-pycrdt-store
 python.rootname     pycrdt_store
-version             0.1.4
+version             0.1.5
 revision            0
 
 license             MIT
@@ -14,9 +14,9 @@ description         Persistent storage for pycrdt.
 long_description    {*}${description}
 homepage            https://github.com/y-crdt/pycrdt-store
 
-checksums           rmd160  cef0b017c0f9e35ed1de994391ba426888a52719 \
-                    sha256  85f1f008fda5ca9140739b608de7d8612f5276fccd80af06689053640d541d77 \
-                    size    14835
+checksums           rmd160  de90090d7ccacda5e55ad72e1c20ba7f4b79f07d \
+                    sha256  10cb0a71b86e167735235b3ab82816015ba746a2e660bcb133adb67a8d5c8818 \
+                    size    14845
 
 python.versions     310 311 312 313 314
 
