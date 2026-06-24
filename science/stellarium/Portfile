@@ -5,7 +5,7 @@ PortGroup       github 1.0
 PortGroup       cmake 1.1
 PortGroup       qt6 1.0
 
-github.setup    Stellarium stellarium 26.1 v
+github.setup    Stellarium stellarium 26.2 v
 github.tarball_from \
                 releases
 revision        0
@@ -13,7 +13,7 @@ revision        0
 categories      science
 installs_libs   no
 license         GPL-2+
-maintainers     {michaelld @michaelld} openmaintainer
+maintainers     {mps @Schamschula} openmaintainer
 
 platforms       {darwin >= 19}
 
@@ -28,9 +28,9 @@ homepage        https://stellarium.org/
 
 conflicts       stellarium-qt4
 
-checksums       rmd160  82d04415b2f1ff9870bae9d0d69f6c07a97cc31e \
-                sha256  52b4b7fdd7cc905961e51d6ffc27302a88514fef976be6f1b3192c549b9087c3 \
-                size    560602360
+checksums       rmd160  62a978619530b4c882014a75bd37af431d6ac2c3 \
+                sha256  a564cb133ab1b2ff7587ea8a9d5659433af0502743167eb354233fea2795188c \
+                size    579133105
 
 # builds as 64-bit only, according to its top-level CMakeLists.txt file
 universal_variant   no
