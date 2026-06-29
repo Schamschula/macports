@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-apscheduler
-version             3.11.2
+version             3.11.3
 revision            0
 
 license             MIT
@@ -22,9 +22,9 @@ homepage            https://github.com/agronholm/apscheduler
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  f7e925324ccca61ed75c0c1b30343f96407766d2 \
-                    sha256  2a9966b052ec805f020c8c4c3ae6e6a06e24b1bf19f2e11d91d8cca0473eef41 \
-                    size    108683
+checksums           rmd160  6774888d658a9344c092720ae4ed2ab37dd0bb6a \
+                    sha256  cd2fcc9330039a81a5893472ad49facf23a6d5604cbe1d918c835c6de7834d5a \
+                    size    110312
 
 python.versions     310 311 312 313 314
 
