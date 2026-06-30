@@ -1,0 +1,38 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-itables
+version             2.2.5
+revision            0
+
+categories-append   math
+license             MIT
+maintainers         nomaintainer
+description         Pandas and Polar DataFrames as interactive DataTables
+long_description    {*}${description}
+homepage            https://mwouts.github.io/itables/
+
+platforms           {darwin any}
+supported_archs     noarch
+
+checksums           rmd160  41f928a5d31fe141bac44e6e1db06ae904f307b2 \
+                    sha256  838ed4783da0b6481b9062c362b8a331aa56f48d6c90e0f6dc76a0488a316049 \
+                    size    2436699
+
+python.versions     312 313 314 
+
+python.pep517_backend \
+                    hatch
+
+if {${name} ne ${subport}} {
+    depends_build-append \
+                    port:py${python.version}-hatch-jupyter-builder \
+                    path:bin/npm:npm10
+
+    depends_lib-append \
+                    port:py${python.version}-ipython \
+                    port:py${python.version}-numpy \
+                    port:py${python.version}-pandas
+}
