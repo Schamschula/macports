@@ -1,0 +1,13 @@
+diff --git a/configure.ac b/configure.ac
+index 6136eb081780..9cda6e95df7c 100644
+--- configure.ac
++++ configure.ac
+@@ -2133,7 +2133,7 @@ fi
+     fi
+     RUST_SURICATA_LIB="${RUST_SURICATA_LIBDIR}/${RUST_SURICATA_LIBNAME}"
+ 
+-    CFLAGS="${CFLAGS} -I\${srcdir}/../rust/gen -I\${srcdir}/../rust/dist -I../rust/gen"
++    CFLAGS="-I\${srcdir}/../rust/gen ${CFLAGS} -I\${srcdir}/../rust/dist -I../rust/gen"
+     AC_SUBST(RUST_SURICATA_LIB)
+     AC_SUBST(RUST_LDADD)
+     if test "x$CARGO_HOME" = "x"; then
