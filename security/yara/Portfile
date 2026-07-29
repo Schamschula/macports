@@ -39,6 +39,10 @@ if {${subport} eq ${name}} {
     patchfiles          patch-configure.ac.diff \
                         patch-Makefile.am.diff
 
+    post-patch {
+        reinplace "s|%PREFIX%|${prefix}|g" ${worksrcpath}/configure.ac
+    }
+
     pre-configure {
         system -W ${worksrcpath} "./bootstrap.sh"
     }
