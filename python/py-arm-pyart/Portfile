@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-arm-pyart
 python.rootname     arm_pyart
-version             2.2.5
+version             2.3.0
 
 revision            0
 categories-append   science
@@ -16,20 +16,20 @@ long_description    {*}${description} containing a growing collection of weather
                     algorithms and utilities build on top of the Scientific Python stack.
 homepage            https://github.com/ARM-DOE/pyart
 
-checksums           rmd160  aa9eb8291f4924f1e4944002d8d9fdc0dbb82c25 \
-                    sha256  c4f03f8f260437f47245ac724be0b65d0fbe14548266a61541f6f6bc0f3c0870 \
-                    size    67393686
+checksums           rmd160  a7befd4fe0363b32eaf1ea638121b33c04af7e5b \
+                    sha256  413b522005f64c10aacef388a7ba68789d245c524df8fa0bb676d96605b6dc7c \
+                    size    67173121
 
 python.versions     310 311 312 313 314
 
 if {${name} ne ${subport}} {
     depends_build-append \
+                    port:py${python.version}-cython \
                     port:py${python.version}-setuptools_scm
 
     depends_lib-append  \
                     port:py${python.version}-cartopy \
                     port:py${python.version}-cftime \
-                    port:py${python.version}-cython \
                     port:py${python.version}-fsspec \
                     port:py${python.version}-matplotlib \
                     port:py${python.version}-netcdf4 \
