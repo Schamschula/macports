@@ -4,8 +4,9 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-salib
-version             1.5.2
+version             1.6.0
 revision            0
+
 categories-append   science
 license             MIT
 maintainers         {mps @Schamschula} openmaintainer
@@ -17,16 +18,19 @@ homepage            http://salib.github.io/SALib/
 supported_archs     noarch
 platforms           {darwin any}
 
-checksums           rmd160  9544540e080b86c2ea6c43fe1c3f5f731a99d1c7 \
-                    sha256  a8eeedc4e87cf070f7ef450b76cdecd120d1e5c602a9c35855ec7777591f949f \
-                    size    725859
+checksums           rmd160  ecccb9f3dc536b5f3efeec7d56d594e49c282337 \
+                    sha256  122d25816137a50b5e972a206de7118961e202a6fb0922d9ec874fd49fdbbf5f \
+                    size    738435
 
-python.versions     39 310 311 312 313
+python.versions     310 311 312 313 314
 
 python.pep517_backend \
                     hatchling
 
 if {${name} ne ${subport}} {
+    depends_build-append \
+                    port:py${python.version}-hatch-vcs
+
     depends_lib-append \
                     port:py${python.version}-matplotlib \
                     port:py${python.version}-multiprocess \
