@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-pycrdt-websocket
 python.rootname     pycrdt_websocket
-version             0.16.4
+version             0.16.5
 revision            0
 
 license             MIT
@@ -16,9 +16,9 @@ description         Pycrdt-websocket is a Python library for building WebSocket 
 long_description    {*}${description}
 homepage            https://github.com/y-crdt/pycrdt-websocket
 
-checksums           rmd160  fa0b938791e93ab2161120747da0ce203bb34981 \
-                    sha256  6d90f36f4a1d51b3736caf8698fc3745ff44bb20cb820ff0033bfc76d4737da9 \
-                    size    23851
+checksums           rmd160  59d19405c265692a0740a3d67e1ff2574870fc12 \
+                    sha256  bda0b9ad31468a9d664464fc28c1b112cfde274065eb75844aa19950fb59d282 \
+                    size    24566
 
 python.versions     310 311 312 313 314
 
