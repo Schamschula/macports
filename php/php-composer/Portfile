@@ -18,20 +18,19 @@ master_sites        ${homepage}
 distfiles           installer
 
 checksums           installer \
-                    rmd160  8fc870f3aa02d7ae70e22317ca75f7327ce79480 \
-                    sha256  8586e7c8ce2839946a253a9ca3284e525245c1f82d8bd1e221cef88a59d00a75 \
-                    size    58444
+                    rmd160  5be9359f8ce15ee9203043b9dbf6cf62d32860a8 \
+                    sha256  aad0c40a36d9938664f5a34eb2ed39dbc1021792f9706dbcb9cd6d8001227c99 \
+                    size    59524
 
-variant php81 conflicts php82 php83 php84 description {Use php 8.1} {}
-variant php82 conflicts php81 php83 php84 description {Use php 8.2} {}
-variant php83 conflicts php81 php82 php84 description {Use php 8.3} {}
-variant php84 conflicts php81 php82 php83 description {Use php 8.4} {}
+variant php83 conflicts php84 php85 description {Use php 8.3} {}
+variant php84 conflicts php83 php85 description {Use php 8.4} {}
+variant php85 conflicts php83 php84 description {Use php 8.5} {}
 
-if {![variant_isset php82] && ![variant_isset php83]} {
-    default_variants +php83
+if {![variant_isset php83] && ![variant_isset php84]} {
+    default_variants +php85
 }
 
-foreach pv {81 82 83 84} {
+foreach pv {85 84 83} {
     if {[variant_isset php${pv}]} {
         set php_branch ${pv}
         break
