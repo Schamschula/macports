@@ -21,7 +21,7 @@ if {${subport} eq "gmic-gimp" || ${subport} eq "gmic-qt"} {
 
 name                gmic
 version             4.0.5
-revision            0
+revision            2
 
 # stealth update
 dist_subdir         ${name}/${version}_${revision}
@@ -61,7 +61,7 @@ depends_lib         port:curl \
                     port:tiff \
                     port:zlib
 
-compiler.blacklist              {clang < 902}
+compiler.blacklist              {clang < 1700}
 compiler.cxx_standard           2011
 
 # Uses more memory per compile process than we can accommodate on our
