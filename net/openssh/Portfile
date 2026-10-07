@@ -3,8 +3,8 @@
 PortSystem          1.0
 
 name                openssh
-version             10.5p1
-revision            1
+version             10.6p1
+revision            0
 categories          net
 maintainers         {@artkiver gmail.com:artkiver} openmaintainer
 license             BSD
@@ -26,9 +26,9 @@ long_description    OpenSSH is a FREE version of the SSH protocol suite of \
 
 homepage            https://www.openbsd.org/openssh/
 
-checksums           rmd160  bbd59b61dcf86f0d16ac02b27b0d6ab8b558c251 \
-                    sha256  d44d28a839ea9daf969cc69150fde59910b2b39361dad81a3bd6cbd19218db11 \
-                    size    2333659
+checksums           rmd160  a2145b53e6d8db0ca13aeb9594ccdbb1095dbaba \
+                    sha256  a9dc9565dffe8640f64d863cd29a32bc4a3dbdec0566a7fc44c5d6ee767d5f39 \
+                    size    2355244
 
 master_sites        openbsd:OpenSSH/portable \
                     ftp://ftp.cise.ufl.edu/pub/mirrors/openssh/portable/ \
