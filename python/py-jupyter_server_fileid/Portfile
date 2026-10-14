@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-jupyter_server_fileid
-version             0.9.3
+version             0.10.0
 revision            0
 
 license             BSD
@@ -15,16 +15,16 @@ description         A Jupyter Server extension providing an implementation of th
 long_description    {*}${description}
 homepage            https://github.com/jupyter-server/jupyter_server_fileid
 
-checksums           rmd160  6e2b96164f64dac1e7e365f77bf2a5a3a0cbcdd7 \
-                    sha256  521608bb87f606a8637fcbdce2f3d24a8b3cc89d2eef61751cb40e468d4e54be \
-                    size    54959
+checksums           rmd160  717db29c2a1bfe03955324164c958bdedade41ad \
+                    sha256  1f505d8e651820e62ec4865397d2688f4fec174b472d039a5288d1c1ab857172 \
+                    size    56308
 
 python.versions     310 311 312 313 314
 
-if {${name} ne ${subport}} {
-    python.pep517_backend \
+python.pep517_backend \
                     hatch
 
+if {${name} ne ${subport}} {
     depends_lib-append  \
                     port:py${python.version}-jupyter_events \
                     port:py${python.version}-jupyter_server
