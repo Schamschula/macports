@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-astropy-iers-data
 python.rootname     astropy_iers_data
-version             0.2026.10.19.0.52.1
+version             0.2026.10.20.13.3.2
 revision            0
 
 license             BSD
