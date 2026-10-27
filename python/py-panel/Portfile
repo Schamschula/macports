@@ -68,9 +68,9 @@ if {${name} ne ${subport}} {
 
         patchfiles  patch-panel-material-ui.1.9.4.diff
     } else {
-        patchfiles  patch-pyproject.toml.diff
+        patchfiles  patch-panel-material-ui.diff
     }
-    
+
 
 # The holoviews variant causes a circular dependency with py-panel
 # Any update will cause an issue, as port will first attempt to build
@@ -91,8 +91,13 @@ if {${name} ne ${subport}} {
         depends_lib-append \
                     port:py${python.version}-panel-material-ui
 
-        patchfiles-delete \
+        if {${python.version} <= 311} {
+            patchfiles-delete \
+                    patch-panel-material-ui.1.9.4.diff
+        } else {
+             patchfiles-delete \
                     patch-panel-material-ui.diff
+        }
     }
 
     variant matplotlib description {Add matplotlib support.} {
